@@ -82,7 +82,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .mlist-a:hover{background:var(--s3);color:var(--text)}
 .mlist-cnt{font-size:.65rem;background:var(--s4);padding:1px 6px;border-radius:20px;color:var(--muted)}
 .cat-list{display:flex;flex-direction:column;gap:4px;padding:2px 0 6px}
-.cat-item{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:8px;background:var(--s2);border:1px solid var(--border);transition:all .15s}
+.cat-item{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:8px;background:var(--s2);border:1px solid var(--border);transition:all .15px}
 .cat-item:hover{border-color:var(--accent)}
 .cat-emoji{font-size:.95rem;line-height:1;flex-shrink:0}
 .cat-swatch{width:10px;height:10px;border-radius:3px;flex-shrink:0}
@@ -195,13 +195,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .input-action-btn{background:var(--s3);border:1px solid var(--border);color:var(--muted);padding:7px 10px;border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:700;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .input-action-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-/* ── RECORRÊNCIA ── */
 .recur-opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
 .recur-opt{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:.76rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s;font-family:inherit;line-height:1}
 .recur-opt:hover{border-color:var(--accent2);color:var(--text);background:var(--s3)}
 .recur-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* ── PEOPLE PICKER ── */
 .people-picker{position:relative}
 .people-display{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:7px 11px;cursor:pointer;transition:border-color .2s;min-height:38px;user-select:none}
 .people-display:hover{border-color:var(--accent)}
@@ -495,8 +493,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <input type="date" id="cDateEnd"/>
         </div>
       </div>
-
-      <!-- PESSOAS -->
       <div class="row2">
         <div class="fgrp">
           <label>👤 Responsável <span class="opt-badge">opcional</span></label>
@@ -560,7 +556,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <div class="status-opt" data-val="Publicado" onclick="selectStatus(this)">Publicado</div>
         </div>
       </div>
-    </div><!-- /tab-info -->
+    </div>
 
     <div class="tab-panel" id="tab-content">
       <div class="fgrp">
@@ -735,9 +731,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <div class="toast" id="toast"></div>
 
 <script>
-/* ═══════════════════════════════════════════
-   CONSTANTES
-═══════════════════════════════════════════ */
 const EMOJI_CATS={
   "📱 Mídias Sociais":["📱","📲","🤳","💬","📣","📢","🗣️","👥","❤️","🔔","🌐","📡"],
   "🎨 Criativo":["🎨","✏️","🖌️","🖼️","📸","🎬","🎥","🎞️","🎭","🎪","✨","💡"],
@@ -766,23 +759,17 @@ const STATUS_COLORS={"Pendente":{bg:"#f97316",text:"#fff"},"Produção":{bg:"#38
 const RECUR_LABELS={"":"Sem recorrência","daily":"Diário","weekly":"Semanal","biweekly":"Quinzenal","monthly":"Mensal"};
 const RECUR_ICONS={"":"","daily":"📆","weekly":"🗓️","biweekly":"📅","monthly":"🗃️"};
 
-/* ═══════════════════════════════════════════
-   ESTADO
-═══════════════════════════════════════════ */
 let cards={}, categories={}, campaigns=[...DEFAULT_CAMPAIGNS];
 let currentYear=2026, dragCardId=null, editCardId=null, editMonth=null, editDay=null;
 let chosenColor="#6c63ff", catChosenColor="#6c63ff", editCatId=null;
 let currentTags=[], selectedStatus="", selectedRecur="";
 let filterPlatform="Todas", filterCampaign="Todas", searchQuery="";
 let selectedEmoji="📌", currentDetailCardId=null, useOverrideColor=false;
-
-// People picker
 let peopleList=JSON.parse(localStorage.getItem("cal_people")||"[]");
 let pickerSelected={ppResp:"",ppSolic:""};
 
 function savePeopleList(){ localStorage.setItem("cal_people",JSON.stringify(peopleList)); }
 
-/* ── People Picker ── */
 function togglePeople(pid){
   const drop=document.getElementById(pid+"-drop");
   const isOpen=drop.classList.contains("open");
@@ -806,7 +793,7 @@ function renderPeopleList(pid){
   }).join("");
 }
 function selectPerson(pid,name){
-  pickerSelected[pid]= pickerSelected[pid]===name ? "" : name;
+  pickerSelected[pid]=pickerSelected[pid]===name?"":name;
   const valEl=document.getElementById(pid+"-val");
   if(pickerSelected[pid]){ valEl.textContent=pickerSelected[pid]; valEl.classList.remove("empty"); }
   else{ valEl.textContent="Selecione ou adicione…"; valEl.classList.add("empty"); }
@@ -828,26 +815,23 @@ function applyPeoplePicker(pid,val){
   if(val){ valEl.textContent=val; valEl.classList.remove("empty"); }
   else{ valEl.textContent="Selecione ou adicione…"; valEl.classList.add("empty"); }
 }
-// fecha ao clicar fora
 document.addEventListener("click",e=>{
   if(!e.target.closest(".people-picker"))
     document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));
 });
 
-/* ── Recorrência ── */
 function selectRecur(val){
   selectedRecur=val||"";
   document.querySelectorAll("#recurOpts .recur-opt").forEach(o=>{
-    o.classList.toggle("sel", o.dataset.val===selectedRecur);
+    o.classList.toggle("sel",o.dataset.val===selectedRecur);
   });
   const hint=document.getElementById("recurHint");
   hint.textContent=selectedRecur
-    ? `🔁 Este card se repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`
-    : "";
+    ?`🔁 Este card se repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`
+    :"";
 }
 function applyRecurSel(val){ selectRecur(val||""); }
 
-/* ── Cor por nome ── */
 function colorFromName(name){
   const p=["#6c63ff","#f472b6","#4ade80","#fb923c","#38bdf8","#a78bfa","#f87171","#facc15","#34d399","#22d3ee"];
   let h=0; for(let i=0;i<name.length;i++) h=(h*31+name.charCodeAt(i))&0xfffffff;
@@ -859,9 +843,6 @@ function initials(name){
   return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():p[0].slice(0,2).toUpperCase();
 }
 
-/* ═══════════════════════════════════════════
-   FIREBASE / CONFIG
-═══════════════════════════════════════════ */
 function saveConfig(){
   try{
     const raw=document.getElementById("cfgInput").value.trim();
@@ -895,8 +876,6 @@ function startApp(){
   buildEmojiPanels();
   setupOverlayClose();
   buildPlatformFilters();
-
-  // ── delegação de clique para recorrência ──
   document.getElementById("recurOpts").addEventListener("click",e=>{
     const btn=e.target.closest(".recur-opt");
     if(btn) selectRecur(btn.dataset.val);
@@ -944,9 +923,6 @@ function setSyncStatus(s){
   d.className="sync-dot "+(s==="ok"?"ok":"err");
 }
 
-/* ═══════════════════════════════════════════
-   CAMPANHAS
-═══════════════════════════════════════════ */
 function openCampaignManager(){ renderCampList(); openOverlay("campaignOverlay"); }
 function closeCampaignManager(){ closeOverlay("campaignOverlay"); populateCampaignSelect(); }
 function renderCampList(){
@@ -990,9 +966,6 @@ function generateCampaignId(){
   showToast("⚡ ID: "+id,"#6c63ff");
 }
 
-/* ═══════════════════════════════════════════
-   FILTROS
-═══════════════════════════════════════════ */
 function buildPlatformFilters(){
   document.getElementById("platformFilters").innerHTML=
     PLATFORMS.map(p=>`<button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">${PLAT_ICONS[p]||""} ${p}</button>`).join("");
@@ -1016,9 +989,6 @@ function cardMatchesFilter(card){
   return true;
 }
 
-/* ═══════════════════════════════════════════
-   NAVEGAÇÃO
-═══════════════════════════════════════════ */
 function goToToday(){
   const ty=TODAY.getFullYear(),tm=TODAY.getMonth();
   if(currentYear!==ty){ currentYear=ty; document.getElementById("yearDisplay").textContent=ty; document.getElementById("topbarYear").textContent=ty; renderAll(); }
@@ -1043,9 +1013,6 @@ function holiday(yr,mi,day){
   return h[`${String(mi+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`]||null;
 }
 
-/* ═══════════════════════════════════════════
-   RENDER CALENDÁRIO
-═══════════════════════════════════════════ */
 function renderAll(){
   document.getElementById("mainContent").innerHTML=MONTHS_PT.map((_,i)=>buildMonthHTML(i)).join("");
   renderMonthNav(); attachDropZones();
@@ -1106,9 +1073,9 @@ function cardHTML(card){
     ?`<div class="card-avatar" style="background:${colorFromName(card.responsavel)}" title="Resp: ${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:"";
   const recurHTML=card.recurrence
     ?`<span class="card-recur" title="${RECUR_LABELS[card.recurrence]||""}">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";
+  // ── apenas bolinha de comentários, sem emojis de link/data ──
   const icons=[
     (card.links||[]).length>0?`<span class="card-icon">🔗</span>`:"",
-    card.dateStart||card.dateEnd?`<span class="card-icon">📅</span>`:"",
     hasComments?`<div class="card-comment-dot"></div>`:"",
   ].join("");
   return `
@@ -1175,9 +1142,6 @@ function renderCatSidebar(){
     </div>`).join("");
 }
 
-/* ═══════════════════════════════════════════
-   DRAG & DROP
-═══════════════════════════════════════════ */
 function attachDropZones(){
   document.querySelectorAll(".cal-day:not(.empty)").forEach(cell=>{
     cell.ondragover=e=>{ e.preventDefault(); cell.classList.add("drag-over"); };
@@ -1203,9 +1167,6 @@ async function dropCard(cell){
   dragCardId=null;
 }
 
-/* ═══════════════════════════════════════════
-   TABS
-═══════════════════════════════════════════ */
 function switchTab(pid,btn){
   document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
@@ -1222,9 +1183,6 @@ function switchCatTab(pid,btn){
   document.getElementById(pid).classList.add("active"); btn.classList.add("active");
 }
 
-/* ═══════════════════════════════════════════
-   LINKS
-═══════════════════════════════════════════ */
 function addLinkRow(name="",url=""){
   const id="lr"+Date.now()+Math.random().toString(36).slice(2,6);
   const wrap=document.getElementById("linksListEdit");
@@ -1245,9 +1203,6 @@ function readLinks(){
 }
 function renderLinksEdit(links){ document.getElementById("linksListEdit").innerHTML=""; (links||[]).forEach(l=>addLinkRow(l.name,l.url)); }
 
-/* ═══════════════════════════════════════════
-   CATEGORIA / COR
-═══════════════════════════════════════════ */
 function onCatChange(){
   const catId=document.getElementById("cCatSel").value, cat=categories[catId];
   const prev=document.getElementById("catColorPreview");
@@ -1268,9 +1223,6 @@ function buildCatOpts(selId){
   return `<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");
 }
 
-/* ═══════════════════════════════════════════
-   FORMULÁRIO CARD
-═══════════════════════════════════════════ */
 function resetCardForm(month,day){
   const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
   document.getElementById("cDate").value=iso;
@@ -1396,9 +1348,6 @@ async function doDelCard(id){
   showToast("🗑️ Excluído.","#f87171");
 }
 
-/* ═══════════════════════════════════════════
-   DETALHE
-═══════════════════════════════════════════ */
 function openDetail(id,e){
   e?.stopPropagation();
   const c=cards[id]; if(!c) return;
@@ -1466,9 +1415,6 @@ function openDetail(id,e){
   openOverlay("detailOverlay");
 }
 
-/* ═══════════════════════════════════════════
-   COMENTÁRIOS
-═══════════════════════════════════════════ */
 function renderComments(card){
   const area=document.getElementById("commentsArea"); const comms=card.comments||[];
   if(!comms.length){ area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda. Seja o primeiro! 💬</div>`; return; }
@@ -1513,9 +1459,6 @@ async function deleteComment(idx){
   await dbSaveCard(updated);
 }
 
-/* ═══════════════════════════════════════════
-   CATEGORIA MODAL
-═══════════════════════════════════════════ */
 function openCatModal(id){
   editCatId=id||null; const cat=id?categories[id]:null;
   document.getElementById("catModalTitle").textContent=cat?"✏️ Editar Categoria":"➕ Nova Categoria";
@@ -1543,9 +1486,6 @@ async function deleteCat(){
   await dbDelCat(editCatId); showToast("🗑️ Excluída.","#f87171");
 }
 
-/* ═══════════════════════════════════════════
-   EMOJI
-═══════════════════════════════════════════ */
 function buildEmojiPanels(filter=""){
   const container=document.getElementById("emojiPanels"); if(!container) return;
   const fl=filter.toLowerCase();
@@ -1563,9 +1503,6 @@ function selectEmoji(e){
   document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===e));
 }
 
-/* ═══════════════════════════════════════════
-   TAGS
-═══════════════════════════════════════════ */
 function handleTagInput(e){
   if(e.key==="Enter"||e.key===","){
     e.preventDefault();
@@ -1587,9 +1524,6 @@ function renderTags(){
   wrap.appendChild(input);
 }
 
-/* ═══════════════════════════════════════════
-   STATUS
-═══════════════════════════════════════════ */
 function selectStatus(el){ selectedStatus=el.dataset.val; applyStatusSel(); }
 function applyStatusSel(){
   document.querySelectorAll(".status-opt").forEach(o=>{
@@ -1602,9 +1536,6 @@ function applyStatusSel(){
 }
 function clearStatusSel(){ document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt"); }
 
-/* ═══════════════════════════════════════════
-   CORES
-═══════════════════════════════════════════ */
 function renderPresets(gid){
   const el=document.getElementById(gid); if(!el) return;
   const isCat=gid==="catPresetGrid", cur=isCat?catChosenColor:chosenColor;
@@ -1615,9 +1546,6 @@ function onCustomColor(c){ chosenColor=c; document.getElementById("colorHexLbl")
 function setCatColor(c){ catChosenColor=c; document.getElementById("catColorPicker").value=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
 function onCatCustomColor(c){ catChosenColor=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
 
-/* ═══════════════════════════════════════════
-   OVERLAYS / SIDEBAR / TOAST / ESC
-═══════════════════════════════════════════ */
 function openOverlay(id){ document.getElementById(id).classList.add("open"); }
 function closeOverlay(id){ document.getElementById(id).classList.remove("open"); }
 function setupOverlayClose(){
