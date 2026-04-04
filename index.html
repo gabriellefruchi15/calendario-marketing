@@ -89,8 +89,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cat-name{font-size:.76rem;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cat-edit-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 3px;border-radius:4px;transition:color .15s}
 .cat-edit-btn:hover{color:var(--accent2)}
-.add-cat-btn{display:flex;align-items:center;gap:6px;justify-content:center;width:100%;background:transparent;border:1px dashed var(--border);color:var(--muted);padding:7px;border-radius:8px;cursor:pointer;font-size:.75rem;font-weight:700;transition:all .2s;margin-top:2px}
-.add-cat-btn:hover{border-color:var(--accent);color:var(--accent)}
 
 #mainArea{flex:1;min-width:0;display:flex;flex-direction:column}
 #topbar{background:var(--s1);border-bottom:1px solid var(--border);padding:11px 24px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:92;flex-wrap:wrap}
@@ -159,8 +157,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .card-icon{font-size:.58rem;line-height:1;opacity:.7}
 .card-comment-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);flex-shrink:0;box-shadow:0 0 4px rgba(251,146,60,.6)}
 .card-avatar{width:16px;height:16px;border-radius:50%;background:var(--accent);color:#fff;font-size:.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:3px;text-transform:uppercase}
-/* ícone de recorrência no card */
-.card-recur{font-size:.62rem;opacity:.8;flex-shrink:0;margin-left:2px}
+.card-recur{font-size:.65rem;flex-shrink:0;margin-left:2px;opacity:.85;line-height:1}
 
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(7px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.open{opacity:1;pointer-events:all}
@@ -198,21 +195,27 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .input-action-btn{background:var(--s3);border:1px solid var(--border);color:var(--muted);padding:7px 10px;border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:700;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .input-action-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-/* ─── PEOPLE PICKER ─── */
+/* ── RECORRÊNCIA ── */
+.recur-opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
+.recur-opt{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:.76rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s;font-family:inherit;line-height:1}
+.recur-opt:hover{border-color:var(--accent2);color:var(--text);background:var(--s3)}
+.recur-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ── PEOPLE PICKER ── */
 .people-picker{position:relative}
-.people-display{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:7px 11px;cursor:pointer;transition:border-color .2s;min-height:38px}
+.people-display{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:7px 11px;cursor:pointer;transition:border-color .2s;min-height:38px;user-select:none}
 .people-display:hover{border-color:var(--accent)}
 .people-selected{flex:1;font-size:.84rem;color:var(--text)}
 .people-selected.empty{color:var(--muted)}
-.people-arrow{color:var(--muted);font-size:.7rem;transition:transform .2s}
+.people-arrow{color:var(--muted);font-size:.7rem;transition:transform .2s;flex-shrink:0}
 .people-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--s2);border:1px solid var(--accent);border-radius:10px;z-index:600;overflow:hidden;box-shadow:var(--shadow);display:none}
 .people-dropdown.open{display:block}
 .people-list{max-height:180px;overflow-y:auto;padding:4px}
 .people-list::-webkit-scrollbar{width:3px}
 .people-opt{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;cursor:pointer;transition:background .15s;font-size:.83rem}
 .people-opt:hover{background:var(--s3)}
-.people-opt.selected{background:rgba(108,99,255,.18)}
-.people-opt-avatar{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
+.people-opt.selected{background:rgba(108,99,255,.2)}
+.people-opt-avatar{width:22px;height:22px;border-radius:50%;color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
 .people-opt-name{flex:1;font-weight:600}
 .people-empty{font-size:.78rem;color:var(--muted);font-style:italic;padding:10px;text-align:center}
 .people-add-row{display:flex;gap:6px;padding:6px;border-top:1px solid var(--border)}
@@ -220,12 +223,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .people-add-row input:focus{border-color:var(--accent)}
 .people-add-btn{background:var(--accent);border:none;color:#fff;padding:6px 11px;border-radius:7px;cursor:pointer;font-size:.75rem;font-weight:700;white-space:nowrap;transition:background .15s}
 .people-add-btn:hover{background:#5a51e0}
-
-/* ─── RECORRÊNCIA ─── */
-.recur-opts{display:flex;gap:6px;flex-wrap:wrap}
-.recur-opt{padding:6px 13px;border-radius:20px;cursor:pointer;font-size:.73rem;font-weight:700;border:1px solid var(--border);color:var(--muted);transition:all .15s;background:var(--s2);display:flex;align-items:center;gap:5px}
-.recur-opt:hover{border-color:var(--accent2);color:var(--text)}
-.recur-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
 
 .camp-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;max-height:260px;overflow-y:auto}
 .camp-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--s2);border:1px solid var(--border);border-radius:8px}
@@ -285,7 +282,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 
 .emoji-section-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 6px}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
-.emoji-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--s2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15px}
+.emoji-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--s2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .emoji-btn:hover{border-color:var(--accent);background:var(--s3)}
 .emoji-btn.sel{border-color:var(--accent);background:var(--s3);box-shadow:0 0 0 2px var(--accent)}
 .emoji-search{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:8px;font-size:.82rem;font-family:inherit;outline:none;margin-bottom:8px;transition:border-color .2s}
@@ -323,7 +320,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .detail-link-name{font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap;min-width:60px}
 
 .resp-badge{display:inline-flex;align-items:center;gap:6px;background:var(--s3);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:700}
-.resp-avatar{width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:.58rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
+.resp-avatar{width:18px;height:18px;border-radius:50%;color:#fff;font-size:.58rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
 
 .comments-area{display:flex;flex-direction:column;gap:10px}
 .comment-item{background:var(--s3);border:1px solid var(--border);border-radius:10px;padding:10px 13px}
@@ -415,7 +412,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <h1>Calendário de Conteúdo &nbsp;<span class="topbar-year" id="topbarYear">2026</span></h1>
       <button class="btn-today" onclick="goToToday()">● Hoje</button>
     </div>
-
     <div id="filterBar">
       <span class="filter-label">Plataforma:</span>
       <div class="filter-group" id="platformFilters"></div>
@@ -426,7 +422,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <input type="text" id="searchInput" placeholder="Buscar..." oninput="applyFilters()"/>
       </div>
     </div>
-
     <div id="mainContent"></div>
   </div>
 </div>
@@ -481,7 +476,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <label>ID Campanha <span class="opt-badge">opcional</span></label>
           <div class="input-btn-wrap">
             <input type="text" id="cCampaignId" placeholder="Ex: camp-00101" maxlength="40"/>
-            <button type="button" class="input-action-btn" onclick="generateCampaignId()" title="Gerar ID automático">⚡ Gerar</button>
+            <button type="button" class="input-action-btn" onclick="generateCampaignId()">⚡ Gerar</button>
           </div>
           <div class="hint">Deixe vazio e clique em ⚡ Gerar para criar automaticamente</div>
         </div>
@@ -501,7 +496,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
       </div>
 
-      <!-- PESSOAS COM PEOPLE PICKER -->
+      <!-- PESSOAS -->
       <div class="row2">
         <div class="fgrp">
           <label>👤 Responsável <span class="opt-badge">opcional</span></label>
@@ -516,7 +511,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
                 <input type="text" id="ppResp-inp" placeholder="Novo nome…" maxlength="50"
                   onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppResp')}"
                   onclick="event.stopPropagation()"/>
-                <button class="people-add-btn" onclick="addPerson('ppResp')">+ Adicionar</button>
+                <button class="people-add-btn" type="button" onclick="addPerson('ppResp')">+ Add</button>
               </div>
             </div>
           </div>
@@ -534,7 +529,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
                 <input type="text" id="ppSolic-inp" placeholder="Novo nome…" maxlength="50"
                   onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppSolic')}"
                   onclick="event.stopPropagation()"/>
-                <button class="people-add-btn" onclick="addPerson('ppSolic')">+ Adicionar</button>
+                <button class="people-add-btn" type="button" onclick="addPerson('ppSolic')">+ Add</button>
               </div>
             </div>
           </div>
@@ -545,15 +540,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <div class="fgrp">
         <label>🔁 Recorrência <span class="opt-badge">opcional</span></label>
         <div class="recur-opts" id="recurOpts">
-          <div class="recur-opt" data-val="" onclick="selectRecur(this)">🚫 Nenhuma</div>
-          <div class="recur-opt" data-val="daily" onclick="selectRecur(this)">📆 Diário</div>
-          <div class="recur-opt" data-val="weekly" onclick="selectRecur(this)">🗓️ Semanal</div>
-          <div class="recur-opt" data-val="biweekly" onclick="selectRecur(this)">📅 Quinzenal</div>
-          <div class="recur-opt" data-val="monthly" onclick="selectRecur(this)">🗃️ Mensal</div>
+          <button type="button" class="recur-opt sel" data-val="">🚫 Nenhuma</button>
+          <button type="button" class="recur-opt" data-val="daily">📆 Diário</button>
+          <button type="button" class="recur-opt" data-val="weekly">🗓️ Semanal</button>
+          <button type="button" class="recur-opt" data-val="biweekly">📅 Quinzenal</button>
+          <button type="button" class="recur-opt" data-val="monthly">🗃️ Mensal</button>
         </div>
         <div class="hint" id="recurHint" style="margin-top:5px"></div>
       </div>
 
+      <!-- STATUS -->
       <div class="fgrp">
         <label>Status do Briefing <span class="opt-badge">opcional</span></label>
         <div class="status-sel" id="briefingStatusSel">
@@ -564,7 +560,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <div class="status-opt" data-val="Publicado" onclick="selectStatus(this)">Publicado</div>
         </div>
       </div>
-    </div>
+    </div><!-- /tab-info -->
 
     <div class="tab-panel" id="tab-content">
       <div class="fgrp">
@@ -593,7 +589,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <label>Links <span class="opt-badge">opcional</span></label>
         <div class="links-list" id="linksListEdit"></div>
         <button class="add-link-btn" type="button" onclick="addLinkRow()">＋ Adicionar link</button>
-        <div class="hint" style="margin-top:6px">Ex: "Briefing", "Drive", "Notion", "Referência"…</div>
+        <div class="hint" style="margin-top:6px">Ex: "Briefing", "Drive", "Notion"…</div>
       </div>
     </div>
 
@@ -677,9 +673,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <h2>📣 Gerenciar Campanhas</h2>
       <button class="modal-close" onclick="closeOverlay('campaignOverlay')">✕</button>
     </div>
-    <p style="font-size:.78rem;color:var(--muted);margin-bottom:14px;line-height:1.6">
-      Crie e organize suas campanhas. Elas aparecerão no seletor ao criar cards.
-    </p>
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:14px;line-height:1.6">Crie e organize suas campanhas.</p>
     <div class="camp-section-title">Campanhas cadastradas</div>
     <div class="camp-list" id="campList"></div>
     <div class="camp-section-title">Adicionar nova campanha</div>
@@ -741,163 +735,133 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <div class="toast" id="toast"></div>
 
 <script>
+/* ═══════════════════════════════════════════
+   CONSTANTES
+═══════════════════════════════════════════ */
 const EMOJI_CATS={
   "📱 Mídias Sociais":["📱","📲","🤳","💬","📣","📢","🗣️","👥","❤️","🔔","🌐","📡"],
-  "🎨 Criativo":      ["🎨","✏️","🖌️","🖼️","📸","🎬","🎥","🎞️","🎭","🎪","✨","💡"],
-  "📊 Negócio":       ["📊","📈","📉","💼","🏆","🎯","💰","💳","🤝","📋","📌","🗂️"],
-  "🎉 Eventos":       ["🎉","🎊","🎈","🎁","🥳","🏅","🎖️","🏟️","🎤","🎸","🎵","🎶"],
-  "📅 Datas":         ["📅","🗓️","⏰","⌛","🕐","📆","🔴","🟡","🟢","🟣","🔵","⚪"],
-  "🌟 Destaques":     ["⭐","🌟","💫","✨","🔥","💥","🚀","⚡","🌈","👑","💎","🏅"],
-  "📝 Texto":         ["📝","✍️","📖","📚","📰","📄","🗒️","📜","💭","🗨️","💡","🔍"],
-  "🛍️ Produto":       ["🛍️","🛒","🏪","🏬","📦","🎁","🏷️","💳","🛠️","⚙️","🔧","🔨"],
-  "🌍 Outros":        ["🌍","🌎","🌏","🗺️","✈️","🚗","🏠","🌿","🌊","☀️","🌙","❄️"],
+  "🎨 Criativo":["🎨","✏️","🖌️","🖼️","📸","🎬","🎥","🎞️","🎭","🎪","✨","💡"],
+  "📊 Negócio":["📊","📈","📉","💼","🏆","🎯","💰","💳","🤝","📋","📌","🗂️"],
+  "🎉 Eventos":["🎉","🎊","🎈","🎁","🥳","🏅","🎖️","🏟️","🎤","🎸","🎵","🎶"],
+  "📅 Datas":["📅","🗓️","⏰","⌛","🕐","📆","🔴","🟡","🟢","🟣","🔵","⚪"],
+  "🌟 Destaques":["⭐","🌟","💫","✨","🔥","💥","🚀","⚡","🌈","👑","💎","🏅"],
+  "📝 Texto":["📝","✍️","📖","📚","📰","📄","🗒️","📜","💭","🗨️","💡","🔍"],
+  "🛍️ Produto":["🛍️","🛒","🏪","🏬","📦","🎁","🏷️","💳","🛠️","⚙️","🔧","🔨"],
+  "🌍 Outros":["🌍","🌎","🌏","🗺️","✈️","🚗","🏠","🌿","🌊","☀️","🌙","❄️"],
 };
-
 const MONTHS_PT=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 const DAYS_PT=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
 const TODAY=new Date();
-
 const PLAT_ICONS={"Instagram":"📸","YouTube":"▶️","Facebook":"👥","TikTok":"🎵","Twitter/X":"🐦","LinkedIn":"💼","Email":"📧","Blog":"📝","Outro":"🌐","":" "};
-
 const HOLIDAYS_BY_YEAR={
   2025:{"01-01":"Ano Novo","03-03":"Carnaval","03-04":"Carnaval","04-18":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","06-19":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},
   2026:{"01-01":"Ano Novo","02-16":"Carnaval","02-17":"Carnaval","02-18":"Quarta de Cinzas","04-03":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","06-04":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},
   2027:{"01-01":"Ano Novo","02-08":"Carnaval","02-09":"Carnaval","04-02":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","05-27":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},
   2028:{"01-01":"Ano Novo","02-28":"Carnaval","02-29":"Carnaval","04-14":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","06-15":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},
 };
-
 const PRESETS=["#6c63ff","#a78bfa","#f472b6","#fb7185","#f97316","#facc15","#4ade80","#34d399","#22d3ee","#38bdf8","#818cf8","#c084fc","#f43f5e","#ef4444","#f59e0b","#84cc16","#10b981","#06b6d4","#0ea5e9","#e879f9","#64748b","#94a3b8","#ffffff","#ff6b6b","#ffd93d"];
 const PLATFORMS=["Todas","Instagram","YouTube","Facebook","TikTok","Twitter/X","LinkedIn","Email","Blog","Outro"];
 const DEFAULT_CAMPAIGNS=["Awareness","Consideração","Conversão","Retenção","Institucional","Produto","Sazonal","Lançamento","Relacionamento","Branding"];
 const STATUS_COLORS={"Pendente":{bg:"#f97316",text:"#fff"},"Produção":{bg:"#38bdf8",text:"#000"},"Revisão":{bg:"#a78bfa",text:"#fff"},"Aprovado":{bg:"#4ade80",text:"#000"},"Publicado":{bg:"#6c63ff",text:"#fff"}};
-
 const RECUR_LABELS={"":"Sem recorrência","daily":"Diário","weekly":"Semanal","biweekly":"Quinzenal","monthly":"Mensal"};
 const RECUR_ICONS={"":"","daily":"📆","weekly":"🗓️","biweekly":"📅","monthly":"🗃️"};
 
-let cards={};
-let categories={};
-let campaigns=[...DEFAULT_CAMPAIGNS];
-let currentYear=2026;
-let dragCardId=null;
-let editCardId=null;
-let editMonth=null;
-let editDay=null;
-let chosenColor="#6c63ff";
-let catChosenColor="#6c63ff";
-let editCatId=null;
-let currentTags=[];
-let selectedStatus="";
-let selectedRecur="";
-let filterPlatform="Todas";
-let filterCampaign="Todas";
-let searchQuery="";
-let cardLinks=[];
-let selectedEmoji="📌";
-let currentDetailCardId=null;
-let useOverrideColor=false;
+/* ═══════════════════════════════════════════
+   ESTADO
+═══════════════════════════════════════════ */
+let cards={}, categories={}, campaigns=[...DEFAULT_CAMPAIGNS];
+let currentYear=2026, dragCardId=null, editCardId=null, editMonth=null, editDay=null;
+let chosenColor="#6c63ff", catChosenColor="#6c63ff", editCatId=null;
+let currentTags=[], selectedStatus="", selectedRecur="";
+let filterPlatform="Todas", filterCampaign="Todas", searchQuery="";
+let selectedEmoji="📌", currentDetailCardId=null, useOverrideColor=false;
 
-// ─── PEOPLE PICKER STATE ───
-// Armazena a lista de pessoas e a seleção atual de cada picker
-let peopleList = JSON.parse(localStorage.getItem("cal_people")||"[]");
-let pickerSelected = { ppResp:"", ppSolic:"" };
+// People picker
+let peopleList=JSON.parse(localStorage.getItem("cal_people")||"[]");
+let pickerSelected={ppResp:"",ppSolic:""};
 
-function savePeopleList(){
-  localStorage.setItem("cal_people", JSON.stringify(peopleList));
-}
+function savePeopleList(){ localStorage.setItem("cal_people",JSON.stringify(peopleList)); }
 
-function togglePeople(pickerId){
-  const drop = document.getElementById(pickerId+"-drop");
-  const isOpen = drop.classList.contains("open");
-  // fecha todos
+/* ── People Picker ── */
+function togglePeople(pid){
+  const drop=document.getElementById(pid+"-drop");
+  const isOpen=drop.classList.contains("open");
   document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));
-  if(!isOpen){
-    renderPeopleList(pickerId);
-    drop.classList.add("open");
-  }
+  if(!isOpen){ renderPeopleList(pid); drop.classList.add("open"); }
 }
-
-function renderPeopleList(pickerId){
-  const list = document.getElementById(pickerId+"-list");
+function renderPeopleList(pid){
+  const list=document.getElementById(pid+"-list");
   if(!list) return;
   if(!peopleList.length){
     list.innerHTML=`<div class="people-empty">Nenhuma pessoa ainda.<br>Adicione abaixo! 👇</div>`;
     return;
   }
-  list.innerHTML = peopleList.map(name=>{
-    const sel = pickerSelected[pickerId]===name;
-    return `<div class="people-opt${sel?" selected":""}" onclick="selectPerson('${pickerId}','${esc(name)}')">
+  list.innerHTML=peopleList.map(name=>{
+    const sel=pickerSelected[pid]===name;
+    return `<div class="people-opt${sel?" selected":""}" onclick="selectPerson('${pid}','${esc(name)}')">
       <div class="people-opt-avatar" style="background:${colorFromName(name)}">${initials(name)}</div>
       <span class="people-opt-name">${esc(name)}</span>
-      ${sel?`<span style="color:var(--accent);font-size:.75rem">✓</span>`:""}
+      ${sel?`<span style="color:var(--accent);font-size:.8rem">✓</span>`:""}
     </div>`;
   }).join("");
 }
-
-function selectPerson(pickerId, name){
-  // toggle: clicou no mesmo → deseleciona
-  if(pickerSelected[pickerId]===name){
-    pickerSelected[pickerId]="";
-  } else {
-    pickerSelected[pickerId]=name;
-  }
-  // atualiza display
-  const valEl = document.getElementById(pickerId+"-val");
-  if(pickerSelected[pickerId]){
-    valEl.textContent = pickerSelected[pickerId];
-    valEl.classList.remove("empty");
-  } else {
-    valEl.textContent = "Selecione ou adicione…";
-    valEl.classList.add("empty");
-  }
-  // fecha dropdown
-  document.getElementById(pickerId+"-drop").classList.remove("open");
+function selectPerson(pid,name){
+  pickerSelected[pid]= pickerSelected[pid]===name ? "" : name;
+  const valEl=document.getElementById(pid+"-val");
+  if(pickerSelected[pid]){ valEl.textContent=pickerSelected[pid]; valEl.classList.remove("empty"); }
+  else{ valEl.textContent="Selecione ou adicione…"; valEl.classList.add("empty"); }
+  document.getElementById(pid+"-drop").classList.remove("open");
 }
-
-function addPerson(pickerId){
-  const inp = document.getElementById(pickerId+"-inp");
-  const name = inp.value.trim();
+function addPerson(pid){
+  const inp=document.getElementById(pid+"-inp");
+  const name=inp.value.trim();
   if(!name){ showToast("⚠️ Digite um nome!","#f97316"); return; }
-  if(peopleList.map(p=>p.toLowerCase()).includes(name.toLowerCase())){
-    // já existe: apenas seleciona
-    selectPerson(pickerId, peopleList.find(p=>p.toLowerCase()===name.toLowerCase()));
-    inp.value="";
-    return;
-  }
-  peopleList.push(name);
-  savePeopleList();
-  inp.value="";
-  selectPerson(pickerId, name);
+  const existing=peopleList.find(p=>p.toLowerCase()===name.toLowerCase());
+  if(existing){ selectPerson(pid,existing); inp.value=""; return; }
+  peopleList.push(name); savePeopleList(); inp.value="";
+  selectPerson(pid,name);
   showToast("✅ "+name+" adicionado(a)!");
 }
-
-// fecha dropdowns ao clicar fora
-document.addEventListener("click", e=>{
-  if(!e.target.closest(".people-picker")){
+function applyPeoplePicker(pid,val){
+  pickerSelected[pid]=val||"";
+  const valEl=document.getElementById(pid+"-val");
+  if(val){ valEl.textContent=val; valEl.classList.remove("empty"); }
+  else{ valEl.textContent="Selecione ou adicione…"; valEl.classList.add("empty"); }
+}
+// fecha ao clicar fora
+document.addEventListener("click",e=>{
+  if(!e.target.closest(".people-picker"))
     document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));
-  }
 });
 
-// gera uma cor consistente baseada no nome
+/* ── Recorrência ── */
+function selectRecur(val){
+  selectedRecur=val||"";
+  document.querySelectorAll("#recurOpts .recur-opt").forEach(o=>{
+    o.classList.toggle("sel", o.dataset.val===selectedRecur);
+  });
+  const hint=document.getElementById("recurHint");
+  hint.textContent=selectedRecur
+    ? `🔁 Este card se repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`
+    : "";
+}
+function applyRecurSel(val){ selectRecur(val||""); }
+
+/* ── Cor por nome ── */
 function colorFromName(name){
-  const palette=["#6c63ff","#f472b6","#4ade80","#fb923c","#38bdf8","#a78bfa","#f87171","#facc15","#34d399","#22d3ee"];
-  let hash=0;
-  for(let i=0;i<name.length;i++) hash=(hash*31+name.charCodeAt(i))&0xfffffff;
-  return palette[hash%palette.length];
+  const p=["#6c63ff","#f472b6","#4ade80","#fb923c","#38bdf8","#a78bfa","#f87171","#facc15","#34d399","#22d3ee"];
+  let h=0; for(let i=0;i<name.length;i++) h=(h*31+name.charCodeAt(i))&0xfffffff;
+  return p[h%p.length];
+}
+function initials(name){
+  if(!name) return "";
+  const p=name.trim().split(/\s+/);
+  return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():p[0].slice(0,2).toUpperCase();
 }
 
-// ─── RECORRÊNCIA ───
-function selectRecur(el){
-  selectedRecur = el.dataset.val;
-  document.querySelectorAll(".recur-opt").forEach(o=>o.classList.remove("sel"));
-  el.classList.add("sel");
-  const hint = document.getElementById("recurHint");
-  if(selectedRecur){
-    hint.textContent = `🔁 Este card se repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`;
-  } else {
-    hint.textContent = "";
-  }
-}
-
+/* ═══════════════════════════════════════════
+   FIREBASE / CONFIG
+═══════════════════════════════════════════ */
 function saveConfig(){
   try{
     const raw=document.getElementById("cfgInput").value.trim();
@@ -931,6 +895,12 @@ function startApp(){
   buildEmojiPanels();
   setupOverlayClose();
   buildPlatformFilters();
+
+  // ── delegação de clique para recorrência ──
+  document.getElementById("recurOpts").addEventListener("click",e=>{
+    const btn=e.target.closest(".recur-opt");
+    if(btn) selectRecur(btn.dataset.val);
+  });
 }
 
 function listenData(){
@@ -939,21 +909,15 @@ function listenData(){
     categories={};
     snap.forEach(d=>{ categories[d.id]=d.data(); });
     if(!Object.keys(categories).length) seedCats();
-    renderCatSidebar();
-    refreshAllDOM();
+    renderCatSidebar(); refreshAllDOM();
   },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("cards_cal"),snap=>{
     cards={};
     snap.forEach(d=>{ cards[d.id]=d.data(); });
-    renderAll();
-    buildCampaignFilters();
-    setSyncStatus("ok");
+    renderAll(); buildCampaignFilters(); setSyncStatus("ok");
   },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("campaigns_cal"),snap=>{
-    if(!snap.empty){
-      const doc=snap.docs[0];
-      campaigns=doc.data().list||[...DEFAULT_CAMPAIGNS];
-    }
+    if(!snap.empty){ const d=snap.docs[0]; campaigns=d.data().list||[...DEFAULT_CAMPAIGNS]; }
   },()=>{});
 }
 
@@ -980,11 +944,14 @@ function setSyncStatus(s){
   d.className="sync-dot "+(s==="ok"?"ok":"err");
 }
 
+/* ═══════════════════════════════════════════
+   CAMPANHAS
+═══════════════════════════════════════════ */
 function openCampaignManager(){ renderCampList(); openOverlay("campaignOverlay"); }
 function closeCampaignManager(){ closeOverlay("campaignOverlay"); populateCampaignSelect(); }
 function renderCampList(){
   const el=document.getElementById("campList");
-  if(!campaigns.length){ el.innerHTML=`<div style="font-size:.8rem;color:var(--muted);font-style:italic;padding:8px 0">Nenhuma campanha cadastrada ainda.</div>`; return; }
+  if(!campaigns.length){ el.innerHTML=`<div style="font-size:.8rem;color:var(--muted);font-style:italic;padding:8px 0">Nenhuma campanha.</div>`; return; }
   el.innerHTML=campaigns.map((c,i)=>`
     <div class="camp-item">
       <span class="camp-item-name">${esc(c)}</span>
@@ -993,12 +960,10 @@ function renderCampList(){
     </div>`).join("");
 }
 async function addCampaign(){
-  const inp=document.getElementById("newCampName");
-  const val=inp.value.trim();
+  const inp=document.getElementById("newCampName"); const val=inp.value.trim();
   if(!val){ showToast("⚠️ Digite o nome!","#f97316"); return; }
-  if(campaigns.map(c=>c.toLowerCase()).includes(val.toLowerCase())){ showToast("⚠️ Campanha já existe!","#f97316"); return; }
-  campaigns.push(val); inp.value="";
-  renderCampList(); await dbSaveCampaigns(); showToast("✅ Campanha adicionada!");
+  if(campaigns.map(c=>c.toLowerCase()).includes(val.toLowerCase())){ showToast("⚠️ Já existe!","#f97316"); return; }
+  campaigns.push(val); inp.value=""; renderCampList(); await dbSaveCampaigns(); showToast("✅ Campanha adicionada!");
 }
 async function removeCampaign(idx){
   campaigns.splice(idx,1); renderCampList(); await dbSaveCampaigns(); showToast("🗑️ Removida.","#f87171");
@@ -1007,7 +972,6 @@ function populateCampaignSelect(selVal=""){
   const el=document.getElementById("cCampaign"); if(!el) return;
   el.innerHTML=`<option value="">— Selecione —</option>`+campaigns.map(c=>`<option value="${esc(c)}"${c===selVal?" selected":""}>${esc(c)}</option>`).join("");
 }
-
 function generateCampaignId(){
   const title=(document.getElementById("cTitle").value||"").trim();
   const platform=(document.getElementById("cPlatform").value||"").trim();
@@ -1023,9 +987,12 @@ function generateCampaignId(){
   if(dateVal){ const[y,m,d]=dateVal.split("-"); datePart=`${y.slice(2)}${m}${d}`; }
   const id=(parts.length?parts.join("-")+"-":"")+(datePart?datePart+"-":"")+suffix;
   document.getElementById("cCampaignId").value=id;
-  showToast("⚡ ID gerado: "+id,"#6c63ff");
+  showToast("⚡ ID: "+id,"#6c63ff");
 }
 
+/* ═══════════════════════════════════════════
+   FILTROS
+═══════════════════════════════════════════ */
 function buildPlatformFilters(){
   document.getElementById("platformFilters").innerHTML=
     PLATFORMS.map(p=>`<button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">${PLAT_ICONS[p]||""} ${p}</button>`).join("");
@@ -1043,15 +1010,17 @@ function cardMatchesFilter(card){
   if(filterCampaign!=="Todas"&&card.campaign!==filterCampaign) return false;
   if(searchQuery){
     const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,
-               card.responsavel,card.solicitante,
-               ...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();
+               card.responsavel,card.solicitante,...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();
     if(!hay.includes(searchQuery)) return false;
   }
   return true;
 }
 
+/* ═══════════════════════════════════════════
+   NAVEGAÇÃO
+═══════════════════════════════════════════ */
 function goToToday(){
-  const ty=TODAY.getFullYear(), tm=TODAY.getMonth();
+  const ty=TODAY.getFullYear(),tm=TODAY.getMonth();
   if(currentYear!==ty){ currentYear=ty; document.getElementById("yearDisplay").textContent=ty; document.getElementById("topbarYear").textContent=ty; renderAll(); }
   const sec=document.getElementById(`month-${tm}`);
   if(sec){
@@ -1062,7 +1031,6 @@ function goToToday(){
     },400);
   }
 }
-
 function changeYear(d){
   const ny=currentYear+d; if(ny<2020||ny>2035) return;
   currentYear=ny;
@@ -1075,16 +1043,15 @@ function holiday(yr,mi,day){
   return h[`${String(mi+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`]||null;
 }
 
+/* ═══════════════════════════════════════════
+   RENDER CALENDÁRIO
+═══════════════════════════════════════════ */
 function renderAll(){
   document.getElementById("mainContent").innerHTML=MONTHS_PT.map((_,i)=>buildMonthHTML(i)).join("");
-  renderMonthNav();
-  attachDropZones();
+  renderMonthNav(); attachDropZones();
 }
-
 function buildMonthHTML(mi){
-  const yr=currentYear;
-  const dim=new Date(yr,mi+1,0).getDate();
-  const fd=new Date(yr,mi,1).getDay();
+  const yr=currentYear, dim=new Date(yr,mi+1,0).getDate(), fd=new Date(yr,mi,1).getDay();
   const mCards=Object.values(cards).filter(c=>c.month===mi&&c.year===yr);
   const seen={};
   mCards.forEach(c=>{ if(c.catId&&categories[c.catId]) seen[c.catId]=categories[c.catId]; });
@@ -1103,9 +1070,7 @@ function buildMonthHTML(mi){
           <div class="day-num">${d}</div>
           ${h?`<div class="holiday-tag">🎉 ${h}</div>`:""}
         </div>
-        <div class="day-cards" id="dc-${mi}-${d}">
-          ${dc.map(c=>cardHTML(c)).join("")}
-        </div>
+        <div class="day-cards" id="dc-${mi}-${d}">${dc.map(c=>cardHTML(c)).join("")}</div>
         <button class="day-add-btn" onclick="openAdd(${mi},${d})">＋</button>
       </div>`;
   }
@@ -1131,35 +1096,21 @@ function getCardColor(card){
   return card.color||(cat?.color||"#6c63ff");
 }
 
-function initials(name){
-  if(!name) return "";
-  const parts=name.trim().split(/\s+/);
-  return parts.length>=2 ? (parts[0][0]+parts[1][0]).toUpperCase() : parts[0].slice(0,2).toUpperCase();
-}
-
 function cardHTML(card){
   if(!cardMatchesFilter(card)) return "";
-  const color=getCardColor(card);
-  const bg=color+"1e";
+  const color=getCardColor(card), bg=color+"1e";
   const platIcon=PLAT_ICONS[card.platform||""]||"";
   const hasComments=(card.comments||[]).length>0;
   const cat=categories[card.catId];
-
   const avatarHTML=card.responsavel
-    ? `<div class="card-avatar" style="background:${colorFromName(card.responsavel)}" title="Responsável: ${esc(card.responsavel)}">${initials(card.responsavel)}</div>`
-    : "";
-
-  // ícone de recorrência no card
+    ?`<div class="card-avatar" style="background:${colorFromName(card.responsavel)}" title="Resp: ${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:"";
   const recurHTML=card.recurrence
-    ? `<span class="card-recur" title="${RECUR_LABELS[card.recurrence]||''}">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`
-    : "";
-
+    ?`<span class="card-recur" title="${RECUR_LABELS[card.recurrence]||""}">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";
   const icons=[
     (card.links||[]).length>0?`<span class="card-icon">🔗</span>`:"",
     card.dateStart||card.dateEnd?`<span class="card-icon">📅</span>`:"",
     hasComments?`<div class="card-comment-dot"></div>`:"",
   ].join("");
-
   return `
     <div class="content-card" id="card-${card.id}"
          style="border-left-color:${color};background:${bg}"
@@ -1173,8 +1124,7 @@ function cardHTML(card){
         ${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:
           cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}
       </div>
-      ${avatarHTML}
-      ${recurHTML}
+      ${avatarHTML}${recurHTML}
       ${icons?`<div class="card-icons">${icons}</div>`:""}
     </div>`;
 }
@@ -1210,7 +1160,6 @@ function updateCounts(){
     const ml=document.getElementById(`mlcnt-${i}`); if(ml) ml.textContent=n;
   });
 }
-
 function renderMonthNav(){
   document.getElementById("monthList").innerHTML=MONTHS_PT.map((m,i)=>`
     <a class="mlist-a" href="#month-${i}" onclick="closeSidebar()">
@@ -1226,6 +1175,9 @@ function renderCatSidebar(){
     </div>`).join("");
 }
 
+/* ═══════════════════════════════════════════
+   DRAG & DROP
+═══════════════════════════════════════════ */
 function attachDropZones(){
   document.querySelectorAll(".cal-day:not(.empty)").forEach(cell=>{
     cell.ondragover=e=>{ e.preventDefault(); cell.classList.add("drag-over"); };
@@ -1238,10 +1190,10 @@ function onDragEnd(){ document.querySelectorAll(".drag-over").forEach(c=>c.class
 async function dropCard(cell){
   cell.classList.remove("drag-over");
   if(!dragCardId) return;
-  const nm=parseInt(cell.dataset.month), nd=parseInt(cell.dataset.day);
+  const nm=parseInt(cell.dataset.month),nd=parseInt(cell.dataset.day);
   const card=cards[dragCardId]; if(!card) return;
   if(card.month===nm&&card.day===nd&&card.year===currentYear){ dragCardId=null; return; }
-  const om=card.month, od=card.day;
+  const om=card.month,od=card.day;
   const newDate=`${currentYear}-${String(nm+1).padStart(2,"0")}-${String(nd).padStart(2,"0")}`;
   const upd={...card,month:nm,day:nd,year:currentYear,date:newDate};
   cards[dragCardId]=upd;
@@ -1251,30 +1203,32 @@ async function dropCard(cell){
   dragCardId=null;
 }
 
-function switchTab(panelId,btn){
+/* ═══════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════ */
+function switchTab(pid,btn){
   document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById("tab-"+panelId).classList.add("active");
-  btn.classList.add("active");
+  document.getElementById("tab-"+pid).classList.add("active"); btn.classList.add("active");
 }
-function switchDetailTab(panelId,btn){
+function switchDetailTab(pid,btn){
   document.querySelectorAll("#detailOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll("#detailOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById(panelId).classList.add("active");
-  btn.classList.add("active");
+  document.getElementById(pid).classList.add("active"); btn.classList.add("active");
 }
-function switchCatTab(panelId,btn){
+function switchCatTab(pid,btn){
   document.querySelectorAll("#catOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll("#catOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById(panelId).classList.add("active");
-  btn.classList.add("active");
+  document.getElementById(pid).classList.add("active"); btn.classList.add("active");
 }
 
+/* ═══════════════════════════════════════════
+   LINKS
+═══════════════════════════════════════════ */
 function addLinkRow(name="",url=""){
   const id="lr"+Date.now()+Math.random().toString(36).slice(2,6);
   const wrap=document.getElementById("linksListEdit");
-  const row=document.createElement("div");
-  row.className="link-row-item"; row.id=id;
+  const row=document.createElement("div"); row.className="link-row-item"; row.id=id;
   row.innerHTML=`
     <input class="link-name" type="text" placeholder="Nome (ex: Briefing)" value="${esc(name)}" maxlength="40"/>
     <input type="url" placeholder="https://…" value="${esc(url)}"/>
@@ -1282,20 +1236,20 @@ function addLinkRow(name="",url=""){
   wrap.appendChild(row);
 }
 function readLinks(){
-  const rows=document.querySelectorAll("#linksListEdit .link-row-item");
-  const result=[];
+  const rows=document.querySelectorAll("#linksListEdit .link-row-item"); const result=[];
   rows.forEach(row=>{
-    const[nameEl,urlEl]=row.querySelectorAll("input");
-    const u=urlEl.value.trim();
+    const[nameEl,urlEl]=row.querySelectorAll("input"); const u=urlEl.value.trim();
     if(u) result.push({name:nameEl.value.trim()||"Link",url:u});
   });
   return result;
 }
 function renderLinksEdit(links){ document.getElementById("linksListEdit").innerHTML=""; (links||[]).forEach(l=>addLinkRow(l.name,l.url)); }
 
+/* ═══════════════════════════════════════════
+   CATEGORIA / COR
+═══════════════════════════════════════════ */
 function onCatChange(){
-  const catId=document.getElementById("cCatSel").value;
-  const cat=categories[catId];
+  const catId=document.getElementById("cCatSel").value, cat=categories[catId];
   const prev=document.getElementById("catColorPreview");
   if(cat){
     prev.style.display="flex";
@@ -1303,10 +1257,7 @@ function onCatChange(){
     document.getElementById("catColorName").textContent=(cat.emoji||"")+" "+cat.name;
     document.getElementById("catColorHexPrev").textContent=cat.color;
     if(!useOverrideColor) chosenColor=cat.color;
-  } else {
-    prev.style.display="none";
-    if(!useOverrideColor) chosenColor="#6c63ff";
-  }
+  } else { prev.style.display="none"; if(!useOverrideColor) chosenColor="#6c63ff"; }
 }
 function toggleOverride(){
   useOverrideColor=document.getElementById("overrideColorCheck").checked;
@@ -1317,48 +1268,22 @@ function buildCatOpts(selId){
   return `<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");
 }
 
-// ─── helper: aplica seleção nos pickers de pessoas ───
-function applyPeoplePicker(pickerId, val){
-  pickerSelected[pickerId] = val||"";
-  const valEl = document.getElementById(pickerId+"-val");
-  if(val){
-    valEl.textContent = val;
-    valEl.classList.remove("empty");
-  } else {
-    valEl.textContent = "Selecione ou adicione…";
-    valEl.classList.add("empty");
-  }
-}
-
-// ─── helper: aplica seleção de recorrência ───
-function applyRecurSel(val){
-  selectedRecur = val||"";
-  document.querySelectorAll(".recur-opt").forEach(o=>{
-    o.classList.toggle("sel", o.dataset.val===selectedRecur);
-  });
-  const hint = document.getElementById("recurHint");
-  hint.textContent = selectedRecur
-    ? `🔁 Este card se repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`
-    : "";
-}
-
+/* ═══════════════════════════════════════════
+   FORMULÁRIO CARD
+═══════════════════════════════════════════ */
 function resetCardForm(month,day){
   const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
   document.getElementById("cDate").value=iso;
   document.getElementById("cPlatform").value="";
   populateCampaignSelect();
-  ["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cDateStart","cDateEnd","cPmp"]
-    .forEach(id=>document.getElementById(id).value="");
+  ["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cDateStart","cDateEnd","cPmp"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("cCatSel").innerHTML=buildCatOpts("");
   document.getElementById("catColorPreview").style.display="none";
   document.getElementById("overrideColorCheck").checked=false;
   document.getElementById("overrideSection").classList.remove("show");
   useOverrideColor=false; chosenColor="#6c63ff"; setChosenColor(chosenColor);
   currentTags=[]; selectedStatus=""; renderTags(); clearStatusSel(); renderLinksEdit([]);
-  // reset people pickers
-  applyPeoplePicker("ppResp","");
-  applyPeoplePicker("ppSolic","");
-  // reset recorrência
+  applyPeoplePicker("ppResp",""); applyPeoplePicker("ppSolic","");
   applyRecurSel("");
   ["err-date","err-title"].forEach(id=>{ const e=document.getElementById(id); if(e) e.classList.remove("show"); });
   ["cDate","cTitle"].forEach(id=>{ const e=document.getElementById(id); if(e) e.classList.remove("invalid"); });
@@ -1394,10 +1319,8 @@ function openEditCard(id){
   document.getElementById("cDateEnd").value=c.dateEnd||"";
   document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");
   document.getElementById("cPmp").value=c.pmp||"";
-  // people pickers
   applyPeoplePicker("ppResp",  c.responsavel||"");
   applyPeoplePicker("ppSolic", c.solicitante||"");
-  // recorrência
   applyRecurSel(c.recurrence||"");
   useOverrideColor=!!(c.overrideColor);
   document.getElementById("overrideColorCheck").checked=useOverrideColor;
@@ -1430,42 +1353,41 @@ async function saveCard(){
   if(useOverrideColor){ finalOverride=chosenColor; }
   else{ const cat=categories[document.getElementById("cCatSel").value]; finalColor=cat?.color||"#6c63ff"; }
   const card={
-    id:         editCardId||("c"+Date.now()),
+    id:          editCardId||("c"+Date.now()),
     year:yr, month:mo-1, day:dy, date:dateVal,
-    platform:   document.getElementById("cPlatform").value,
-    campaign:   document.getElementById("cCampaign").value,
-    campaignId: document.getElementById("cCampaignId").value.trim(),
+    platform:    document.getElementById("cPlatform").value,
+    campaign:    document.getElementById("cCampaign").value,
+    campaignId:  document.getElementById("cCampaignId").value.trim(),
     title,
-    bigIdea:    document.getElementById("cBigIdea").value.trim(),
-    copy:       document.getElementById("cCopy").value.trim(),
-    desc:       document.getElementById("cDesc").value.trim(),
-    dateStart:  document.getElementById("cDateStart").value,
-    dateEnd:    document.getElementById("cDateEnd").value,
-    catId:      document.getElementById("cCatSel").value,
-    pmp:        document.getElementById("cPmp").value.trim(),
+    bigIdea:     document.getElementById("cBigIdea").value.trim(),
+    copy:        document.getElementById("cCopy").value.trim(),
+    desc:        document.getElementById("cDesc").value.trim(),
+    dateStart:   document.getElementById("cDateStart").value,
+    dateEnd:     document.getElementById("cDateEnd").value,
+    catId:       document.getElementById("cCatSel").value,
+    pmp:         document.getElementById("cPmp").value.trim(),
     responsavel: pickerSelected["ppResp"]||"",
     solicitante: pickerSelected["ppSolic"]||"",
     recurrence:  selectedRecur||"",
-    color:      finalColor,
+    color:       finalColor,
     overrideColor: finalOverride,
-    briefing:   selectedStatus,
-    tags:       [...currentTags],
-    links:      readLinks(),
-    comments:   existing?.comments||[],
+    briefing:    selectedStatus,
+    tags:        [...currentTags],
+    links:       readLinks(),
+    comments:    existing?.comments||[],
   };
   const old=cards[card.id];
   closeOverlay("cardOverlay");
   cards[card.id]=card;
   if(old&&(old.day!==card.day||old.month!==card.month)) refreshDay(old.month,old.day);
-  refreshDay(card.month,card.day);
-  refreshLeg(card.month);
+  refreshDay(card.month,card.day); refreshLeg(card.month);
   updateCounts(); buildCampaignFilters();
   await dbSaveCard(card);
   showToast("✅ Card salvo!");
 }
 
 async function doDelCard(id){
-  const c=cards[id]; const mi=c?.month, d=c?.day;
+  const c=cards[id]; const mi=c?.month,d=c?.day;
   delete cards[id];
   closeOverlay("cardOverlay"); closeOverlay("detailOverlay");
   if(mi!==undefined){ refreshDay(mi,d); refreshLeg(mi); updateCounts(); }
@@ -1474,51 +1396,40 @@ async function doDelCard(id){
   showToast("🗑️ Excluído.","#f87171");
 }
 
+/* ═══════════════════════════════════════════
+   DETALHE
+═══════════════════════════════════════════ */
 function openDetail(id,e){
   e?.stopPropagation();
   const c=cards[id]; if(!c) return;
   currentDetailCardId=id;
-  const cat=categories[c.catId];
-  const color=getCardColor(c);
-  const sc=STATUS_COLORS[c.briefing]||null;
+  const cat=categories[c.catId], color=getCardColor(c), sc=STATUS_COLORS[c.briefing]||null;
   switchDetailTab("dtinfo",document.querySelector("#detailOverlay .modal-tab"));
   const make=(lbl,val)=>val?`<div class="dblock"><div class="dblock-lbl">${lbl}</div><div class="dblock-val">${esc(val)}</div></div>`:"";
   const datesBlock=(c.dateStart||c.dateEnd)?`
     <div class="dblock"><div class="dblock-lbl">📅 Período</div>
       <div class="dblock-dates">
         ${c.dateStart?`<div class="ddate"><span class="ddate-lbl">Início</span><span class="ddate-val">${fmtDFull(c.dateStart)}</span></div>`:""}
-        ${c.dateEnd  ?`<div class="ddate"><span class="ddate-lbl">Fim</span><span class="ddate-val">${fmtDFull(c.dateEnd)}</span></div>`:""}
+        ${c.dateEnd?`<div class="ddate"><span class="ddate-lbl">Fim</span><span class="ddate-val">${fmtDFull(c.dateEnd)}</span></div>`:""}
       </div></div>`:"";
   const tagsBlock=c.tags?.length?`
     <div class="dblock"><div class="dblock-lbl">🏷️ Tags</div>
       <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">
         ${c.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}
       </div></div>`:"";
-
-  // bloco recorrência no detalhe
   const recurBlock=c.recurrence?`
     <div class="dblock">
       <div class="dblock-lbl">🔁 Recorrência</div>
       <div class="dblock-val">${RECUR_ICONS[c.recurrence]||"🔁"} ${RECUR_LABELS[c.recurrence]||c.recurrence}</div>
     </div>`:"";
-
   const respBlock=(c.responsavel||c.solicitante)?`
     <div class="dblock">
       <div class="dblock-lbl">👥 Pessoas</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        ${c.responsavel?`
-          <div class="resp-badge">
-            <div class="resp-avatar" style="background:${colorFromName(c.responsavel)}">${initials(c.responsavel)}</div>
-            <span>Responsável: <strong>${esc(c.responsavel)}</strong></span>
-          </div>`:""}
-        ${c.solicitante?`
-          <div class="resp-badge">
-            <div class="resp-avatar" style="background:${colorFromName(c.solicitante)}">${initials(c.solicitante)}</div>
-            <span>Solicitante: <strong>${esc(c.solicitante)}</strong></span>
-          </div>`:""}
+        ${c.responsavel?`<div class="resp-badge"><div class="resp-avatar" style="background:${colorFromName(c.responsavel)}">${initials(c.responsavel)}</div><span>Responsável: <strong>${esc(c.responsavel)}</strong></span></div>`:""}
+        ${c.solicitante?`<div class="resp-badge"><div class="resp-avatar" style="background:${colorFromName(c.solicitante)}">${initials(c.solicitante)}</div><span>Solicitante: <strong>${esc(c.solicitante)}</strong></span></div>`:""}
       </div>
     </div>`:"";
-
   document.getElementById("detailBody").innerHTML=`
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:14px">
       <div class="detail-stripe" style="background:${color}"></div>
@@ -1533,16 +1444,12 @@ function openDetail(id,e){
       </div>
     </div>
     <div class="detail-blocks">
-      ${respBlock}
-      ${recurBlock}
+      ${respBlock}${recurBlock}
       ${c.campaign?make("📣 Campanha",`${c.campaign}${c.campaignId?" — "+c.campaignId:""}`):""}
-      ${make("💡 Big Idea",c.bigIdea)}
-      ${make("✍️ Copy",c.copy)}
-      ${make("📝 Observações",c.desc)}
+      ${make("💡 Big Idea",c.bigIdea)}${make("✍️ Copy",c.copy)}${make("📝 Observações",c.desc)}
       ${c.pmp?make("📋 PMP",c.pmp):""}
       ${datesBlock}${tagsBlock}
     </div>`;
-
   const links=c.links||[];
   document.getElementById("detailLinksBody").innerHTML=links.length
     ?`<div class="dblock"><div class="dblock-lbl">🔗 Links</div>
@@ -1550,7 +1457,6 @@ function openDetail(id,e){
           ${links.map(l=>`<div class="detail-link-item"><span class="detail-link-name">${esc(l.name)}</span><a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.url)}</a></div>`).join("")}
         </div></div>`
     :`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:12px 0">Nenhum link adicionado.</p>`;
-
   renderComments(c);
   const badge=document.getElementById("commentBadge");
   const cnt=(c.comments||[]).length;
@@ -1560,9 +1466,11 @@ function openDetail(id,e){
   openOverlay("detailOverlay");
 }
 
+/* ═══════════════════════════════════════════
+   COMENTÁRIOS
+═══════════════════════════════════════════ */
 function renderComments(card){
-  const area=document.getElementById("commentsArea");
-  const comms=card.comments||[];
+  const area=document.getElementById("commentsArea"); const comms=card.comments||[];
   if(!comms.length){ area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda. Seja o primeiro! 💬</div>`; return; }
   area.innerHTML=comms.map((cm,idx)=>`
     <div class="comment-item">
@@ -1605,9 +1513,11 @@ async function deleteComment(idx){
   await dbSaveCard(updated);
 }
 
+/* ═══════════════════════════════════════════
+   CATEGORIA MODAL
+═══════════════════════════════════════════ */
 function openCatModal(id){
-  editCatId=id||null;
-  const cat=id?categories[id]:null;
+  editCatId=id||null; const cat=id?categories[id]:null;
   document.getElementById("catModalTitle").textContent=cat?"✏️ Editar Categoria":"➕ Nova Categoria";
   document.getElementById("catName").value=cat?.name||"";
   setCatColor(cat?.color||"#6c63ff");
@@ -1630,9 +1540,12 @@ async function deleteCat(){
   if(!editCatId) return;
   if(Object.values(cards).some(c=>c.catId===editCatId)){ showToast("❌ Categoria em uso!","#f87171"); return; }
   delete categories[editCatId]; closeOverlay("catOverlay"); renderCatSidebar();
-  await dbDelCat(editCatId); showToast("🗑️ Categoria excluída.","#f87171");
+  await dbDelCat(editCatId); showToast("🗑️ Excluída.","#f87171");
 }
 
+/* ═══════════════════════════════════════════
+   EMOJI
+═══════════════════════════════════════════ */
 function buildEmojiPanels(filter=""){
   const container=document.getElementById("emojiPanels"); if(!container) return;
   const fl=filter.toLowerCase();
@@ -1640,9 +1553,7 @@ function buildEmojiPanels(filter=""){
     const filtered=emojis.filter(e=>!fl||label.toLowerCase().includes(fl));
     if(!filtered.length) return "";
     return `<div class="emoji-section-label">${label}</div>
-      <div class="emoji-grid">
-        ${filtered.map(e=>`<button class="emoji-btn${e===selectedEmoji?" sel":""}" onclick="selectEmoji('${e}')" type="button">${e}</button>`).join("")}
-      </div>`;
+      <div class="emoji-grid">${filtered.map(e=>`<button class="emoji-btn${e===selectedEmoji?" sel":""}" onclick="selectEmoji('${e}')" type="button">${e}</button>`).join("")}</div>`;
   }).join("");
 }
 function filterEmojis(val){ buildEmojiPanels(val); }
@@ -1652,6 +1563,9 @@ function selectEmoji(e){
   document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===e));
 }
 
+/* ═══════════════════════════════════════════
+   TAGS
+═══════════════════════════════════════════ */
 function handleTagInput(e){
   if(e.key==="Enter"||e.key===","){
     e.preventDefault();
@@ -1663,8 +1577,7 @@ function handleTagInput(e){
 }
 function removeTag(t){ currentTags=currentTags.filter(x=>x!==t); renderTags(); }
 function renderTags(){
-  const wrap=document.getElementById("tagsWrap");
-  const input=document.getElementById("tagInput");
+  const wrap=document.getElementById("tagsWrap"), input=document.getElementById("tagInput");
   wrap.innerHTML="";
   currentTags.forEach(t=>{
     const chip=document.createElement("div"); chip.className="tag-chip";
@@ -1674,6 +1587,9 @@ function renderTags(){
   wrap.appendChild(input);
 }
 
+/* ═══════════════════════════════════════════
+   STATUS
+═══════════════════════════════════════════ */
 function selectStatus(el){ selectedStatus=el.dataset.val; applyStatusSel(); }
 function applyStatusSel(){
   document.querySelectorAll(".status-opt").forEach(o=>{
@@ -1686,10 +1602,12 @@ function applyStatusSel(){
 }
 function clearStatusSel(){ document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt"); }
 
+/* ═══════════════════════════════════════════
+   CORES
+═══════════════════════════════════════════ */
 function renderPresets(gid){
   const el=document.getElementById(gid); if(!el) return;
-  const isCat=gid==="catPresetGrid";
-  const cur=isCat?catChosenColor:chosenColor;
+  const isCat=gid==="catPresetGrid", cur=isCat?catChosenColor:chosenColor;
   el.innerHTML=PRESETS.map(c=>`<div class="pdot${c===cur?" sel":""}" style="background:${c}" title="${c}" onclick="${isCat?`setCatColor('${c}')`:`setChosenColor('${c}')`}"></div>`).join("");
 }
 function setChosenColor(c){ chosenColor=c; document.getElementById("customColorPicker").value=c; document.getElementById("colorHexLbl").textContent=c; document.getElementById("colorBar").style.background=c; renderPresets("presetGrid"); }
@@ -1697,28 +1615,26 @@ function onCustomColor(c){ chosenColor=c; document.getElementById("colorHexLbl")
 function setCatColor(c){ catChosenColor=c; document.getElementById("catColorPicker").value=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
 function onCatCustomColor(c){ catChosenColor=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
 
+/* ═══════════════════════════════════════════
+   OVERLAYS / SIDEBAR / TOAST / ESC
+═══════════════════════════════════════════ */
 function openOverlay(id){ document.getElementById(id).classList.add("open"); }
 function closeOverlay(id){ document.getElementById(id).classList.remove("open"); }
 function setupOverlayClose(){
   document.querySelectorAll(".overlay").forEach(ov=>{
     ov.addEventListener("click",e=>{ if(e.target===ov) closeOverlay(ov.id); });
   });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape") document.querySelectorAll(".overlay.open").forEach(o=>closeOverlay(o.id)); });
 }
 function toggleSidebar(){ document.getElementById("sidebar").classList.toggle("open"); document.getElementById("sidebarOverlay").classList.toggle("open"); }
 function closeSidebar(){ document.getElementById("sidebar").classList.remove("open"); document.getElementById("sidebarOverlay").classList.remove("open"); }
-
 function showToast(msg,color="#4ade80"){
   const t=document.getElementById("toast");
-  t.textContent=msg; t.style.background=color;
-  t.style.color=color==="#4ade80"?"#000":"#fff";
-  t.classList.add("show");
-  clearTimeout(window._tt);
+  t.textContent=msg; t.style.background=color; t.style.color=color==="#4ade80"?"#000":"#fff";
+  t.classList.add("show"); clearTimeout(window._tt);
   window._tt=setTimeout(()=>t.classList.remove("show"),2800);
 }
-
-function esc(s){
-  return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-}
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 </script>
 </body>
 </html>
