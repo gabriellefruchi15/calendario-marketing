@@ -82,7 +82,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .mlist-a:hover{background:var(--s3);color:var(--text)}
 .mlist-cnt{font-size:.65rem;background:var(--s4);padding:1px 6px;border-radius:20px;color:var(--muted)}
 .cat-list{display:flex;flex-direction:column;gap:4px;padding:2px 0 6px}
-.cat-item{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:8px;background:var(--s2);border:1px solid var(--border);transition:all .15px}
+.cat-item{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:8px;background:var(--s2);border:1px solid var(--border);transition:all .15s}
 .cat-item:hover{border-color:var(--accent)}
 .cat-emoji{font-size:.95rem;line-height:1;flex-shrink:0}
 .cat-swatch{width:10px;height:10px;border-radius:3px;flex-shrink:0}
@@ -149,6 +149,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .content-card:active{cursor:grabbing}
 .content-card:hover{filter:brightness(1.2);transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.35)}
 .content-card.dragging{opacity:.3;transform:scale(.96)}
+.content-card.is-recur{opacity:.82;border-left-style:dashed}
 .card-plat-icon{font-size:.75rem;margin-right:4px;flex-shrink:0;line-height:1}
 .card-inner{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .card-title{font-size:.63rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);line-height:1.2}
@@ -296,6 +297,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-save:hover{background:#5a51e0}
 .btn-del{background:transparent;border:1px solid var(--red);color:var(--red);padding:8px 12px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s;margin-right:auto}
 .btn-del:hover{background:rgba(248,113,113,.12)}
+.btn-dup{background:transparent;border:1px solid var(--accent2);color:var(--accent2);padding:8px 12px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
+.btn-dup:hover{background:rgba(167,139,250,.12)}
+
+.recur-notice{display:flex;align-items:center;gap:8px;background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--accent2)}
 
 .detail-stripe{width:4px;min-height:48px;border-radius:3px;flex-shrink:0;margin-top:3px}
 .detail-title{font-size:1.05rem;font-weight:800;margin-bottom:6px;line-height:1.3}
@@ -531,8 +536,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           </div>
         </div>
       </div>
-
-      <!-- RECORRÊNCIA -->
       <div class="fgrp">
         <label>🔁 Recorrência <span class="opt-badge">opcional</span></label>
         <div class="recur-opts" id="recurOpts">
@@ -544,8 +547,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
         <div class="hint" id="recurHint" style="margin-top:5px"></div>
       </div>
-
-      <!-- STATUS -->
       <div class="fgrp">
         <label>Status do Briefing <span class="opt-badge">opcional</span></label>
         <div class="status-sel" id="briefingStatusSel">
@@ -620,8 +621,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     </div>
 
     <div class="mactions">
-      <div id="cardDelRow" style="display:none;margin-right:auto">
+      <div id="cardDelRow" style="display:none;margin-right:auto;display:none;gap:6px" id="cardActionsLeft">
         <button class="btn-del" id="cardDelBtn">🗑 Excluir</button>
+        <button class="btn-dup" id="cardDupBtn">⧉ Duplicar</button>
       </div>
       <button class="btn-cancel" onclick="closeOverlay('cardOverlay')">Cancelar</button>
       <button class="btn-save" onclick="saveCard()">Salvar</button>
@@ -656,8 +658,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     </div>
     <div class="mactions">
       <button class="btn-del" id="dDelBtn">🗑 Excluir</button>
+      <button class="btn-dup" id="dDupBtn">⧉ Duplicar</button>
       <button class="btn-cancel" onclick="closeOverlay('detailOverlay')">Fechar</button>
       <button class="btn-save" id="dEditBtn">✏️ Editar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL DUPLICAR ═══ -->
+<div class="overlay" id="dupOverlay">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h2>⧉ Duplicar Card</h2>
+      <button class="modal-close" onclick="closeOverlay('dupOverlay')">✕</button>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:16px;line-height:1.6">
+      Escolha a nova data para a cópia do card. Todos os dados serão copiados (exceto comentários).
+    </p>
+    <div class="fgrp">
+      <label>Nova Data <span class="req-badge">obrigatório</span></label>
+      <input type="date" id="dupDate"/>
+    </div>
+    <div class="fgrp">
+      <label>Título da cópia <span class="opt-badge">opcional</span></label>
+      <input type="text" id="dupTitle" placeholder="Deixe vazio para manter o mesmo título" maxlength="100"/>
+    </div>
+    <div class="mactions">
+      <button class="btn-cancel" onclick="closeOverlay('dupOverlay')">Cancelar</button>
+      <button class="btn-save" onclick="confirmDuplicate()">⧉ Duplicar</button>
     </div>
   </div>
 </div>
@@ -767,9 +795,94 @@ let filterPlatform="Todas", filterCampaign="Todas", searchQuery="";
 let selectedEmoji="📌", currentDetailCardId=null, useOverrideColor=false;
 let peopleList=JSON.parse(localStorage.getItem("cal_people")||"[]");
 let pickerSelected={ppResp:"",ppSolic:""};
+let dupSourceId=null;
+window._recurInstances={};
 
+// ══════════════════════════════════════════
+// RECORRÊNCIA — gera instâncias virtuais
+// ══════════════════════════════════════════
+function getRecurringInstances(){
+  const extra=[];
+  Object.values(cards).forEach(card=>{
+    if(!card.recurrence||card.recurrence==="") return;
+    const baseDate=new Date(card.year,card.month,card.day);
+    for(let mi=0;mi<12;mi++){
+      const dim=new Date(currentYear,mi+1,0).getDate();
+      for(let d=1;d<=dim;d++){
+        const candidate=new Date(currentYear,mi,d);
+        if(candidate.getTime()===baseDate.getTime()) continue;
+        if(candidate<baseDate) continue;
+        let matches=false;
+        if(card.recurrence==="daily") matches=true;
+        if(card.recurrence==="weekly") matches=candidate.getDay()===baseDate.getDay();
+        if(card.recurrence==="biweekly"){
+          const diff=Math.round((candidate-baseDate)/(1000*60*60*24));
+          matches=diff%14===0;
+        }
+        if(card.recurrence==="monthly") matches=d===card.day;
+        if(matches){
+          extra.push({
+            ...card,
+            id:card.id+"_recur_"+currentYear+"_"+mi+"_"+d,
+            year:currentYear,month:mi,day:d,
+            date:`${currentYear}-${String(mi+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`,
+            _isRecurInstance:true,
+            _sourceId:card.id,
+          });
+        }
+      }
+    }
+  });
+  return extra;
+}
+
+function rebuildRecurInstances(){
+  window._recurInstances={};
+  getRecurringInstances().forEach(r=>{ window._recurInstances[r.id]=r; });
+}
+
+// ══════════════════════════════════════════
+// DUPLICAR
+// ══════════════════════════════════════════
+function openDuplicate(id){
+  dupSourceId=id;
+  const c=cards[id]; if(!c) return;
+  // pré-preenche com data do dia seguinte
+  const base=new Date(c.year,c.month,c.day+1);
+  const iso=`${base.getFullYear()}-${String(base.getMonth()+1).padStart(2,"0")}-${String(base.getDate()).padStart(2,"0")}`;
+  document.getElementById("dupDate").value=iso;
+  document.getElementById("dupTitle").value="";
+  openOverlay("dupOverlay");
+}
+async function confirmDuplicate(){
+  const dateVal=document.getElementById("dupDate").value;
+  if(!dateVal){ showToast("⚠️ Selecione uma data!","#f97316"); return; }
+  const src=cards[dupSourceId]; if(!src) return;
+  const[yr,mo,dy]=dateVal.split("-").map(Number);
+  const newTitle=document.getElementById("dupTitle").value.trim()||src.title;
+  const newCard={
+    ...src,
+    id:"c"+Date.now(),
+    year:yr,month:mo-1,day:dy,date:dateVal,
+    title:newTitle,
+    comments:[],
+  };
+  closeOverlay("dupOverlay");
+  closeOverlay("detailOverlay");
+  cards[newCard.id]=newCard;
+  rebuildRecurInstances();
+  refreshDay(newCard.month,newCard.day);
+  refreshLeg(newCard.month);
+  updateCounts();
+  buildCampaignFilters();
+  await dbSaveCard(newCard);
+  showToast("⧉ Card duplicado para "+dy+"/"+mo+"/"+yr+"!");
+}
+
+// ══════════════════════════════════════════
+// PEOPLE
+// ══════════════════════════════════════════
 function savePeopleList(){ localStorage.setItem("cal_people",JSON.stringify(peopleList)); }
-
 function togglePeople(pid){
   const drop=document.getElementById(pid+"-drop");
   const isOpen=drop.classList.contains("open");
@@ -777,12 +890,8 @@ function togglePeople(pid){
   if(!isOpen){ renderPeopleList(pid); drop.classList.add("open"); }
 }
 function renderPeopleList(pid){
-  const list=document.getElementById(pid+"-list");
-  if(!list) return;
-  if(!peopleList.length){
-    list.innerHTML=`<div class="people-empty">Nenhuma pessoa ainda.<br>Adicione abaixo! 👇</div>`;
-    return;
-  }
+  const list=document.getElementById(pid+"-list"); if(!list) return;
+  if(!peopleList.length){ list.innerHTML=`<div class="people-empty">Nenhuma pessoa ainda.<br>Adicione abaixo! 👇</div>`; return; }
   list.innerHTML=peopleList.map(name=>{
     const sel=pickerSelected[pid]===name;
     return `<div class="people-opt${sel?" selected":""}" onclick="selectPerson('${pid}','${esc(name)}')">
@@ -800,14 +909,12 @@ function selectPerson(pid,name){
   document.getElementById(pid+"-drop").classList.remove("open");
 }
 function addPerson(pid){
-  const inp=document.getElementById(pid+"-inp");
-  const name=inp.value.trim();
+  const inp=document.getElementById(pid+"-inp"); const name=inp.value.trim();
   if(!name){ showToast("⚠️ Digite um nome!","#f97316"); return; }
   const existing=peopleList.find(p=>p.toLowerCase()===name.toLowerCase());
   if(existing){ selectPerson(pid,existing); inp.value=""; return; }
   peopleList.push(name); savePeopleList(); inp.value="";
-  selectPerson(pid,name);
-  showToast("✅ "+name+" adicionado(a)!");
+  selectPerson(pid,name); showToast("✅ "+name+" adicionado(a)!");
 }
 function applyPeoplePicker(pid,val){
   pickerSelected[pid]=val||"";
@@ -822,16 +929,11 @@ document.addEventListener("click",e=>{
 
 function selectRecur(val){
   selectedRecur=val||"";
-  document.querySelectorAll("#recurOpts .recur-opt").forEach(o=>{
-    o.classList.toggle("sel",o.dataset.val===selectedRecur);
-  });
+  document.querySelectorAll("#recurOpts .recur-opt").forEach(o=>o.classList.toggle("sel",o.dataset.val===selectedRecur));
   const hint=document.getElementById("recurHint");
-  hint.textContent=selectedRecur
-    ?`🔁 Este card se repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`
-    :"";
+  hint.textContent=selectedRecur?`🔁 Este card se repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`:"";
 }
 function applyRecurSel(val){ selectRecur(val||""); }
-
 function colorFromName(name){
   const p=["#6c63ff","#f472b6","#4ade80","#fb923c","#38bdf8","#a78bfa","#f87171","#facc15","#34d399","#22d3ee"];
   let h=0; for(let i=0;i<name.length;i++) h=(h*31+name.charCodeAt(i))&0xfffffff;
@@ -843,6 +945,9 @@ function initials(name){
   return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():p[0].slice(0,2).toUpperCase();
 }
 
+// ══════════════════════════════════════════
+// CONFIG / FIREBASE
+// ══════════════════════════════════════════
 function saveConfig(){
   try{
     const raw=document.getElementById("cfgInput").value.trim();
@@ -877,8 +982,7 @@ function startApp(){
   setupOverlayClose();
   buildPlatformFilters();
   document.getElementById("recurOpts").addEventListener("click",e=>{
-    const btn=e.target.closest(".recur-opt");
-    if(btn) selectRecur(btn.dataset.val);
+    const btn=e.target.closest(".recur-opt"); if(btn) selectRecur(btn.dataset.val);
   });
 }
 
@@ -893,6 +997,7 @@ function listenData(){
   window._onSnapshot(window._col("cards_cal"),snap=>{
     cards={};
     snap.forEach(d=>{ cards[d.id]=d.data(); });
+    rebuildRecurInstances();
     renderAll(); buildCampaignFilters(); setSyncStatus("ok");
   },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("campaigns_cal"),snap=>{
@@ -923,6 +1028,9 @@ function setSyncStatus(s){
   d.className="sync-dot "+(s==="ok"?"ok":"err");
 }
 
+// ══════════════════════════════════════════
+// CAMPANHAS
+// ══════════════════════════════════════════
 function openCampaignManager(){ renderCampList(); openOverlay("campaignOverlay"); }
 function closeCampaignManager(){ closeOverlay("campaignOverlay"); populateCampaignSelect(); }
 function renderCampList(){
@@ -966,6 +1074,9 @@ function generateCampaignId(){
   showToast("⚡ ID: "+id,"#6c63ff");
 }
 
+// ══════════════════════════════════════════
+// FILTROS
+// ══════════════════════════════════════════
 function buildPlatformFilters(){
   document.getElementById("platformFilters").innerHTML=
     PLATFORMS.map(p=>`<button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">${PLAT_ICONS[p]||""} ${p}</button>`).join("");
@@ -989,6 +1100,9 @@ function cardMatchesFilter(card){
   return true;
 }
 
+// ══════════════════════════════════════════
+// NAVEGAÇÃO
+// ══════════════════════════════════════════
 function goToToday(){
   const ty=TODAY.getFullYear(),tm=TODAY.getMonth();
   if(currentYear!==ty){ currentYear=ty; document.getElementById("yearDisplay").textContent=ty; document.getElementById("topbarYear").textContent=ty; renderAll(); }
@@ -1006,6 +1120,7 @@ function changeYear(d){
   currentYear=ny;
   document.getElementById("yearDisplay").textContent=ny;
   document.getElementById("topbarYear").textContent=ny;
+  rebuildRecurInstances();
   renderAll();
 }
 function holiday(yr,mi,day){
@@ -1013,10 +1128,21 @@ function holiday(yr,mi,day){
   return h[`${String(mi+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`]||null;
 }
 
+// ══════════════════════════════════════════
+// RENDER CALENDÁRIO
+// ══════════════════════════════════════════
 function renderAll(){
+  rebuildRecurInstances();
   document.getElementById("mainContent").innerHTML=MONTHS_PT.map((_,i)=>buildMonthHTML(i)).join("");
   renderMonthNav(); attachDropZones();
 }
+
+function getCardsForDay(mi,d,yr){
+  const real=Object.values(cards).filter(c=>c.month===mi&&c.day===d&&c.year===yr);
+  const recur=Object.values(window._recurInstances).filter(c=>c.month===mi&&c.day===d&&c.year===yr);
+  return [...real,...recur];
+}
+
 function buildMonthHTML(mi){
   const yr=currentYear, dim=new Date(yr,mi+1,0).getDate(), fd=new Date(yr,mi,1).getDay();
   const mCards=Object.values(cards).filter(c=>c.month===mi&&c.year===yr);
@@ -1030,7 +1156,7 @@ function buildMonthHTML(mi){
   for(let d=1;d<=dim;d++){
     const h=holiday(yr,mi,d);
     const isToday=TODAY.getFullYear()===yr&&TODAY.getMonth()===mi&&TODAY.getDate()===d;
-    const dc=Object.values(cards).filter(c=>c.month===mi&&c.day===d&&c.year===yr);
+    const dc=getCardsForDay(mi,d,yr);
     cells+=`
       <div class="cal-day${isToday?" today":""}${h?" holiday":""}" id="drop-${mi}-${d}" data-month="${mi}" data-day="${d}">
         <div class="day-top">
@@ -1069,20 +1195,20 @@ function cardHTML(card){
   const platIcon=PLAT_ICONS[card.platform||""]||"";
   const hasComments=(card.comments||[]).length>0;
   const cat=categories[card.catId];
+  const isRecur=card._isRecurInstance||false;
   const avatarHTML=card.responsavel
     ?`<div class="card-avatar" style="background:${colorFromName(card.responsavel)}" title="Resp: ${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:"";
   const recurHTML=card.recurrence
     ?`<span class="card-recur" title="${RECUR_LABELS[card.recurrence]||""}">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";
-  // ── apenas bolinha de comentários, sem emojis de link/data ──
   const icons=[
     (card.links||[]).length>0?`<span class="card-icon">🔗</span>`:"",
     hasComments?`<div class="card-comment-dot"></div>`:"",
   ].join("");
   return `
-    <div class="content-card" id="card-${card.id}"
+    <div class="content-card${isRecur?" is-recur":""}" id="card-${card.id}"
          style="border-left-color:${color};background:${bg}"
-         draggable="true"
-         ondragstart="onDragStart(event,'${card.id}')"
+         draggable="${!isRecur}"
+         ondragstart="${!isRecur?`onDragStart(event,'${card.id}')`:"return false"}"
          ondragend="onDragEnd()"
          onclick="openDetail('${card.id}',event)">
       ${platIcon?`<span class="card-plat-icon">${platIcon}</span>`:""}
@@ -1100,7 +1226,7 @@ function fmtDFull(iso){ if(!iso) return ""; const[y,m,d]=iso.split("-"); return 
 
 function refreshDay(mi,d){
   const el=document.getElementById(`dc-${mi}-${d}`); if(!el) return;
-  el.innerHTML=Object.values(cards).filter(c=>c.month===mi&&c.day===d&&c.year===currentYear).map(c=>cardHTML(c)).join("");
+  el.innerHTML=getCardsForDay(mi,d,currentYear).map(c=>cardHTML(c)).join("");
   attachDropZones();
 }
 function refreshLeg(mi){
@@ -1113,6 +1239,7 @@ function refreshLeg(mi){
     :`<span class="mleg-empty">Sem cards ainda</span>`;
 }
 function refreshAllDOM(){
+  rebuildRecurInstances();
   MONTHS_PT.forEach((_,mi)=>{
     const dim=new Date(currentYear,mi+1,0).getDate();
     for(let d=1;d<=dim;d++) refreshDay(mi,d);
@@ -1142,6 +1269,9 @@ function renderCatSidebar(){
     </div>`).join("");
 }
 
+// ══════════════════════════════════════════
+// DRAG & DROP
+// ══════════════════════════════════════════
 function attachDropZones(){
   document.querySelectorAll(".cal-day:not(.empty)").forEach(cell=>{
     cell.ondragover=e=>{ e.preventDefault(); cell.classList.add("drag-over"); };
@@ -1161,12 +1291,16 @@ async function dropCard(cell){
   const newDate=`${currentYear}-${String(nm+1).padStart(2,"0")}-${String(nd).padStart(2,"0")}`;
   const upd={...card,month:nm,day:nd,year:currentYear,date:newDate};
   cards[dragCardId]=upd;
+  rebuildRecurInstances();
   refreshDay(om,od); refreshDay(nm,nd); refreshLeg(om); refreshLeg(nm); updateCounts();
   await dbSaveCard(upd);
   showToast(`📅 Movido para ${nd} de ${MONTHS_PT[nm]}`);
   dragCardId=null;
 }
 
+// ══════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════
 function switchTab(pid,btn){
   document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
@@ -1183,6 +1317,9 @@ function switchCatTab(pid,btn){
   document.getElementById(pid).classList.add("active"); btn.classList.add("active");
 }
 
+// ══════════════════════════════════════════
+// LINKS
+// ══════════════════════════════════════════
 function addLinkRow(name="",url=""){
   const id="lr"+Date.now()+Math.random().toString(36).slice(2,6);
   const wrap=document.getElementById("linksListEdit");
@@ -1203,6 +1340,9 @@ function readLinks(){
 }
 function renderLinksEdit(links){ document.getElementById("linksListEdit").innerHTML=""; (links||[]).forEach(l=>addLinkRow(l.name,l.url)); }
 
+// ══════════════════════════════════════════
+// CATEGORIA / COR
+// ══════════════════════════════════════════
 function onCatChange(){
   const catId=document.getElementById("cCatSel").value, cat=categories[catId];
   const prev=document.getElementById("catColorPreview");
@@ -1223,6 +1363,9 @@ function buildCatOpts(selId){
   return `<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");
 }
 
+// ══════════════════════════════════════════
+// MODAL CARD — ABRIR / FECHAR
+// ══════════════════════════════════════════
 function resetCardForm(month,day){
   const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
   document.getElementById("cDate").value=iso;
@@ -1271,8 +1414,8 @@ function openEditCard(id){
   document.getElementById("cDateEnd").value=c.dateEnd||"";
   document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");
   document.getElementById("cPmp").value=c.pmp||"";
-  applyPeoplePicker("ppResp",  c.responsavel||"");
-  applyPeoplePicker("ppSolic", c.solicitante||"");
+  applyPeoplePicker("ppResp",c.responsavel||"");
+  applyPeoplePicker("ppSolic",c.solicitante||"");
   applyRecurSel(c.recurrence||"");
   useOverrideColor=!!(c.overrideColor);
   document.getElementById("overrideColorCheck").checked=useOverrideColor;
@@ -1283,8 +1426,10 @@ function openEditCard(id){
   currentTags=[...(c.tags||[])]; renderTags();
   selectedStatus=c.briefing||""; applyStatusSel();
   renderLinksEdit(c.links||[]);
-  document.getElementById("cardDelRow").style.display="block";
+  const delRow=document.getElementById("cardDelRow");
+  delRow.style.display="flex";
   document.getElementById("cardDelBtn").onclick=()=>doDelCard(id);
+  document.getElementById("cardDupBtn").onclick=()=>{ closeOverlay("cardOverlay"); openDuplicate(id); };
   openOverlay("cardOverlay");
 }
 
@@ -1305,8 +1450,8 @@ async function saveCard(){
   if(useOverrideColor){ finalOverride=chosenColor; }
   else{ const cat=categories[document.getElementById("cCatSel").value]; finalColor=cat?.color||"#6c63ff"; }
   const card={
-    id:          editCardId||("c"+Date.now()),
-    year:yr, month:mo-1, day:dy, date:dateVal,
+    id:editCardId||("c"+Date.now()),
+    year:yr,month:mo-1,day:dy,date:dateVal,
     platform:    document.getElementById("cPlatform").value,
     campaign:    document.getElementById("cCampaign").value,
     campaignId:  document.getElementById("cCampaignId").value.trim(),
@@ -1322,7 +1467,7 @@ async function saveCard(){
     solicitante: pickerSelected["ppSolic"]||"",
     recurrence:  selectedRecur||"",
     color:       finalColor,
-    overrideColor: finalOverride,
+    overrideColor:finalOverride,
     briefing:    selectedStatus,
     tags:        [...currentTags],
     links:       readLinks(),
@@ -1331,6 +1476,7 @@ async function saveCard(){
   const old=cards[card.id];
   closeOverlay("cardOverlay");
   cards[card.id]=card;
+  rebuildRecurInstances();
   if(old&&(old.day!==card.day||old.month!==card.month)) refreshDay(old.month,old.day);
   refreshDay(card.month,card.day); refreshLeg(card.month);
   updateCounts(); buildCampaignFilters();
@@ -1342,18 +1488,33 @@ async function doDelCard(id){
   const c=cards[id]; const mi=c?.month,d=c?.day;
   delete cards[id];
   closeOverlay("cardOverlay"); closeOverlay("detailOverlay");
+  rebuildRecurInstances();
   if(mi!==undefined){ refreshDay(mi,d); refreshLeg(mi); updateCounts(); }
   buildCampaignFilters();
   await dbDelCard(id);
   showToast("🗑️ Excluído.","#f87171");
 }
 
+// ══════════════════════════════════════════
+// DETALHE
+// ══════════════════════════════════════════
 function openDetail(id,e){
   e?.stopPropagation();
-  const c=cards[id]; if(!c) return;
-  currentDetailCardId=id;
+  // suporte a instâncias recorrentes → abre o card original
+  const raw=cards[id]||(window._recurInstances||{})[id];
+  if(!raw) return;
+  const c=raw._isRecurInstance?(cards[raw._sourceId]||raw):raw;
+  const realId=c.id;
+  currentDetailCardId=realId;
+
   const cat=categories[c.catId], color=getCardColor(c), sc=STATUS_COLORS[c.briefing]||null;
   switchDetailTab("dtinfo",document.querySelector("#detailOverlay .modal-tab"));
+
+  // aviso se é instância recorrente
+  const recurNotice=raw._isRecurInstance
+    ?`<div class="recur-notice">🔁 Esta é uma ocorrência recorrente de <strong>${esc(c.title)}</strong>. Edições afetam todas as ocorrências.</div>`
+    :"";
+
   const make=(lbl,val)=>val?`<div class="dblock"><div class="dblock-lbl">${lbl}</div><div class="dblock-val">${esc(val)}</div></div>`:"";
   const datesBlock=(c.dateStart||c.dateEnd)?`
     <div class="dblock"><div class="dblock-lbl">📅 Período</div>
@@ -1380,6 +1541,7 @@ function openDetail(id,e){
       </div>
     </div>`:"";
   document.getElementById("detailBody").innerHTML=`
+    ${recurNotice}
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:14px">
       <div class="detail-stripe" style="background:${color}"></div>
       <div style="flex:1;min-width:0">
@@ -1410,11 +1572,15 @@ function openDetail(id,e){
   const badge=document.getElementById("commentBadge");
   const cnt=(c.comments||[]).length;
   badge.style.display=cnt>0?"inline":"none"; if(cnt>0) badge.textContent=cnt;
-  document.getElementById("dDelBtn").onclick=()=>doDelCard(id);
-  document.getElementById("dEditBtn").onclick=()=>{ closeOverlay("detailOverlay"); openEditCard(id); };
+  document.getElementById("dDelBtn").onclick=()=>doDelCard(realId);
+  document.getElementById("dDupBtn").onclick=()=>{ closeOverlay("detailOverlay"); openDuplicate(realId); };
+  document.getElementById("dEditBtn").onclick=()=>{ closeOverlay("detailOverlay"); openEditCard(realId); };
   openOverlay("detailOverlay");
 }
 
+// ══════════════════════════════════════════
+// COMENTÁRIOS
+// ══════════════════════════════════════════
 function renderComments(card){
   const area=document.getElementById("commentsArea"); const comms=card.comments||[];
   if(!comms.length){ area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda. Seja o primeiro! 💬</div>`; return; }
@@ -1459,6 +1625,9 @@ async function deleteComment(idx){
   await dbSaveCard(updated);
 }
 
+// ══════════════════════════════════════════
+// CATEGORIAS
+// ══════════════════════════════════════════
 function openCatModal(id){
   editCatId=id||null; const cat=id?categories[id]:null;
   document.getElementById("catModalTitle").textContent=cat?"✏️ Editar Categoria":"➕ Nova Categoria";
@@ -1486,6 +1655,9 @@ async function deleteCat(){
   await dbDelCat(editCatId); showToast("🗑️ Excluída.","#f87171");
 }
 
+// ══════════════════════════════════════════
+// EMOJIS
+// ══════════════════════════════════════════
 function buildEmojiPanels(filter=""){
   const container=document.getElementById("emojiPanels"); if(!container) return;
   const fl=filter.toLowerCase();
@@ -1503,6 +1675,9 @@ function selectEmoji(e){
   document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===e));
 }
 
+// ══════════════════════════════════════════
+// TAGS
+// ══════════════════════════════════════════
 function handleTagInput(e){
   if(e.key==="Enter"||e.key===","){
     e.preventDefault();
@@ -1524,6 +1699,9 @@ function renderTags(){
   wrap.appendChild(input);
 }
 
+// ══════════════════════════════════════════
+// STATUS
+// ══════════════════════════════════════════
 function selectStatus(el){ selectedStatus=el.dataset.val; applyStatusSel(); }
 function applyStatusSel(){
   document.querySelectorAll(".status-opt").forEach(o=>{
@@ -1536,6 +1714,9 @@ function applyStatusSel(){
 }
 function clearStatusSel(){ document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt"); }
 
+// ══════════════════════════════════════════
+// CORES
+// ══════════════════════════════════════════
 function renderPresets(gid){
   const el=document.getElementById(gid); if(!el) return;
   const isCat=gid==="catPresetGrid", cur=isCat?catChosenColor:chosenColor;
@@ -1546,6 +1727,9 @@ function onCustomColor(c){ chosenColor=c; document.getElementById("colorHexLbl")
 function setCatColor(c){ catChosenColor=c; document.getElementById("catColorPicker").value=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
 function onCatCustomColor(c){ catChosenColor=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
 
+// ══════════════════════════════════════════
+// OVERLAYS / UTILS
+// ══════════════════════════════════════════
 function openOverlay(id){ document.getElementById(id).classList.add("open"); }
 function closeOverlay(id){ document.getElementById(id).classList.remove("open"); }
 function setupOverlayClose(){
