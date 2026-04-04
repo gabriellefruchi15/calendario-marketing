@@ -168,6 +168,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .card-icon{font-size:.58rem;line-height:1;opacity:.7}
 .card-comment-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);flex-shrink:0;box-shadow:0 0 4px rgba(251,146,60,.6)}
 
+/* AVATAR CHIP — aparece no card */
+.card-avatar{width:16px;height:16px;border-radius:50%;background:var(--accent);color:#fff;font-size:.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:3px;text-transform:uppercase}
+
 /* OVERLAYS */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(7px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.open{opacity:1;pointer-events:all}
@@ -273,7 +276,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 /* EMOJI */
 .emoji-section-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 6px}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
-.emoji-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--s2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.emoji-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--s2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15px}
 .emoji-btn:hover{border-color:var(--accent);background:var(--s3)}
 .emoji-btn.sel{border-color:var(--accent);background:var(--s3);box-shadow:0 0 0 2px var(--accent)}
 .emoji-search{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:8px;font-size:.82rem;font-family:inherit;outline:none;margin-bottom:8px;transition:border-color .2s}
@@ -311,6 +314,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .detail-link-item a{color:var(--accent2);font-size:.82rem;text-decoration:none;word-break:break-all}
 .detail-link-item a:hover{text-decoration:underline}
 .detail-link-name{font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap;min-width:60px}
+
+/* RESPONSÁVEL BADGE no detalhe */
+.resp-badge{display:inline-flex;align-items:center;gap:6px;background:var(--s3);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:700}
+.resp-avatar{width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:.58rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
 
 /* COMMENTS */
 .comments-area{display:flex;flex-direction:column;gap:10px}
@@ -490,6 +497,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <input type="date" id="cDateEnd"/>
         </div>
       </div>
+
+      <!-- ✅ NOVO: Responsável e Solicitante -->
+      <div class="row2">
+        <div class="fgrp">
+          <label>👤 Responsável <span class="opt-badge">opcional</span></label>
+          <input type="text" id="cResponsavel" placeholder="Quem vai executar…" maxlength="60"/>
+          <div class="hint">Ex: Ana, João, Agência X</div>
+        </div>
+        <div class="fgrp">
+          <label>📨 Solicitante <span class="opt-badge">opcional</span></label>
+          <input type="text" id="cSolicitante" placeholder="Quem criou a demanda…" maxlength="60"/>
+          <div class="hint">Ex: Gabrielle, Cliente Y</div>
+        </div>
+      </div>
+
       <div class="fgrp">
         <label>Status do Briefing <span class="opt-badge">opcional</span></label>
         <div class="status-sel" id="briefingStatusSel">
@@ -703,22 +725,9 @@ const HOLIDAYS_BY_YEAR={
 };
 
 const PRESETS=["#6c63ff","#a78bfa","#f472b6","#fb7185","#f97316","#facc15","#4ade80","#34d399","#22d3ee","#38bdf8","#818cf8","#c084fc","#f43f5e","#ef4444","#f59e0b","#84cc16","#10b981","#06b6d4","#0ea5e9","#e879f9","#64748b","#94a3b8","#ffffff","#ff6b6b","#ffd93d"];
-
 const PLATFORMS=["Todas","Instagram","YouTube","Facebook","TikTok","Twitter/X","LinkedIn","Email","Blog","Outro"];
-
-const DEFAULT_CAMPAIGNS=[
-  "Awareness","Consideração","Conversão","Retenção",
-  "Institucional","Produto","Sazonal","Lançamento",
-  "Relacionamento","Branding"
-];
-
-const STATUS_COLORS={
-  "Pendente":{bg:"#f97316",text:"#fff"},
-  "Produção":{bg:"#38bdf8",text:"#000"},
-  "Revisão": {bg:"#a78bfa",text:"#fff"},
-  "Aprovado":{bg:"#4ade80",text:"#000"},
-  "Publicado":{bg:"#6c63ff",text:"#fff"},
-};
+const DEFAULT_CAMPAIGNS=["Awareness","Consideração","Conversão","Retenção","Institucional","Produto","Sazonal","Lançamento","Relacionamento","Branding"];
+const STATUS_COLORS={"Pendente":{bg:"#f97316",text:"#fff"},"Produção":{bg:"#38bdf8",text:"#000"},"Revisão":{bg:"#a78bfa",text:"#fff"},"Aprovado":{bg:"#4ade80",text:"#000"},"Publicado":{bg:"#6c63ff",text:"#fff"}};
 
 let cards={};
 let categories={};
@@ -765,6 +774,9 @@ function startApp(){
   document.getElementById("configScreen").style.display="none";
   document.getElementById("appShell").style.display="flex";
   setSyncStatus("ok");
+  renderAll();
+  renderMonthNav();
+  renderCatSidebar();
   listenData();
   renderPresets("presetGrid");
   renderPresets("catPresetGrid");
@@ -782,7 +794,6 @@ function listenData(){
     renderCatSidebar();
     refreshAllDOM();
   },()=>setSyncStatus("err"));
-
   window._onSnapshot(window._col("cards_cal"),snap=>{
     cards={};
     snap.forEach(d=>{ cards[d.id]=d.data(); });
@@ -790,12 +801,10 @@ function listenData(){
     buildCampaignFilters();
     setSyncStatus("ok");
   },()=>setSyncStatus("err"));
-
   window._onSnapshot(window._col("campaigns_cal"),snap=>{
     if(!snap.empty){
       const doc=snap.docs[0];
-      const data=doc.data();
-      campaigns=data.list||[...DEFAULT_CAMPAIGNS];
+      campaigns=doc.data().list||[...DEFAULT_CAMPAIGNS];
     }
   },()=>{});
 }
@@ -816,60 +825,39 @@ const dbSaveCard=async c=>window._setDoc(window._doc("cards_cal",c.id),c);
 const dbDelCard =async i=>window._deleteDoc(window._doc("cards_cal",i));
 const dbSaveCat =async c=>window._setDoc(window._doc("cats_cal",c.id),c);
 const dbDelCat  =async i=>window._deleteDoc(window._doc("cats_cal",i));
-const dbSaveCampaigns=async ()=>{
-  if(!window._db) return;
-  await window._setDoc(window._doc("campaigns_cal","main"),{list:campaigns});
-};
+const dbSaveCampaigns=async()=>{ if(window._db) await window._setDoc(window._doc("campaigns_cal","main"),{list:campaigns}); };
 
 function setSyncStatus(s){
   const d=document.getElementById("syncDot"); if(!d) return;
   d.className="sync-dot "+(s==="ok"?"ok":"err");
 }
 
-function openCampaignManager(){
-  renderCampList();
-  openOverlay("campaignOverlay");
-}
-function closeCampaignManager(){
-  closeOverlay("campaignOverlay");
-  populateCampaignSelect();
-}
+function openCampaignManager(){ renderCampList(); openOverlay("campaignOverlay"); }
+function closeCampaignManager(){ closeOverlay("campaignOverlay"); populateCampaignSelect(); }
 function renderCampList(){
   const el=document.getElementById("campList");
-  if(!campaigns.length){
-    el.innerHTML=`<div style="font-size:.8rem;color:var(--muted);font-style:italic;padding:8px 0">Nenhuma campanha cadastrada ainda.</div>`;
-    return;
-  }
+  if(!campaigns.length){ el.innerHTML=`<div style="font-size:.8rem;color:var(--muted);font-style:italic;padding:8px 0">Nenhuma campanha cadastrada ainda.</div>`; return; }
   el.innerHTML=campaigns.map((c,i)=>`
     <div class="camp-item">
       <span class="camp-item-name">${esc(c)}</span>
       ${DEFAULT_CAMPAIGNS.includes(c)?`<span class="camp-item-type">padrão</span>`:`<span class="camp-item-type">personalizada</span>`}
-      <button class="camp-del-btn" onclick="removeCampaign(${i})" title="Remover">✕</button>
+      <button class="camp-del-btn" onclick="removeCampaign(${i})">✕</button>
     </div>`).join("");
 }
 async function addCampaign(){
   const inp=document.getElementById("newCampName");
   const val=inp.value.trim();
-  if(!val){ showToast("⚠️ Digite o nome da campanha!","#f97316"); return; }
-  if(campaigns.map(c=>c.toLowerCase()).includes(val.toLowerCase())){
-    showToast("⚠️ Campanha já existe!","#f97316"); return;
-  }
-  campaigns.push(val);
-  inp.value="";
-  renderCampList();
-  await dbSaveCampaigns();
-  showToast("✅ Campanha adicionada!");
+  if(!val){ showToast("⚠️ Digite o nome!","#f97316"); return; }
+  if(campaigns.map(c=>c.toLowerCase()).includes(val.toLowerCase())){ showToast("⚠️ Campanha já existe!","#f97316"); return; }
+  campaigns.push(val); inp.value="";
+  renderCampList(); await dbSaveCampaigns(); showToast("✅ Campanha adicionada!");
 }
 async function removeCampaign(idx){
-  campaigns.splice(idx,1);
-  renderCampList();
-  await dbSaveCampaigns();
-  showToast("🗑️ Campanha removida.","#f87171");
+  campaigns.splice(idx,1); renderCampList(); await dbSaveCampaigns(); showToast("🗑️ Removida.","#f87171");
 }
 function populateCampaignSelect(selVal=""){
   const el=document.getElementById("cCampaign"); if(!el) return;
-  el.innerHTML=`<option value="">— Selecione —</option>`
-    +campaigns.map(c=>`<option value="${esc(c)}"${c===selVal?" selected":""}>${esc(c)}</option>`).join("");
+  el.innerHTML=`<option value="">— Selecione —</option>`+campaigns.map(c=>`<option value="${esc(c)}"${c===selVal?" selected":""}>${esc(c)}</option>`).join("");
 }
 
 function generateCampaignId(){
@@ -877,10 +865,7 @@ function generateCampaignId(){
   const platform=(document.getElementById("cPlatform").value||"").trim();
   const campaign=(document.getElementById("cCampaign").value||"").trim();
   const dateVal=document.getElementById("cDate").value;
-  const slugify=s=>s.toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9]/g,"-")
-    .replace(/-+/g,"-").replace(/^-|-$/g,"").slice(0,8);
+  const slugify=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"").slice(0,8);
   let parts=[];
   if(campaign) parts.push(slugify(campaign).slice(0,5));
   else if(platform) parts.push(slugify(platform).slice(0,5));
@@ -888,37 +873,30 @@ function generateCampaignId(){
   const suffix=Date.now().toString(36).slice(-4).toUpperCase();
   let datePart="";
   if(dateVal){ const[y,m,d]=dateVal.split("-"); datePart=`${y.slice(2)}${m}${d}`; }
-  const id=(parts.length?parts.join("-")+"-":"")+( datePart?datePart+"-":"")+suffix;
+  const id=(parts.length?parts.join("-")+"-":"")+(datePart?datePart+"-":"")+suffix;
   document.getElementById("cCampaignId").value=id;
   showToast("⚡ ID gerado: "+id,"#6c63ff");
 }
 
 function buildPlatformFilters(){
   document.getElementById("platformFilters").innerHTML=
-    PLATFORMS.map(p=>`
-      <button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">
-        ${PLAT_ICONS[p]||""} ${p}
-      </button>`).join("");
+    PLATFORMS.map(p=>`<button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">${PLAT_ICONS[p]||""} ${p}</button>`).join("");
 }
 function buildCampaignFilters(){
   const used=["Todas",...new Set(Object.values(cards).map(c=>c.campaign).filter(Boolean))];
   document.getElementById("campaignFilters").innerHTML=
-    used.map(c=>`
-      <button class="filter-chip${c===filterCampaign?" active":""}" onclick="setFilterCampaign('${esc(c)}')">
-        ${esc(c)}
-      </button>`).join("");
+    used.map(c=>`<button class="filter-chip${c===filterCampaign?" active":""}" onclick="setFilterCampaign('${esc(c)}')">${esc(c)}</button>`).join("");
 }
 function setFilterPlatform(p){ filterPlatform=p; buildPlatformFilters(); applyFilters(); }
 function setFilterCampaign(c){ filterCampaign=c; buildCampaignFilters(); applyFilters(); }
-function applyFilters(){
-  searchQuery=document.getElementById("searchInput").value.toLowerCase().trim();
-  refreshAllDOM();
-}
+function applyFilters(){ searchQuery=document.getElementById("searchInput").value.toLowerCase().trim(); refreshAllDOM(); }
 function cardMatchesFilter(card){
   if(filterPlatform!=="Todas"&&card.platform!==filterPlatform) return false;
   if(filterCampaign!=="Todas"&&card.campaign!==filterCampaign) return false;
   if(searchQuery){
-    const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();
+    const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,
+               card.responsavel,card.solicitante, // ✅ incluídos na busca
+               ...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();
     if(!hay.includes(searchQuery)) return false;
   }
   return true;
@@ -926,18 +904,12 @@ function cardMatchesFilter(card){
 
 function goToToday(){
   const ty=TODAY.getFullYear(), tm=TODAY.getMonth();
-  if(currentYear!==ty){
-    currentYear=ty;
-    document.getElementById("yearDisplay").textContent=ty;
-    document.getElementById("topbarYear").textContent=ty;
-    renderAll();
-  }
+  if(currentYear!==ty){ currentYear=ty; document.getElementById("yearDisplay").textContent=ty; document.getElementById("topbarYear").textContent=ty; renderAll(); }
   const sec=document.getElementById(`month-${tm}`);
   if(sec){
     sec.scrollIntoView({behavior:"smooth",block:"start"});
-    const td=TODAY.getDate();
     setTimeout(()=>{
-      const cell=document.getElementById(`drop-${tm}-${td}`);
+      const cell=document.getElementById(`drop-${tm}-${TODAY.getDate()}`);
       if(cell){ cell.classList.add("highlight-pulse"); setTimeout(()=>cell.classList.remove("highlight-pulse"),1500); }
     },400);
   }
@@ -971,7 +943,6 @@ function buildMonthHTML(mi){
   const legHTML=Object.values(seen).length
     ?Object.values(seen).map(cat=>`<div class="mleg-chip"><div class="mleg-dot" style="background:${cat.color}"></div>${cat.emoji?`<span>${cat.emoji}</span>`:""}<span>${esc(cat.name)}</span></div>`).join("")
     :`<span class="mleg-empty">Sem cards ainda</span>`;
-
   let cells=DAYS_PT.map(d=>`<div class="cal-hcell">${d}</div>`).join("");
   for(let i=0;i<fd;i++) cells+=`<div class="cal-day empty"></div>`;
   for(let d=1;d<=dim;d++){
@@ -1011,18 +982,33 @@ function getCardColor(card){
   const cat=categories[card.catId];
   return card.color||(cat?.color||"#6c63ff");
 }
+
+// ✅ AVATAR: pega as iniciais do responsável
+function initials(name){
+  if(!name) return "";
+  const parts=name.trim().split(/\s+/);
+  return parts.length>=2 ? (parts[0][0]+parts[1][0]).toUpperCase() : parts[0].slice(0,2).toUpperCase();
+}
+
 function cardHTML(card){
   if(!cardMatchesFilter(card)) return "";
   const color=getCardColor(card);
   const bg=color+"1e";
   const platIcon=PLAT_ICONS[card.platform||""]||"";
   const hasComments=(card.comments||[]).length>0;
+  const cat=categories[card.catId];
+
+  // ✅ Avatar do responsável no card
+  const avatarHTML=card.responsavel
+    ? `<div class="card-avatar" title="Responsável: ${esc(card.responsavel)}">${initials(card.responsavel)}</div>`
+    : "";
+
   const icons=[
     (card.links||[]).length>0?`<span class="card-icon">🔗</span>`:"",
     card.dateStart||card.dateEnd?`<span class="card-icon">📅</span>`:"",
     hasComments?`<div class="card-comment-dot"></div>`:"",
   ].join("");
-  const cat=categories[card.catId];
+
   return `
     <div class="content-card" id="card-${card.id}"
          style="border-left-color:${color};background:${bg}"
@@ -1036,6 +1022,7 @@ function cardHTML(card){
         ${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:
           cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}
       </div>
+      ${avatarHTML}
       ${icons?`<div class="card-icons">${icons}</div>`:""}
     </div>`;
 }
@@ -1094,14 +1081,8 @@ function attachDropZones(){
     cell.ondrop=e=>{ e.preventDefault(); dropCard(cell); };
   });
 }
-function onDragStart(e,id){
-  dragCardId=id; e.dataTransfer.effectAllowed="move";
-  setTimeout(()=>document.getElementById(`card-${id}`)?.classList.add("dragging"),0);
-}
-function onDragEnd(){
-  document.querySelectorAll(".drag-over").forEach(c=>c.classList.remove("drag-over"));
-  document.querySelectorAll(".dragging").forEach(c=>c.classList.remove("dragging"));
-}
+function onDragStart(e,id){ dragCardId=id; e.dataTransfer.effectAllowed="move"; setTimeout(()=>document.getElementById(`card-${id}`)?.classList.add("dragging"),0); }
+function onDragEnd(){ document.querySelectorAll(".drag-over").forEach(c=>c.classList.remove("drag-over")); document.querySelectorAll(".dragging").forEach(c=>c.classList.remove("dragging")); }
 async function dropCard(cell){
   cell.classList.remove("drag-over");
   if(!dragCardId) return;
@@ -1152,16 +1133,13 @@ function readLinks(){
   const rows=document.querySelectorAll("#linksListEdit .link-row-item");
   const result=[];
   rows.forEach(row=>{
-    const [nameEl,urlEl]=row.querySelectorAll("input");
+    const[nameEl,urlEl]=row.querySelectorAll("input");
     const u=urlEl.value.trim();
     if(u) result.push({name:nameEl.value.trim()||"Link",url:u});
   });
   return result;
 }
-function renderLinksEdit(links){
-  document.getElementById("linksListEdit").innerHTML="";
-  (links||[]).forEach(l=>addLinkRow(l.name,l.url));
-}
+function renderLinksEdit(links){ document.getElementById("linksListEdit").innerHTML=""; (links||[]).forEach(l=>addLinkRow(l.name,l.url)); }
 
 function onCatChange(){
   const catId=document.getElementById("cCatSel").value;
@@ -1181,17 +1159,10 @@ function onCatChange(){
 function toggleOverride(){
   useOverrideColor=document.getElementById("overrideColorCheck").checked;
   document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
-  if(!useOverrideColor){
-    const catId=document.getElementById("cCatSel").value;
-    const cat=categories[catId];
-    chosenColor=cat?.color||"#6c63ff";
-  }
+  if(!useOverrideColor){ const cat=categories[document.getElementById("cCatSel").value]; chosenColor=cat?.color||"#6c63ff"; }
 }
 function buildCatOpts(selId){
-  return `<option value="">— Sem categoria —</option>`
-    +Object.values(categories).map(c=>
-      `<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`
-    ).join("");
+  return `<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");
 }
 
 function resetCardForm(month,day){
@@ -1199,18 +1170,14 @@ function resetCardForm(month,day){
   document.getElementById("cDate").value=iso;
   document.getElementById("cPlatform").value="";
   populateCampaignSelect();
-  ["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cDateStart","cDateEnd","cPmp"]
+  ["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cDateStart","cDateEnd","cPmp","cResponsavel","cSolicitante"]
     .forEach(id=>document.getElementById(id).value="");
   document.getElementById("cCatSel").innerHTML=buildCatOpts("");
   document.getElementById("catColorPreview").style.display="none";
   document.getElementById("overrideColorCheck").checked=false;
   document.getElementById("overrideSection").classList.remove("show");
-  useOverrideColor=false;
-  chosenColor="#6c63ff";
-  setChosenColor(chosenColor);
-  currentTags=[]; selectedStatus="";
-  renderTags(); clearStatusSel();
-  renderLinksEdit([]);
+  useOverrideColor=false; chosenColor="#6c63ff"; setChosenColor(chosenColor);
+  currentTags=[]; selectedStatus=""; renderTags(); clearStatusSel(); renderLinksEdit([]);
   ["err-date","err-title"].forEach(id=>{ const e=document.getElementById(id); if(e) e.classList.remove("show"); });
   ["cDate","cTitle"].forEach(id=>{ const e=document.getElementById(id); if(e) e.classList.remove("invalid"); });
   document.getElementById("cardDelRow").style.display="none";
@@ -1245,11 +1212,14 @@ function openEditCard(id){
   document.getElementById("cDateEnd").value=c.dateEnd||"";
   document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");
   document.getElementById("cPmp").value=c.pmp||"";
+  // ✅ Preenche os novos campos
+  document.getElementById("cResponsavel").value=c.responsavel||"";
+  document.getElementById("cSolicitante").value=c.solicitante||"";
   useOverrideColor=!!(c.overrideColor);
   document.getElementById("overrideColorCheck").checked=useOverrideColor;
   document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
   if(useOverrideColor){ chosenColor=c.overrideColor; setChosenColor(chosenColor); }
-  else { const cat=categories[c.catId]; chosenColor=cat?.color||c.color||"#6c63ff"; }
+  else{ const cat=categories[c.catId]; chosenColor=cat?.color||c.color||"#6c63ff"; }
   onCatChange();
   currentTags=[...(c.tags||[])]; renderTags();
   selectedStatus=c.briefing||""; applyStatusSel();
@@ -1263,36 +1233,18 @@ async function saveCard(){
   const dateVal=document.getElementById("cDate").value;
   const title=document.getElementById("cTitle").value.trim();
   let hasError=false;
-  const eDateEl=document.getElementById("err-date");
-  const eTitleEl=document.getElementById("err-title");
-  const cDateEl=document.getElementById("cDate");
-  const cTitleEl=document.getElementById("cTitle");
-  if(!dateVal){
-    eDateEl.classList.add("show"); cDateEl.classList.add("invalid"); hasError=true;
-    document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
-    document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-    document.getElementById("tab-info").classList.add("active");
-    document.querySelector("#cardOverlay .modal-tab").classList.add("active");
-  } else { eDateEl.classList.remove("show"); cDateEl.classList.remove("invalid"); }
-  if(!title){
-    eTitleEl.classList.add("show"); cTitleEl.classList.add("invalid"); hasError=true;
-    if(!document.getElementById("tab-info").classList.contains("active")){
-      document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
-      document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-      document.getElementById("tab-info").classList.add("active");
-      document.querySelector("#cardOverlay .modal-tab").classList.add("active");
-    }
-  } else { eTitleEl.classList.remove("show"); cTitleEl.classList.remove("invalid"); }
-  if(hasError){ showToast("⚠️ Preencha Data e Título para salvar.","#f97316"); return; }
+  const eDateEl=document.getElementById("err-date"),eTitleEl=document.getElementById("err-title");
+  const cDateEl=document.getElementById("cDate"),cTitleEl=document.getElementById("cTitle");
+  if(!dateVal){ eDateEl.classList.add("show"); cDateEl.classList.add("invalid"); hasError=true; }
+  else{ eDateEl.classList.remove("show"); cDateEl.classList.remove("invalid"); }
+  if(!title){ eTitleEl.classList.add("show"); cTitleEl.classList.add("invalid"); hasError=true; }
+  else{ eTitleEl.classList.remove("show"); cTitleEl.classList.remove("invalid"); }
+  if(hasError){ showToast("⚠️ Preencha Data e Título.","#f97316"); return; }
   const[yr,mo,dy]=dateVal.split("-").map(Number);
   const existing=cards[editCardId||""];
-  let finalColor=chosenColor;
-  let finalOverride=null;
+  let finalColor=chosenColor, finalOverride=null;
   if(useOverrideColor){ finalOverride=chosenColor; }
-  else {
-    const cat=categories[document.getElementById("cCatSel").value];
-    finalColor=cat?.color||"#6c63ff";
-  }
+  else{ const cat=categories[document.getElementById("cCatSel").value]; finalColor=cat?.color||"#6c63ff"; }
   const card={
     id:         editCardId||("c"+Date.now()),
     year:yr, month:mo-1, day:dy, date:dateVal,
@@ -1307,6 +1259,9 @@ async function saveCard(){
     dateEnd:    document.getElementById("cDateEnd").value,
     catId:      document.getElementById("cCatSel").value,
     pmp:        document.getElementById("cPmp").value.trim(),
+    // ✅ Salva responsável e solicitante
+    responsavel: document.getElementById("cResponsavel").value.trim(),
+    solicitante: document.getElementById("cSolicitante").value.trim(),
     color:      finalColor,
     overrideColor: finalOverride,
     briefing:   selectedStatus,
@@ -1355,6 +1310,25 @@ function openDetail(id,e){
       <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">
         ${c.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}
       </div></div>`:"";
+
+  // ✅ Bloco de responsável e solicitante no detalhe
+  const respBlock=(c.responsavel||c.solicitante)?`
+    <div class="dblock">
+      <div class="dblock-lbl">👥 Pessoas</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        ${c.responsavel?`
+          <div class="resp-badge">
+            <div class="resp-avatar">${initials(c.responsavel)}</div>
+            <span>Responsável: <strong>${esc(c.responsavel)}</strong></span>
+          </div>`:""}
+        ${c.solicitante?`
+          <div class="resp-badge">
+            <div class="resp-avatar" style="background:var(--orange)">${initials(c.solicitante)}</div>
+            <span>Solicitante: <strong>${esc(c.solicitante)}</strong></span>
+          </div>`:""}
+      </div>
+    </div>`:"";
+
   document.getElementById("detailBody").innerHTML=`
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:14px">
       <div class="detail-stripe" style="background:${color}"></div>
@@ -1369,6 +1343,7 @@ function openDetail(id,e){
       </div>
     </div>
     <div class="detail-blocks">
+      ${respBlock}
       ${c.campaign?make("📣 Campanha",`${c.campaign}${c.campaignId?" — "+c.campaignId:""}`):""}
       ${make("💡 Big Idea",c.bigIdea)}
       ${make("✍️ Copy",c.copy)}
@@ -1376,17 +1351,15 @@ function openDetail(id,e){
       ${c.pmp?make("📋 PMP",c.pmp):""}
       ${datesBlock}${tagsBlock}
     </div>`;
+
   const links=c.links||[];
   document.getElementById("detailLinksBody").innerHTML=links.length
     ?`<div class="dblock"><div class="dblock-lbl">🔗 Links</div>
         <div class="detail-links-list" style="margin-top:6px">
-          ${links.map(l=>`
-            <div class="detail-link-item">
-              <span class="detail-link-name">${esc(l.name)}</span>
-              <a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.url)}</a>
-            </div>`).join("")}
+          ${links.map(l=>`<div class="detail-link-item"><span class="detail-link-name">${esc(l.name)}</span><a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.url)}</a></div>`).join("")}
         </div></div>`
     :`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:12px 0">Nenhum link adicionado.</p>`;
+
   renderComments(c);
   const badge=document.getElementById("commentBadge");
   const cnt=(c.comments||[]).length;
@@ -1459,20 +1432,14 @@ async function saveCat(){
   if(!name){ showToast("⚠️ Digite um nome!","#f97316"); return; }
   const cat={id:editCatId||("cat"+Date.now()),name,color:catChosenColor,emoji:selectedEmoji};
   categories[cat.id]=cat;
-  closeOverlay("catOverlay");
-  renderCatSidebar();
-  refreshAllDOM();
-  await dbSaveCat(cat);
-  showToast("✅ Categoria salva!");
+  closeOverlay("catOverlay"); renderCatSidebar(); refreshAllDOM();
+  await dbSaveCat(cat); showToast("✅ Categoria salva!");
 }
 async function deleteCat(){
   if(!editCatId) return;
   if(Object.values(cards).some(c=>c.catId===editCatId)){ showToast("❌ Categoria em uso!","#f87171"); return; }
-  delete categories[editCatId];
-  closeOverlay("catOverlay");
-  renderCatSidebar();
-  await dbDelCat(editCatId);
-  showToast("🗑️ Categoria excluída.","#f87171");
+  delete categories[editCatId]; closeOverlay("catOverlay"); renderCatSidebar();
+  await dbDelCat(editCatId); showToast("🗑️ Categoria excluída.","#f87171");
 }
 
 function buildEmojiPanels(filter=""){
@@ -1501,9 +1468,7 @@ function handleTagInput(e){
     if(val&&!currentTags.includes(val)){ currentTags.push(val); renderTags(); }
     document.getElementById("tagInput").value="";
   }
-  if(e.key==="Backspace"&&document.getElementById("tagInput").value===""&&currentTags.length){
-    currentTags.pop(); renderTags();
-  }
+  if(e.key==="Backspace"&&document.getElementById("tagInput").value===""&&currentTags.length){ currentTags.pop(); renderTags(); }
 }
 function removeTag(t){ currentTags=currentTags.filter(x=>x!==t); renderTags(); }
 function renderTags(){
@@ -1511,8 +1476,7 @@ function renderTags(){
   const input=document.getElementById("tagInput");
   wrap.innerHTML="";
   currentTags.forEach(t=>{
-    const chip=document.createElement("div");
-    chip.className="tag-chip";
+    const chip=document.createElement("div"); chip.className="tag-chip";
     chip.innerHTML=`${esc(t)}<button onclick="removeTag('${esc(t)}')" type="button">✕</button>`;
     wrap.appendChild(chip);
   });
@@ -1535,18 +1499,9 @@ function renderPresets(gid){
   const el=document.getElementById(gid); if(!el) return;
   const isCat=gid==="catPresetGrid";
   const cur=isCat?catChosenColor:chosenColor;
-  el.innerHTML=PRESETS.map(c=>`
-    <div class="pdot${c===cur?" sel":""}" style="background:${c}" title="${c}"
-         onclick="${isCat?`setCatColor('${c}')`:`setChosenColor('${c}')`}">
-    </div>`).join("");
+  el.innerHTML=PRESETS.map(c=>`<div class="pdot${c===cur?" sel":""}" style="background:${c}" title="${c}" onclick="${isCat?`setCatColor('${c}')`:`setChosenColor('${c}')`}"></div>`).join("");
 }
-function setChosenColor(c){
-  chosenColor=c;
-  document.getElementById("customColorPicker").value=c;
-  document.getElementById("colorHexLbl").textContent=c;
-  document.getElementById("colorBar").style.background=c;
-  renderPresets("presetGrid");
-}
+function setChosenColor(c){ chosenColor=c; document.getElementById("customColorPicker").value=c; document.getElementById("colorHexLbl").textContent=c; document.getElementById("colorBar").style.background=c; renderPresets("presetGrid"); }
 function onCustomColor(c){ chosenColor=c; document.getElementById("colorHexLbl").textContent=c; document.getElementById("colorBar").style.background=c; renderPresets("presetGrid"); }
 function setCatColor(c){ catChosenColor=c; document.getElementById("catColorPicker").value=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
 function onCatCustomColor(c){ catChosenColor=c; document.getElementById("catColorHex").textContent=c; document.getElementById("catColorBar").style.background=c; renderPresets("catPresetGrid"); }
@@ -1558,14 +1513,8 @@ function setupOverlayClose(){
     ov.addEventListener("click",e=>{ if(e.target===ov) closeOverlay(ov.id); });
   });
 }
-function toggleSidebar(){
-  document.getElementById("sidebar").classList.toggle("open");
-  document.getElementById("sidebarOverlay").classList.toggle("open");
-}
-function closeSidebar(){
-  document.getElementById("sidebar").classList.remove("open");
-  document.getElementById("sidebarOverlay").classList.remove("open");
-}
+function toggleSidebar(){ document.getElementById("sidebar").classList.toggle("open"); document.getElementById("sidebarOverlay").classList.toggle("open"); }
+function closeSidebar(){ document.getElementById("sidebar").classList.remove("open"); document.getElementById("sidebarOverlay").classList.remove("open"); }
 
 function showToast(msg,color="#4ade80"){
   const t=document.getElementById("toast");
