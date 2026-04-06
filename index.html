@@ -50,7 +50,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cfg-box textarea{width:100%;background:var(--s3);border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;font-size:.79rem;font-family:monospace;resize:vertical;min-height:140px;outline:none;margin-top:14px}
 .cfg-save-btn{margin-top:14px;width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer}
 
-/* LAYOUT */
 #appShell{display:flex;min-height:100vh}
 #sidebar{width:210px;min-width:210px;background:var(--s1);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;z-index:100;transition:transform .3s}
 #sidebar::-webkit-scrollbar{width:3px}
@@ -78,7 +77,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cat-edit-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 3px;border-radius:4px}
 .cat-edit-btn:hover{color:var(--accent2)}
 
-/* TOPBAR */
 #mainArea{flex:1;min-width:0;display:flex;flex-direction:column}
 #topbar{background:var(--s1);border-bottom:1px solid var(--border);padding:11px 24px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:92;flex-wrap:wrap}
 #topbar h1{font-size:1rem;font-weight:800}
@@ -87,7 +85,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-today{display:flex;align-items:center;gap:5px;background:var(--s2);border:1px solid var(--accent);color:var(--accent);padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;margin-left:auto;white-space:nowrap}
 .btn-today:hover{background:var(--accent);color:#fff}
 
-/* FILTER BAR */
 #filterBar{background:var(--s1);border-bottom:1px solid var(--border);padding:8px 24px;display:flex;flex-direction:column;gap:6px;position:sticky;top:46px;z-index:91}
 .filter-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .filter-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);white-space:nowrap;min-width:100px}
@@ -108,7 +105,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .search-wrap input:focus{border-color:var(--accent);width:210px}
 .search-wrap::before{content:"🔍";font-size:.68rem;position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none}
 
-/* MAIN */
 #mainContent{padding:20px 24px}
 .month-section{margin-bottom:48px;scroll-margin-top:130px}
 .month-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
@@ -122,7 +118,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-add-main{display:flex;align-items:center;gap:5px;background:var(--accent);border:none;color:#fff;padding:7px 14px;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;box-shadow:0 2px 12px rgba(108,99,255,.3);white-space:nowrap}
 .btn-add-main:hover{background:#5a51e0;transform:translateY(-1px)}
 
-/* CALENDÁRIO */
 .cal-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border)}
 .cal-hcell{background:var(--s2);text-align:center;padding:8px 4px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
@@ -144,7 +139,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .day-add-btn{flex-shrink:0;background:none;border:none;color:var(--border);font-size:.9rem;cursor:pointer;width:100%;padding:1px 0;border-radius:4px;transition:color .15s;line-height:1.3}
 .day-add-btn:hover{color:var(--accent)}
 
-/* CARD */
 .content-card{width:100%;flex-shrink:0;display:flex;flex-direction:column;border-left:3px solid;border-radius:5px;padding:3px 5px;cursor:grab;transition:filter .15s,transform .15s,box-shadow .15s;user-select:none;overflow:hidden}
 .content-card:active{cursor:grabbing}
 .content-card:hover{filter:brightness(1.2);transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.35)}
@@ -159,14 +153,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .card-icon{font-size:.58rem;line-height:1;opacity:.7}
 .card-comment-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0}
 .card-status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.card-avatar{width:16px;height:16px;border-radius:50%;color:#fff;font-size:.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:2px;text-transform:uppercase}
+/* ★ múltiplos avatares no card */
+.card-avatars{display:flex;margin-left:2px;flex-shrink:0}
+.card-avatar{width:16px;height:16px;border-radius:50%;color:#fff;font-size:.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase;margin-left:-4px;border:1.5px solid var(--s1)}
+.card-avatar:first-child{margin-left:0}
 .card-recur{font-size:.6rem;flex-shrink:0;margin-left:2px;opacity:.85;line-height:1}
 .card-checklist-bar{display:flex;align-items:center;gap:4px;padding:1px 0 2px;flex-shrink:0}
 .card-cl-prog{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
 .card-cl-fill{height:100%;border-radius:2px;transition:width .3s}
 .card-cl-label{font-size:.5rem;color:var(--muted);white-space:nowrap;flex-shrink:0}
 
-/* OVERLAY */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(7px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:26px;width:100%;box-shadow:var(--shadow);transform:scale(.94) translateY(12px);transition:transform .22s;overflow-y:auto;max-height:92vh}
@@ -181,7 +177,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .modal-tab:hover{color:var(--text)}.modal-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-panel{display:none}.tab-panel.active{display:block}
 
-/* FORM */
 .fgrp{margin-bottom:12px}
 .fgrp label{display:flex;align-items:center;gap:5px;font-size:.68rem;font-weight:800;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .req-badge{font-size:.58rem;background:var(--accent);color:#fff;padding:1px 5px;border-radius:4px;font-weight:700}
@@ -215,42 +210,51 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cl-del-btn:hover{color:var(--red)}
 .cl-add-btn{display:flex;align-items:center;gap:7px;background:transparent;border:1.5px dashed var(--border);color:var(--muted);padding:8px 14px;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;width:100%}
 .cl-add-btn:hover{border-color:var(--accent);color:var(--accent)}
-.detail-cl-list{display:flex;flex-direction:column;gap:6px}
-.detail-cl-row{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--s3);border-radius:8px;cursor:pointer;transition:background .15s}
-.detail-cl-row:hover{background:var(--s4)}
-.detail-cl-check{width:17px;height:17px;border-radius:4px;border:2px solid var(--border);background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:all .2s}
-.detail-cl-check.on{background:var(--accent);border-color:var(--accent)}
-.detail-cl-text{flex:1;font-size:.83rem;line-height:1.4}
-.detail-cl-text.done{text-decoration:line-through;color:var(--muted)}
 
-/* RECORRÊNCIA */
+/* ★ CHECKLIST NO DETALHE — com delete */
+.detail-cl-list{display:flex;flex-direction:column;gap:6px}
+.detail-cl-row{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--s3);border-radius:8px;transition:background .15s;border:1px solid transparent}
+.detail-cl-row:hover{background:var(--s4);border-color:var(--border)}
+.detail-cl-check{width:17px;height:17px;border-radius:4px;border:2px solid var(--border);background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:all .2s;cursor:pointer}
+.detail-cl-check.on{background:var(--accent);border-color:var(--accent)}
+.detail-cl-text{flex:1;font-size:.83rem;line-height:1.4;cursor:pointer}
+.detail-cl-text.done{text-decoration:line-through;color:var(--muted)}
+.detail-cl-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 5px;border-radius:4px;flex-shrink:0;opacity:0;transition:all .15s}
+.detail-cl-row:hover .detail-cl-del{opacity:1}
+.detail-cl-del:hover{color:var(--red);opacity:1!important}
+
 .recur-opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
 .recur-opt{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:.76rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s;font-family:inherit;line-height:1}
 .recur-opt:hover{border-color:var(--accent2);color:var(--text);background:var(--s3)}
 .recur-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* PEOPLE PICKER */
+/* ★ PEOPLE PICKER — múltipla seleção */
 .people-picker{position:relative}
-.people-display{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:7px 11px;cursor:pointer;transition:border-color .2s;min-height:38px;user-select:none}
+.people-display{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:6px 11px;cursor:pointer;transition:border-color .2s;min-height:38px;user-select:none;flex-wrap:wrap}
 .people-display:hover{border-color:var(--accent)}
-.people-sel-avatar{width:22px;height:22px;border-radius:50%;color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
-.people-selected{flex:1;font-size:.84rem;color:var(--text)}.people-selected.empty{color:var(--muted)}
-.people-arrow{color:var(--muted);font-size:.7rem;flex-shrink:0}
+.people-sel-tags{display:flex;flex-wrap:wrap;gap:4px;flex:1;align-items:center}
+.people-sel-tag{display:flex;align-items:center;gap:4px;border-radius:20px;padding:2px 6px 2px 3px;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0}
+.people-sel-tag-avatar{width:16px;height:16px;border-radius:50%;color:#fff;font-size:.48rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
+.people-sel-tag-remove{background:none;border:none;color:rgba(255,255,255,.8);cursor:pointer;font-size:.6rem;padding:0;line-height:1;margin-left:1px}
+.people-sel-tag-remove:hover{color:#fff}
+.people-placeholder{font-size:.84rem;color:var(--muted);flex:1}
+.people-arrow{color:var(--muted);font-size:.7rem;flex-shrink:0;margin-left:auto}
 .people-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--s2);border:1px solid var(--accent);border-radius:10px;z-index:600;overflow:hidden;box-shadow:var(--shadow);display:none}
 .people-dropdown.open{display:block}
 .people-list{max-height:180px;overflow-y:auto;padding:4px}
 .people-list::-webkit-scrollbar{width:3px}
 .people-opt{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;cursor:pointer;transition:background .15s;font-size:.83rem}
-.people-opt:hover{background:var(--s3)}.people-opt.selected{background:rgba(108,99,255,.2)}
+.people-opt:hover{background:var(--s3)}
+.people-opt.selected{background:rgba(108,99,255,.2)}
 .people-opt-avatar{width:24px;height:24px;border-radius:50%;color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase;box-shadow:0 1px 4px rgba(0,0,0,.35)}
 .people-opt-name{flex:1;font-weight:600}
+.people-opt-check{font-size:.8rem;color:var(--accent);font-weight:800;flex-shrink:0}
 .people-empty{font-size:.78rem;color:var(--muted);font-style:italic;padding:10px;text-align:center}
 .people-add-row{display:flex;gap:6px;padding:6px;border-top:1px solid var(--border)}
 .people-add-row input{flex:1;background:var(--s3);border:1px solid var(--border);color:var(--text);padding:6px 9px;border-radius:7px;font-size:.8rem;font-family:inherit;outline:none}
 .people-add-row input:focus{border-color:var(--accent)}
 .people-add-btn{background:var(--accent);border:none;color:#fff;padding:6px 11px;border-radius:7px;cursor:pointer;font-size:.75rem;font-weight:700}
 
-/* LINKS */
 .links-list{display:flex;flex-direction:column;gap:7px;margin-bottom:8px}
 .link-row-item{display:flex;gap:6px;align-items:center}
 .link-row-item input{flex:1;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:8px;font-size:.82rem;font-family:inherit;outline:none}
@@ -261,9 +265,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .add-link-btn{display:flex;align-items:center;gap:5px;background:transparent;border:1px dashed var(--border);color:var(--muted);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.75rem;font-weight:700;transition:all .2s;width:100%}
 .add-link-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-/* STATUS */
+/* ★ STATUS — toggle off clicando de novo */
 .status-sel{display:flex;gap:5px;flex-wrap:wrap}
-.status-opt{padding:5px 11px;border-radius:20px;cursor:pointer;font-size:.72rem;font-weight:700;border:1px solid var(--border);color:var(--muted);transition:all .15s;background:var(--s2);display:flex;align-items:center;gap:5px}
+.status-opt{padding:5px 11px;border-radius:20px;cursor:pointer;font-size:.72rem;font-weight:700;border:1px solid var(--border);color:var(--muted);transition:all .15s;background:var(--s2);display:flex;align-items:center;gap:5px;user-select:none}
 .status-opt .s-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .status-opt.sel-pendente{background:#f97316;border-color:#f97316;color:#fff}
 .status-opt.sel-producao{background:#38bdf8;border-color:#38bdf8;color:#000}
@@ -271,10 +275,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .status-opt.sel-aprovado{background:#4ade80;border-color:#4ade80;color:#000}
 .status-opt.sel-publicado{background:#6c63ff;border-color:#6c63ff;color:#fff}
 .status-opt.sel-programado{background:#0ea5e9;border-color:#0ea5e9;color:#fff}
+
 .detail-status-bar{display:flex;flex-direction:column;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:13px 14px;margin-bottom:14px}
 .detail-status-label{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
 .detail-status-opts{display:flex;gap:5px;flex-wrap:wrap}
-.ds-opt{padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.72rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s3);transition:all .18s;display:flex;align-items:center;gap:5px}
+.ds-opt{padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.72rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s3);transition:all .18s;display:flex;align-items:center;gap:5px;user-select:none}
 .ds-opt .s-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .ds-opt[data-val="Pendente"].active{background:#f97316;border-color:#f97316;color:#fff}
 .ds-opt[data-val="Produção"].active{background:#38bdf8;border-color:#38bdf8;color:#000}
@@ -283,14 +288,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .ds-opt[data-val="Publicado"].active{background:#6c63ff;border-color:#6c63ff;color:#fff}
 .ds-opt[data-val="Programado"].active{background:#0ea5e9;border-color:#0ea5e9;color:#fff}
 
-/* TAGS */
 .tags-wrap{display:flex;flex-wrap:wrap;gap:5px;align-items:center;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:6px 10px;min-height:38px;cursor:text}
 .tags-wrap:focus-within{border-color:var(--accent)}
 .tag-chip{display:flex;align-items:center;gap:4px;background:var(--accent);color:#fff;padding:3px 8px;border-radius:20px;font-size:.7rem;font-weight:700}
 .tag-chip button{background:none;border:none;color:rgba(255,255,255,.8);cursor:pointer;font-size:.7rem;padding:0;line-height:1}
 .tags-input{background:none;border:none;color:var(--text);outline:none;font-size:.78rem;flex:1;min-width:80px;font-family:inherit;padding:0}
 
-/* CORES */
 .color-pick-area{display:flex;flex-direction:column;gap:8px}
 .preset-grid{display:flex;flex-wrap:wrap;gap:5px}
 .pdot{width:24px;height:24px;border-radius:5px;cursor:pointer;border:2px solid transparent;transition:all .15s;flex-shrink:0}
@@ -308,7 +311,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .override-toggle span{font-size:.78rem;color:var(--muted)}
 .override-section{display:none}.override-section.show{display:block}
 
-/* EMOJI */
 .emoji-section-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 6px}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
 .emoji-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--s2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
@@ -320,7 +322,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .selected-emoji-preview .big-emoji{font-size:1.8rem;line-height:1}
 .selected-emoji-preview span{font-size:.8rem;color:var(--muted)}
 
-/* ACTIONS */
 .mactions{display:flex;gap:8px;margin-top:16px;justify-content:flex-end;flex-wrap:wrap;align-items:center}
 .btn-cancel{background:var(--s2);border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
 .btn-cancel:hover{border-color:var(--red);color:var(--red)}
@@ -332,7 +333,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-dup{background:transparent;border:1px solid var(--accent2);color:var(--accent2);padding:8px 12px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
 .btn-dup:hover{background:rgba(167,139,250,.12)}
 
-/* DETALHE */
 .recur-notice{display:flex;align-items:center;gap:8px;background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--accent2)}
 .detail-stripe{width:4px;min-height:48px;border-radius:3px;flex-shrink:0;margin-top:3px}
 .detail-title{font-size:1.05rem;font-weight:800;margin-bottom:6px;line-height:1.3}
@@ -353,10 +353,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .detail-link-item a{color:var(--accent2);font-size:.82rem;text-decoration:none;word-break:break-all}
 .detail-link-item a:hover{text-decoration:underline}
 .detail-link-name{font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap;min-width:60px}
-.resp-badge{display:inline-flex;align-items:center;gap:6px;background:var(--s3);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:700}
+/* ★ resp-badge multi */
+.resp-badges-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.resp-badge{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:700;border:1px solid var(--border)}
 .resp-avatar{width:20px;height:20px;border-radius:50%;color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
 
-/* CAMPANHA */
 .camp-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;max-height:260px;overflow-y:auto}
 .camp-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--s2);border:1px solid var(--border);border-radius:8px}
 .camp-item-name{flex:1;font-size:.82rem;font-weight:600}
@@ -369,7 +370,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .camp-add-row button{background:var(--accent);border:none;color:#fff;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700}
 .camp-section-title{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 5px}
 
-/* COMENTÁRIOS */
 .comments-area{display:flex;flex-direction:column;gap:10px}
 .comment-item{background:var(--s3);border:1px solid var(--border);border-radius:10px;padding:10px 13px}
 .comment-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
@@ -385,7 +385,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-comment{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;align-self:flex-end}
 .btn-comment:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* MODAL DIA */
 #dayOverlay .modal{max-width:640px}
 .day-modal-header-wrap{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .day-modal-date-num{font-size:2.8rem;font-weight:900;line-height:1;color:var(--accent)}
@@ -410,7 +409,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .day-card-cl-bar{width:40px;height:4px;background:var(--s4);border-radius:2px;overflow:hidden;display:inline-block}
 .day-card-cl-fill{height:100%;border-radius:2px}
 .day-card-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
-.day-card-avatar{width:24px;height:24px;border-radius:50%;color:#fff;font-size:.62rem;font-weight:800;display:flex;align-items:center;justify-content:center;text-transform:uppercase;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.day-card-avatars{display:flex}
+.day-card-avatar{width:24px;height:24px;border-radius:50%;color:#fff;font-size:.62rem;font-weight:800;display:flex;align-items:center;justify-content:center;text-transform:uppercase;box-shadow:0 1px 4px rgba(0,0,0,.4);margin-left:-6px;border:2px solid var(--s2)}
+.day-card-avatars .day-card-avatar:first-child{margin-left:0}
 .day-modal-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:40px 20px;color:var(--muted)}
 .day-modal-empty-icon{font-size:2.5rem;opacity:.5}
 .day-modal-empty p{font-size:.85rem;text-align:center;line-height:1.6}
@@ -571,12 +572,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <div class="fgrp"><label>📅 Data Início <span class="opt-badge">opcional</span></label><input type="date" id="cDateStart"/></div>
         <div class="fgrp"><label>🏁 Data Fim <span class="opt-badge">opcional</span></label><input type="date" id="cDateEnd"/></div>
       </div>
+      <!-- ★ RESPONSÁVEL E SOLICITANTE — múltipla seleção -->
       <div class="row2">
         <div class="fgrp"><label>👤 Responsável <span class="opt-badge">opcional</span></label>
           <div class="people-picker" id="ppResp">
-            <div class="people-display" onclick="togglePeople('ppResp')">
-              <div class="people-sel-avatar" id="ppResp-avatar" style="display:none"></div>
-              <span class="people-selected empty" id="ppResp-val">Selecione ou adicione…</span>
+            <div class="people-display" id="ppResp-display" onclick="togglePeople('ppResp')">
+              <div class="people-sel-tags" id="ppResp-tags"><span class="people-placeholder" id="ppResp-placeholder">Selecione ou adicione…</span></div>
               <span class="people-arrow">▼</span>
             </div>
             <div class="people-dropdown" id="ppResp-drop">
@@ -590,9 +591,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
         <div class="fgrp"><label>📨 Solicitante <span class="opt-badge">opcional</span></label>
           <div class="people-picker" id="ppSolic">
-            <div class="people-display" onclick="togglePeople('ppSolic')">
-              <div class="people-sel-avatar" id="ppSolic-avatar" style="display:none"></div>
-              <span class="people-selected empty" id="ppSolic-val">Selecione ou adicione…</span>
+            <div class="people-display" id="ppSolic-display" onclick="togglePeople('ppSolic')">
+              <div class="people-sel-tags" id="ppSolic-tags"><span class="people-placeholder" id="ppSolic-placeholder">Selecione ou adicione…</span></div>
               <span class="people-arrow">▼</span>
             </div>
             <div class="people-dropdown" id="ppSolic-drop">
@@ -615,14 +615,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
         <div class="hint" id="recurHint" style="margin-top:5px"></div>
       </div>
+      <!-- ★ STATUS — toggle off -->
       <div class="fgrp"><label>Status <span class="opt-badge">opcional</span></label>
         <div class="status-sel" id="briefingStatusSel">
-          <div class="status-opt" data-val="Pendente" onclick="selectStatus(this)"><span class="s-dot" style="background:#f97316"></span>Pendente</div>
-          <div class="status-opt" data-val="Produção" onclick="selectStatus(this)"><span class="s-dot" style="background:#38bdf8"></span>Produção</div>
-          <div class="status-opt" data-val="Revisão" onclick="selectStatus(this)"><span class="s-dot" style="background:#a78bfa"></span>Revisão</div>
-          <div class="status-opt" data-val="Aprovado" onclick="selectStatus(this)"><span class="s-dot" style="background:#4ade80"></span>Aprovado</div>
-          <div class="status-opt" data-val="Publicado" onclick="selectStatus(this)"><span class="s-dot" style="background:#6c63ff"></span>Publicado</div>
-          <div class="status-opt" data-val="Programado" onclick="selectStatus(this)"><span class="s-dot" style="background:#0ea5e9"></span>Programado</div>
+          <div class="status-opt" data-val="Pendente" onclick="toggleStatus(this)"><span class="s-dot" style="background:#f97316"></span>Pendente</div>
+          <div class="status-opt" data-val="Produção" onclick="toggleStatus(this)"><span class="s-dot" style="background:#38bdf8"></span>Produção</div>
+          <div class="status-opt" data-val="Revisão" onclick="toggleStatus(this)"><span class="s-dot" style="background:#a78bfa"></span>Revisão</div>
+          <div class="status-opt" data-val="Aprovado" onclick="toggleStatus(this)"><span class="s-dot" style="background:#4ade80"></span>Aprovado</div>
+          <div class="status-opt" data-val="Publicado" onclick="toggleStatus(this)"><span class="s-dot" style="background:#6c63ff"></span>Publicado</div>
+          <div class="status-opt" data-val="Programado" onclick="toggleStatus(this)"><span class="s-dot" style="background:#0ea5e9"></span>Programado</div>
         </div>
       </div>
     </div>
@@ -638,7 +639,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     </div>
     <div class="tab-panel" id="tab-checklist">
       <div class="fgrp">
-        <label>☑️ Checklist de Tarefas <span class="opt-badge">opcional</span></label>
+        <label>☑️ Checklist <span class="opt-badge">opcional</span></label>
         <p class="hint" style="margin-bottom:12px">Adicione tarefas e marque conforme for concluindo.</p>
         <div class="cl-progress-wrap" id="clProgressWrap" style="display:none">
           <div class="cl-progress-bar"><div class="cl-progress-fill" id="clProgressFill"></div></div>
@@ -792,14 +793,17 @@ let chosenColor="#6c63ff",catChosenColor="#6c63ff",editCatId=null;
 let currentTags=[],selectedStatus="",selectedRecur="";
 let filterPlatform="Todas",filterCampaign="Todas",filterResp="Todas",searchQuery="";
 let selectedEmoji="📌",currentDetailCardId=null,useOverrideColor=false;
-let pickerSelected={ppResp:"",ppSolic:""};
+
+// ★ MÚLTIPLA SELEÇÃO — arrays por picker
+let pickerSelected={ppResp:[],ppSolic:[]};
+
 let dupSourceId=null,_clData=[];
 let recurStatuses=JSON.parse(localStorage.getItem("cal_recur_statuses")||"{}");
 window._recurInstances={};
 let peopleList=[];
 
 // ══════════════════════════════════════
-// PESSOAS — cor única automática
+// PESSOAS
 // ══════════════════════════════════════
 function loadPeopleList(){
   const raw=localStorage.getItem("cal_people_v2");
@@ -817,16 +821,12 @@ function generatePersonColor(name,existingColors){
   return`hsl(${(h*137+existingColors.length*47)%360},70%,60%)`;
 }
 function getPersonColor(name){return peopleList.find(x=>x.name===name)?.color||"#6b7399";}
-
-// ══════════════════════════════════════
-// UTILS
-// ══════════════════════════════════════
+function initials(n){if(!n)return"";const p=n.trim().split(/\s+/);return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():p[0].slice(0,2).toUpperCase();}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function fmtDFull(iso){if(!iso)return"";const[y,m,d]=iso.split("-");return`${d}/${m}/${y}`;}
-function initials(n){if(!n)return"";const p=n.trim().split(/\s+/);return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():p[0].slice(0,2).toUpperCase();}
 
 // ══════════════════════════════════════
-// STATUS RECORRENTE INDEPENDENTE
+// STATUS RECORRENTE
 // ══════════════════════════════════════
 function getRecurKey(cardId,date){return cardId+"__"+date;}
 function getEffectiveStatus(card){
@@ -834,6 +834,25 @@ function getEffectiveStatus(card){
   return card.briefing||"";
 }
 function setRecurStatus(sourceId,date,status){recurStatuses[getRecurKey(sourceId,date)]=status;localStorage.setItem("cal_recur_statuses",JSON.stringify(recurStatuses));}
+
+// ══════════════════════════════════════
+// ★ STATUS TOGGLE (desmarca se clicar no mesmo)
+// ══════════════════════════════════════
+function toggleStatus(el){
+  const val=el.dataset.val;
+  selectedStatus=selectedStatus===val?"":val;
+  applyStatusSel();
+}
+function applyStatusSel(){
+  document.querySelectorAll(".status-opt").forEach(o=>{
+    o.className="status-opt";
+    if(o.dataset.val===selectedStatus&&selectedStatus!==""){
+      const key=o.dataset.val.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s/g,"");
+      o.classList.add("sel-"+key);
+    }
+  });
+}
+function clearStatusSel(){selectedStatus="";document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt");}
 
 // ══════════════════════════════════════
 // CHECKLIST
@@ -860,18 +879,40 @@ function clAddRow(text="",done=false){
 }
 function clLoadList(list){_clData=[];document.getElementById("clList").innerHTML="";(list||[]).forEach(item=>clAddRow(item.text,item.done));clUpdateProgress();}
 function clReadData(){return _clData.map(i=>({id:i.id,text:i.text,done:i.done}));}
+
+// ★ CHECKLIST NO DETALHE — com botão deletar
 function renderDetailChecklist(card){
   const list=card.checklist||[],body=document.getElementById("detailChecklistBody");if(!body)return;
-  if(!list.length){body.innerHTML=`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:16px 0;text-align:center">Nenhuma tarefa. Adicione pelo botão ✏️ Editar.</p>`;return;}
+  if(!list.length){body.innerHTML=`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:16px 0;text-align:center">Nenhuma tarefa. Clique em ✏️ Editar para adicionar.</p>`;return;}
   const{total,done,pct}=clStats(list);
-  body.innerHTML=`<div class="cl-progress-wrap" style="margin-bottom:14px"><div class="cl-progress-bar"><div class="cl-progress-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div><span class="cl-progress-label">${done} / ${total} — ${pct}%</span></div>
-    <div class="detail-cl-list">${list.map((item,idx)=>`<div class="detail-cl-row" onclick="toggleDetailCl(${idx})"><div class="detail-cl-check${item.done?" on":""}">${item.done?"✓":""}</div><span class="detail-cl-text${item.done?" done":""}">${esc(item.text)||"<em style='color:var(--muted)'>sem título</em>"}</span></div>`).join("")}</div>`;
+  body.innerHTML=`
+    <div class="cl-progress-wrap" style="margin-bottom:14px">
+      <div class="cl-progress-bar"><div class="cl-progress-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>
+      <span class="cl-progress-label">${done} / ${total} — ${pct}%</span>
+    </div>
+    <div class="detail-cl-list">
+      ${list.map((item,idx)=>`
+        <div class="detail-cl-row">
+          <div class="detail-cl-check${item.done?" on":""}" onclick="toggleDetailCl(${idx})">${item.done?"✓":""}</div>
+          <span class="detail-cl-text${item.done?" done":""}" onclick="toggleDetailCl(${idx})">${esc(item.text)||"<em style='color:var(--muted)'>sem título</em>"}</span>
+          <button class="detail-cl-del" onclick="deleteDetailCl(${idx})" title="Remover tarefa">✕</button>
+        </div>
+      `).join("")}
+    </div>`;
 }
 async function toggleDetailCl(idx){
   const card=cards[currentDetailCardId];if(!card)return;
   const list=[...(card.checklist||[])];list[idx]={...list[idx],done:!list[idx].done};
   const updated={...card,checklist:list};cards[currentDetailCardId]=updated;
   renderDetailChecklist(updated);updateClBadge(updated);refreshDay(updated.month,updated.day);await dbSaveCard(updated);
+}
+// ★ DELETAR item do checklist no detalhe
+async function deleteDetailCl(idx){
+  const card=cards[currentDetailCardId];if(!card)return;
+  const list=[...(card.checklist||[])];list.splice(idx,1);
+  const updated={...card,checklist:list};cards[currentDetailCardId]=updated;
+  renderDetailChecklist(updated);updateClBadge(updated);refreshDay(updated.month,updated.day);await dbSaveCard(updated);
+  showToast("🗑️ Tarefa removida.","#f87171");
 }
 function updateClBadge(card){
   const badge=document.getElementById("clBadge");if(!badge)return;const list=card.checklist||[];
@@ -907,7 +948,7 @@ function rebuildRecurInstances(){window._recurInstances={};getRecurringInstances
 function getCardsForDay(mi,d,yr){return[...Object.values(cards).filter(c=>c.month===mi&&c.day===d&&c.year===yr),...Object.values(window._recurInstances).filter(c=>c.month===mi&&c.day===d&&c.year===yr)];}
 
 // ══════════════════════════════════════
-// STATUS INLINE DETALHE
+// STATUS INLINE DETALHE — toggle
 // ══════════════════════════════════════
 function renderDetailStatusBar(effStatus){
   return`<div class="detail-status-bar"><div class="detail-status-label">🎯 Status da Demanda</div><div class="detail-status-opts">${Object.entries(STATUS_COLORS).map(([s,sc])=>{const active=s===effStatus;return`<div class="ds-opt${active?" active":""}" data-val="${s}" style="${active?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""}" onclick="setDetailStatus('${s}')"><span class="s-dot" style="background:${sc.bg}"></span>${s}</div>`;}).join("")}</div></div>`;
@@ -916,16 +957,24 @@ async function setDetailStatus(newStatus){
   const isRecur=window._currentDetailIsRecur||false,recurDate=window._currentDetailDate||null,realId=currentDetailCardId;
   const card=cards[realId];if(!card)return;
   let effStatus;
-  if(isRecur&&recurDate){const k=getRecurKey(realId,recurDate),cur=k in recurStatuses?recurStatuses[k]:(card.briefing||"");effStatus=cur===newStatus?"":newStatus;setRecurStatus(realId,recurDate,effStatus);const[yr,mo,dy]=recurDate.split("-").map(Number);refreshDay(mo-1,dy);}
-  else{effStatus=card.briefing===newStatus?"":newStatus;const updated={...card,briefing:effStatus};cards[realId]=updated;rebuildRecurInstances();refreshDay(updated.month,updated.day);refreshLeg(updated.month);await dbSaveCard(updated);}
-  document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,a=v===effStatus,sc=STATUS_COLORS[v];el.className="ds-opt"+(a?" active":"");el.style.cssText=a?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""});
+  if(isRecur&&recurDate){
+    const k=getRecurKey(realId,recurDate),cur=k in recurStatuses?recurStatuses[k]:(card.briefing||"");
+    // ★ toggle off
+    effStatus=cur===newStatus?"":newStatus;
+    setRecurStatus(realId,recurDate,effStatus);const[yr,mo,dy]=recurDate.split("-").map(Number);refreshDay(mo-1,dy);
+  }else{
+    // ★ toggle off
+    effStatus=card.briefing===newStatus?"":newStatus;
+    const updated={...card,briefing:effStatus};cards[realId]=updated;rebuildRecurInstances();refreshDay(updated.month,updated.day);refreshLeg(updated.month);await dbSaveCard(updated);
+  }
+  document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,a=v===effStatus&&effStatus!=="",sc=STATUS_COLORS[v];el.className="ds-opt"+(a?" active":"");el.style.cssText=a?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""});
   const badge=document.getElementById("detailStatusBadge");
   if(badge){if(effStatus){const sc=STATUS_COLORS[effStatus];badge.textContent=effStatus;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}else badge.style.display="none";}
-  updateCounts();showToast("✅ Status atualizado!");
+  updateCounts();showToast(effStatus?"✅ Status atualizado!":"↩️ Status removido.");
 }
 
 // ══════════════════════════════════════
-// PEOPLE PICKER
+// ★ PEOPLE PICKER — múltipla seleção
 // ══════════════════════════════════════
 function addPersonFromFilter(){
   const inp=document.getElementById("newRespInput"),name=inp.value.trim();
@@ -942,30 +991,65 @@ function buildRespFilters(){
     peopleList.map(p=>{const a=filterResp===p.name;return`<div class="filter-chip-person${a?" active":""}" style="${a?`border-color:${p.color};box-shadow:0 0 0 1px ${p.color}44`:""}" onclick="setFilterResp('${esc(p.name)}')"><div class="fcp-avatar" style="background:${p.color}">${initials(p.name)}</div><span style="${a?`color:${p.color};font-weight:700`:""}">${esc(p.name)}</span></div>`;}).join("");
 }
 function setFilterResp(n){filterResp=n;buildRespFilters();applyFilters();}
-function togglePeople(pid){const drop=document.getElementById(pid+"-drop"),isOpen=drop.classList.contains("open");document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));if(!isOpen){renderPeopleList(pid);drop.classList.add("open");}}
+
+function togglePeople(pid){
+  const drop=document.getElementById(pid+"-drop"),isOpen=drop.classList.contains("open");
+  document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));
+  if(!isOpen){renderPeopleList(pid);drop.classList.add("open");}
+}
 function renderPeopleList(pid){
   const list=document.getElementById(pid+"-list");if(!list)return;
   if(!peopleList.length){list.innerHTML=`<div class="people-empty">Nenhuma pessoa ainda.<br>Adicione abaixo! 👇</div>`;return;}
-  list.innerHTML=peopleList.map(p=>{const sel=pickerSelected[pid]===p.name;return`<div class="people-opt${sel?" selected":""}" onclick="selectPerson('${pid}','${esc(p.name)}')"><div class="people-opt-avatar" style="background:${p.color}">${initials(p.name)}</div><span class="people-opt-name">${esc(p.name)}</span>${sel?`<span style="color:var(--accent);font-size:.8rem">✓</span>`:""}</div>`;}).join("");
+  const sel=pickerSelected[pid]||[];
+  list.innerHTML=peopleList.map(p=>{
+    const isSel=sel.includes(p.name);
+    return`<div class="people-opt${isSel?" selected":""}" onclick="togglePersonSel('${pid}','${esc(p.name)}')">
+      <div class="people-opt-avatar" style="background:${p.color}">${initials(p.name)}</div>
+      <span class="people-opt-name">${esc(p.name)}</span>
+      ${isSel?`<span class="people-opt-check">✓</span>`:""}
+    </div>`;
+  }).join("");
 }
-function selectPerson(pid,name){
-  pickerSelected[pid]=pickerSelected[pid]===name?"":name;
-  const valEl=document.getElementById(pid+"-val"),avatarEl=document.getElementById(pid+"-avatar");
-  if(pickerSelected[pid]){const color=getPersonColor(pickerSelected[pid]);valEl.textContent=pickerSelected[pid];valEl.classList.remove("empty");if(avatarEl){avatarEl.style.display="flex";avatarEl.style.background=color;avatarEl.textContent=initials(pickerSelected[pid]);}}
-  else{valEl.textContent="Selecione ou adicione…";valEl.classList.add("empty");if(avatarEl)avatarEl.style.display="none";}
-  document.getElementById(pid+"-drop").classList.remove("open");
-  if(pid==="ppResp")buildRespFilters();
+function togglePersonSel(pid,name){
+  if(!pickerSelected[pid])pickerSelected[pid]=[];
+  const idx=pickerSelected[pid].indexOf(name);
+  if(idx>=0)pickerSelected[pid].splice(idx,1);
+  else pickerSelected[pid].push(name);
+  renderPeopleList(pid);
+  renderPickerTags(pid);
+}
+function renderPickerTags(pid){
+  const tagsEl=document.getElementById(pid+"-tags"),placeholder=document.getElementById(pid+"-placeholder");
+  const sel=pickerSelected[pid]||[];
+  // remove tags antigas
+  tagsEl.querySelectorAll(".people-sel-tag").forEach(t=>t.remove());
+  if(!sel.length){if(placeholder)placeholder.style.display="";return;}
+  if(placeholder)placeholder.style.display="none";
+  sel.forEach(name=>{
+    const color=getPersonColor(name);
+    const tag=document.createElement("div");tag.className="people-sel-tag";tag.style.background=color+"33";tag.style.border=`1px solid ${color}55`;tag.style.color=color;
+    tag.innerHTML=`<div class="people-sel-tag-avatar" style="background:${color}">${initials(name)}</div><span>${esc(name)}</span><button class="people-sel-tag-remove" type="button" onclick="event.stopPropagation();removePersonSel('${pid}','${esc(name)}')">✕</button>`;
+    tagsEl.insertBefore(tag,tagsEl.firstChild);
+  });
+}
+function removePersonSel(pid,name){
+  pickerSelected[pid]=(pickerSelected[pid]||[]).filter(n=>n!==name);
+  renderPickerTags(pid);renderPeopleList(pid);
 }
 function addPerson(pid){
   const inp=document.getElementById(pid+"-inp"),name=inp.value.trim();if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}
   let person=peopleList.find(p=>p.name.toLowerCase()===name.toLowerCase());
   if(!person){const color=generatePersonColor(name,peopleList.map(p=>p.color));person={name,color};peopleList.push(person);savePeopleList();showToast(`✅ ${name} adicionado(a)!`,"#4ade80");}
-  inp.value="";selectPerson(pid,person.name);buildRespFilters();
+  inp.value="";
+  if(!pickerSelected[pid])pickerSelected[pid]=[];
+  if(!pickerSelected[pid].includes(person.name))pickerSelected[pid].push(person.name);
+  renderPickerTags(pid);renderPeopleList(pid);buildRespFilters();
 }
 function applyPeoplePicker(pid,val){
-  pickerSelected[pid]=val||"";const valEl=document.getElementById(pid+"-val"),avatarEl=document.getElementById(pid+"-avatar");
-  if(val){const color=getPersonColor(val);valEl.textContent=val;valEl.classList.remove("empty");if(avatarEl){avatarEl.style.display="flex";avatarEl.style.background=color;avatarEl.textContent=initials(val);}}
-  else{valEl.textContent="Selecione ou adicione…";valEl.classList.add("empty");if(avatarEl)avatarEl.style.display="none";}
+  // val pode ser string (legado) ou array
+  if(Array.isArray(val))pickerSelected[pid]=[...val];
+  else pickerSelected[pid]=val?[val]:[];
+  renderPickerTags(pid);
 }
 document.addEventListener("click",e=>{if(!e.target.closest(".people-picker"))document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));});
 
@@ -989,7 +1073,8 @@ function listenData(){
   window._onSnapshot(window._col("cards_cal"),snap=>{
     cards={};snap.forEach(d=>{cards[d.id]=d.data();});
     Object.values(cards).forEach(c=>{
-      [c.responsavel,c.solicitante].forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});
+      const names=[...(Array.isArray(c.responsavel)?c.responsavel:[c.responsavel||""].filter(Boolean)),...(Array.isArray(c.solicitante)?c.solicitante:[c.solicitante||""].filter(Boolean))];
+      names.forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});
     });
     savePeopleList();buildRespFilters();rebuildRecurInstances();renderAll();buildCampaignFilters();setSyncStatus("ok");
   },()=>setSyncStatus("err"));
@@ -1003,26 +1088,30 @@ const dbDelCat=async i=>window._deleteDoc(window._doc("cats_cal",i));
 const dbSaveCampaigns=async()=>{if(window._db)await window._setDoc(window._doc("campaigns_cal","main"),{list:campaigns});};
 function setSyncStatus(s){const d=document.getElementById("syncDot");if(d)d.className="sync-dot "+(s==="ok"?"ok":"err");}
 
-// ══════════════════════════════════════
 // FILTROS
-// ══════════════════════════════════════
 function buildPlatformFilters(){document.getElementById("platformFilters").innerHTML=PLATFORMS.map(p=>`<button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">${PLAT_ICONS[p]||""} ${p}</button>`).join("");}
 function buildCampaignFilters(){const used=["Todas",...new Set(Object.values(cards).map(c=>c.campaign).filter(Boolean))];document.getElementById("campaignFilters").innerHTML=used.map(c=>`<button class="filter-chip${c===filterCampaign?" active":""}" onclick="setFilterCampaign('${esc(c)}')">${esc(c)}</button>`).join("");}
 function setFilterPlatform(p){filterPlatform=p;buildPlatformFilters();applyFilters();}
 function setFilterCampaign(c){filterCampaign=c;buildCampaignFilters();applyFilters();}
 function applyFilters(){searchQuery=document.getElementById("searchInput").value.toLowerCase().trim();refreshAllDOM();}
-function cardMatchesFilter(card){if(filterPlatform!=="Todas"&&card.platform!==filterPlatform)return false;if(filterCampaign!=="Todas"&&card.campaign!==filterCampaign)return false;if(filterResp!=="Todas"&&card.responsavel!==filterResp)return false;if(searchQuery){const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,card.responsavel,card.solicitante,...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();if(!hay.includes(searchQuery))return false;}return true;}
 
-// ══════════════════════════════════════
+// helper — normaliza responsável para array
+function toArr(v){if(!v)return[];if(Array.isArray(v))return v;return[v];}
+
+function cardMatchesFilter(card){
+  if(filterPlatform!=="Todas"&&card.platform!==filterPlatform)return false;
+  if(filterCampaign!=="Todas"&&card.campaign!==filterCampaign)return false;
+  if(filterResp!=="Todas"&&!toArr(card.responsavel).includes(filterResp))return false;
+  if(searchQuery){const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,...toArr(card.responsavel),...toArr(card.solicitante),...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();if(!hay.includes(searchQuery))return false;}
+  return true;
+}
+
 // NAVEGAÇÃO
-// ══════════════════════════════════════
 function goToToday(){const ty=TODAY.getFullYear(),tm=TODAY.getMonth();if(currentYear!==ty){currentYear=ty;document.getElementById("yearDisplay").textContent=ty;document.getElementById("topbarYear").textContent=ty;renderAll();}const sec=document.getElementById(`month-${tm}`);if(sec){sec.scrollIntoView({behavior:"smooth",block:"start"});setTimeout(()=>{const cell=document.getElementById(`drop-${tm}-${TODAY.getDate()}`);if(cell){cell.classList.add("highlight-pulse");setTimeout(()=>cell.classList.remove("highlight-pulse"),1500);}},400);}}
 function changeYear(d){const ny=currentYear+d;if(ny<2020||ny>2035)return;currentYear=ny;document.getElementById("yearDisplay").textContent=ny;document.getElementById("topbarYear").textContent=ny;rebuildRecurInstances();renderAll();}
 function holiday(yr,mi,day){const h=HOLIDAYS[yr]||{};return h[`${String(mi+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`]||null;}
 
-// ══════════════════════════════════════
 // RENDER
-// ══════════════════════════════════════
 function renderAll(){rebuildRecurInstances();document.getElementById("mainContent").innerHTML=MONTHS_PT.map((_,i)=>buildMonthHTML(i)).join("");renderMonthNav();attachDropZones();}
 function buildMonthHTML(mi){
   const yr=currentYear,dim=new Date(yr,mi+1,0).getDate(),fd=new Date(yr,mi,1).getDay();
@@ -1043,12 +1132,15 @@ function buildMonthHTML(mi){
     <div class="cal-wrap"><div class="cal-grid">${cells}</div></div>
   </section>`;
 }
+
 function getCardColor(card){if(card.overrideColor)return card.overrideColor;const cat=categories[card.catId];return card.color||(cat?.color||"#6c63ff");}
+
 function cardHTML(card){
   if(!cardMatchesFilter(card))return"";
   const color=getCardColor(card),bg=color+"1e",platIcon=PLAT_ICONS[card.platform||""]||"",hasComments=(card.comments||[]).length>0,cat=categories[card.catId],isRecur=card._isRecurInstance||false;
-  const personColor=getPersonColor(card.responsavel),isFiltered=filterResp!=="Todas"&&card.responsavel===filterResp;
-  const avatarHTML=card.responsavel?`<div class="card-avatar" style="background:${personColor};${isFiltered?"box-shadow:0 0 0 2px #fff,0 0 0 3px "+personColor:""}" title="${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:"";
+  const resps=toArr(card.responsavel);
+  const isFiltered=filterResp!=="Todas";
+  const avatarsHTML=resps.length?`<div class="card-avatars">${resps.slice(0,3).map(name=>{const c=getPersonColor(name),hi=isFiltered&&name===filterResp;return`<div class="card-avatar" style="background:${c};${hi?"box-shadow:0 0 0 2px #fff,0 0 0 3px "+c:""}" title="${esc(name)}">${initials(name)}</div>`;}).join("")}${resps.length>3?`<div class="card-avatar" style="background:var(--s4);color:var(--muted)">+${resps.length-3}</div>`:""}</div>`:"";
   const recurIcon=card.recurrence&&!isRecur?`<span class="card-recur">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";
   const eff=getEffectiveStatus(card),sc=STATUS_COLORS[eff];
   const statusDot=sc?`<div class="card-status-dot" style="background:${sc.bg}" title="${esc(eff)}"></div>`:"";
@@ -1058,10 +1150,11 @@ function cardHTML(card){
   return`<div class="content-card${isRecur?" is-recur":""}" id="card-${card.id}" style="border-left-color:${color};background:${bg}" draggable="${!isRecur}" ondragstart="${!isRecur?`onDragStart(event,'${card.id}')`:"return false"}" ondragend="onDragEnd()" onclick="openDetail('${card.id}',event)">
     <div class="card-main-row">${platIcon?`<span class="card-plat-icon">${platIcon}</span>`:""}
       <div class="card-inner"><div class="card-title">${esc(card.title)}</div>${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}</div>
-      ${avatarHTML}${recurIcon}${statusDot}${icons?`<div class="card-icons">${icons}</div>`:""}
+      ${avatarsHTML}${recurIcon}${statusDot}${icons?`<div class="card-icons">${icons}</div>`:""}
     </div>${clBar}
   </div>`;
 }
+
 function refreshDay(mi,d){const el=document.getElementById(`dc-${mi}-${d}`);if(!el)return;el.innerHTML=getCardsForDay(mi,d,currentYear).map(c=>cardHTML(c)).join("");attachDropZones();}
 function refreshLeg(mi){const sd=document.getElementById(`mstatus-${mi}`);if(sd){const sc=getStatusDotsForMonth(mi);sd.innerHTML=Object.keys(sc).length?`<div class="month-status-dots">${Object.entries(sc).map(([s,n])=>{const c=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="mstatus-dot"><div class="mstatus-circle" style="background:${c.bg}"></div>${s} (${n})</div>`;}).join("")}</div>`:""}}
 function refreshAllDOM(){rebuildRecurInstances();MONTHS_PT.forEach((_,mi)=>{const dim=new Date(currentYear,mi+1,0).getDate();for(let d=1;d<=dim;d++)refreshDay(mi,d);refreshLeg(mi);});updateCounts();}
@@ -1071,17 +1164,13 @@ function updateCounts(){MONTHS_PT.forEach((_,i)=>{const n=countCardsForMonth(i);
 function renderMonthNav(){document.getElementById("monthList").innerHTML=MONTHS_PT.map((m,i)=>`<a class="mlist-a" href="#month-${i}" onclick="closeSidebar()">${m}</a>`).join("");}
 function renderCatSidebar(){document.getElementById("catList").innerHTML=Object.values(categories).map(c=>`<div class="cat-item">${c.emoji?`<span class="cat-emoji">${c.emoji}</span>`:`<div class="cat-swatch" style="background:${c.color}"></div>`}<span class="cat-name">${esc(c.name)}</span><button class="cat-edit-btn" onclick="openCatModal('${c.id}')">✏️</button></div>`).join("");}
 
-// ══════════════════════════════════════
 // DRAG & DROP
-// ══════════════════════════════════════
 function attachDropZones(){document.querySelectorAll(".cal-day:not(.empty)").forEach(cell=>{cell.ondragover=e=>{e.preventDefault();cell.classList.add("drag-over");};cell.ondragleave=()=>cell.classList.remove("drag-over");cell.ondrop=e=>{e.preventDefault();dropCard(cell);};});}
 function onDragStart(e,id){dragCardId=id;e.dataTransfer.effectAllowed="move";setTimeout(()=>document.getElementById(`card-${id}`)?.classList.add("dragging"),0);}
 function onDragEnd(){document.querySelectorAll(".drag-over,.dragging").forEach(c=>c.classList.remove("drag-over","dragging"));}
 async function dropCard(cell){cell.classList.remove("drag-over");if(!dragCardId)return;const nm=parseInt(cell.dataset.month),nd=parseInt(cell.dataset.day),card=cards[dragCardId];if(!card)return;if(card.month===nm&&card.day===nd&&card.year===currentYear){dragCardId=null;return;}const om=card.month,od=card.day,newDate=`${currentYear}-${String(nm+1).padStart(2,"0")}-${String(nd).padStart(2,"0")}`,upd={...card,month:nm,day:nd,year:currentYear,date:newDate};cards[dragCardId]=upd;rebuildRecurInstances();refreshDay(om,od);refreshDay(nm,nd);refreshLeg(om);refreshLeg(nm);updateCounts();await dbSaveCard(upd);showToast(`📅 Movido para ${nd} de ${MONTHS_PT[nm]}`);dragCardId=null;}
 
-// ══════════════════════════════════════
 // MODAL DIA
-// ══════════════════════════════════════
 function openDayModal(mi,d,e){
   if(e)e.stopPropagation();
   const yr=currentYear,dateObj=new Date(yr,mi,d);
@@ -1097,7 +1186,8 @@ function openDayModal(mi,d,e){
   if(!dayCards.length){listEl.innerHTML=`<div class="day-modal-empty"><div class="day-modal-empty-icon">📭</div><p>Nenhuma demanda neste dia.<br>Clique em <strong>+ Nova demanda</strong> para adicionar.</p></div>`;}
   else{listEl.innerHTML=`<div class="day-cards-list">${dayCards.map(card=>{
     const color=getCardColor(card),cat=categories[card.catId],eff=getEffectiveStatus(card),s=STATUS_COLORS[eff],isRecur=card._isRecurInstance||false;
-    const cl=card.checklist||[],{done,total,pct}=clStats(cl),pColor=getPersonColor(card.responsavel);
+    const cl=card.checklist||[],{done,total,pct}=clStats(cl);
+    const resps=toArr(card.responsavel);
     return`<div class="day-card-row${isRecur?" is-recur":""}" style="border-left-color:${color}" onclick="openDetailFromDay('${card.id}')">
       <div class="day-card-info">
         <div class="day-card-title">${PLAT_ICONS[card.platform||""]?`<span style="margin-right:4px">${PLAT_ICONS[card.platform||""]}</span>`:""}${esc(card.title)}</div>
@@ -1108,36 +1198,30 @@ function openDayModal(mi,d,e){
           ${cl.length?`<span class="day-card-cl"><div class="day-card-cl-bar"><div class="day-card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>${done}/${total}</span>`:""}
         </div>
       </div>
-      <div class="day-card-right">${card.responsavel?`<div class="day-card-avatar" style="background:${pColor};box-shadow:0 0 0 2px ${pColor}44" title="${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:""}</div>
+      <div class="day-card-right">
+        <div class="day-card-avatars">${resps.slice(0,3).map(name=>`<div class="day-card-avatar" style="background:${getPersonColor(name)}" title="${esc(name)}">${initials(name)}</div>`).join("")}${resps.length>3?`<div class="day-card-avatar" style="background:var(--s4);color:var(--muted);font-size:.5rem">+${resps.length-3}</div>`:""}</div>
+      </div>
     </div>`;}).join("")}</div>`;}
   openOverlay("dayOverlay");
 }
 function openDetailFromDay(id){closeOverlay("dayOverlay");openDetail(id,null);}
 
-// ══════════════════════════════════════
 // TABS
-// ══════════════════════════════════════
 function switchTab(pid,btn){document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById("tab-"+pid).classList.add("active");btn.classList.add("active");}
 function switchDetailTab(pid,btn){document.querySelectorAll("#detailOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#detailOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById(pid).classList.add("active");btn.classList.add("active");}
 function switchCatTab(pid,btn){document.querySelectorAll("#catOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#catOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById(pid).classList.add("active");btn.classList.add("active");}
 
-// ══════════════════════════════════════
 // LINKS
-// ══════════════════════════════════════
 function addLinkRow(name="",url=""){const id="lr"+Date.now()+Math.random().toString(36).slice(2,6),wrap=document.getElementById("linksListEdit"),row=document.createElement("div");row.className="link-row-item";row.id=id;row.innerHTML=`<input class="link-name" type="text" placeholder="Nome" value="${esc(name)}" maxlength="40"/><input type="url" placeholder="https://…" value="${esc(url)}"/><button class="link-del-btn" type="button" onclick="document.getElementById('${id}').remove()">✕</button>`;wrap.appendChild(row);}
 function readLinks(){const rows=document.querySelectorAll("#linksListEdit .link-row-item"),result=[];rows.forEach(row=>{const[nEl,uEl]=row.querySelectorAll("input"),u=uEl.value.trim();if(u)result.push({name:nEl.value.trim()||"Link",url:u});});return result;}
 function renderLinksEdit(links){document.getElementById("linksListEdit").innerHTML="";(links||[]).forEach(l=>addLinkRow(l.name,l.url));}
 
-// ══════════════════════════════════════
 // CATEGORIA
-// ══════════════════════════════════════
 function onCatChange(){const catId=document.getElementById("cCatSel").value,cat=categories[catId],prev=document.getElementById("catColorPreview");if(cat){prev.style.display="flex";document.getElementById("catColorSwatch").style.background=cat.color;document.getElementById("catColorName").textContent=(cat.emoji||"")+" "+cat.name;document.getElementById("catColorHexPrev").textContent=cat.color;if(!useOverrideColor)chosenColor=cat.color;}else{prev.style.display="none";if(!useOverrideColor)chosenColor="#6c63ff";}}
 function toggleOverride(){useOverrideColor=document.getElementById("overrideColorCheck").checked;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);if(!useOverrideColor){const cat=categories[document.getElementById("cCatSel").value];chosenColor=cat?.color||"#6c63ff";}}
 function buildCatOpts(selId){return`<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");}
 
-// ══════════════════════════════════════
 // FORM CARD
-// ══════════════════════════════════════
 function resetCardForm(month,day){
   const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
   document.getElementById("cDate").value=iso;document.getElementById("cPlatform").value="";populateCampaignSelect();
@@ -1146,7 +1230,8 @@ function resetCardForm(month,day){
   document.getElementById("overrideColorCheck").checked=false;document.getElementById("overrideSection").classList.remove("show");
   useOverrideColor=false;chosenColor="#6c63ff";setChosenColor(chosenColor);
   currentTags=[];selectedStatus="";renderTags();clearStatusSel();renderLinksEdit([]);
-  applyPeoplePicker("ppResp","");applyPeoplePicker("ppSolic","");selectRecur("");
+  pickerSelected={ppResp:[],ppSolic:[]};renderPickerTags("ppResp");renderPickerTags("ppSolic");
+  selectRecur("");
   _clData=[];document.getElementById("clList").innerHTML="";document.getElementById("clProgressWrap").style.display="none";
   ["err-date","err-title"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("show");});
   ["cDate","cTitle"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("invalid");});
@@ -1165,7 +1250,8 @@ function openEditCard(id){
   document.getElementById("cDesc").value=c.desc||"";document.getElementById("cDateStart").value=c.dateStart||"";
   document.getElementById("cDateEnd").value=c.dateEnd||"";document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");
   document.getElementById("cPmp").value=c.pmp||"";
-  applyPeoplePicker("ppResp",c.responsavel||"");applyPeoplePicker("ppSolic",c.solicitante||"");selectRecur(c.recurrence||"");
+  applyPeoplePicker("ppResp",c.responsavel||[]);applyPeoplePicker("ppSolic",c.solicitante||[]);
+  selectRecur(c.recurrence||"");
   useOverrideColor=!!(c.overrideColor);document.getElementById("overrideColorCheck").checked=useOverrideColor;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
   if(useOverrideColor){chosenColor=c.overrideColor;setChosenColor(chosenColor);}else{const cat=categories[c.catId];chosenColor=cat?.color||c.color||"#6c63ff";}onCatChange();
   currentTags=[...(c.tags||[])];renderTags();clLoadList(c.checklist||[]);selectedStatus=c.briefing||"";applyStatusSel();renderLinksEdit(c.links||[]);
@@ -1182,9 +1268,11 @@ async function saveCard(){
   const btn=document.getElementById("btnSaveCard");btn.disabled=true;btn.textContent="⏳ Salvando…";
   const[yr,mo,dy]=dateVal.split("-").map(Number),existing=cards[editCardId||""];
   let finalColor=chosenColor,finalOverride=null;if(useOverrideColor)finalOverride=chosenColor;else{const cat=categories[document.getElementById("cCatSel").value];finalColor=cat?.color||"#6c63ff";}
-  const resp=pickerSelected["ppResp"]||"";
-  const card={id:editCardId||("c"+Date.now()),year:yr,month:mo-1,day:dy,date:dateVal,platform:document.getElementById("cPlatform").value,campaign:document.getElementById("cCampaign").value,campaignId:document.getElementById("cCampaignId").value.trim(),title,bigIdea:document.getElementById("cBigIdea").value.trim(),copy:document.getElementById("cCopy").value.trim(),desc:document.getElementById("cDesc").value.trim(),dateStart:document.getElementById("cDateStart").value,dateEnd:document.getElementById("cDateEnd").value,catId:document.getElementById("cCatSel").value,pmp:document.getElementById("cPmp").value.trim(),responsavel:resp,solicitante:pickerSelected["ppSolic"]||"",recurrence:selectedRecur||"",color:finalColor,overrideColor:finalOverride,briefing:selectedStatus,tags:[...currentTags],links:readLinks(),checklist:clReadData(),comments:existing?.comments||[]};
-  if(resp&&!peopleList.find(p=>p.name===resp)){const color=generatePersonColor(resp,peopleList.map(p=>p.color));peopleList.push({name:resp,color});savePeopleList();}
+  const resps=pickerSelected["ppResp"]||[],solics=pickerSelected["ppSolic"]||[];
+  // garante cores de todas as pessoas novas
+  [...resps,...solics].forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});
+  savePeopleList();
+  const card={id:editCardId||("c"+Date.now()),year:yr,month:mo-1,day:dy,date:dateVal,platform:document.getElementById("cPlatform").value,campaign:document.getElementById("cCampaign").value,campaignId:document.getElementById("cCampaignId").value.trim(),title,bigIdea:document.getElementById("cBigIdea").value.trim(),copy:document.getElementById("cCopy").value.trim(),desc:document.getElementById("cDesc").value.trim(),dateStart:document.getElementById("cDateStart").value,dateEnd:document.getElementById("cDateEnd").value,catId:document.getElementById("cCatSel").value,pmp:document.getElementById("cPmp").value.trim(),responsavel:resps,solicitante:solics,recurrence:selectedRecur||"",color:finalColor,overrideColor:finalOverride,briefing:selectedStatus,tags:[...currentTags],links:readLinks(),checklist:clReadData(),comments:existing?.comments||[]};
   const old=cards[card.id];cards[card.id]=card;rebuildRecurInstances();
   if(old&&(old.day!==card.day||old.month!==card.month))refreshDay(old.month,old.day);
   refreshDay(card.month,card.day);refreshLeg(card.month);updateCounts();buildCampaignFilters();buildRespFilters();
@@ -1193,15 +1281,11 @@ async function saveCard(){
 }
 async function doDelCard(id){const c=cards[id],mi=c?.month,d=c?.day;delete cards[id];closeOverlay("cardOverlay");closeOverlay("detailOverlay");rebuildRecurInstances();if(mi!==undefined){refreshDay(mi,d);refreshLeg(mi);updateCounts();}buildCampaignFilters();await dbDelCard(id);showToast("🗑️ Excluído.","#f87171");}
 
-// ══════════════════════════════════════
 // DUPLICAR
-// ══════════════════════════════════════
 function openDuplicate(id){dupSourceId=id;const c=cards[id];if(!c)return;const base=new Date(c.year,c.month,c.day+1);document.getElementById("dupDate").value=`${base.getFullYear()}-${String(base.getMonth()+1).padStart(2,"0")}-${String(base.getDate()).padStart(2,"0")}`;document.getElementById("dupTitle").value="";openOverlay("dupOverlay");}
 async function confirmDuplicate(){const dateVal=document.getElementById("dupDate").value;if(!dateVal){showToast("⚠️ Selecione uma data!","#f97316");return;}const src=cards[dupSourceId];if(!src)return;const[yr,mo,dy]=dateVal.split("-").map(Number);const newCard={...src,id:"c"+Date.now(),year:yr,month:mo-1,day:dy,date:dateVal,title:document.getElementById("dupTitle").value.trim()||src.title,comments:[]};closeOverlay("dupOverlay");closeOverlay("detailOverlay");cards[newCard.id]=newCard;rebuildRecurInstances();refreshDay(newCard.month,newCard.day);refreshLeg(newCard.month);updateCounts();buildCampaignFilters();await dbSaveCard(newCard);showToast("⧉ Card duplicado!");}
 
-// ══════════════════════════════════════
 // DETALHE
-// ══════════════════════════════════════
 function openDetail(id,e){
   e?.stopPropagation();
   const raw=cards[id]||(window._recurInstances||{})[id];if(!raw)return;
@@ -1215,11 +1299,12 @@ function openDetail(id,e){
   const datesBlock=(c.dateStart||c.dateEnd)?`<div class="dblock"><div class="dblock-lbl">📅 Período</div><div class="dblock-dates">${c.dateStart?`<div class="ddate"><span class="ddate-lbl">Início</span><span class="ddate-val">${fmtDFull(c.dateStart)}</span></div>`:""} ${c.dateEnd?`<div class="ddate"><span class="ddate-lbl">Fim</span><span class="ddate-val">${fmtDFull(c.dateEnd)}</span></div>`:""}</div></div>`:"";
   const tagsBlock=c.tags?.length?`<div class="dblock"><div class="dblock-lbl">🏷️ Tags</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">${c.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}</div></div>`:"";
   const recurBlock=c.recurrence?`<div class="dblock"><div class="dblock-lbl">🔁 Recorrência</div><div class="dblock-val">${RECUR_ICONS[c.recurrence]||"🔁"} ${RECUR_LABELS[c.recurrence]||c.recurrence}</div></div>`:"";
-  const pColor=getPersonColor(c.responsavel),sColor=getPersonColor(c.solicitante);
-  const respBlock=(c.responsavel||c.solicitante)?`<div class="dblock"><div class="dblock-lbl">👥 Pessoas</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-    ${c.responsavel?`<div class="resp-badge"><div class="resp-avatar" style="background:${pColor}">${initials(c.responsavel)}</div><span>Responsável: <strong style="color:${pColor}">${esc(c.responsavel)}</strong></span></div>`:""}
-    ${c.solicitante?`<div class="resp-badge"><div class="resp-avatar" style="background:${sColor}">${initials(c.solicitante)}</div><span>Solicitante: <strong style="color:${sColor}">${esc(c.solicitante)}</strong></span></div>`:""}
-  </div></div>`:"";
+  // ★ múltiplos responsáveis/solicitantes
+  const resps=toArr(c.responsavel),solics=toArr(c.solicitante);
+  const respBlock=(resps.length||solics.length)?`<div class="dblock"><div class="dblock-lbl">👥 Pessoas</div>
+    ${resps.length?`<div style="margin-top:6px"><span style="font-size:.63rem;color:var(--muted);font-weight:700;text-transform:uppercase">Responsável</span><div class="resp-badges-wrap">${resps.map(name=>{const pc=getPersonColor(name);return`<div class="resp-badge" style="background:${pc}18;border-color:${pc}44"><div class="resp-avatar" style="background:${pc}">${initials(name)}</div><strong style="color:${pc}">${esc(name)}</strong></div>`;}).join("")}</div></div>`:""}
+    ${solics.length?`<div style="margin-top:6px"><span style="font-size:.63rem;color:var(--muted);font-weight:700;text-transform:uppercase">Solicitante</span><div class="resp-badges-wrap">${solics.map(name=>{const pc=getPersonColor(name);return`<div class="resp-badge" style="background:${pc}18;border-color:${pc}44"><div class="resp-avatar" style="background:${pc}">${initials(name)}</div><strong style="color:${pc}">${esc(name)}</strong></div>`;}).join("")}</div></div>`:""}
+  </div>`:"";
   document.getElementById("detailBody").innerHTML=`${recurNotice}
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:14px">
       <div class="detail-stripe" style="background:${color}"></div>
@@ -1242,16 +1327,12 @@ function openDetail(id,e){
   openOverlay("detailOverlay");
 }
 
-// ══════════════════════════════════════
 // COMENTÁRIOS
-// ══════════════════════════════════════
 function renderComments(card){const area=document.getElementById("commentsArea"),comms=card.comments||[];if(!comms.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda 💬</div>`;return;}area.innerHTML=comms.map((cm,idx)=>`<div class="comment-item"><div class="comment-header"><span class="comment-author">👤 ${esc(cm.author||"Anônimo")}</span><div style="display:flex;align-items:center;gap:8px"><span class="comment-time">${cm.time||""}</span><button class="comment-del" onclick="deleteComment(${idx})">✕</button></div></div><div class="comment-text">${esc(cm.text)}</div></div>`).join("");}
 async function addComment(){const author=document.getElementById("commentAuthor").value.trim()||"Anônimo",text=document.getElementById("commentText").value.trim();if(!text){showToast("⚠️ Escreva um comentário!","#f97316");return;}const card=cards[currentDetailCardId];if(!card)return;const now=new Date(),time=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;const updated={...card,comments:[...(card.comments||[]),{author,text,time}]};cards[currentDetailCardId]=updated;document.getElementById("commentText").value="";renderComments(updated);const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=(updated.comments||[]).length;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("💬 Comentário adicionado!");}
 async function deleteComment(idx){const card=cards[currentDetailCardId];if(!card)return;const updated={...card,comments:(card.comments||[]).filter((_,i)=>i!==idx)};cards[currentDetailCardId]=updated;renderComments(updated);const badge=document.getElementById("commentBadge"),cnt=(updated.comments||[]).length;badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;refreshDay(updated.month,updated.day);await dbSaveCard(updated);}
 
-// ══════════════════════════════════════
 // CAMPANHAS
-// ══════════════════════════════════════
 function openCampaignManager(){renderCampList();openOverlay("campaignOverlay");}
 function closeCampaignManager(){closeOverlay("campaignOverlay");populateCampaignSelect();}
 function renderCampList(){const el=document.getElementById("campList");if(!campaigns.length){el.innerHTML=`<div style="font-size:.8rem;color:var(--muted);font-style:italic;padding:8px 0">Nenhuma campanha.</div>`;return;}el.innerHTML=campaigns.map((c,i)=>`<div class="camp-item"><span class="camp-item-name">${esc(c)}</span>${DEFAULT_CAMPAIGNS.includes(c)?`<span class="camp-item-type">padrão</span>`:`<span class="camp-item-type">personalizada</span>`}<button class="camp-del-btn" onclick="removeCampaign(${i})">✕</button></div>`).join("");}
@@ -1260,46 +1341,29 @@ async function removeCampaign(idx){campaigns.splice(idx,1);renderCampList();awai
 function populateCampaignSelect(selVal=""){const el=document.getElementById("cCampaign");if(!el)return;el.innerHTML=`<option value="">— Selecione —</option>`+campaigns.map(c=>`<option value="${esc(c)}"${c===selVal?" selected":""}>${esc(c)}</option>`).join("");}
 function generateCampaignId(){const title=(document.getElementById("cTitle").value||"").trim(),platform=(document.getElementById("cPlatform").value||"").trim(),campaign=(document.getElementById("cCampaign").value||"").trim(),dateVal=document.getElementById("cDate").value;const sl=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"").slice(0,8);let parts=[];if(campaign)parts.push(sl(campaign).slice(0,5));else if(platform)parts.push(sl(platform).slice(0,5));if(title)parts.push(sl(title).slice(0,6));const suffix=Date.now().toString(36).slice(-4).toUpperCase();let dp="";if(dateVal){const[y,m,d]=dateVal.split("-");dp=`${y.slice(2)}${m}${d}`;}const id=(parts.length?parts.join("-")+"-":"")+(dp?dp+"-":"")+suffix;document.getElementById("cCampaignId").value=id;showToast("⚡ ID: "+id,"#6c63ff");}
 
-// ══════════════════════════════════════
 // CATEGORIAS
-// ══════════════════════════════════════
 function openCatModal(id){editCatId=id||null;const cat=id?categories[id]:null;document.getElementById("catModalTitle").textContent=cat?"✏️ Editar Categoria":"➕ Nova Categoria";document.getElementById("catName").value=cat?.name||"";setCatColor(cat?.color||"#6c63ff");selectedEmoji=cat?.emoji||"📌";document.getElementById("selectedEmojiPreview").textContent=selectedEmoji;document.getElementById("catDelBtn").style.display=cat?"":"none";switchCatTab("catinfo",document.querySelector("#catOverlay .modal-tab"));document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===selectedEmoji));openOverlay("catOverlay");}
 async function saveCat(){const name=document.getElementById("catName").value.trim();if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}const cat={id:editCatId||("cat"+Date.now()),name,color:catChosenColor,emoji:selectedEmoji};categories[cat.id]=cat;closeOverlay("catOverlay");renderCatSidebar();refreshAllDOM();await dbSaveCat(cat);showToast("✅ Categoria salva!");}
 async function deleteCat(){if(!editCatId)return;if(Object.values(cards).some(c=>c.catId===editCatId)){showToast("❌ Categoria em uso!","#f87171");return;}delete categories[editCatId];closeOverlay("catOverlay");renderCatSidebar();await dbDelCat(editCatId);showToast("🗑️ Excluída.","#f87171");}
 
-// ══════════════════════════════════════
 // EMOJI
-// ══════════════════════════════════════
 function buildEmojiPanels(filter=""){const container=document.getElementById("emojiPanels");if(!container)return;const fl=filter.toLowerCase();container.innerHTML=Object.entries(EMOJI_CATS).map(([label,emojis])=>{const filtered=emojis.filter(e=>!fl||label.toLowerCase().includes(fl));if(!filtered.length)return"";return`<div class="emoji-section-label">${label}</div><div class="emoji-grid">${filtered.map(e=>`<button class="emoji-btn${e===selectedEmoji?" sel":""}" onclick="selectEmoji('${e}')" type="button">${e}</button>`).join("")}</div>`;}).join("");}
 function filterEmojis(val){buildEmojiPanels(val);}
 function selectEmoji(e){selectedEmoji=e;document.getElementById("selectedEmojiPreview").textContent=e;document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===e));}
 
-// ══════════════════════════════════════
 // TAGS
-// ══════════════════════════════════════
 function handleTagInput(e){if(e.key==="Enter"||e.key===","){e.preventDefault();const val=document.getElementById("tagInput").value.trim().replace(/,/g,"");if(val&&!currentTags.includes(val)){currentTags.push(val);renderTags();}document.getElementById("tagInput").value="";}if(e.key==="Backspace"&&document.getElementById("tagInput").value===""&&currentTags.length){currentTags.pop();renderTags();}}
 function removeTag(t){currentTags=currentTags.filter(x=>x!==t);renderTags();}
 function renderTags(){const wrap=document.getElementById("tagsWrap"),input=document.getElementById("tagInput");wrap.innerHTML="";currentTags.forEach(t=>{const chip=document.createElement("div");chip.className="tag-chip";chip.innerHTML=`${esc(t)}<button onclick="removeTag('${esc(t)}')" type="button">✕</button>`;wrap.appendChild(chip);});wrap.appendChild(input);}
 
-// ══════════════════════════════════════
-// STATUS
-// ══════════════════════════════════════
-function selectStatus(el){selectedStatus=el.dataset.val;applyStatusSel();}
-function applyStatusSel(){document.querySelectorAll(".status-opt").forEach(o=>{o.className="status-opt";if(o.dataset.val===selectedStatus){const key=o.dataset.val.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s/g,"");o.classList.add("sel-"+key);}});}
-function clearStatusSel(){document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt");}
-
-// ══════════════════════════════════════
 // CORES
-// ══════════════════════════════════════
 function renderPresets(gid){const el=document.getElementById(gid);if(!el)return;const isCat=gid==="catPresetGrid",cur=isCat?catChosenColor:chosenColor;el.innerHTML=PRESETS.map(c=>`<div class="pdot${c===cur?" sel":""}" style="background:${c}" title="${c}" onclick="${isCat?`setCatColor('${c}')`:`setChosenColor('${c}')`}"></div>`).join("");}
 function setChosenColor(c){chosenColor=c;document.getElementById("customColorPicker").value=c;document.getElementById("colorHexLbl").textContent=c;document.getElementById("colorBar").style.background=c;renderPresets("presetGrid");}
 function onCustomColor(c){chosenColor=c;document.getElementById("colorHexLbl").textContent=c;document.getElementById("colorBar").style.background=c;renderPresets("presetGrid");}
 function setCatColor(c){catChosenColor=c;document.getElementById("catColorPicker").value=c;document.getElementById("catColorHex").textContent=c;document.getElementById("catColorBar").style.background=c;renderPresets("catPresetGrid");}
 function onCatCustomColor(c){catChosenColor=c;document.getElementById("catColorHex").textContent=c;document.getElementById("catColorBar").style.background=c;renderPresets("catPresetGrid");}
 
-// ══════════════════════════════════════
 // OVERLAYS
-// ══════════════════════════════════════
 function openOverlay(id){document.getElementById(id).classList.add("open");}
 function closeOverlay(id){document.getElementById(id).classList.remove("open");}
 function setupOverlayClose(){document.querySelectorAll(".overlay").forEach(ov=>{ov.addEventListener("click",e=>{if(e.target===ov)closeOverlay(ov.id);});});document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".overlay.open").forEach(o=>closeOverlay(o.id));});}
