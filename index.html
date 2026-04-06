@@ -33,7 +33,6 @@
   --accent:#6c63ff;--accent2:#a78bfa;
   --red:#f87171;--green:#4ade80;--orange:#fb923c;
   --radius:14px;--shadow:0 8px 36px rgba(0,0,0,.55);
-  --card-h:38px;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px}
@@ -52,7 +51,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cfg-box textarea{width:100%;background:var(--s3);border:1px solid var(--border);color:var(--text);padding:12px;border-radius:10px;font-size:.79rem;font-family:monospace;resize:vertical;min-height:140px;outline:none;margin-top:14px}
 .cfg-save-btn{margin-top:14px;width:100%;background:var(--accent);border:none;color:#fff;padding:13px;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer}
 
-/* LAYOUT */
 #appShell{display:flex;min-height:100vh}
 #sidebar{width:230px;min-width:230px;background:var(--s1);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;z-index:100;transition:transform .3s}
 #sidebar::-webkit-scrollbar{width:3px}
@@ -64,7 +62,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .sb-section{padding:10px 12px 6px;border-bottom:1px solid var(--border)}
 .sb-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
 .year-sw{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:5px 10px}
-.yr-btn{background:none;border:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:0 3px;transition:color .15s}
+.yr-btn{background:none;border:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:0 3px}
 .yr-btn:hover{color:var(--accent)}
 .yr-val{font-size:.93rem;font-weight:800;color:var(--text);min-width:38px;text-align:center}
 .month-list{padding:4px 0}
@@ -72,7 +70,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .mlist-a:hover{background:var(--s3);color:var(--text)}
 .mlist-meta{display:flex;align-items:center;gap:6px}
 .mlist-cnt{font-size:.65rem;background:var(--s4);padding:1px 6px;border-radius:20px;color:var(--muted)}
-/* badge de concluídos na sidebar */
 .mlist-done{font-size:.6rem;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);color:var(--green);padding:1px 6px;border-radius:20px;font-weight:700}
 .cat-list{display:flex;flex-direction:column;gap:4px;padding:2px 0 6px}
 .cat-item{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:8px;background:var(--s2);border:1px solid var(--border);transition:all .15s}
@@ -83,7 +80,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cat-edit-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 3px;border-radius:4px}
 .cat-edit-btn:hover{color:var(--accent2)}
 
-/* TOPBAR */
 #mainArea{flex:1;min-width:0;display:flex;flex-direction:column}
 #topbar{background:var(--s1);border-bottom:1px solid var(--border);padding:11px 24px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:92;flex-wrap:wrap}
 #topbar h1{font-size:1rem;font-weight:800}
@@ -92,7 +88,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-today{display:flex;align-items:center;gap:5px;background:var(--s2);border:1px solid var(--accent);color:var(--accent);padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;margin-left:auto;white-space:nowrap}
 .btn-today:hover{background:var(--accent);color:#fff}
 
-/* FILTER BAR */
 #filterBar{background:var(--s1);border-bottom:1px solid var(--border);padding:8px 24px;display:flex;flex-direction:column;gap:6px;position:sticky;top:46px;z-index:91}
 .filter-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .filter-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);white-space:nowrap;min-width:100px}
@@ -113,7 +108,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .search-wrap input:focus{border-color:var(--accent);width:210px}
 .search-wrap::before{content:"🔍";font-size:.68rem;position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none}
 
-/* MAIN */
 #mainContent{padding:20px 24px}
 .month-section{margin-bottom:48px;scroll-margin-top:130px}
 .month-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
@@ -121,18 +115,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .month-title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .month-title{font-size:1.25rem;font-weight:800}
 .month-cnt{background:var(--s2);border:1px solid var(--border);color:var(--muted);font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:20px}
-/* status dots do mês */
 .month-status-dots{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
 .mstatus-dot{display:flex;align-items:center;gap:4px;background:var(--s2);border:1px solid var(--border);padding:2px 8px;border-radius:20px;font-size:.64rem;font-weight:700;white-space:nowrap}
 .mstatus-circle{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .btn-add-main{display:flex;align-items:center;gap:5px;background:var(--accent);border:none;color:#fff;padding:7px 14px;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;box-shadow:0 2px 12px rgba(108,99,255,.3);white-space:nowrap}
 .btn-add-main:hover{background:#5a51e0;transform:translateY(-1px)}
 
-/* CALENDÁRIO */
 .cal-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border)}
 .cal-hcell{background:var(--s2);text-align:center;padding:8px 4px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
-.cal-day{background:var(--s1);height:168px;padding:5px 4px 3px;display:flex;flex-direction:column;gap:2px;overflow:hidden;transition:background .15s}
+.cal-day{background:var(--s1);height:168px;padding:5px 4px 3px;display:flex;flex-direction:column;gap:2px;overflow:hidden;transition:background .15s;position:relative}
 .cal-day.empty{background:#0c0e18}
 .cal-day.today{box-shadow:inset 0 0 0 1.5px var(--accent)}
 .cal-day.holiday{border-top:2px solid #f472b6}
@@ -140,8 +132,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cal-day.highlight-pulse{animation:pulse 1.4s ease-out}
 @keyframes pulse{0%{box-shadow:inset 0 0 0 2px var(--accent),0 0 0 6px rgba(108,99,255,.3)}100%{box-shadow:inset 0 0 0 1.5px var(--accent)}}
 .day-top{display:flex;align-items:center;gap:3px;flex-shrink:0}
-.day-num{font-size:.7rem;font-weight:700;color:var(--muted);width:19px;height:19px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+
+/* NÚMERO DO DIA — clicável */
+.day-num{font-size:.7rem;font-weight:700;color:var(--muted);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;cursor:pointer;transition:all .18s;z-index:2;position:relative}
+.day-num:hover{background:var(--accent);color:#fff;transform:scale(1.15)}
 .cal-day.today .day-num{background:var(--accent);color:#fff}
+.cal-day.today .day-num:hover{background:#5a51e0}
+
 .holiday-tag{font-size:.54rem;color:#f472b6;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .day-cards{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:3px}
 .day-cards::-webkit-scrollbar{width:2px}
@@ -149,7 +146,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .day-add-btn{flex-shrink:0;background:none;border:none;color:var(--border);font-size:.9rem;cursor:pointer;width:100%;padding:1px 0;border-radius:4px;transition:color .15s;line-height:1.3}
 .day-add-btn:hover{color:var(--accent)}
 
-/* CARD */
 .content-card{width:100%;flex-shrink:0;display:flex;flex-direction:column;border-left:3px solid;border-radius:5px;padding:3px 5px;cursor:grab;transition:filter .15s,transform .15s,box-shadow .15s;user-select:none;overflow:hidden}
 .content-card:active{cursor:grabbing}
 .content-card:hover{filter:brightness(1.2);transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.35)}
@@ -166,14 +162,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .card-status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .card-avatar{width:16px;height:16px;border-radius:50%;color:#fff;font-size:.5rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:2px;text-transform:uppercase}
 .card-recur{font-size:.6rem;flex-shrink:0;margin-left:2px;opacity:.85;line-height:1}
-
-/* CHECKLIST MINI no card do calendário */
 .card-checklist-bar{display:flex;align-items:center;gap:4px;padding:1px 0 2px;flex-shrink:0}
 .card-cl-prog{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
 .card-cl-fill{height:100%;border-radius:2px;transition:width .3s}
 .card-cl-label{font-size:.5rem;color:var(--muted);white-space:nowrap;flex-shrink:0}
 
-/* OVERLAY */
+/* ══════════ MODAL DIA ══════════ */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(7px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:26px;width:100%;box-shadow:var(--shadow);transform:scale(.94) translateY(12px);transition:transform .22s;overflow-y:auto;max-height:92vh}
@@ -183,13 +177,45 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .modal-header h2{font-size:1rem;font-weight:800}
 .modal-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:2px 6px;border-radius:6px;transition:color .15s;line-height:1}
 .modal-close:hover{color:var(--red)}
+
+/* ── Modal Dia específico ── */
+#dayOverlay .modal{max-width:640px}
+.day-modal-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.day-modal-date{display:flex;flex-direction:column}
+.day-modal-date-num{font-size:2.8rem;font-weight:900;line-height:1;color:var(--accent)}
+.day-modal-date-info{font-size:.82rem;color:var(--muted);font-weight:600}
+.day-modal-sep{width:2px;height:48px;background:var(--border);border-radius:2px;flex-shrink:0}
+.day-modal-stats{display:flex;gap:8px;flex-wrap:wrap;align-items:center;flex:1}
+.day-stat-chip{display:flex;align-items:center;gap:5px;background:var(--s2);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:.72rem;font-weight:700}
+.day-stat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.day-modal-add{display:flex;align-items:center;gap:5px;background:var(--accent);border:none;color:#fff;padding:7px 14px;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;white-space:nowrap;margin-left:auto}
+.day-modal-add:hover{background:#5a51e0}
+.day-modal-holiday{display:flex;align-items:center;gap:6px;background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.3);border-radius:10px;padding:7px 12px;margin-bottom:14px;font-size:.78rem;color:#f472b6;font-weight:600}
+.day-cards-list{display:flex;flex-direction:column;gap:8px}
+.day-card-row{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all .2s;border-left:4px solid}
+.day-card-row:hover{border-color:var(--accent);background:var(--s3);transform:translateX(3px)}
+.day-card-row.is-recur{border-left-style:dashed;opacity:.85}
+.day-card-color-bar{width:4px;min-height:36px;border-radius:3px;flex-shrink:0;display:none}
+.day-card-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.day-card-title{font-size:.88rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day-card-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.day-card-badge{font-size:.63rem;font-weight:700;padding:2px 8px;border-radius:20px;border:1px solid var(--border);background:var(--s3)}
+.day-card-status{font-size:.63rem;font-weight:700;padding:2px 8px;border-radius:20px}
+.day-card-cl{font-size:.63rem;color:var(--muted);display:flex;align-items:center;gap:4px}
+.day-card-cl-bar{width:40px;height:4px;background:var(--s4);border-radius:2px;overflow:hidden;display:inline-block}
+.day-card-cl-fill{height:100%;border-radius:2px}
+.day-card-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.day-card-avatar{width:22px;height:22px;border-radius:50%;color:#fff;font-size:.62rem;font-weight:800;display:flex;align-items:center;justify-content:center;text-transform:uppercase}
+.day-card-recur{font-size:.65rem;color:var(--muted)}
+.day-modal-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:40px 20px;color:var(--muted)}
+.day-modal-empty-icon{font-size:2.5rem;opacity:.5}
+.day-modal-empty p{font-size:.85rem;text-align:center;line-height:1.6}
+
 .modal-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:18px;overflow-x:auto}
 .modal-tab{background:none;border:none;color:var(--muted);padding:8px 14px;font-size:.78rem;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
-.modal-tab:hover{color:var(--text)}
-.modal-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.modal-tab:hover{color:var(--text)}.modal-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-panel{display:none}.tab-panel.active{display:block}
 
-/* FORM */
 .fgrp{margin-bottom:12px}
 .fgrp label{display:flex;align-items:center;gap:5px;font-size:.68rem;font-weight:800;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
 .req-badge{font-size:.58rem;background:var(--accent);color:#fff;padding:1px 5px;border-radius:4px;font-weight:700}
@@ -202,38 +228,32 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .fgrp .hint{font-size:.65rem;color:var(--muted);margin-top:3px}
 .err-msg{font-size:.68rem;color:var(--red);margin-top:3px;display:none}.err-msg.show{display:block}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.input-btn-wrap{display:flex;gap:6px;align-items:center}
-.input-btn-wrap input{flex:1}
+.input-btn-wrap{display:flex;gap:6px;align-items:center}.input-btn-wrap input{flex:1}
 .input-action-btn{background:var(--s3);border:1px solid var(--border);color:var(--muted);padding:7px 10px;border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:700;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .input-action-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-/* CHECKLIST no modal */
 .checklist-wrap{display:flex;flex-direction:column;gap:5px}
 .cl-item{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;transition:border-color .15s}
-.cl-item:hover{border-color:var(--accent2)}
-.cl-item.done{opacity:.6}
+.cl-item:hover{border-color:var(--accent2)}.cl-item.done{opacity:.6}
 .cl-item.done .cl-text{text-decoration:line-through;color:var(--muted)}
 .cl-check{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);background:transparent;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.65rem}
 .cl-check.checked{background:var(--accent);border-color:var(--accent);color:#fff}
 .cl-text{flex:1;font-size:.82rem;background:transparent;border:none;color:var(--text);outline:none;font-family:inherit;cursor:text}
 .cl-text::placeholder{color:var(--muted)}
-.cl-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 4px;border-radius:4px;flex-shrink:0;transition:color .15s}
+.cl-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 4px;border-radius:4px;flex-shrink:0}
 .cl-del:hover{color:var(--red)}
 .cl-add-btn{display:flex;align-items:center;gap:6px;background:transparent;border:1px dashed var(--border);color:var(--muted);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.76rem;font-weight:700;transition:all .2s;width:100%}
 .cl-add-btn:hover{border-color:var(--accent);color:var(--accent)}
-/* barra de progresso no modal */
 .cl-progress-wrap{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .cl-progress-bar{flex:1;height:6px;background:var(--s3);border-radius:3px;overflow:hidden}
 .cl-progress-fill{height:100%;background:var(--accent);border-radius:3px;transition:width .3s}
 .cl-progress-label{font-size:.68rem;color:var(--muted);white-space:nowrap}
 
-/* RECORRÊNCIA */
 .recur-opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
 .recur-opt{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:.76rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s;font-family:inherit;line-height:1}
 .recur-opt:hover{border-color:var(--accent2);color:var(--text);background:var(--s3)}
 .recur-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* PEOPLE */
 .people-picker{position:relative}
 .people-display{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:7px 11px;cursor:pointer;transition:border-color .2s;min-height:38px;user-select:none}
 .people-display:hover{border-color:var(--accent)}
@@ -253,7 +273,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .people-add-row input:focus{border-color:var(--accent)}
 .people-add-btn{background:var(--accent);border:none;color:#fff;padding:6px 11px;border-radius:7px;cursor:pointer;font-size:.75rem;font-weight:700}
 
-/* LINKS */
 .links-list{display:flex;flex-direction:column;gap:7px;margin-bottom:8px}
 .link-row-item{display:flex;gap:6px;align-items:center}
 .link-row-item input{flex:1;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:8px;font-size:.82rem;font-family:inherit;outline:none}
@@ -264,7 +283,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .add-link-btn{display:flex;align-items:center;gap:5px;background:transparent;border:1px dashed var(--border);color:var(--muted);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.75rem;font-weight:700;transition:all .2s;width:100%}
 .add-link-btn:hover{border-color:var(--accent);color:var(--accent)}
 
-/* STATUS */
 .status-sel{display:flex;gap:5px;flex-wrap:wrap}
 .status-opt{padding:5px 11px;border-radius:20px;cursor:pointer;font-size:.72rem;font-weight:700;border:1px solid var(--border);color:var(--muted);transition:all .15s;background:var(--s2);display:flex;align-items:center;gap:5px}
 .status-opt .s-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
@@ -275,7 +293,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .status-opt.sel-publicado{background:#6c63ff;border-color:#6c63ff;color:#fff}
 .status-opt.sel-programado{background:#0ea5e9;border-color:#0ea5e9;color:#fff}
 
-/* STATUS inline detalhe */
 .detail-status-bar{display:flex;flex-direction:column;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:13px 14px;margin-bottom:14px}
 .detail-status-label{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
 .detail-status-opts{display:flex;gap:5px;flex-wrap:wrap}
@@ -289,14 +306,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .ds-opt[data-val="Publicado"].active{background:#6c63ff;border-color:#6c63ff;color:#fff}
 .ds-opt[data-val="Programado"].active{background:#0ea5e9;border-color:#0ea5e9;color:#fff}
 
-/* TAGS */
 .tags-wrap{display:flex;flex-wrap:wrap;gap:5px;align-items:center;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:6px 10px;min-height:38px;cursor:text}
 .tags-wrap:focus-within{border-color:var(--accent)}
 .tag-chip{display:flex;align-items:center;gap:4px;background:var(--accent);color:#fff;padding:3px 8px;border-radius:20px;font-size:.7rem;font-weight:700}
 .tag-chip button{background:none;border:none;color:rgba(255,255,255,.8);cursor:pointer;font-size:.7rem;padding:0;line-height:1}
 .tags-input{background:none;border:none;color:var(--text);outline:none;font-size:.78rem;flex:1;min-width:80px;font-family:inherit;padding:0}
 
-/* CORES */
 .color-pick-area{display:flex;flex-direction:column;gap:8px}
 .preset-grid{display:flex;flex-wrap:wrap;gap:5px}
 .pdot{width:24px;height:24px;border-radius:5px;cursor:pointer;border:2px solid transparent;transition:all .15s;flex-shrink:0}
@@ -314,7 +329,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .override-toggle span{font-size:.78rem;color:var(--muted)}
 .override-section{display:none}.override-section.show{display:block}
 
-/* EMOJI */
 .emoji-section-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 6px}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
 .emoji-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--s2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
@@ -326,7 +340,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .selected-emoji-preview .big-emoji{font-size:1.8rem;line-height:1}
 .selected-emoji-preview span{font-size:.8rem;color:var(--muted)}
 
-/* ACTIONS */
 .mactions{display:flex;gap:8px;margin-top:16px;justify-content:flex-end;flex-wrap:wrap;align-items:center}
 .btn-cancel{background:var(--s2);border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
 .btn-cancel:hover{border-color:var(--red);color:var(--red)}
@@ -337,7 +350,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-dup{background:transparent;border:1px solid var(--accent2);color:var(--accent2);padding:8px 12px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
 .btn-dup:hover{background:rgba(167,139,250,.12)}
 
-/* DETALHE */
 .recur-notice{display:flex;align-items:center;gap:8px;background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--accent2)}
 .detail-stripe{width:4px;min-height:48px;border-radius:3px;flex-shrink:0;margin-top:3px}
 .detail-title{font-size:1.05rem;font-weight:800;margin-bottom:6px;line-height:1.3}
@@ -360,17 +372,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .detail-link-name{font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap;min-width:60px}
 .resp-badge{display:inline-flex;align-items:center;gap:6px;background:var(--s3);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:.72rem;font-weight:700}
 .resp-avatar{width:18px;height:18px;border-radius:50%;color:#fff;font-size:.58rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
-
-/* Checklist no detalhe */
 .detail-cl-list{display:flex;flex-direction:column;gap:5px}
-.detail-cl-item{display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--s3);border-radius:7px;transition:background .15s}
-.detail-cl-item:hover{background:var(--s4)}
+.detail-cl-item{display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--s3);border-radius:7px}
 .detail-cl-check{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);background:transparent;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.65rem}
 .detail-cl-check.checked{background:var(--accent);border-color:var(--accent);color:#fff}
 .detail-cl-text{flex:1;font-size:.82rem}
 .detail-cl-text.done{text-decoration:line-through;color:var(--muted)}
 
-/* CAMPANHA */
 .camp-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;max-height:260px;overflow-y:auto}
 .camp-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--s2);border:1px solid var(--border);border-radius:8px}
 .camp-item-name{flex:1;font-size:.82rem;font-weight:600}
@@ -383,7 +391,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .camp-add-row button{background:var(--accent);border:none;color:#fff;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700}
 .camp-section-title{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 5px}
 
-/* COMENTÁRIOS */
 .comments-area{display:flex;flex-direction:column;gap:10px}
 .comment-item{background:var(--s3);border:1px solid var(--border);border-radius:10px;padding:10px 13px}
 .comment-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
@@ -414,7 +421,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 }
 @media(max-width:680px){
   .cal-day{height:140px}
-  .day-num{font-size:.63rem;width:16px;height:16px}
+  .day-num{font-size:.63rem;width:18px;height:18px}
   .card-sub,.card-icons{display:none}
   .row2{grid-template-columns:1fr}
 }
@@ -456,10 +463,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
     </div>
     <div class="sb-section">
-      <div class="sb-label">
-        Meses
-        <span style="font-size:.6rem;color:var(--green);font-weight:600">✓ publicados</span>
-      </div>
+      <div class="sb-label">Meses <span style="font-size:.6rem;color:var(--green);font-weight:600">✓ publicados</span></div>
     </div>
     <nav class="month-list" id="monthList"></nav>
     <div class="sb-section" style="margin-top:auto">
@@ -503,6 +507,26 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   </div>
 </div>
 
+<!-- ══ MODAL DIA ══ -->
+<div class="overlay" id="dayOverlay">
+  <div class="modal">
+    <div class="modal-header" style="margin-bottom:0">
+      <div class="day-modal-header" style="width:100%">
+        <div class="day-modal-date">
+          <span class="day-modal-date-num" id="dayModalNum">6</span>
+          <span class="day-modal-date-info" id="dayModalInfo">Segunda · Abril 2026</span>
+        </div>
+        <div class="day-modal-sep"></div>
+        <div class="day-modal-stats" id="dayModalStats"></div>
+        <button class="day-modal-add" id="dayModalAddBtn">＋ Nova demanda</button>
+        <button class="modal-close" onclick="closeOverlay('dayOverlay')" style="margin-left:8px">✕</button>
+      </div>
+    </div>
+    <div id="dayModalHoliday" style="display:none;margin-top:14px"></div>
+    <div id="dayCardsList" style="margin-top:16px"></div>
+  </div>
+</div>
+
 <!-- MODAL CARD -->
 <div class="overlay" id="cardOverlay">
   <div class="modal modal-lg">
@@ -517,7 +541,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <button class="modal-tab" onclick="switchTab('links',this)">🔗 Links</button>
       <button class="modal-tab" onclick="switchTab('catvisual',this)">🏷️ Categoria</button>
     </div>
-
     <div class="tab-panel active" id="tab-info">
       <div class="row2">
         <div class="fgrp">
@@ -564,11 +587,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
       <div class="row2">
         <div class="fgrp">
-          <label>📅 Data de Início <span class="opt-badge">opcional</span></label>
+          <label>📅 Data Início <span class="opt-badge">opcional</span></label>
           <input type="date" id="cDateStart"/>
         </div>
         <div class="fgrp">
-          <label>🏁 Data de Fim <span class="opt-badge">opcional</span></label>
+          <label>🏁 Data Fim <span class="opt-badge">opcional</span></label>
           <input type="date" id="cDateEnd"/>
         </div>
       </div>
@@ -622,7 +645,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <div class="hint" id="recurHint" style="margin-top:5px"></div>
       </div>
       <div class="fgrp">
-        <label>Status do Briefing <span class="opt-badge">opcional</span></label>
+        <label>Status <span class="opt-badge">opcional</span></label>
         <div class="status-sel" id="briefingStatusSel">
           <div class="status-opt" data-val="Pendente"   onclick="selectStatus(this)"><span class="s-dot" style="background:#f97316"></span>Pendente</div>
           <div class="status-opt" data-val="Produção"   onclick="selectStatus(this)"><span class="s-dot" style="background:#38bdf8"></span>Produção</div>
@@ -633,20 +656,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
       </div>
     </div>
-
     <div class="tab-panel" id="tab-content">
-      <div class="fgrp">
-        <label>Big Idea <span class="opt-badge">opcional</span></label>
-        <input type="text" id="cBigIdea" placeholder="Conceito central…" maxlength="150"/>
-      </div>
-      <div class="fgrp">
-        <label>Copy <span class="opt-badge">opcional</span></label>
-        <textarea id="cCopy" placeholder="Texto/legenda…" style="min-height:100px"></textarea>
-      </div>
-      <div class="fgrp">
-        <label>Descrição / Observações <span class="opt-badge">opcional</span></label>
-        <textarea id="cDesc" placeholder="Notas internas…"></textarea>
-      </div>
+      <div class="fgrp"><label>Big Idea <span class="opt-badge">opcional</span></label><input type="text" id="cBigIdea" placeholder="Conceito central…" maxlength="150"/></div>
+      <div class="fgrp"><label>Copy <span class="opt-badge">opcional</span></label><textarea id="cCopy" placeholder="Texto/legenda…" style="min-height:100px"></textarea></div>
+      <div class="fgrp"><label>Descrição / Observações <span class="opt-badge">opcional</span></label><textarea id="cDesc" placeholder="Notas internas…"></textarea></div>
       <div class="fgrp">
         <label>🏷️ Tags <span class="opt-badge">opcional</span></label>
         <div class="tags-wrap" id="tagsWrap" onclick="document.getElementById('tagInput').focus()">
@@ -654,8 +667,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
       </div>
     </div>
-
-    <!-- ABA CHECKLIST -->
     <div class="tab-panel" id="tab-checklist">
       <div class="fgrp">
         <label>☑️ Checklist de Tarefas <span class="opt-badge">opcional</span></label>
@@ -665,12 +676,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <span class="cl-progress-label" id="clProgressLabel">0/0</span>
         </div>
         <div class="checklist-wrap" id="checklistWrap"></div>
-        <button class="cl-add-btn" type="button" onclick="addClItem()" style="margin-top:8px">
-          ＋ Adicionar tarefa
-        </button>
+        <button class="cl-add-btn" type="button" onclick="addClItem()" style="margin-top:8px">＋ Adicionar tarefa</button>
       </div>
     </div>
-
     <div class="tab-panel" id="tab-links">
       <div class="fgrp">
         <label>Links <span class="opt-badge">opcional</span></label>
@@ -678,7 +686,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <button class="add-link-btn" type="button" onclick="addLinkRow()">＋ Adicionar link</button>
       </div>
     </div>
-
     <div class="tab-panel" id="tab-catvisual">
       <div class="fgrp">
         <label>Categoria <span class="opt-badge">opcional</span></label>
@@ -687,14 +694,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
       <div class="cat-color-preview" id="catColorPreview" style="display:none">
         <div class="cat-color-swatch" id="catColorSwatch"></div>
-        <div class="cat-color-info">
-          <strong id="catColorName">—</strong>
-          <span id="catColorHexPrev">#000000</span>
-        </div>
+        <div class="cat-color-info"><strong id="catColorName">—</strong><span id="catColorHexPrev">#000000</span></div>
       </div>
       <label class="override-toggle" style="margin-top:8px">
         <input type="checkbox" id="overrideColorCheck" onchange="toggleOverride()"/>
-        <span>Usar cor personalizada (diferente da categoria)</span>
+        <span>Usar cor personalizada</span>
       </label>
       <div class="override-section" id="overrideSection">
         <div class="color-pick-area">
@@ -708,7 +712,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
       </div>
     </div>
-
     <div class="mactions">
       <div id="cardDelRow" style="display:none;margin-right:auto;gap:6px">
         <button class="btn-del" id="cardDelBtn">🗑 Excluir</button>
@@ -731,10 +734,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <button class="modal-tab active" onclick="switchDetailTab('dtinfo',this)">📋 Info</button>
       <button class="modal-tab" onclick="switchDetailTab('dtchecklist',this)">☑️ Checklist <span id="clBadge" style="display:none;background:var(--accent);color:#fff;border-radius:20px;padding:1px 6px;font-size:.6rem;margin-left:2px"></span></button>
       <button class="modal-tab" onclick="switchDetailTab('dtlinks',this)">🔗 Links</button>
-      <button class="modal-tab" onclick="switchDetailTab('dtcomments',this)">
-        💬 Comentários
-        <span id="commentBadge" style="display:none;background:var(--orange);color:#000;border-radius:20px;padding:1px 6px;font-size:.63rem;margin-left:3px"></span>
-      </button>
+      <button class="modal-tab" onclick="switchDetailTab('dtcomments',this)">💬 Comentários <span id="commentBadge" style="display:none;background:var(--orange);color:#000;border-radius:20px;padding:1px 6px;font-size:.63rem;margin-left:3px"></span></button>
     </div>
     <div class="tab-panel active" id="dtinfo"><div id="detailBody"></div></div>
     <div class="tab-panel" id="dtchecklist"><div id="detailChecklistBody"></div></div>
@@ -759,79 +759,48 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <!-- MODAL DUPLICAR -->
 <div class="overlay" id="dupOverlay">
   <div class="modal modal-sm">
-    <div class="modal-header">
-      <h2>⧉ Duplicar Card</h2>
-      <button class="modal-close" onclick="closeOverlay('dupOverlay')">✕</button>
-    </div>
-    <div class="fgrp">
-      <label>Nova Data <span class="req-badge">obrigatório</span></label>
-      <input type="date" id="dupDate"/>
-    </div>
-    <div class="fgrp">
-      <label>Título da cópia <span class="opt-badge">opcional</span></label>
-      <input type="text" id="dupTitle" placeholder="Deixe vazio para manter o mesmo título" maxlength="100"/>
-    </div>
-    <div class="mactions">
-      <button class="btn-cancel" onclick="closeOverlay('dupOverlay')">Cancelar</button>
-      <button class="btn-save" onclick="confirmDuplicate()">⧉ Duplicar</button>
-    </div>
+    <div class="modal-header"><h2>⧉ Duplicar Card</h2><button class="modal-close" onclick="closeOverlay('dupOverlay')">✕</button></div>
+    <div class="fgrp"><label>Nova Data <span class="req-badge">obrigatório</span></label><input type="date" id="dupDate"/></div>
+    <div class="fgrp"><label>Título da cópia <span class="opt-badge">opcional</span></label><input type="text" id="dupTitle" placeholder="Deixe vazio para manter" maxlength="100"/></div>
+    <div class="mactions"><button class="btn-cancel" onclick="closeOverlay('dupOverlay')">Cancelar</button><button class="btn-save" onclick="confirmDuplicate()">⧉ Duplicar</button></div>
   </div>
 </div>
 
 <!-- MODAL CAMPANHA -->
 <div class="overlay" id="campaignOverlay">
   <div class="modal modal-sm">
-    <div class="modal-header">
-      <h2>📣 Gerenciar Campanhas</h2>
-      <button class="modal-close" onclick="closeOverlay('campaignOverlay')">✕</button>
-    </div>
-    <div class="camp-section-title">Campanhas cadastradas</div>
+    <div class="modal-header"><h2>📣 Campanhas</h2><button class="modal-close" onclick="closeOverlay('campaignOverlay')">✕</button></div>
+    <div class="camp-section-title">Cadastradas</div>
     <div class="camp-list" id="campList"></div>
-    <div class="camp-section-title">Adicionar nova campanha</div>
+    <div class="camp-section-title">Adicionar</div>
     <div class="camp-add-row">
       <input type="text" id="newCampName" placeholder="Nome da campanha…" maxlength="60" onkeydown="if(event.key==='Enter')addCampaign()"/>
       <button onclick="addCampaign()">+ Adicionar</button>
     </div>
-    <div class="mactions" style="margin-top:14px">
-      <button class="btn-save" onclick="closeCampaignManager()">✓ Concluído</button>
-    </div>
+    <div class="mactions" style="margin-top:14px"><button class="btn-save" onclick="closeCampaignManager()">✓ Concluído</button></div>
   </div>
 </div>
 
 <!-- MODAL CATEGORIA -->
 <div class="overlay" id="catOverlay">
   <div class="modal modal-sm">
-    <div class="modal-header">
-      <h2 id="catModalTitle">Nova Categoria</h2>
-      <button class="modal-close" onclick="closeOverlay('catOverlay')">✕</button>
-    </div>
+    <div class="modal-header"><h2 id="catModalTitle">Nova Categoria</h2><button class="modal-close" onclick="closeOverlay('catOverlay')">✕</button></div>
     <div class="modal-tabs">
       <button class="modal-tab active" onclick="switchCatTab('catinfo',this)">📝 Nome e Cor</button>
       <button class="modal-tab" onclick="switchCatTab('catemoji',this)">😀 Emoji</button>
     </div>
     <div class="tab-panel active" id="catinfo">
-      <div class="fgrp">
-        <label>Nome <span class="req-badge">obrigatório</span></label>
-        <input type="text" id="catName" placeholder="Ex: Reels, Feed…" maxlength="40"/>
-      </div>
-      <div class="fgrp">
-        <label>Cor</label>
+      <div class="fgrp"><label>Nome <span class="req-badge">obrigatório</span></label><input type="text" id="catName" placeholder="Ex: Reels, Feed…" maxlength="40"/></div>
+      <div class="fgrp"><label>Cor</label>
         <div class="color-pick-area">
           <div class="preset-grid" id="catPresetGrid"></div>
-          <div class="custom-row">
-            <span>Cor livre:</span>
-            <input type="color" id="catColorPicker" value="#6c63ff" oninput="onCatCustomColor(this.value)"/>
-            <span id="catColorHex" style="font-size:.7rem;font-family:monospace;color:var(--muted)">#6c63ff</span>
-          </div>
+          <div class="custom-row"><span>Cor livre:</span><input type="color" id="catColorPicker" value="#6c63ff" oninput="onCatCustomColor(this.value)"/><span id="catColorHex" style="font-size:.7rem;font-family:monospace;color:var(--muted)">#6c63ff</span></div>
           <div class="color-bar" id="catColorBar" style="background:#6c63ff"></div>
         </div>
       </div>
     </div>
     <div class="tab-panel" id="catemoji">
-      <div class="selected-emoji-preview">
-        <span class="big-emoji" id="selectedEmojiPreview">📌</span>
-        <span>Emoji selecionado — aparece no card e na sidebar</span>
-      </div>
+      <div class="selected-emoji-preview"><span class="big-emoji" id="selectedEmojiPreview">📌</span><span>Emoji selecionado</span></div>
       <input class="emoji-search" type="text" placeholder="Buscar emoji…" oninput="filterEmojis(this.value)"/>
       <div id="emojiPanels"></div>
     </div>
@@ -846,27 +815,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════ CONSTANTES ══════════
-const EMOJI_CATS={
-  "📱 Mídias Sociais":["📱","📲","🤳","💬","📣","📢","🗣️","👥","❤️","🔔","🌐","📡"],
-  "🎨 Criativo":["🎨","✏️","🖌️","🖼️","📸","🎬","🎥","🎞️","🎭","🎪","✨","💡"],
-  "📊 Negócio":["📊","📈","📉","💼","🏆","🎯","💰","💳","🤝","📋","📌","🗂️"],
-  "🎉 Eventos":["🎉","🎊","🎈","🎁","🥳","🏅","🎖️","🏟️","🎤","🎸","🎵","🎶"],
-  "📅 Datas":["📅","🗓️","⏰","⌛","🕐","📆","🔴","🟡","🟢","🟣","🔵","⚪"],
-  "🌟 Destaques":["⭐","🌟","💫","✨","🔥","💥","🚀","⚡","🌈","👑","💎","🏅"],
-  "📝 Texto":["📝","✍️","📖","📚","📰","📄","🗒️","📜","💭","🗨️","💡","🔍"],
-  "🛍️ Produto":["🛍️","🛒","🏪","🏬","📦","🎁","🏷️","💳","🛠️","⚙️","🔧","🔨"],
-  "🌍 Outros":["🌍","🌎","🌏","🗺️","✈️","🚗","🏠","🌿","🌊","☀️","🌙","❄️"],
-};
+const EMOJI_CATS={"📱 Mídias Sociais":["📱","📲","🤳","💬","📣","📢","🗣️","👥","❤️","🔔","🌐","📡"],"🎨 Criativo":["🎨","✏️","🖌️","🖼️","📸","🎬","🎥","🎞️","🎭","🎪","✨","💡"],"📊 Negócio":["📊","📈","📉","💼","🏆","🎯","💰","💳","🤝","📋","📌","🗂️"],"🎉 Eventos":["🎉","🎊","🎈","🎁","🥳","🏅","🎖️","🏟️","🎤","🎸","🎵","🎶"],"📅 Datas":["📅","🗓️","⏰","⌛","🕐","📆","🔴","🟡","🟢","🟣","🔵","⚪"],"🌟 Destaques":["⭐","🌟","💫","✨","🔥","💥","🚀","⚡","🌈","👑","💎","🏅"],"📝 Texto":["📝","✍️","📖","📚","📰","📄","🗒️","📜","💭","🗨️","💡","🔍"],"🛍️ Produto":["🛍️","🛒","🏪","🏬","📦","🎁","🏷️","💳","🛠️","⚙️","🔧","🔨"],"🌍 Outros":["🌍","🌎","🌏","🗺️","✈️","🚗","🏠","🌿","🌊","☀️","🌙","❄️"]};
 const MONTHS_PT=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 const DAYS_PT=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
 const TODAY=new Date();
 const PLAT_ICONS={"Instagram":"📸","YouTube":"▶️","Facebook":"👥","TikTok":"🎵","Twitter/X":"🐦","LinkedIn":"💼","Email":"📧","Blog":"📝","Outro":"🌐","":" "};
-const HOLIDAYS_BY_YEAR={
-  2025:{"01-01":"Ano Novo","03-03":"Carnaval","03-04":"Carnaval","04-18":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","06-19":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},
-  2026:{"01-01":"Ano Novo","02-16":"Carnaval","02-17":"Carnaval","02-18":"Quarta de Cinzas","04-03":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","06-04":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},
-  2027:{"01-01":"Ano Novo","02-08":"Carnaval","02-09":"Carnaval","04-02":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","05-27":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},
-};
+const HOLIDAYS_BY_YEAR={2025:{"01-01":"Ano Novo","03-03":"Carnaval","04-18":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","06-19":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},2026:{"01-01":"Ano Novo","02-16":"Carnaval","02-17":"Carnaval","02-18":"Quarta de Cinzas","04-03":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","06-04":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"},2027:{"01-01":"Ano Novo","02-08":"Carnaval","02-09":"Carnaval","04-02":"Paixão de Cristo","04-21":"Tiradentes","05-01":"Dia do Trabalho","05-27":"Corpus Christi","09-07":"Independência","10-12":"N.Sra. Aparecida","11-02":"Finados","11-15":"Proc. República","11-20":"Consciência Negra","12-25":"Natal"}};
 const PRESETS=["#6c63ff","#a78bfa","#f472b6","#fb7185","#f97316","#facc15","#4ade80","#34d399","#22d3ee","#38bdf8","#818cf8","#c084fc","#f43f5e","#ef4444","#f59e0b","#84cc16","#10b981","#06b6d4","#0ea5e9","#e879f9","#64748b","#94a3b8","#ffffff","#ff6b6b","#ffd93d"];
 const PLATFORMS=["Todas","Instagram","YouTube","Facebook","TikTok","Twitter/X","LinkedIn","Email","Blog","Outro"];
 const DEFAULT_CAMPAIGNS=["Awareness","Consideração","Conversão","Retenção","Institucional","Produto","Sazonal","Lançamento","Relacionamento","Branding"];
@@ -874,704 +828,371 @@ const STATUS_COLORS={"Pendente":{bg:"#f97316",text:"#fff"},"Produção":{bg:"#38
 const RECUR_LABELS={"":"Sem recorrência","daily":"Diário","weekly":"Semanal","biweekly":"Quinzenal","monthly":"Mensal"};
 const RECUR_ICONS={"":"","daily":"📆","weekly":"🗓️","biweekly":"📅","monthly":"🗃️"};
 
-// ══════════ ESTADO ══════════
-let cards={}, categories={}, campaigns=[...DEFAULT_CAMPAIGNS];
-let currentYear=2026, dragCardId=null, editCardId=null;
-let chosenColor="#6c63ff", catChosenColor="#6c63ff", editCatId=null;
-let currentTags=[], selectedStatus="", selectedRecur="";
-let filterPlatform="Todas", filterCampaign="Todas", filterResp="Todas", searchQuery="";
-let selectedEmoji="📌", currentDetailCardId=null, useOverrideColor=false;
+let cards={},categories={},campaigns=[...DEFAULT_CAMPAIGNS];
+let currentYear=2026,dragCardId=null,editCardId=null;
+let chosenColor="#6c63ff",catChosenColor="#6c63ff",editCatId=null;
+let currentTags=[],selectedStatus="",selectedRecur="";
+let filterPlatform="Todas",filterCampaign="Todas",filterResp="Todas",searchQuery="";
+let selectedEmoji="📌",currentDetailCardId=null,useOverrideColor=false;
 let peopleList=JSON.parse(localStorage.getItem("cal_people")||"[]");
 let pickerSelected={ppResp:"",ppSolic:""};
-let dupSourceId=null;
-let currentChecklist=[]; // [{id,text,done}]
-window._recurInstances={};
-// Armazena status independentes por instância recorrente: {cardId_date: status}
+let dupSourceId=null,currentChecklist=[];
 let recurStatuses=JSON.parse(localStorage.getItem("cal_recur_statuses")||"{}");
+window._recurInstances={};
 
-// ══════════ UTILS ══════════
+// ── UTILS ──
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function fmtDFull(iso){if(!iso)return"";const[y,m,d]=iso.split("-");return`${d}/${m}/${y}`;}
-function colorFromName(name){
-  const p=["#6c63ff","#f472b6","#4ade80","#fb923c","#38bdf8","#a78bfa","#f87171","#facc15","#34d399","#22d3ee","#e879f9","#84cc16"];
-  let h=0;for(let i=0;i<name.length;i++)h=(h*31+name.charCodeAt(i))&0xfffffff;return p[h%p.length];
-}
-function initials(name){
-  if(!name)return"";const p=name.trim().split(/\s+/);
-  return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():p[0].slice(0,2).toUpperCase();
-}
+function colorFromName(n){const p=["#6c63ff","#f472b6","#4ade80","#fb923c","#38bdf8","#a78bfa","#f87171","#facc15","#34d399","#22d3ee","#e879f9","#84cc16"];let h=0;for(let i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))&0xfffffff;return p[h%p.length];}
+function initials(n){if(!n)return"";const p=n.trim().split(/\s+/);return p.length>=2?(p[0][0]+p[1][0]).toUpperCase():p[0].slice(0,2).toUpperCase();}
 
-// ══════════ STATUS INDEPENDENTE POR INSTÂNCIA ══════════
-// Chave: cardId + "_" + date (yyyy-mm-dd)
-function getRecurStatusKey(cardId, date){ return cardId+"__"+date; }
+// ── STATUS RECORRENTE INDEPENDENTE ──
+function getRecurStatusKey(cardId,date){return cardId+"__"+date;}
 function getEffectiveStatus(card){
-  // Se é instância recorrente, verifica se tem status próprio
   if(card._isRecurInstance){
-    const key=getRecurStatusKey(card._sourceId, card.date);
-    if(recurStatuses[key]!==undefined) return recurStatuses[key];
-    // herda do card original
-    return cards[card._sourceId]?.briefing||"";
+    const k=getRecurStatusKey(card._sourceId,card.date);
+    return recurStatuses[k]!==undefined?recurStatuses[k]:(cards[card._sourceId]?.briefing||"");
   }
   return card.briefing||"";
 }
-function saveRecurStatuses(){ localStorage.setItem("cal_recur_statuses",JSON.stringify(recurStatuses)); }
+function saveRecurStatuses(){localStorage.setItem("cal_recur_statuses",JSON.stringify(recurStatuses));}
 
-// ══════════ CHECKLIST ══════════
-function clStats(list){
-  const total=(list||[]).length;
-  const done=(list||[]).filter(i=>i.done).length;
-  return{total,done,pct:total>0?Math.round(done/total*100):0};
-}
+// ── CHECKLIST ──
+function clStats(list){const total=(list||[]).length,done=(list||[]).filter(i=>i.done).length;return{total,done,pct:total>0?Math.round(done/total*100):0};}
 function renderChecklistEdit(){
-  const wrap=document.getElementById("checklistWrap");
-  const progWrap=document.getElementById("clProgressWrap");
-  const fill=document.getElementById("clProgressFill");
-  const lbl=document.getElementById("clProgressLabel");
-  if(!currentChecklist.length){progWrap.style.display="none";wrap.innerHTML="";return;}
-  const {total,done,pct}=clStats(currentChecklist);
-  progWrap.style.display="flex";
-  fill.style.width=pct+"%";
-  fill.style.background=pct===100?"var(--green)":"var(--accent)";
-  lbl.textContent=`${done}/${total} (${pct}%)`;
+  const wrap=document.getElementById("checklistWrap"),pw=document.getElementById("clProgressWrap"),fill=document.getElementById("clProgressFill"),lbl=document.getElementById("clProgressLabel");
+  if(!currentChecklist.length){pw.style.display="none";wrap.innerHTML="";return;}
+  const{total,done,pct}=clStats(currentChecklist);
+  pw.style.display="flex";fill.style.width=pct+"%";fill.style.background=pct===100?"var(--green)":"var(--accent)";lbl.textContent=`${done}/${total} (${pct}%)`;
   wrap.innerHTML=currentChecklist.map((item,idx)=>`
-    <div class="cl-item${item.done?" done":""}" id="clitem-${item.id}">
-      <div class="cl-check${item.done?" checked":""}" onclick="toggleClItem(${idx})">
-        ${item.done?"✓":""}
-      </div>
-      <input class="cl-text" type="text" value="${esc(item.text)}"
-        placeholder="Descreva a tarefa…"
+    <div class="cl-item${item.done?" done":""}">
+      <div class="cl-check${item.done?" checked":""}" onclick="toggleClItem(${idx})">${item.done?"✓":""}</div>
+      <input class="cl-text" type="text" value="${esc(item.text)}" placeholder="Descreva a tarefa…"
         oninput="currentChecklist[${idx}].text=this.value;renderChecklistEdit()"
-        onkeydown="if(event.key==='Enter'){event.preventDefault();addClItem()}"
-      />
+        onkeydown="if(event.key==='Enter'){event.preventDefault();addClItem()}"/>
       <button class="cl-del" onclick="removeClItem(${idx})">✕</button>
     </div>`).join("");
 }
 function addClItem(text="",done=false){
   currentChecklist.push({id:"cl"+Date.now()+Math.random().toString(36).slice(2,5),text,done});
   renderChecklistEdit();
-  // foca no novo input
-  setTimeout(()=>{
-    const inputs=document.querySelectorAll("#checklistWrap .cl-text");
-    if(inputs.length)inputs[inputs.length-1].focus();
-  },50);
+  setTimeout(()=>{const inputs=document.querySelectorAll("#checklistWrap .cl-text");if(inputs.length)inputs[inputs.length-1].focus();},50);
 }
-function removeClItem(idx){ currentChecklist.splice(idx,1); renderChecklistEdit(); }
-function toggleClItem(idx){
-  currentChecklist[idx].done=!currentChecklist[idx].done;
-  renderChecklistEdit();
-}
-
-// Checklist no modal de detalhe (edita direto e salva)
+function removeClItem(idx){currentChecklist.splice(idx,1);renderChecklistEdit();}
+function toggleClItem(idx){currentChecklist[idx].done=!currentChecklist[idx].done;renderChecklistEdit();}
 async function toggleDetailCl(idx){
-  const card=cards[currentDetailCardId]; if(!card) return;
-  const list=[...(card.checklist||[])];
-  list[idx]={...list[idx],done:!list[idx].done};
-  const updated={...card,checklist:list};
-  cards[currentDetailCardId]=updated;
-  renderDetailChecklist(updated);
-  updateClBadge(updated);
-  refreshDay(updated.month,updated.day);
-  await dbSaveCard(updated);
+  const card=cards[currentDetailCardId];if(!card)return;
+  const list=[...(card.checklist||[])];list[idx]={...list[idx],done:!list[idx].done};
+  const updated={...card,checklist:list};cards[currentDetailCardId]=updated;
+  renderDetailChecklist(updated);updateClBadge(updated);refreshDay(updated.month,updated.day);await dbSaveCard(updated);
 }
 function renderDetailChecklist(card){
-  const list=card.checklist||[];
-  const body=document.getElementById("detailChecklistBody"); if(!body) return;
-  if(!list.length){
-    body.innerHTML=`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:16px 0;text-align:center">Nenhuma tarefa ainda.<br>Adicione pelo botão ✏️ Editar.</p>`;
-    return;
-  }
-  const {total,done,pct}=clStats(list);
-  body.innerHTML=`
-    <div class="cl-progress-wrap" style="margin-bottom:14px">
-      <div class="cl-progress-bar"><div class="cl-progress-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>
-      <span class="cl-progress-label">${done}/${total} — ${pct}%</span>
-    </div>
-    <div class="detail-cl-list">
-      ${list.map((item,idx)=>`
-        <div class="detail-cl-item">
-          <div class="detail-cl-check${item.done?" checked":""}" onclick="toggleDetailCl(${idx})" title="${item.done?"Desmarcar":"Marcar como feito"}">
-            ${item.done?"✓":""}
-          </div>
-          <span class="detail-cl-text${item.done?" done":""}">${esc(item.text)||"<em style='color:var(--muted)'>sem título</em>"}</span>
-        </div>`).join("")}
-    </div>`;
+  const list=card.checklist||[],body=document.getElementById("detailChecklistBody");if(!body)return;
+  if(!list.length){body.innerHTML=`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:16px 0;text-align:center">Nenhuma tarefa. Adicione pelo botão ✏️ Editar.</p>`;return;}
+  const{total,done,pct}=clStats(list);
+  body.innerHTML=`<div class="cl-progress-wrap" style="margin-bottom:14px"><div class="cl-progress-bar"><div class="cl-progress-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div><span class="cl-progress-label">${done}/${total} — ${pct}%</span></div>
+    <div class="detail-cl-list">${list.map((item,idx)=>`<div class="detail-cl-item"><div class="detail-cl-check${item.done?" checked":""}" onclick="toggleDetailCl(${idx})">${item.done?"✓":""}</div><span class="detail-cl-text${item.done?" done":""}">${esc(item.text)||"<em style='color:var(--muted)'>sem título</em>"}</span></div>`).join("")}</div>`;
 }
 function updateClBadge(card){
-  const list=card.checklist||[];
-  const badge=document.getElementById("clBadge");
-  if(!badge) return;
-  if(list.length){
-    const {done,total}=clStats(list);
-    badge.style.display="inline";
-    badge.textContent=`${done}/${total}`;
-    badge.style.background=done===total?"var(--green)":"var(--accent)";
-    badge.style.color=done===total?"#000":"#fff";
-  } else badge.style.display="none";
+  const list=card.checklist||[],badge=document.getElementById("clBadge");if(!badge)return;
+  if(list.length){const{done,total}=clStats(list);badge.style.display="inline";badge.textContent=`${done}/${total}`;badge.style.background=done===total?"var(--green)":"var(--accent)";badge.style.color=done===total?"#000":"#fff";}
+  else badge.style.display="none";
 }
 
-// ══════════ RECORRÊNCIA ══════════
-function selectRecur(val){
-  selectedRecur=val||"";
-  document.querySelectorAll("#recurOpts .recur-opt").forEach(o=>o.classList.toggle("sel",o.dataset.val===selectedRecur));
-  document.getElementById("recurHint").textContent=selectedRecur?`🔁 Repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`:"";
-}
+// ── RECORRÊNCIA ──
+function selectRecur(val){selectedRecur=val||"";document.querySelectorAll("#recurOpts .recur-opt").forEach(o=>o.classList.toggle("sel",o.dataset.val===selectedRecur));document.getElementById("recurHint").textContent=selectedRecur?`🔁 Repetirá ${RECUR_LABELS[selectedRecur].toLowerCase()} a partir da data escolhida.`:"";}
 function applyRecurSel(val){selectRecur(val||"");}
 function getRecurringInstances(){
   const extra=[];
   Object.values(cards).forEach(card=>{
     if(!card.recurrence||card.recurrence==="")return;
     const baseDate=new Date(card.year,card.month,card.day);
-    for(let mi=0;mi<12;mi++){
-      const dim=new Date(currentYear,mi+1,0).getDate();
+    for(let mi=0;mi<12;mi++){const dim=new Date(currentYear,mi+1,0).getDate();
       for(let d=1;d<=dim;d++){
         const candidate=new Date(currentYear,mi,d);
-        if(candidate.getTime()===baseDate.getTime())continue;
-        if(candidate<baseDate)continue;
+        if(candidate.getTime()===baseDate.getTime()||candidate<baseDate)continue;
         let matches=false;
         if(card.recurrence==="daily")matches=true;
         if(card.recurrence==="weekly")matches=candidate.getDay()===baseDate.getDay();
         if(card.recurrence==="biweekly"){const diff=Math.round((candidate-baseDate)/(1000*60*60*24));matches=diff%14===0;}
         if(card.recurrence==="monthly")matches=d===card.day;
-        if(matches){
-          const date=`${currentYear}-${String(mi+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-          extra.push({...card,id:card.id+"_recur_"+currentYear+"_"+mi+"_"+d,
-            year:currentYear,month:mi,day:d,date,
-            _isRecurInstance:true,_sourceId:card.id});
-        }
+        if(matches){const date=`${currentYear}-${String(mi+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;extra.push({...card,id:card.id+"_recur_"+currentYear+"_"+mi+"_"+d,year:currentYear,month:mi,day:d,date,_isRecurInstance:true,_sourceId:card.id});}
       }
     }
   });
   return extra;
 }
-function rebuildRecurInstances(){
-  window._recurInstances={};
-  getRecurringInstances().forEach(r=>{window._recurInstances[r.id]=r;});
-}
+function rebuildRecurInstances(){window._recurInstances={};getRecurringInstances().forEach(r=>{window._recurInstances[r.id]=r;});}
 function getCardsForDay(mi,d,yr){
   const real=Object.values(cards).filter(c=>c.month===mi&&c.day===d&&c.year===yr);
   const recur=Object.values(window._recurInstances).filter(c=>c.month===mi&&c.day===d&&c.year===yr);
   return [...real,...recur];
 }
 
-// ══════════ CONTADORES ══════════
-function countCardsForMonth(mi){
-  const yr=currentYear,dim=new Date(yr,mi+1,0).getDate();
-  let total=0;
-  for(let d=1;d<=dim;d++)total+=getCardsForDay(mi,d,yr).filter(c=>cardMatchesFilter(c)).length;
-  return total;
-}
-// Conta apenas publicados (originais, não instâncias)
-function countPublishedForMonth(mi){
-  return Object.values(cards).filter(c=>c.month===mi&&c.year===currentYear&&c.briefing==="Publicado").length;
-}
+// ── CONTADORES ──
+function countCardsForMonth(mi){const yr=currentYear,dim=new Date(yr,mi+1,0).getDate();let t=0;for(let d=1;d<=dim;d++)t+=getCardsForDay(mi,d,yr).filter(c=>cardMatchesFilter(c)).length;return t;}
+function countPublishedForMonth(mi){return Object.values(cards).filter(c=>c.month===mi&&c.year===currentYear&&c.briefing==="Publicado").length;}
 function getStatusDotsForMonth(mi){
-  const yr=currentYear,dim=new Date(yr,mi+1,0).getDate();
-  const counts={};
-  for(let d=1;d<=dim;d++){
-    getCardsForDay(mi,d,yr).filter(c=>cardMatchesFilter(c)).forEach(c=>{
-      const s=getEffectiveStatus(c);
-      if(s)counts[s]=(counts[s]||0)+1;
-    });
-  }
+  const yr=currentYear,dim=new Date(yr,mi+1,0).getDate(),counts={};
+  for(let d=1;d<=dim;d++)getCardsForDay(mi,d,yr).filter(c=>cardMatchesFilter(c)).forEach(c=>{const s=getEffectiveStatus(c);if(s)counts[s]=(counts[s]||0)+1;});
   return counts;
 }
 
-// ══════════ DUPLICAR ══════════
+// ── MODAL DIA ──
+function openDayModal(mi, d, e){
+  // Para não propagar e abrir o detalhe ao clicar no número
+  if(e) e.stopPropagation();
+  const yr=currentYear;
+  const dayCards=getCardsForDay(mi,d,yr);
+  const h=holiday(yr,mi,d);
+  const dateObj=new Date(yr,mi,d);
+  const weekDay=DAYS_PT[dateObj.getDay()];
+  const iso=`${yr}-${String(mi+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+
+  // Header
+  document.getElementById("dayModalNum").textContent=d;
+  document.getElementById("dayModalInfo").textContent=`${weekDay} · ${MONTHS_PT[mi]} ${yr}`;
+
+  // Botão adicionar
+  document.getElementById("dayModalAddBtn").onclick=()=>{closeOverlay("dayOverlay");openAdd(mi,d);};
+
+  // Feriado
+  const holidayEl=document.getElementById("dayModalHoliday");
+  if(h){holidayEl.style.display="flex";holidayEl.className="day-modal-holiday";holidayEl.innerHTML=`🎉 ${h}`;}
+  else holidayEl.style.display="none";
+
+  // Stats por status
+  const statusCounts={};
+  dayCards.forEach(c=>{const s=getEffectiveStatus(c);if(s)statusCounts[s]=(statusCounts[s]||0)+1;});
+  const statsEl=document.getElementById("dayModalStats");
+  const totalChip=`<div class="day-stat-chip"><span style="font-size:.8rem">📋</span> ${dayCards.length} demanda${dayCards.length!==1?"s":""}</div>`;
+  const statusChips=Object.entries(statusCounts).map(([s,n])=>{const sc=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="day-stat-chip"><div class="day-stat-dot" style="background:${sc.bg}"></div>${s}: ${n}</div>`;}).join("");
+  statsEl.innerHTML=totalChip+statusChips;
+
+  // Lista de cards
+  const listEl=document.getElementById("dayCardsList");
+  if(!dayCards.length){
+    listEl.innerHTML=`<div class="day-modal-empty"><div class="day-modal-empty-icon">📭</div><p>Nenhuma demanda neste dia.<br>Clique em <strong>+ Nova demanda</strong> para adicionar.</p></div>`;
+  } else {
+    listEl.innerHTML=`<div class="day-cards-list">${dayCards.map(card=>{
+      const color=getCardColor(card),cat=categories[card.catId];
+      const effStatus=getEffectiveStatus(card);
+      const sc=STATUS_COLORS[effStatus];
+      const cl=card.checklist||[],{done,total,pct}=clStats(cl);
+      const isRecur=card._isRecurInstance||false;
+      const platIcon=PLAT_ICONS[card.platform||""]||"";
+      return`<div class="day-card-row${isRecur?" is-recur":""}"
+        style="border-left-color:${color}"
+        onclick="openDetailFromDay('${card.id}')">
+        <div class="day-card-info">
+          <div class="day-card-title">${platIcon?`<span style="margin-right:4px">${platIcon}</span>`:""}${esc(card.title)}</div>
+          <div class="day-card-meta">
+            ${cat?`<span class="day-card-badge" style="color:${color};border-color:${color}33;background:${color}18">${cat.emoji||""} ${esc(cat.name)}</span>`:""}
+            ${sc?`<span class="day-card-status" style="background:${sc.bg};color:${sc.text}">${effStatus}</span>`:""}
+            ${card.platform?`<span class="day-card-badge">${esc(card.platform)}</span>`:""}
+            ${isRecur?`<span class="day-card-badge" style="color:var(--accent2);border-color:var(--accent2)33">🔁 Recorrente</span>`:""}
+            ${cl.length?`<span class="day-card-cl"><div class="day-card-cl-bar"><div class="day-card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>${done}/${total}</span>`:""}
+          </div>
+        </div>
+        <div class="day-card-right">
+          ${card.responsavel?`<div class="day-card-avatar" style="background:${colorFromName(card.responsavel)}" title="${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:""}
+          ${isRecur?`<span class="day-card-recur">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:""}
+        </div>
+      </div>`;
+    }).join("")}</div>`;
+  }
+  openOverlay("dayOverlay");
+}
+
+function openDetailFromDay(id){
+  closeOverlay("dayOverlay");
+  openDetail(id,null);
+}
+
+// ── DUPLICAR ──
 function openDuplicate(id){
   dupSourceId=id;const c=cards[id];if(!c)return;
   const base=new Date(c.year,c.month,c.day+1);
   const iso=`${base.getFullYear()}-${String(base.getMonth()+1).padStart(2,"0")}-${String(base.getDate()).padStart(2,"0")}`;
-  document.getElementById("dupDate").value=iso;
-  document.getElementById("dupTitle").value="";
-  openOverlay("dupOverlay");
+  document.getElementById("dupDate").value=iso;document.getElementById("dupTitle").value="";openOverlay("dupOverlay");
 }
 async function confirmDuplicate(){
-  const dateVal=document.getElementById("dupDate").value;
-  if(!dateVal){showToast("⚠️ Selecione uma data!","#f97316");return;}
+  const dateVal=document.getElementById("dupDate").value;if(!dateVal){showToast("⚠️ Selecione uma data!","#f97316");return;}
   const src=cards[dupSourceId];if(!src)return;
   const[yr,mo,dy]=dateVal.split("-").map(Number);
-  const newTitle=document.getElementById("dupTitle").value.trim()||src.title;
-  const newCard={...src,id:"c"+Date.now(),year:yr,month:mo-1,day:dy,date:dateVal,title:newTitle,comments:[]};
+  const newCard={...src,id:"c"+Date.now(),year:yr,month:mo-1,day:dy,date:dateVal,title:document.getElementById("dupTitle").value.trim()||src.title,comments:[]};
   closeOverlay("dupOverlay");closeOverlay("detailOverlay");
-  cards[newCard.id]=newCard;rebuildRecurInstances();
-  refreshDay(newCard.month,newCard.day);refreshLeg(newCard.month);
-  updateCounts();buildCampaignFilters();
+  cards[newCard.id]=newCard;rebuildRecurInstances();refreshDay(newCard.month,newCard.day);refreshLeg(newCard.month);updateCounts();buildCampaignFilters();
   await dbSaveCard(newCard);showToast("⧉ Card duplicado!");
 }
 
-// ══════════ STATUS INLINE DETALHE ══════════
+// ── STATUS INLINE ──
 function renderDetailStatusBar(currentStatus){
-  return`<div class="detail-status-bar">
-    <div class="detail-status-label">🎯 Status da Demanda</div>
-    <div class="detail-status-opts">
-      ${Object.entries(STATUS_COLORS).map(([s,sc])=>{
-        const isActive=s===currentStatus;
-        return`<div class="ds-opt${isActive?" active":""}" data-val="${s}"
-          style="${isActive?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""}"
-          onclick="setDetailStatus('${s}')">
-          <span class="s-dot" style="background:${sc.bg}"></span>${s}
-        </div>`;
-      }).join("")}
-    </div>
-  </div>`;
+  return`<div class="detail-status-bar"><div class="detail-status-label">🎯 Status da Demanda</div><div class="detail-status-opts">${Object.entries(STATUS_COLORS).map(([s,sc])=>{const isActive=s===currentStatus;return`<div class="ds-opt${isActive?" active":""}" data-val="${s}" style="${isActive?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""}" onclick="setDetailStatus('${s}')"><span class="s-dot" style="background:${sc.bg}"></span>${s}</div>`;}).join("")}</div></div>`;
 }
-
-// ★ STATUS INDEPENDENTE POR INSTÂNCIA
 async function setDetailStatus(newStatus){
-  const card=cards[currentDetailCardId]; if(!card) return;
-  // Verifica se o detalhe aberto é de uma instância recorrente
-  const isRecurInst=window._currentDetailIsRecur||false;
-  const recurDate=window._currentDetailDate||null;
-
-  if(isRecurInst && recurDate){
-    // Status independente — salva apenas no localStorage
-    const key=getRecurStatusKey(currentDetailCardId, recurDate);
-    recurStatuses[key]=recurStatuses[key]===newStatus?"":newStatus;
-    saveRecurStatuses();
+  const card=cards[currentDetailCardId];if(!card)return;
+  const isRecurInst=window._currentDetailIsRecur||false,recurDate=window._currentDetailDate||null;
+  if(isRecurInst&&recurDate){
+    const key=getRecurStatusKey(currentDetailCardId,recurDate);
+    recurStatuses[key]=recurStatuses[key]===newStatus?"":newStatus;saveRecurStatuses();
     const effStatus=recurStatuses[key];
-    // Atualiza UI
-    document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{
-      const v=el.dataset.val,isActive=v===effStatus,sc=STATUS_COLORS[v];
-      el.className="ds-opt"+(isActive?" active":"");
-      el.style.cssText=isActive?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:"";
-    });
+    document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,isActive=v===effStatus,sc=STATUS_COLORS[v];el.className="ds-opt"+(isActive?" active":"");el.style.cssText=isActive?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:"";});
     const badge=document.getElementById("detailStatusBadge");
-    if(badge){
-      if(effStatus){const sc=STATUS_COLORS[effStatus];badge.textContent=effStatus;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}
-      else badge.style.display="none";
-    }
-    // Re-renderiza o card no calendário
-    const[yr,mo,dy]=recurDate.split("-").map(Number);
-    refreshDay(mo-1,dy);
-    updateCounts();
-    showToast("✅ Status da ocorrência atualizado!");
+    if(badge){if(effStatus){const sc=STATUS_COLORS[effStatus];badge.textContent=effStatus;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}else badge.style.display="none";}
+    const[yr,mo,dy]=recurDate.split("-").map(Number);refreshDay(mo-1,dy);updateCounts();showToast("✅ Status da ocorrência atualizado!");
   } else {
-    // Card original — salva normalmente no Firebase
-    const updated={...card,briefing:card.briefing===newStatus?"":newStatus};
-    cards[currentDetailCardId]=updated;
-    document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{
-      const v=el.dataset.val,isActive=v===updated.briefing,sc=STATUS_COLORS[v];
-      el.className="ds-opt"+(isActive?" active":"");
-      el.style.cssText=isActive?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:"";
-    });
+    const updated={...card,briefing:card.briefing===newStatus?"":newStatus};cards[currentDetailCardId]=updated;
+    document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,isActive=v===updated.briefing,sc=STATUS_COLORS[v];el.className="ds-opt"+(isActive?" active":"");el.style.cssText=isActive?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:"";});
     const badge=document.getElementById("detailStatusBadge");
-    if(badge){
-      if(updated.briefing){const sc=STATUS_COLORS[updated.briefing];badge.textContent=updated.briefing;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}
-      else badge.style.display="none";
-    }
-    rebuildRecurInstances();
-    refreshDay(updated.month,updated.day);refreshLeg(updated.month);updateCounts();
-    await dbSaveCard(updated);
-    showToast("✅ Status atualizado!");
+    if(badge){if(updated.briefing){const sc=STATUS_COLORS[updated.briefing];badge.textContent=updated.briefing;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}else badge.style.display="none";}
+    rebuildRecurInstances();refreshDay(updated.month,updated.day);refreshLeg(updated.month);updateCounts();await dbSaveCard(updated);showToast("✅ Status atualizado!");
   }
 }
 
-// ══════════ PEOPLE ══════════
+// ── PEOPLE ──
 function savePeopleList(){localStorage.setItem("cal_people",JSON.stringify(peopleList));}
-function addPersonFromFilter(){
-  const inp=document.getElementById("newRespInput");const name=inp.value.trim();
-  if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}
-  if(!peopleList.find(p=>p.toLowerCase()===name.toLowerCase())){peopleList.push(name);savePeopleList();showToast("✅ "+name+" adicionado(a)!");}
-  inp.value="";buildRespFilters();
-}
-function buildRespFilters(){
-  const c=document.getElementById("respFilters");
-  const allChip=`<div class="filter-chip${filterResp==="Todas"?" active":""}" onclick="setFilterResp('Todas')">Todas</div>`;
-  const chips=peopleList.map(name=>{
-    const isActive=filterResp===name,av=colorFromName(name);
-    return`<div class="filter-chip-person${isActive?" active":""}" onclick="setFilterResp('${esc(name)}')">
-      <div class="fcp-avatar" style="background:${av}">${initials(name)}</div>${esc(name)}
-    </div>`;
-  }).join("");
-  c.innerHTML=allChip+chips;
-}
+function addPersonFromFilter(){const inp=document.getElementById("newRespInput"),name=inp.value.trim();if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}if(!peopleList.find(p=>p.toLowerCase()===name.toLowerCase())){peopleList.push(name);savePeopleList();showToast("✅ "+name+" adicionado(a)!");}inp.value="";buildRespFilters();}
+function buildRespFilters(){const c=document.getElementById("respFilters");c.innerHTML=`<div class="filter-chip${filterResp==="Todas"?" active":""}" onclick="setFilterResp('Todas')">Todas</div>`+peopleList.map(name=>{const isActive=filterResp===name,av=colorFromName(name);return`<div class="filter-chip-person${isActive?" active":""}" onclick="setFilterResp('${esc(name)}')"><div class="fcp-avatar" style="background:${av}">${initials(name)}</div>${esc(name)}</div>`;}).join("");}
 function setFilterResp(name){filterResp=name;buildRespFilters();applyFilters();}
-function togglePeople(pid){
-  const drop=document.getElementById(pid+"-drop");
-  const isOpen=drop.classList.contains("open");
-  document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));
-  if(!isOpen){renderPeopleList(pid);drop.classList.add("open");}
-}
-function renderPeopleList(pid){
-  const list=document.getElementById(pid+"-list");if(!list)return;
-  if(!peopleList.length){list.innerHTML=`<div class="people-empty">Nenhuma pessoa ainda.<br>Adicione abaixo! 👇</div>`;return;}
-  list.innerHTML=peopleList.map(name=>{
-    const sel=pickerSelected[pid]===name;
-    return`<div class="people-opt${sel?" selected":""}" onclick="selectPerson('${pid}','${esc(name)}')">
-      <div class="people-opt-avatar" style="background:${colorFromName(name)}">${initials(name)}</div>
-      <span class="people-opt-name">${esc(name)}</span>
-      ${sel?`<span style="color:var(--accent);font-size:.8rem">✓</span>`:""}
-    </div>`;
-  }).join("");
-}
-function selectPerson(pid,name){
-  pickerSelected[pid]=pickerSelected[pid]===name?"":name;
-  const valEl=document.getElementById(pid+"-val");
-  if(pickerSelected[pid]){valEl.textContent=pickerSelected[pid];valEl.classList.remove("empty");}
-  else{valEl.textContent="Selecione ou adicione…";valEl.classList.add("empty");}
-  document.getElementById(pid+"-drop").classList.remove("open");
-  if(pid==="ppResp"&&pickerSelected[pid])buildRespFilters();
-}
-function addPerson(pid){
-  const inp=document.getElementById(pid+"-inp");const name=inp.value.trim();
-  if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}
-  const existing=peopleList.find(p=>p.toLowerCase()===name.toLowerCase());
-  if(existing){selectPerson(pid,existing);inp.value="";return;}
-  peopleList.push(name);savePeopleList();inp.value="";
-  selectPerson(pid,name);buildRespFilters();showToast("✅ "+name+" adicionado(a)!");
-}
-function applyPeoplePicker(pid,val){
-  pickerSelected[pid]=val||"";
-  const valEl=document.getElementById(pid+"-val");
-  if(val){valEl.textContent=val;valEl.classList.remove("empty");}
-  else{valEl.textContent="Selecione ou adicione…";valEl.classList.add("empty");}
-}
-document.addEventListener("click",e=>{
-  if(!e.target.closest(".people-picker"))
-    document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));
-});
+function togglePeople(pid){const drop=document.getElementById(pid+"-drop"),isOpen=drop.classList.contains("open");document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));if(!isOpen){renderPeopleList(pid);drop.classList.add("open");}}
+function renderPeopleList(pid){const list=document.getElementById(pid+"-list");if(!list)return;if(!peopleList.length){list.innerHTML=`<div class="people-empty">Nenhuma pessoa ainda.<br>Adicione abaixo! 👇</div>`;return;}list.innerHTML=peopleList.map(name=>{const sel=pickerSelected[pid]===name;return`<div class="people-opt${sel?" selected":""}" onclick="selectPerson('${pid}','${esc(name)}')"><div class="people-opt-avatar" style="background:${colorFromName(name)}">${initials(name)}</div><span class="people-opt-name">${esc(name)}</span>${sel?`<span style="color:var(--accent);font-size:.8rem">✓</span>`:""}</div>`;}).join("");}
+function selectPerson(pid,name){pickerSelected[pid]=pickerSelected[pid]===name?"":name;const valEl=document.getElementById(pid+"-val");if(pickerSelected[pid]){valEl.textContent=pickerSelected[pid];valEl.classList.remove("empty");}else{valEl.textContent="Selecione ou adicione…";valEl.classList.add("empty");}document.getElementById(pid+"-drop").classList.remove("open");if(pid==="ppResp"&&pickerSelected[pid])buildRespFilters();}
+function addPerson(pid){const inp=document.getElementById(pid+"-inp"),name=inp.value.trim();if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}const existing=peopleList.find(p=>p.toLowerCase()===name.toLowerCase());if(existing){selectPerson(pid,existing);inp.value="";return;}peopleList.push(name);savePeopleList();inp.value="";selectPerson(pid,name);buildRespFilters();showToast("✅ "+name+" adicionado(a)!");}
+function applyPeoplePicker(pid,val){pickerSelected[pid]=val||"";const valEl=document.getElementById(pid+"-val");if(val){valEl.textContent=val;valEl.classList.remove("empty");}else{valEl.textContent="Selecione ou adicione…";valEl.classList.add("empty");}}
+document.addEventListener("click",e=>{if(!e.target.closest(".people-picker"))document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));});
 
-// ══════════ FIREBASE ══════════
-function saveConfig(){
-  try{const raw=document.getElementById("cfgInput").value.trim();const cfg=JSON.parse(raw);
-    if(!cfg.apiKey||!cfg.projectId)throw 0;
-    localStorage.setItem("fbcfg_cal",JSON.stringify(cfg));
-    showToast("✅ Salvo! Recarregando…","#6c63ff");setTimeout(()=>location.reload(),1200);
-  }catch{showToast("❌ JSON inválido!","#f87171");}
-}
+// ── FIREBASE ──
+function saveConfig(){try{const raw=document.getElementById("cfgInput").value.trim(),cfg=JSON.parse(raw);if(!cfg.apiKey||!cfg.projectId)throw 0;localStorage.setItem("fbcfg_cal",JSON.stringify(cfg));showToast("✅ Salvo! Recarregando…","#6c63ff");setTimeout(()=>location.reload(),1200);}catch{showToast("❌ JSON inválido!","#f87171");}}
 window._fbReady=false;
 window.addEventListener("firebaseReady",()=>{window._fbReady=true;startApp();});
 setTimeout(()=>{if(!window._fbReady){document.getElementById("loadingScreen").style.display="none";document.getElementById("configScreen").style.display="flex";}},4000);
 
 function startApp(){
-  document.getElementById("loadingScreen").style.display="none";
-  document.getElementById("configScreen").style.display="none";
-  document.getElementById("appShell").style.display="flex";
-  setSyncStatus("ok");
-  renderAll();renderMonthNav();renderCatSidebar();listenData();
-  renderPresets("presetGrid");renderPresets("catPresetGrid");
-  buildEmojiPanels();setupOverlayClose();
-  buildPlatformFilters();buildRespFilters();
-  document.getElementById("recurOpts").addEventListener("click",e=>{
-    const btn=e.target.closest(".recur-opt");if(btn)selectRecur(btn.dataset.val);
-  });
+  document.getElementById("loadingScreen").style.display="none";document.getElementById("configScreen").style.display="none";document.getElementById("appShell").style.display="flex";setSyncStatus("ok");
+  renderAll();renderMonthNav();renderCatSidebar();listenData();renderPresets("presetGrid");renderPresets("catPresetGrid");buildEmojiPanels();setupOverlayClose();buildPlatformFilters();buildRespFilters();
+  document.getElementById("recurOpts").addEventListener("click",e=>{const btn=e.target.closest(".recur-opt");if(btn)selectRecur(btn.dataset.val);});
 }
 function listenData(){
   if(!window._db)return;
-  window._onSnapshot(window._col("cats_cal"),snap=>{
-    categories={};snap.forEach(d=>{categories[d.id]=d.data();});
-    if(!Object.keys(categories).length)seedCats();
-    renderCatSidebar();refreshAllDOM();
-  },()=>setSyncStatus("err"));
-  window._onSnapshot(window._col("cards_cal"),snap=>{
-    cards={};snap.forEach(d=>{cards[d.id]=d.data();});
-    Object.values(cards).forEach(c=>{
-      if(c.responsavel&&!peopleList.includes(c.responsavel)){peopleList.push(c.responsavel);savePeopleList();}
-      if(c.solicitante&&!peopleList.includes(c.solicitante)){peopleList.push(c.solicitante);savePeopleList();}
-    });
-    buildRespFilters();rebuildRecurInstances();renderAll();buildCampaignFilters();setSyncStatus("ok");
-  },()=>setSyncStatus("err"));
-  window._onSnapshot(window._col("campaigns_cal"),snap=>{
-    if(!snap.empty){const d=snap.docs[0];campaigns=d.data().list||[...DEFAULT_CAMPAIGNS];}
-  },()=>{});
+  window._onSnapshot(window._col("cats_cal"),snap=>{categories={};snap.forEach(d=>{categories[d.id]=d.data();});if(!Object.keys(categories).length)seedCats();renderCatSidebar();refreshAllDOM();},()=>setSyncStatus("err"));
+  window._onSnapshot(window._col("cards_cal"),snap=>{cards={};snap.forEach(d=>{cards[d.id]=d.data();});Object.values(cards).forEach(c=>{if(c.responsavel&&!peopleList.includes(c.responsavel)){peopleList.push(c.responsavel);savePeopleList();}if(c.solicitante&&!peopleList.includes(c.solicitante)){peopleList.push(c.solicitante);savePeopleList();}});buildRespFilters();rebuildRecurInstances();renderAll();buildCampaignFilters();setSyncStatus("ok");},()=>setSyncStatus("err"));
+  window._onSnapshot(window._col("campaigns_cal"),snap=>{if(!snap.empty){const d=snap.docs[0];campaigns=d.data().list||[...DEFAULT_CAMPAIGNS];}},()=>{});
 }
-async function seedCats(){
-  const defs=[{id:"dc1",name:"Reels",color:"#6c63ff",emoji:"🎬"},{id:"dc2",name:"Feed",color:"#22d3ee",emoji:"🖼️"},{id:"dc3",name:"YouTube",color:"#f87171",emoji:"▶️"},{id:"dc4",name:"Evento",color:"#fb923c",emoji:"🏢"},{id:"dc5",name:"Stories",color:"#4ade80",emoji:"📖"},{id:"dc6",name:"Outros",color:"#94a3b8",emoji:"📌"}];
-  for(const c of defs){categories[c.id]=c;await window._setDoc(window._doc("cats_cal",c.id),c);}
-}
+async function seedCats(){const defs=[{id:"dc1",name:"Reels",color:"#6c63ff",emoji:"🎬"},{id:"dc2",name:"Feed",color:"#22d3ee",emoji:"🖼️"},{id:"dc3",name:"YouTube",color:"#f87171",emoji:"▶️"},{id:"dc4",name:"Evento",color:"#fb923c",emoji:"🏢"},{id:"dc5",name:"Stories",color:"#4ade80",emoji:"📖"},{id:"dc6",name:"Outros",color:"#94a3b8",emoji:"📌"}];for(const c of defs){categories[c.id]=c;await window._setDoc(window._doc("cats_cal",c.id),c);}}
 const dbSaveCard=async c=>window._setDoc(window._doc("cards_cal",c.id),c);
-const dbDelCard =async i=>window._deleteDoc(window._doc("cards_cal",i));
-const dbSaveCat =async c=>window._setDoc(window._doc("cats_cal",c.id),c);
-const dbDelCat  =async i=>window._deleteDoc(window._doc("cats_cal",i));
+const dbDelCard=async i=>window._deleteDoc(window._doc("cards_cal",i));
+const dbSaveCat=async c=>window._setDoc(window._doc("cats_cal",c.id),c);
+const dbDelCat=async i=>window._deleteDoc(window._doc("cats_cal",i));
 const dbSaveCampaigns=async()=>{if(window._db)await window._setDoc(window._doc("campaigns_cal","main"),{list:campaigns});};
 function setSyncStatus(s){const d=document.getElementById("syncDot");if(!d)return;d.className="sync-dot "+(s==="ok"?"ok":"err");}
 
-// ══════════ FILTROS ══════════
-function buildPlatformFilters(){
-  document.getElementById("platformFilters").innerHTML=
-    PLATFORMS.map(p=>`<button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">${PLAT_ICONS[p]||""} ${p}</button>`).join("");
-}
-function buildCampaignFilters(){
-  const used=["Todas",...new Set(Object.values(cards).map(c=>c.campaign).filter(Boolean))];
-  document.getElementById("campaignFilters").innerHTML=
-    used.map(c=>`<button class="filter-chip${c===filterCampaign?" active":""}" onclick="setFilterCampaign('${esc(c)}')">${esc(c)}</button>`).join("");
-}
+// ── FILTROS ──
+function buildPlatformFilters(){document.getElementById("platformFilters").innerHTML=PLATFORMS.map(p=>`<button class="filter-chip${p===filterPlatform?" active":""}" onclick="setFilterPlatform('${p}')">${PLAT_ICONS[p]||""} ${p}</button>`).join("");}
+function buildCampaignFilters(){const used=["Todas",...new Set(Object.values(cards).map(c=>c.campaign).filter(Boolean))];document.getElementById("campaignFilters").innerHTML=used.map(c=>`<button class="filter-chip${c===filterCampaign?" active":""}" onclick="setFilterCampaign('${esc(c)}')">${esc(c)}</button>`).join("");}
 function setFilterPlatform(p){filterPlatform=p;buildPlatformFilters();applyFilters();}
 function setFilterCampaign(c){filterCampaign=c;buildCampaignFilters();applyFilters();}
 function applyFilters(){searchQuery=document.getElementById("searchInput").value.toLowerCase().trim();refreshAllDOM();}
-function cardMatchesFilter(card){
-  if(filterPlatform!=="Todas"&&card.platform!==filterPlatform)return false;
-  if(filterCampaign!=="Todas"&&card.campaign!==filterCampaign)return false;
-  if(filterResp!=="Todas"&&card.responsavel!==filterResp)return false;
-  if(searchQuery){
-    const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,
-               card.responsavel,card.solicitante,...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();
-    if(!hay.includes(searchQuery))return false;
-  }
-  return true;
-}
+function cardMatchesFilter(card){if(filterPlatform!=="Todas"&&card.platform!==filterPlatform)return false;if(filterCampaign!=="Todas"&&card.campaign!==filterCampaign)return false;if(filterResp!=="Todas"&&card.responsavel!==filterResp)return false;if(searchQuery){const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,card.responsavel,card.solicitante,...(card.tags||[]),...(card.links||[]).map(l=>l.name+" "+l.url)].join(" ").toLowerCase();if(!hay.includes(searchQuery))return false;}return true;}
 
-// ══════════ NAVEGAÇÃO ══════════
-function goToToday(){
-  const ty=TODAY.getFullYear(),tm=TODAY.getMonth();
-  if(currentYear!==ty){currentYear=ty;document.getElementById("yearDisplay").textContent=ty;document.getElementById("topbarYear").textContent=ty;renderAll();}
-  const sec=document.getElementById(`month-${tm}`);
-  if(sec){sec.scrollIntoView({behavior:"smooth",block:"start"});
-    setTimeout(()=>{const cell=document.getElementById(`drop-${tm}-${TODAY.getDate()}`);
-      if(cell){cell.classList.add("highlight-pulse");setTimeout(()=>cell.classList.remove("highlight-pulse"),1500);}},400);}
-}
-function changeYear(d){
-  const ny=currentYear+d;if(ny<2020||ny>2035)return;
-  currentYear=ny;document.getElementById("yearDisplay").textContent=ny;document.getElementById("topbarYear").textContent=ny;
-  rebuildRecurInstances();renderAll();
-}
-function holiday(yr,mi,day){
-  const h=HOLIDAYS_BY_YEAR[yr]||{};
-  return h[`${String(mi+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`]||null;
-}
+// ── NAVEGAÇÃO ──
+function goToToday(){const ty=TODAY.getFullYear(),tm=TODAY.getMonth();if(currentYear!==ty){currentYear=ty;document.getElementById("yearDisplay").textContent=ty;document.getElementById("topbarYear").textContent=ty;renderAll();}const sec=document.getElementById(`month-${tm}`);if(sec){sec.scrollIntoView({behavior:"smooth",block:"start"});setTimeout(()=>{const cell=document.getElementById(`drop-${tm}-${TODAY.getDate()}`);if(cell){cell.classList.add("highlight-pulse");setTimeout(()=>cell.classList.remove("highlight-pulse"),1500);}},400);}}
+function changeYear(d){const ny=currentYear+d;if(ny<2020||ny>2035)return;currentYear=ny;document.getElementById("yearDisplay").textContent=ny;document.getElementById("topbarYear").textContent=ny;rebuildRecurInstances();renderAll();}
+function holiday(yr,mi,day){const h=HOLIDAYS_BY_YEAR[yr]||{};return h[`${String(mi+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`]||null;}
 
-// ══════════ RENDER ══════════
-function renderAll(){
-  rebuildRecurInstances();
-  document.getElementById("mainContent").innerHTML=MONTHS_PT.map((_,i)=>buildMonthHTML(i)).join("");
-  renderMonthNav();attachDropZones();
-}
+// ── RENDER ──
+function renderAll(){rebuildRecurInstances();document.getElementById("mainContent").innerHTML=MONTHS_PT.map((_,i)=>buildMonthHTML(i)).join("");renderMonthNav();attachDropZones();}
 function buildMonthHTML(mi){
   const yr=currentYear,dim=new Date(yr,mi+1,0).getDate(),fd=new Date(yr,mi,1).getDay();
-  const totalCards=countCardsForMonth(mi);
-  const statusCounts=getStatusDotsForMonth(mi);
-  const statusDotsHTML=Object.keys(statusCounts).length
-    ?`<div class="month-status-dots">${Object.entries(statusCounts).map(([s,n])=>{
-        const sc=STATUS_COLORS[s]||{bg:"#6b7399"};
-        return`<div class="mstatus-dot"><div class="mstatus-circle" style="background:${sc.bg}"></div>${s} (${n})</div>`;
-      }).join("")}</div>`:""
+  const totalCards=countCardsForMonth(mi),statusCounts=getStatusDotsForMonth(mi);
+  const statusDotsHTML=Object.keys(statusCounts).length?`<div class="month-status-dots">${Object.entries(statusCounts).map(([s,n])=>{const sc=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="mstatus-dot"><div class="mstatus-circle" style="background:${sc.bg}"></div>${s} (${n})</div>`;}).join("")}</div>`:""
   let cells=DAYS_PT.map(d=>`<div class="cal-hcell">${d}</div>`).join("");
   for(let i=0;i<fd;i++)cells+=`<div class="cal-day empty"></div>`;
   for(let d=1;d<=dim;d++){
-    const h=holiday(yr,mi,d);
-    const isToday=TODAY.getFullYear()===yr&&TODAY.getMonth()===mi&&TODAY.getDate()===d;
-    const dc=getCardsForDay(mi,d,yr);
-    cells+=`
-      <div class="cal-day${isToday?" today":""}${h?" holiday":""}" id="drop-${mi}-${d}" data-month="${mi}" data-day="${d}">
-        <div class="day-top">
-          <div class="day-num">${d}</div>
-          ${h?`<div class="holiday-tag">🎉 ${h}</div>`:""}
-        </div>
-        <div class="day-cards" id="dc-${mi}-${d}">${dc.map(c=>cardHTML(c)).join("")}</div>
-        <button class="day-add-btn" onclick="openAdd(${mi},${d})">＋</button>
-      </div>`;
-  }
-  return`
-    <section class="month-section" id="month-${mi}">
-      <div class="month-header">
-        <div class="month-left">
-          <div class="month-title-row">
-            <h2 class="month-title">${MONTHS_PT[mi]} ${yr}</h2>
-            <span class="month-cnt" id="cnt-${mi}">${totalCards===1?"1 card":`${totalCards} cards`}</span>
-          </div>
-          <div id="mstatus-${mi}">${statusDotsHTML}</div>
-        </div>
-        <button class="btn-add-main" onclick="openAddGeneral(${mi})">＋ Adicionar</button>
+    const h=holiday(yr,mi,d),isToday=TODAY.getFullYear()===yr&&TODAY.getMonth()===mi&&TODAY.getDate()===d,dc=getCardsForDay(mi,d,yr);
+    cells+=`<div class="cal-day${isToday?" today":""}${h?" holiday":""}" id="drop-${mi}-${d}" data-month="${mi}" data-day="${d}">
+      <div class="day-top">
+        <div class="day-num" onclick="openDayModal(${mi},${d},event)" title="Ver demandas do dia">${d}</div>
+        ${h?`<div class="holiday-tag">🎉 ${h}</div>`:""}
       </div>
-      <div class="cal-wrap"><div class="cal-grid">${cells}</div></div>
-    </section>`;
+      <div class="day-cards" id="dc-${mi}-${d}">${dc.map(c=>cardHTML(c)).join("")}</div>
+      <button class="day-add-btn" onclick="openAdd(${mi},${d})">＋</button>
+    </div>`;
+  }
+  return`<section class="month-section" id="month-${mi}">
+    <div class="month-header">
+      <div class="month-left">
+        <div class="month-title-row">
+          <h2 class="month-title">${MONTHS_PT[mi]} ${yr}</h2>
+          <span class="month-cnt" id="cnt-${mi}">${totalCards===1?"1 card":`${totalCards} cards`}</span>
+        </div>
+        <div id="mstatus-${mi}">${statusDotsHTML}</div>
+      </div>
+      <button class="btn-add-main" onclick="openAddGeneral(${mi})">＋ Adicionar</button>
+    </div>
+    <div class="cal-wrap"><div class="cal-grid">${cells}</div></div>
+  </section>`;
 }
 
-function getCardColor(card){
-  if(card.overrideColor)return card.overrideColor;
-  const cat=categories[card.catId];
-  return card.color||(cat?.color||"#6c63ff");
-}
+function getCardColor(card){if(card.overrideColor)return card.overrideColor;const cat=categories[card.catId];return card.color||(cat?.color||"#6c63ff");}
 function cardHTML(card){
   if(!cardMatchesFilter(card))return"";
-  const color=getCardColor(card),bg=color+"1e";
-  const platIcon=PLAT_ICONS[card.platform||""]||"";
-  const hasComments=(card.comments||[]).length>0;
-  const cat=categories[card.catId];
-  const isRecur=card._isRecurInstance||false;
+  const color=getCardColor(card),bg=color+"1e",platIcon=PLAT_ICONS[card.platform||""]||"",hasComments=(card.comments||[]).length>0,cat=categories[card.catId],isRecur=card._isRecurInstance||false;
   const isFiltered=filterResp!=="Todas"&&card.responsavel===filterResp;
-  const avatarHTML=card.responsavel
-    ?`<div class="card-avatar" style="background:${colorFromName(card.responsavel)};${isFiltered?"box-shadow:0 0 0 2px #fff":""}" title="${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:"";
+  const avatarHTML=card.responsavel?`<div class="card-avatar" style="background:${colorFromName(card.responsavel)};${isFiltered?"box-shadow:0 0 0 2px #fff":""}" title="${esc(card.responsavel)}">${initials(card.responsavel)}</div>`:"";
   const recurHTML=card.recurrence&&!isRecur?`<span class="card-recur">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";
-  const effStatus=getEffectiveStatus(card);
-  const sc=STATUS_COLORS[effStatus];
+  const effStatus=getEffectiveStatus(card),sc=STATUS_COLORS[effStatus];
   const statusDot=sc?`<div class="card-status-dot" style="background:${sc.bg}" title="${esc(effStatus)}"></div>`:"";
-  const cl=card.checklist||[];
-  const hasChecklist=cl.length>0;
-  const {done,total,pct}=clStats(cl);
-  const clBar=hasChecklist?`
-    <div class="card-checklist-bar">
-      <div class="card-cl-prog"><div class="card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>
-      <span class="card-cl-label">${done}/${total}</span>
-    </div>`:"";
-  const icons=[
-    (card.links||[]).length>0?`<span class="card-icon">🔗</span>`:"",
-    hasComments?`<div class="card-comment-dot"></div>`:"",
-  ].join("");
-  return`
-    <div class="content-card${isRecur?" is-recur":""}" id="card-${card.id}"
-         style="border-left-color:${color};background:${bg}"
-         draggable="${!isRecur}"
-         ondragstart="${!isRecur?`onDragStart(event,'${card.id}')`:"return false"}"
-         ondragend="onDragEnd()"
-         onclick="openDetail('${card.id}',event)">
-      <div class="card-main-row">
-        ${platIcon?`<span class="card-plat-icon">${platIcon}</span>`:""}
-        <div class="card-inner">
-          <div class="card-title">${esc(card.title)}</div>
-          ${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:
-            cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}
-        </div>
-        ${avatarHTML}${recurHTML}${statusDot}
-        ${icons?`<div class="card-icons">${icons}</div>`:""}
+  const cl=card.checklist||[],{done,total,pct}=clStats(cl);
+  const clBar=cl.length?`<div class="card-checklist-bar"><div class="card-cl-prog"><div class="card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div><span class="card-cl-label">${done}/${total}</span></div>`:"";
+  const icons=[(card.links||[]).length>0?`<span class="card-icon">🔗</span>`:"",hasComments?`<div class="card-comment-dot"></div>`:""].join("");
+  return`<div class="content-card${isRecur?" is-recur":""}" id="card-${card.id}" style="border-left-color:${color};background:${bg}" draggable="${!isRecur}" ondragstart="${!isRecur?`onDragStart(event,'${card.id}')`:"return false"}" ondragend="onDragEnd()" onclick="openDetail('${card.id}',event)">
+    <div class="card-main-row">
+      ${platIcon?`<span class="card-plat-icon">${platIcon}</span>`:""}
+      <div class="card-inner">
+        <div class="card-title">${esc(card.title)}</div>
+        ${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}
       </div>
-      ${clBar}
-    </div>`;
+      ${avatarHTML}${recurHTML}${statusDot}${icons?`<div class="card-icons">${icons}</div>`:""}
+    </div>${clBar}
+  </div>`;
 }
 
-// ══════════ REFRESH ══════════
-function refreshDay(mi,d){
-  const el=document.getElementById(`dc-${mi}-${d}`);if(!el)return;
-  el.innerHTML=getCardsForDay(mi,d,currentYear).map(c=>cardHTML(c)).join("");
-  attachDropZones();
-}
-function refreshLeg(mi){
-  const sd=document.getElementById(`mstatus-${mi}`);
-  if(sd){
-    const statusCounts=getStatusDotsForMonth(mi);
-    sd.innerHTML=Object.keys(statusCounts).length
-      ?`<div class="month-status-dots">${Object.entries(statusCounts).map(([s,n])=>{
-          const sc=STATUS_COLORS[s]||{bg:"#6b7399"};
-          return`<div class="mstatus-dot"><div class="mstatus-circle" style="background:${sc.bg}"></div>${s} (${n})</div>`;
-        }).join("")}</div>`:"";}
-}
-function refreshAllDOM(){
-  rebuildRecurInstances();
-  MONTHS_PT.forEach((_,mi)=>{
-    const dim=new Date(currentYear,mi+1,0).getDate();
-    for(let d=1;d<=dim;d++)refreshDay(mi,d);
-    refreshLeg(mi);
-  });
-  updateCounts();
-}
-function updateCounts(){
-  MONTHS_PT.forEach((_,i)=>{
-    const n=countCardsForMonth(i);
-    const pub=countPublishedForMonth(i);
-    const el=document.getElementById(`cnt-${i}`);if(el)el.textContent=n===1?"1 card":`${n} cards`;
-    const ml=document.getElementById(`mlcnt-${i}`);if(ml)ml.textContent=n;
-    const md=document.getElementById(`mldone-${i}`);if(md){
-      if(pub>0){md.textContent=`✓ ${pub}`;md.style.display="inline";}
-      else md.style.display="none";
-    }
-  });
-}
-function renderMonthNav(){
-  document.getElementById("monthList").innerHTML=MONTHS_PT.map((m,i)=>{
-    const n=countCardsForMonth(i),pub=countPublishedForMonth(i);
-    return`<a class="mlist-a" href="#month-${i}" onclick="closeSidebar()">
-      ${m}
-      <div class="mlist-meta">
-        <span class="mlist-cnt" id="mlcnt-${i}">${n}</span>
-        ${pub>0?`<span class="mlist-done" id="mldone-${i}">✓ ${pub}</span>`:`<span class="mlist-done" id="mldone-${i}" style="display:none">✓ ${pub}</span>`}
-      </div>
-    </a>`;
-  }).join("");
-}
-function renderCatSidebar(){
-  document.getElementById("catList").innerHTML=Object.values(categories).map(c=>`
-    <div class="cat-item">
-      ${c.emoji?`<span class="cat-emoji">${c.emoji}</span>`:`<div class="cat-swatch" style="background:${c.color}"></div>`}
-      <span class="cat-name">${esc(c.name)}</span>
-      <button class="cat-edit-btn" onclick="openCatModal('${c.id}')">✏️</button>
-    </div>`).join("");
-}
+// ── REFRESH ──
+function refreshDay(mi,d){const el=document.getElementById(`dc-${mi}-${d}`);if(!el)return;el.innerHTML=getCardsForDay(mi,d,currentYear).map(c=>cardHTML(c)).join("");attachDropZones();}
+function refreshLeg(mi){const sd=document.getElementById(`mstatus-${mi}`);if(sd){const sc=getStatusDotsForMonth(mi);sd.innerHTML=Object.keys(sc).length?`<div class="month-status-dots">${Object.entries(sc).map(([s,n])=>{const c=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="mstatus-dot"><div class="mstatus-circle" style="background:${c.bg}"></div>${s} (${n})</div>`;}).join("")}</div>`:""}}
+function refreshAllDOM(){rebuildRecurInstances();MONTHS_PT.forEach((_,mi)=>{const dim=new Date(currentYear,mi+1,0).getDate();for(let d=1;d<=dim;d++)refreshDay(mi,d);refreshLeg(mi);});updateCounts();}
+function updateCounts(){MONTHS_PT.forEach((_,i)=>{const n=countCardsForMonth(i),pub=countPublishedForMonth(i);const el=document.getElementById(`cnt-${i}`);if(el)el.textContent=n===1?"1 card":`${n} cards`;const ml=document.getElementById(`mlcnt-${i}`);if(ml)ml.textContent=n;const md=document.getElementById(`mldone-${i}`);if(md){if(pub>0){md.textContent=`✓ ${pub}`;md.style.display="inline";}else md.style.display="none";}});}
+function renderMonthNav(){document.getElementById("monthList").innerHTML=MONTHS_PT.map((m,i)=>{const n=countCardsForMonth(i),pub=countPublishedForMonth(i);return`<a class="mlist-a" href="#month-${i}" onclick="closeSidebar()">${m}<div class="mlist-meta"><span class="mlist-cnt" id="mlcnt-${i}">${n}</span>${pub>0?`<span class="mlist-done" id="mldone-${i}">✓ ${pub}</span>`:`<span class="mlist-done" id="mldone-${i}" style="display:none">✓ ${pub}</span>`}</div></a>`;}).join("");}
+function renderCatSidebar(){document.getElementById("catList").innerHTML=Object.values(categories).map(c=>`<div class="cat-item">${c.emoji?`<span class="cat-emoji">${c.emoji}</span>`:`<div class="cat-swatch" style="background:${c.color}"></div>`}<span class="cat-name">${esc(c.name)}</span><button class="cat-edit-btn" onclick="openCatModal('${c.id}')">✏️</button></div>`).join("");}
 
-// ══════════ DRAG & DROP ══════════
-function attachDropZones(){
-  document.querySelectorAll(".cal-day:not(.empty)").forEach(cell=>{
-    cell.ondragover=e=>{e.preventDefault();cell.classList.add("drag-over");};
-    cell.ondragleave=()=>cell.classList.remove("drag-over");
-    cell.ondrop=e=>{e.preventDefault();dropCard(cell);};
-  });
-}
+// ── DRAG & DROP ──
+function attachDropZones(){document.querySelectorAll(".cal-day:not(.empty)").forEach(cell=>{cell.ondragover=e=>{e.preventDefault();cell.classList.add("drag-over");};cell.ondragleave=()=>cell.classList.remove("drag-over");cell.ondrop=e=>{e.preventDefault();dropCard(cell);};});}
 function onDragStart(e,id){dragCardId=id;e.dataTransfer.effectAllowed="move";setTimeout(()=>document.getElementById(`card-${id}`)?.classList.add("dragging"),0);}
 function onDragEnd(){document.querySelectorAll(".drag-over").forEach(c=>c.classList.remove("drag-over"));document.querySelectorAll(".dragging").forEach(c=>c.classList.remove("dragging"));}
-async function dropCard(cell){
-  cell.classList.remove("drag-over");if(!dragCardId)return;
-  const nm=parseInt(cell.dataset.month),nd=parseInt(cell.dataset.day);
-  const card=cards[dragCardId];if(!card)return;
-  if(card.month===nm&&card.day===nd&&card.year===currentYear){dragCardId=null;return;}
-  const om=card.month,od=card.day;
-  const newDate=`${currentYear}-${String(nm+1).padStart(2,"0")}-${String(nd).padStart(2,"0")}`;
-  const upd={...card,month:nm,day:nd,year:currentYear,date:newDate};
-  cards[dragCardId]=upd;rebuildRecurInstances();
-  refreshDay(om,od);refreshDay(nm,nd);refreshLeg(om);refreshLeg(nm);updateCounts();
-  await dbSaveCard(upd);showToast(`📅 Movido para ${nd} de ${MONTHS_PT[nm]}`);
-  dragCardId=null;
-}
+async function dropCard(cell){cell.classList.remove("drag-over");if(!dragCardId)return;const nm=parseInt(cell.dataset.month),nd=parseInt(cell.dataset.day),card=cards[dragCardId];if(!card)return;if(card.month===nm&&card.day===nd&&card.year===currentYear){dragCardId=null;return;}const om=card.month,od=card.day,newDate=`${currentYear}-${String(nm+1).padStart(2,"0")}-${String(nd).padStart(2,"0")}`,upd={...card,month:nm,day:nd,year:currentYear,date:newDate};cards[dragCardId]=upd;rebuildRecurInstances();refreshDay(om,od);refreshDay(nm,nd);refreshLeg(om);refreshLeg(nm);updateCounts();await dbSaveCard(upd);showToast(`📅 Movido para ${nd} de ${MONTHS_PT[nm]}`);dragCardId=null;}
 
-// ══════════ TABS ══════════
-function switchTab(pid,btn){
-  document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById("tab-"+pid).classList.add("active");btn.classList.add("active");
-  if(pid==="checklist")renderChecklistEdit();
-}
-function switchDetailTab(pid,btn){
-  document.querySelectorAll("#detailOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll("#detailOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById(pid).classList.add("active");btn.classList.add("active");
-}
-function switchCatTab(pid,btn){
-  document.querySelectorAll("#catOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll("#catOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById(pid).classList.add("active");btn.classList.add("active");
-}
+// ── TABS ──
+function switchTab(pid,btn){document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById("tab-"+pid).classList.add("active");btn.classList.add("active");if(pid==="checklist")renderChecklistEdit();}
+function switchDetailTab(pid,btn){document.querySelectorAll("#detailOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#detailOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById(pid).classList.add("active");btn.classList.add("active");}
+function switchCatTab(pid,btn){document.querySelectorAll("#catOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#catOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById(pid).classList.add("active");btn.classList.add("active");}
 
-// ══════════ LINKS ══════════
-function addLinkRow(name="",url=""){
-  const id="lr"+Date.now()+Math.random().toString(36).slice(2,6);
-  const wrap=document.getElementById("linksListEdit");
-  const row=document.createElement("div");row.className="link-row-item";row.id=id;
-  row.innerHTML=`<input class="link-name" type="text" placeholder="Nome" value="${esc(name)}" maxlength="40"/>
-    <input type="url" placeholder="https://…" value="${esc(url)}"/>
-    <button class="link-del-btn" type="button" onclick="document.getElementById('${id}').remove()">✕</button>`;
-  wrap.appendChild(row);
-}
-function readLinks(){
-  const rows=document.querySelectorAll("#linksListEdit .link-row-item");const result=[];
-  rows.forEach(row=>{const[nameEl,urlEl]=row.querySelectorAll("input");const u=urlEl.value.trim();if(u)result.push({name:nameEl.value.trim()||"Link",url:u});});
-  return result;
-}
+// ── LINKS ──
+function addLinkRow(name="",url=""){const id="lr"+Date.now()+Math.random().toString(36).slice(2,6),wrap=document.getElementById("linksListEdit"),row=document.createElement("div");row.className="link-row-item";row.id=id;row.innerHTML=`<input class="link-name" type="text" placeholder="Nome" value="${esc(name)}" maxlength="40"/><input type="url" placeholder="https://…" value="${esc(url)}"/><button class="link-del-btn" type="button" onclick="document.getElementById('${id}').remove()">✕</button>`;wrap.appendChild(row);}
+function readLinks(){const rows=document.querySelectorAll("#linksListEdit .link-row-item"),result=[];rows.forEach(row=>{const[nameEl,urlEl]=row.querySelectorAll("input"),u=urlEl.value.trim();if(u)result.push({name:nameEl.value.trim()||"Link",url:u});});return result;}
 function renderLinksEdit(links){document.getElementById("linksListEdit").innerHTML="";(links||[]).forEach(l=>addLinkRow(l.name,l.url));}
 
-// ══════════ CATEGORIA ══════════
-function onCatChange(){
-  const catId=document.getElementById("cCatSel").value,cat=categories[catId];
-  const prev=document.getElementById("catColorPreview");
-  if(cat){prev.style.display="flex";document.getElementById("catColorSwatch").style.background=cat.color;
-    document.getElementById("catColorName").textContent=(cat.emoji||"")+" "+cat.name;
-    document.getElementById("catColorHexPrev").textContent=cat.color;if(!useOverrideColor)chosenColor=cat.color;}
-  else{prev.style.display="none";if(!useOverrideColor)chosenColor="#6c63ff";}
-}
-function toggleOverride(){
-  useOverrideColor=document.getElementById("overrideColorCheck").checked;
-  document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
-  if(!useOverrideColor){const cat=categories[document.getElementById("cCatSel").value];chosenColor=cat?.color||"#6c63ff";}
-}
-function buildCatOpts(selId){
-  return`<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");
-}
+// ── CATEGORIA ──
+function onCatChange(){const catId=document.getElementById("cCatSel").value,cat=categories[catId],prev=document.getElementById("catColorPreview");if(cat){prev.style.display="flex";document.getElementById("catColorSwatch").style.background=cat.color;document.getElementById("catColorName").textContent=(cat.emoji||"")+" "+cat.name;document.getElementById("catColorHexPrev").textContent=cat.color;if(!useOverrideColor)chosenColor=cat.color;}else{prev.style.display="none";if(!useOverrideColor)chosenColor="#6c63ff";}}
+function toggleOverride(){useOverrideColor=document.getElementById("overrideColorCheck").checked;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);if(!useOverrideColor){const cat=categories[document.getElementById("cCatSel").value];chosenColor=cat?.color||"#6c63ff";}}
+function buildCatOpts(selId){return`<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");}
 
-// ══════════ FORM CARD ══════════
+// ── FORM CARD ──
 function resetCardForm(month,day){
   const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
-  document.getElementById("cDate").value=iso;document.getElementById("cPlatform").value="";
-  populateCampaignSelect();
+  document.getElementById("cDate").value=iso;document.getElementById("cPlatform").value="";populateCampaignSelect();
   ["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cDateStart","cDateEnd","cPmp"].forEach(id=>document.getElementById(id).value="");
-  document.getElementById("cCatSel").innerHTML=buildCatOpts("");
-  document.getElementById("catColorPreview").style.display="none";
+  document.getElementById("cCatSel").innerHTML=buildCatOpts("");document.getElementById("catColorPreview").style.display="none";
   document.getElementById("overrideColorCheck").checked=false;document.getElementById("overrideSection").classList.remove("show");
   useOverrideColor=false;chosenColor="#6c63ff";setChosenColor(chosenColor);
   currentTags=[];selectedStatus="";currentChecklist=[];renderTags();clearStatusSel();renderLinksEdit([]);
@@ -1579,19 +1200,12 @@ function resetCardForm(month,day){
   ["err-date","err-title"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("show");});
   ["cDate","cTitle"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("invalid");});
   document.getElementById("cardDelRow").style.display="none";
-  document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  document.getElementById("tab-info").classList.add("active");document.querySelector("#cardOverlay .modal-tab").classList.add("active");
+  document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById("tab-info").classList.add("active");document.querySelector("#cardOverlay .modal-tab").classList.add("active");
 }
-function openAdd(month,day){
-  editCardId=null;resetCardForm(month,day);document.getElementById("cardModalTitle").textContent="Novo Item";openOverlay("cardOverlay");
-}
-function openAddGeneral(mi){
-  openAdd(mi,1);document.getElementById("cDate").value=`${currentYear}-${String(mi+1).padStart(2,"0")}-01`;
-}
+function openAdd(month,day){editCardId=null;resetCardForm(month,day);document.getElementById("cardModalTitle").textContent="Novo Item";openOverlay("cardOverlay");}
+function openAddGeneral(mi){openAdd(mi,1);document.getElementById("cDate").value=`${currentYear}-${String(mi+1).padStart(2,"0")}-01`;}
 function openEditCard(id){
-  const c=cards[id];if(!c)return;
-  editCardId=id;document.getElementById("cardModalTitle").textContent="Editar Item";
+  const c=cards[id];if(!c)return;editCardId=id;document.getElementById("cardModalTitle").textContent="Editar Item";
   document.getElementById("cDate").value=c.date||`${c.year}-${String(c.month+1).padStart(2,"0")}-${String(c.day).padStart(2,"0")}`;
   document.getElementById("cPlatform").value=c.platform||"";populateCampaignSelect(c.campaign||"");
   document.getElementById("cCampaignId").value=c.campaignId||"";document.getElementById("cTitle").value=c.title||"";
@@ -1599,308 +1213,102 @@ function openEditCard(id){
   document.getElementById("cDesc").value=c.desc||"";document.getElementById("cDateStart").value=c.dateStart||"";
   document.getElementById("cDateEnd").value=c.dateEnd||"";document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");
   document.getElementById("cPmp").value=c.pmp||"";
-  applyPeoplePicker("ppResp",c.responsavel||"");applyPeoplePicker("ppSolic",c.solicitante||"");
-  applyRecurSel(c.recurrence||"");
-  useOverrideColor=!!(c.overrideColor);document.getElementById("overrideColorCheck").checked=useOverrideColor;
-  document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
-  if(useOverrideColor){chosenColor=c.overrideColor;setChosenColor(chosenColor);}
-  else{const cat=categories[c.catId];chosenColor=cat?.color||c.color||"#6c63ff";}
-  onCatChange();
-  currentTags=[...(c.tags||[])];renderTags();
-  currentChecklist=(c.checklist||[]).map(i=>({...i}));
-  selectedStatus=c.briefing||"";applyStatusSel();renderLinksEdit(c.links||[]);
+  applyPeoplePicker("ppResp",c.responsavel||"");applyPeoplePicker("ppSolic",c.solicitante||"");applyRecurSel(c.recurrence||"");
+  useOverrideColor=!!(c.overrideColor);document.getElementById("overrideColorCheck").checked=useOverrideColor;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
+  if(useOverrideColor){chosenColor=c.overrideColor;setChosenColor(chosenColor);}else{const cat=categories[c.catId];chosenColor=cat?.color||c.color||"#6c63ff";}onCatChange();
+  currentTags=[...(c.tags||[])];renderTags();currentChecklist=(c.checklist||[]).map(i=>({...i}));selectedStatus=c.briefing||"";applyStatusSel();renderLinksEdit(c.links||[]);
   const delRow=document.getElementById("cardDelRow");delRow.style.display="flex";
-  document.getElementById("cardDelBtn").onclick=()=>doDelCard(id);
-  document.getElementById("cardDupBtn").onclick=()=>{closeOverlay("cardOverlay");openDuplicate(id);};
+  document.getElementById("cardDelBtn").onclick=()=>doDelCard(id);document.getElementById("cardDupBtn").onclick=()=>{closeOverlay("cardOverlay");openDuplicate(id);};
   openOverlay("cardOverlay");
 }
 async function saveCard(){
-  const dateVal=document.getElementById("cDate").value;const title=document.getElementById("cTitle").value.trim();
-  let hasError=false;
-  if(!dateVal){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");hasError=true;}
-  else{document.getElementById("err-date").classList.remove("show");document.getElementById("cDate").classList.remove("invalid");}
-  if(!title){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");hasError=true;}
-  else{document.getElementById("err-title").classList.remove("show");document.getElementById("cTitle").classList.remove("invalid");}
+  const dateVal=document.getElementById("cDate").value,title=document.getElementById("cTitle").value.trim();let hasError=false;
+  if(!dateVal){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");hasError=true;}else{document.getElementById("err-date").classList.remove("show");document.getElementById("cDate").classList.remove("invalid");}
+  if(!title){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");hasError=true;}else{document.getElementById("err-title").classList.remove("show");document.getElementById("cTitle").classList.remove("invalid");}
   if(hasError){showToast("⚠️ Preencha Data e Título.","#f97316");return;}
-  const[yr,mo,dy]=dateVal.split("-").map(Number);
-  const existing=cards[editCardId||""];
-  let finalColor=chosenColor,finalOverride=null;
-  if(useOverrideColor){finalOverride=chosenColor;}
-  else{const cat=categories[document.getElementById("cCatSel").value];finalColor=cat?.color||"#6c63ff";}
+  const[yr,mo,dy]=dateVal.split("-").map(Number),existing=cards[editCardId||""];
+  let finalColor=chosenColor,finalOverride=null;if(useOverrideColor){finalOverride=chosenColor;}else{const cat=categories[document.getElementById("cCatSel").value];finalColor=cat?.color||"#6c63ff";}
   const resp=pickerSelected["ppResp"]||"";
-  const card={
-    id:editCardId||("c"+Date.now()),year:yr,month:mo-1,day:dy,date:dateVal,
-    platform:document.getElementById("cPlatform").value,campaign:document.getElementById("cCampaign").value,
-    campaignId:document.getElementById("cCampaignId").value.trim(),title,
-    bigIdea:document.getElementById("cBigIdea").value.trim(),copy:document.getElementById("cCopy").value.trim(),
-    desc:document.getElementById("cDesc").value.trim(),dateStart:document.getElementById("cDateStart").value,
-    dateEnd:document.getElementById("cDateEnd").value,catId:document.getElementById("cCatSel").value,
-    pmp:document.getElementById("cPmp").value.trim(),responsavel:resp,solicitante:pickerSelected["ppSolic"]||"",
-    recurrence:selectedRecur||"",color:finalColor,overrideColor:finalOverride,briefing:selectedStatus,
-    tags:[...currentTags],links:readLinks(),
-    checklist:currentChecklist.map(i=>({id:i.id,text:i.text,done:i.done})),
-    comments:existing?.comments||[],
-  };
+  const card={id:editCardId||("c"+Date.now()),year:yr,month:mo-1,day:dy,date:dateVal,platform:document.getElementById("cPlatform").value,campaign:document.getElementById("cCampaign").value,campaignId:document.getElementById("cCampaignId").value.trim(),title,bigIdea:document.getElementById("cBigIdea").value.trim(),copy:document.getElementById("cCopy").value.trim(),desc:document.getElementById("cDesc").value.trim(),dateStart:document.getElementById("cDateStart").value,dateEnd:document.getElementById("cDateEnd").value,catId:document.getElementById("cCatSel").value,pmp:document.getElementById("cPmp").value.trim(),responsavel:resp,solicitante:pickerSelected["ppSolic"]||"",recurrence:selectedRecur||"",color:finalColor,overrideColor:finalOverride,briefing:selectedStatus,tags:[...currentTags],links:readLinks(),checklist:currentChecklist.map(i=>({id:i.id,text:i.text,done:i.done})),comments:existing?.comments||[]};
   if(resp&&!peopleList.includes(resp)){peopleList.push(resp);savePeopleList();}
-  const old=cards[card.id];closeOverlay("cardOverlay");
-  cards[card.id]=card;rebuildRecurInstances();
+  const old=cards[card.id];closeOverlay("cardOverlay");cards[card.id]=card;rebuildRecurInstances();
   if(old&&(old.day!==card.day||old.month!==card.month))refreshDay(old.month,old.day);
   refreshDay(card.month,card.day);refreshLeg(card.month);updateCounts();buildCampaignFilters();buildRespFilters();
   await dbSaveCard(card);showToast("✅ Card salvo!");
 }
-async function doDelCard(id){
-  const c=cards[id];const mi=c?.month,d=c?.day;delete cards[id];
-  closeOverlay("cardOverlay");closeOverlay("detailOverlay");rebuildRecurInstances();
-  if(mi!==undefined){refreshDay(mi,d);refreshLeg(mi);updateCounts();}
-  buildCampaignFilters();await dbDelCard(id);showToast("🗑️ Excluído.","#f87171");
-}
+async function doDelCard(id){const c=cards[id],mi=c?.month,d=c?.day;delete cards[id];closeOverlay("cardOverlay");closeOverlay("detailOverlay");rebuildRecurInstances();if(mi!==undefined){refreshDay(mi,d);refreshLeg(mi);updateCounts();}buildCampaignFilters();await dbDelCard(id);showToast("🗑️ Excluído.","#f87171");}
 
-// ══════════ DETALHE ══════════
+// ── DETALHE ──
 function openDetail(id,e){
   e?.stopPropagation();
   const raw=cards[id]||(window._recurInstances||{})[id];if(!raw)return;
-  const isRecurInst=raw._isRecurInstance||false;
-  const c=isRecurInst?(cards[raw._sourceId]||raw):raw;
-  const realId=c.id;
-  currentDetailCardId=realId;
-  window._currentDetailIsRecur=isRecurInst;
-  window._currentDetailDate=isRecurInst?raw.date:null;
-
-  const effStatus=isRecurInst
-    ?(recurStatuses[getRecurStatusKey(realId, raw.date)]!==undefined
-       ? recurStatuses[getRecurStatusKey(realId, raw.date)]
-       : c.briefing||"")
-    : c.briefing||"";
-
+  const isRecurInst=raw._isRecurInstance||false,c=isRecurInst?(cards[raw._sourceId]||raw):raw,realId=c.id;
+  currentDetailCardId=realId;window._currentDetailIsRecur=isRecurInst;window._currentDetailDate=isRecurInst?raw.date:null;
+  const effStatus=isRecurInst?(recurStatuses[getRecurStatusKey(realId,raw.date)]!==undefined?recurStatuses[getRecurStatusKey(realId,raw.date)]:c.briefing||""):c.briefing||"";
   const cat=categories[c.catId],color=getCardColor(c),sc=STATUS_COLORS[effStatus]||null;
   switchDetailTab("dtinfo",document.querySelector("#detailOverlay .modal-tab"));
-  const recurNotice=isRecurInst
-    ?`<div class="recur-notice">🔁 Instância recorrente de <strong>${fmtDFull(raw.date)}</strong> — status desta data é <strong>independente</strong>.</div>`
-    :"";
+  const recurNotice=isRecurInst?`<div class="recur-notice">🔁 Instância recorrente de <strong>${fmtDFull(raw.date)}</strong> — status desta data é independente.</div>`:"";
   const make=(lbl,val)=>val?`<div class="dblock"><div class="dblock-lbl">${lbl}</div><div class="dblock-val">${esc(val)}</div></div>`:"";
-  const datesBlock=(c.dateStart||c.dateEnd)?`
-    <div class="dblock"><div class="dblock-lbl">📅 Período</div>
-      <div class="dblock-dates">
-        ${c.dateStart?`<div class="ddate"><span class="ddate-lbl">Início</span><span class="ddate-val">${fmtDFull(c.dateStart)}</span></div>`:""}
-        ${c.dateEnd?`<div class="ddate"><span class="ddate-lbl">Fim</span><span class="ddate-val">${fmtDFull(c.dateEnd)}</span></div>`:""}
-      </div></div>`:"";
-  const tagsBlock=c.tags?.length?`
-    <div class="dblock"><div class="dblock-lbl">🏷️ Tags</div>
-      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">
-        ${c.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}
-      </div></div>`:"";
-  const recurBlock=c.recurrence?`
-    <div class="dblock"><div class="dblock-lbl">🔁 Recorrência</div>
-      <div class="dblock-val">${RECUR_ICONS[c.recurrence]||"🔁"} ${RECUR_LABELS[c.recurrence]||c.recurrence}</div>
-    </div>`:"";
-  const respBlock=(c.responsavel||c.solicitante)?`
-    <div class="dblock"><div class="dblock-lbl">👥 Pessoas</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        ${c.responsavel?`<div class="resp-badge"><div class="resp-avatar" style="background:${colorFromName(c.responsavel)}">${initials(c.responsavel)}</div><span>Responsável: <strong>${esc(c.responsavel)}</strong></span></div>`:""}
-        ${c.solicitante?`<div class="resp-badge"><div class="resp-avatar" style="background:${colorFromName(c.solicitante)}">${initials(c.solicitante)}</div><span>Solicitante: <strong>${esc(c.solicitante)}</strong></span></div>`:""}
-      </div></div>`:"";
-  document.getElementById("detailBody").innerHTML=`
-    ${recurNotice}
-    <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:14px">
-      <div class="detail-stripe" style="background:${color}"></div>
-      <div style="flex:1;min-width:0">
-        <div class="detail-title">${esc(c.title)}</div>
-        <div class="detail-meta">
-          <span>${isRecurInst?fmtDFull(raw.date):`${c.day} de ${MONTHS_PT[c.month]} ${c.year}`}</span>
-          ${c.platform?`<span class="detail-badge" style="background:var(--s3);border:1px solid var(--border)">${PLAT_ICONS[c.platform]||""} ${esc(c.platform)}</span>`:""}
-          ${cat?`<span class="detail-badge" style="background:${color}22;color:${color}">${cat.emoji||""} ${esc(cat.name)}</span>`:""}
-          ${sc?`<span class="status-badge" id="detailStatusBadge" style="background:${sc.bg};color:${sc.text}">${esc(effStatus)}</span>`:`<span class="status-badge" id="detailStatusBadge" style="display:none"></span>`}
-        </div>
-      </div>
-    </div>
-    ${renderDetailStatusBar(effStatus)}
-    <div class="detail-blocks">
-      ${respBlock}${recurBlock}
-      ${c.campaign?make("📣 Campanha",`${c.campaign}${c.campaignId?" — "+c.campaignId:""}`):""}
-      ${make("💡 Big Idea",c.bigIdea)}${make("✍️ Copy",c.copy)}${make("📝 Observações",c.desc)}
-      ${c.pmp?make("📋 PMP",c.pmp):""}
-      ${datesBlock}${tagsBlock}
-    </div>`;
-  // Checklist
+  const datesBlock=(c.dateStart||c.dateEnd)?`<div class="dblock"><div class="dblock-lbl">📅 Período</div><div class="dblock-dates">${c.dateStart?`<div class="ddate"><span class="ddate-lbl">Início</span><span class="ddate-val">${fmtDFull(c.dateStart)}</span></div>`:""} ${c.dateEnd?`<div class="ddate"><span class="ddate-lbl">Fim</span><span class="ddate-val">${fmtDFull(c.dateEnd)}</span></div>`:""}</div></div>`:"";
+  const tagsBlock=c.tags?.length?`<div class="dblock"><div class="dblock-lbl">🏷️ Tags</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">${c.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}</div></div>`:"";
+  const recurBlock=c.recurrence?`<div class="dblock"><div class="dblock-lbl">🔁 Recorrência</div><div class="dblock-val">${RECUR_ICONS[c.recurrence]||"🔁"} ${RECUR_LABELS[c.recurrence]||c.recurrence}</div></div>`:"";
+  const respBlock=(c.responsavel||c.solicitante)?`<div class="dblock"><div class="dblock-lbl">👥 Pessoas</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">${c.responsavel?`<div class="resp-badge"><div class="resp-avatar" style="background:${colorFromName(c.responsavel)}">${initials(c.responsavel)}</div><span>Responsável: <strong>${esc(c.responsavel)}</strong></span></div>`:""} ${c.solicitante?`<div class="resp-badge"><div class="resp-avatar" style="background:${colorFromName(c.solicitante)}">${initials(c.solicitante)}</div><span>Solicitante: <strong>${esc(c.solicitante)}</strong></span></div>`:""}</div></div>`:"";
+  document.getElementById("detailBody").innerHTML=`${recurNotice}<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:14px"><div class="detail-stripe" style="background:${color}"></div><div style="flex:1;min-width:0"><div class="detail-title">${esc(c.title)}</div><div class="detail-meta"><span>${isRecurInst?fmtDFull(raw.date):`${c.day} de ${MONTHS_PT[c.month]} ${c.year}`}</span>${c.platform?`<span class="detail-badge" style="background:var(--s3);border:1px solid var(--border)">${PLAT_ICONS[c.platform]||""} ${esc(c.platform)}</span>`:""} ${cat?`<span class="detail-badge" style="background:${color}22;color:${color}">${cat.emoji||""} ${esc(cat.name)}</span>`:""} ${sc?`<span class="status-badge" id="detailStatusBadge" style="background:${sc.bg};color:${sc.text}">${esc(effStatus)}</span>`:`<span class="status-badge" id="detailStatusBadge" style="display:none"></span>`}</div></div></div>${renderDetailStatusBar(effStatus)}<div class="detail-blocks">${respBlock}${recurBlock}${c.campaign?make("📣 Campanha",`${c.campaign}${c.campaignId?" — "+c.campaignId:""}`):""} ${make("💡 Big Idea",c.bigIdea)}${make("✍️ Copy",c.copy)}${make("📝 Observações",c.desc)}${c.pmp?make("📋 PMP",c.pmp):""} ${datesBlock}${tagsBlock}</div>`;
   renderDetailChecklist(c);updateClBadge(c);
-  // Links
-  const links=c.links||[];
-  document.getElementById("detailLinksBody").innerHTML=links.length
-    ?`<div class="dblock"><div class="dblock-lbl">🔗 Links</div>
-        <div class="detail-links-list" style="margin-top:6px">
-          ${links.map(l=>`<div class="detail-link-item"><span class="detail-link-name">${esc(l.name)}</span><a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.url)}</a></div>`).join("")}
-        </div></div>`
-    :`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:12px 0">Nenhum link adicionado.</p>`;
-  renderComments(c);
-  const badge=document.getElementById("commentBadge");
-  const cnt=(c.comments||[]).length;
-  badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;
-  document.getElementById("dDelBtn").onclick=()=>doDelCard(realId);
-  document.getElementById("dDupBtn").onclick=()=>{closeOverlay("detailOverlay");openDuplicate(realId);};
-  document.getElementById("dEditBtn").onclick=()=>{closeOverlay("detailOverlay");openEditCard(realId);};
+  const links=c.links||[];document.getElementById("detailLinksBody").innerHTML=links.length?`<div class="dblock"><div class="dblock-lbl">🔗 Links</div><div class="detail-links-list" style="margin-top:6px">${links.map(l=>`<div class="detail-link-item"><span class="detail-link-name">${esc(l.name)}</span><a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.url)}</a></div>`).join("")}</div></div>`:`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:12px 0">Nenhum link adicionado.</p>`;
+  renderComments(c);const badge=document.getElementById("commentBadge"),cnt=(c.comments||[]).length;badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;
+  document.getElementById("dDelBtn").onclick=()=>doDelCard(realId);document.getElementById("dDupBtn").onclick=()=>{closeOverlay("detailOverlay");openDuplicate(realId);};document.getElementById("dEditBtn").onclick=()=>{closeOverlay("detailOverlay");openEditCard(realId);};
   openOverlay("detailOverlay");
 }
 
-// ══════════ COMENTÁRIOS ══════════
-function renderComments(card){
-  const area=document.getElementById("commentsArea");const comms=card.comments||[];
-  if(!comms.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda 💬</div>`;return;}
-  area.innerHTML=comms.map((cm,idx)=>`
-    <div class="comment-item">
-      <div class="comment-header">
-        <span class="comment-author">👤 ${esc(cm.author||"Anônimo")}</span>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="comment-time">${cm.time||""}</span>
-          <button class="comment-del" onclick="deleteComment(${idx})">✕</button>
-        </div>
-      </div>
-      <div class="comment-text">${esc(cm.text)}</div>
-    </div>`).join("");
-}
-async function addComment(){
-  const author=document.getElementById("commentAuthor").value.trim()||"Anônimo";
-  const text=document.getElementById("commentText").value.trim();
-  if(!text){showToast("⚠️ Escreva um comentário!","#f97316");return;}
-  const card=cards[currentDetailCardId];if(!card)return;
-  const now=new Date();
-  const time=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
-  const updated={...card,comments:[...(card.comments||[]),{author,text,time}]};
-  cards[currentDetailCardId]=updated;document.getElementById("commentText").value="";
-  renderComments(updated);
-  const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=(updated.comments||[]).length;
-  refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("💬 Comentário adicionado!");
-}
-async function deleteComment(idx){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const updated={...card,comments:(card.comments||[]).filter((_,i)=>i!==idx)};
-  cards[currentDetailCardId]=updated;renderComments(updated);
-  const badge=document.getElementById("commentBadge");const cnt=(updated.comments||[]).length;
-  badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;
-  refreshDay(updated.month,updated.day);await dbSaveCard(updated);
-}
+// ── COMENTÁRIOS ──
+function renderComments(card){const area=document.getElementById("commentsArea"),comms=card.comments||[];if(!comms.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda 💬</div>`;return;}area.innerHTML=comms.map((cm,idx)=>`<div class="comment-item"><div class="comment-header"><span class="comment-author">👤 ${esc(cm.author||"Anônimo")}</span><div style="display:flex;align-items:center;gap:8px"><span class="comment-time">${cm.time||""}</span><button class="comment-del" onclick="deleteComment(${idx})">✕</button></div></div><div class="comment-text">${esc(cm.text)}</div></div>`).join("");}
+async function addComment(){const author=document.getElementById("commentAuthor").value.trim()||"Anônimo",text=document.getElementById("commentText").value.trim();if(!text){showToast("⚠️ Escreva um comentário!","#f97316");return;}const card=cards[currentDetailCardId];if(!card)return;const now=new Date(),time=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`,updated={...card,comments:[...(card.comments||[]),{author,text,time}]};cards[currentDetailCardId]=updated;document.getElementById("commentText").value="";renderComments(updated);const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=(updated.comments||[]).length;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("💬 Comentário adicionado!");}
+async function deleteComment(idx){const card=cards[currentDetailCardId];if(!card)return;const updated={...card,comments:(card.comments||[]).filter((_,i)=>i!==idx)};cards[currentDetailCardId]=updated;renderComments(updated);const badge=document.getElementById("commentBadge"),cnt=(updated.comments||[]).length;badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;refreshDay(updated.month,updated.day);await dbSaveCard(updated);}
 
-// ══════════ CAMPANHAS ══════════
+// ── CAMPANHAS ──
 function openCampaignManager(){renderCampList();openOverlay("campaignOverlay");}
 function closeCampaignManager(){closeOverlay("campaignOverlay");populateCampaignSelect();}
-function renderCampList(){
-  const el=document.getElementById("campList");
-  if(!campaigns.length){el.innerHTML=`<div style="font-size:.8rem;color:var(--muted);font-style:italic;padding:8px 0">Nenhuma campanha.</div>`;return;}
-  el.innerHTML=campaigns.map((c,i)=>`
-    <div class="camp-item">
-      <span class="camp-item-name">${esc(c)}</span>
-      ${DEFAULT_CAMPAIGNS.includes(c)?`<span class="camp-item-type">padrão</span>`:`<span class="camp-item-type">personalizada</span>`}
-      <button class="camp-del-btn" onclick="removeCampaign(${i})">✕</button>
-    </div>`).join("");
-}
-async function addCampaign(){
-  const inp=document.getElementById("newCampName");const val=inp.value.trim();
-  if(!val){showToast("⚠️ Digite o nome!","#f97316");return;}
-  if(campaigns.map(c=>c.toLowerCase()).includes(val.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
-  campaigns.push(val);inp.value="";renderCampList();await dbSaveCampaigns();showToast("✅ Campanha adicionada!");
-}
+function renderCampList(){const el=document.getElementById("campList");if(!campaigns.length){el.innerHTML=`<div style="font-size:.8rem;color:var(--muted);font-style:italic;padding:8px 0">Nenhuma campanha.</div>`;return;}el.innerHTML=campaigns.map((c,i)=>`<div class="camp-item"><span class="camp-item-name">${esc(c)}</span>${DEFAULT_CAMPAIGNS.includes(c)?`<span class="camp-item-type">padrão</span>`:`<span class="camp-item-type">personalizada</span>`}<button class="camp-del-btn" onclick="removeCampaign(${i})">✕</button></div>`).join("");}
+async function addCampaign(){const inp=document.getElementById("newCampName"),val=inp.value.trim();if(!val){showToast("⚠️ Digite o nome!","#f97316");return;}if(campaigns.map(c=>c.toLowerCase()).includes(val.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}campaigns.push(val);inp.value="";renderCampList();await dbSaveCampaigns();showToast("✅ Campanha adicionada!");}
 async function removeCampaign(idx){campaigns.splice(idx,1);renderCampList();await dbSaveCampaigns();showToast("🗑️ Removida.","#f87171");}
-function populateCampaignSelect(selVal=""){
-  const el=document.getElementById("cCampaign");if(!el)return;
-  el.innerHTML=`<option value="">— Selecione —</option>`+campaigns.map(c=>`<option value="${esc(c)}"${c===selVal?" selected":""}>${esc(c)}</option>`).join("");
-}
-function generateCampaignId(){
-  const title=(document.getElementById("cTitle").value||"").trim();
-  const platform=(document.getElementById("cPlatform").value||"").trim();
-  const campaign=(document.getElementById("cCampaign").value||"").trim();
-  const dateVal=document.getElementById("cDate").value;
-  const slugify=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"").slice(0,8);
-  let parts=[];if(campaign)parts.push(slugify(campaign).slice(0,5));else if(platform)parts.push(slugify(platform).slice(0,5));if(title)parts.push(slugify(title).slice(0,6));
-  const suffix=Date.now().toString(36).slice(-4).toUpperCase();let datePart="";
-  if(dateVal){const[y,m,d]=dateVal.split("-");datePart=`${y.slice(2)}${m}${d}`;}
-  const id=(parts.length?parts.join("-")+"-":"")+(datePart?datePart+"-":"")+suffix;
-  document.getElementById("cCampaignId").value=id;showToast("⚡ ID: "+id,"#6c63ff");
-}
+function populateCampaignSelect(selVal=""){const el=document.getElementById("cCampaign");if(!el)return;el.innerHTML=`<option value="">— Selecione —</option>`+campaigns.map(c=>`<option value="${esc(c)}"${c===selVal?" selected":""}>${esc(c)}</option>`).join("");}
+function generateCampaignId(){const title=(document.getElementById("cTitle").value||"").trim(),platform=(document.getElementById("cPlatform").value||"").trim(),campaign=(document.getElementById("cCampaign").value||"").trim(),dateVal=document.getElementById("cDate").value;const slugify=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"").slice(0,8);let parts=[];if(campaign)parts.push(slugify(campaign).slice(0,5));else if(platform)parts.push(slugify(platform).slice(0,5));if(title)parts.push(slugify(title).slice(0,6));const suffix=Date.now().toString(36).slice(-4).toUpperCase();let datePart="";if(dateVal){const[y,m,d]=dateVal.split("-");datePart=`${y.slice(2)}${m}${d}`;}const id=(parts.length?parts.join("-")+"-":"")+(datePart?datePart+"-":"")+suffix;document.getElementById("cCampaignId").value=id;showToast("⚡ ID: "+id,"#6c63ff");}
 
-// ══════════ CATEGORIAS ══════════
-function openCatModal(id){
-  editCatId=id||null;const cat=id?categories[id]:null;
-  document.getElementById("catModalTitle").textContent=cat?"✏️ Editar Categoria":"➕ Nova Categoria";
-  document.getElementById("catName").value=cat?.name||"";setCatColor(cat?.color||"#6c63ff");
-  selectedEmoji=cat?.emoji||"📌";document.getElementById("selectedEmojiPreview").textContent=selectedEmoji;
-  document.getElementById("catDelBtn").style.display=cat?"":"none";
-  switchCatTab("catinfo",document.querySelector("#catOverlay .modal-tab"));
-  document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===selectedEmoji));
-  openOverlay("catOverlay");
-}
-async function saveCat(){
-  const name=document.getElementById("catName").value.trim();if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}
-  const cat={id:editCatId||("cat"+Date.now()),name,color:catChosenColor,emoji:selectedEmoji};
-  categories[cat.id]=cat;closeOverlay("catOverlay");renderCatSidebar();refreshAllDOM();
-  await dbSaveCat(cat);showToast("✅ Categoria salva!");
-}
-async function deleteCat(){
-  if(!editCatId)return;
-  if(Object.values(cards).some(c=>c.catId===editCatId)){showToast("❌ Categoria em uso!","#f87171");return;}
-  delete categories[editCatId];closeOverlay("catOverlay");renderCatSidebar();await dbDelCat(editCatId);showToast("🗑️ Excluída.","#f87171");
-}
+// ── CATEGORIAS ──
+function openCatModal(id){editCatId=id||null;const cat=id?categories[id]:null;document.getElementById("catModalTitle").textContent=cat?"✏️ Editar Categoria":"➕ Nova Categoria";document.getElementById("catName").value=cat?.name||"";setCatColor(cat?.color||"#6c63ff");selectedEmoji=cat?.emoji||"📌";document.getElementById("selectedEmojiPreview").textContent=selectedEmoji;document.getElementById("catDelBtn").style.display=cat?"":"none";switchCatTab("catinfo",document.querySelector("#catOverlay .modal-tab"));document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===selectedEmoji));openOverlay("catOverlay");}
+async function saveCat(){const name=document.getElementById("catName").value.trim();if(!name){showToast("⚠️ Digite um nome!","#f97316");return;}const cat={id:editCatId||("cat"+Date.now()),name,color:catChosenColor,emoji:selectedEmoji};categories[cat.id]=cat;closeOverlay("catOverlay");renderCatSidebar();refreshAllDOM();await dbSaveCat(cat);showToast("✅ Categoria salva!");}
+async function deleteCat(){if(!editCatId)return;if(Object.values(cards).some(c=>c.catId===editCatId)){showToast("❌ Categoria em uso!","#f87171");return;}delete categories[editCatId];closeOverlay("catOverlay");renderCatSidebar();await dbDelCat(editCatId);showToast("🗑️ Excluída.","#f87171");}
 
-// ══════════ EMOJI ══════════
-function buildEmojiPanels(filter=""){
-  const container=document.getElementById("emojiPanels");if(!container)return;
-  const fl=filter.toLowerCase();
-  container.innerHTML=Object.entries(EMOJI_CATS).map(([label,emojis])=>{
-    const filtered=emojis.filter(e=>!fl||label.toLowerCase().includes(fl));if(!filtered.length)return"";
-    return`<div class="emoji-section-label">${label}</div>
-      <div class="emoji-grid">${filtered.map(e=>`<button class="emoji-btn${e===selectedEmoji?" sel":""}" onclick="selectEmoji('${e}')" type="button">${e}</button>`).join("")}</div>`;
-  }).join("");
-}
+// ── EMOJI ──
+function buildEmojiPanels(filter=""){const container=document.getElementById("emojiPanels");if(!container)return;const fl=filter.toLowerCase();container.innerHTML=Object.entries(EMOJI_CATS).map(([label,emojis])=>{const filtered=emojis.filter(e=>!fl||label.toLowerCase().includes(fl));if(!filtered.length)return"";return`<div class="emoji-section-label">${label}</div><div class="emoji-grid">${filtered.map(e=>`<button class="emoji-btn${e===selectedEmoji?" sel":""}" onclick="selectEmoji('${e}')" type="button">${e}</button>`).join("")}</div>`;}).join("");}
 function filterEmojis(val){buildEmojiPanels(val);}
-function selectEmoji(e){
-  selectedEmoji=e;document.getElementById("selectedEmojiPreview").textContent=e;
-  document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===e));
-}
+function selectEmoji(e){selectedEmoji=e;document.getElementById("selectedEmojiPreview").textContent=e;document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===e));}
 
-// ══════════ TAGS ══════════
-function handleTagInput(e){
-  if(e.key==="Enter"||e.key===","){e.preventDefault();const val=document.getElementById("tagInput").value.trim().replace(/,/g,"");if(val&&!currentTags.includes(val)){currentTags.push(val);renderTags();}document.getElementById("tagInput").value="";}
-  if(e.key==="Backspace"&&document.getElementById("tagInput").value===""&&currentTags.length){currentTags.pop();renderTags();}
-}
+// ── TAGS ──
+function handleTagInput(e){if(e.key==="Enter"||e.key===","){e.preventDefault();const val=document.getElementById("tagInput").value.trim().replace(/,/g,"");if(val&&!currentTags.includes(val)){currentTags.push(val);renderTags();}document.getElementById("tagInput").value="";}if(e.key==="Backspace"&&document.getElementById("tagInput").value===""&&currentTags.length){currentTags.pop();renderTags();}}
 function removeTag(t){currentTags=currentTags.filter(x=>x!==t);renderTags();}
-function renderTags(){
-  const wrap=document.getElementById("tagsWrap"),input=document.getElementById("tagInput");wrap.innerHTML="";
-  currentTags.forEach(t=>{const chip=document.createElement("div");chip.className="tag-chip";chip.innerHTML=`${esc(t)}<button onclick="removeTag('${esc(t)}')" type="button">✕</button>`;wrap.appendChild(chip);});
-  wrap.appendChild(input);
-}
+function renderTags(){const wrap=document.getElementById("tagsWrap"),input=document.getElementById("tagInput");wrap.innerHTML="";currentTags.forEach(t=>{const chip=document.createElement("div");chip.className="tag-chip";chip.innerHTML=`${esc(t)}<button onclick="removeTag('${esc(t)}')" type="button">✕</button>`;wrap.appendChild(chip);});wrap.appendChild(input);}
 
-// ══════════ STATUS ══════════
+// ── STATUS ──
 function selectStatus(el){selectedStatus=el.dataset.val;applyStatusSel();}
-function applyStatusSel(){
-  document.querySelectorAll(".status-opt").forEach(o=>{
-    o.className="status-opt";
-    if(o.dataset.val===selectedStatus){const key=o.dataset.val.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s/g,"");o.classList.add("sel-"+key);}
-  });
-}
+function applyStatusSel(){document.querySelectorAll(".status-opt").forEach(o=>{o.className="status-opt";if(o.dataset.val===selectedStatus){const key=o.dataset.val.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s/g,"");o.classList.add("sel-"+key);}});}
 function clearStatusSel(){document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt");}
 
-// ══════════ CORES ══════════
-function renderPresets(gid){
-  const el=document.getElementById(gid);if(!el)return;
-  const isCat=gid==="catPresetGrid",cur=isCat?catChosenColor:chosenColor;
-  el.innerHTML=PRESETS.map(c=>`<div class="pdot${c===cur?" sel":""}" style="background:${c}" title="${c}" onclick="${isCat?`setCatColor('${c}')`:`setChosenColor('${c}')`}"></div>`).join("");
-}
+// ── CORES ──
+function renderPresets(gid){const el=document.getElementById(gid);if(!el)return;const isCat=gid==="catPresetGrid",cur=isCat?catChosenColor:chosenColor;el.innerHTML=PRESETS.map(c=>`<div class="pdot${c===cur?" sel":""}" style="background:${c}" title="${c}" onclick="${isCat?`setCatColor('${c}')`:`setChosenColor('${c}')`}"></div>`).join("");}
 function setChosenColor(c){chosenColor=c;document.getElementById("customColorPicker").value=c;document.getElementById("colorHexLbl").textContent=c;document.getElementById("colorBar").style.background=c;renderPresets("presetGrid");}
 function onCustomColor(c){chosenColor=c;document.getElementById("colorHexLbl").textContent=c;document.getElementById("colorBar").style.background=c;renderPresets("presetGrid");}
 function setCatColor(c){catChosenColor=c;document.getElementById("catColorPicker").value=c;document.getElementById("catColorHex").textContent=c;document.getElementById("catColorBar").style.background=c;renderPresets("catPresetGrid");}
 function onCatCustomColor(c){catChosenColor=c;document.getElementById("catColorHex").textContent=c;document.getElementById("catColorBar").style.background=c;renderPresets("catPresetGrid");}
 
-// ══════════ OVERLAYS ══════════
+// ── OVERLAYS ──
 function openOverlay(id){document.getElementById(id).classList.add("open");}
 function closeOverlay(id){document.getElementById(id).classList.remove("open");}
-function setupOverlayClose(){
-  document.querySelectorAll(".overlay").forEach(ov=>{ov.addEventListener("click",e=>{if(e.target===ov)closeOverlay(ov.id);});});
-  document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".overlay.open").forEach(o=>closeOverlay(o.id));});
-}
+function setupOverlayClose(){document.querySelectorAll(".overlay").forEach(ov=>{ov.addEventListener("click",e=>{if(e.target===ov)closeOverlay(ov.id);});});document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".overlay.open").forEach(o=>closeOverlay(o.id));});}
 function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("sidebarOverlay").classList.toggle("open");}
 function closeSidebar(){document.getElementById("sidebar").classList.remove("open");document.getElementById("sidebarOverlay").classList.remove("open");}
-function showToast(msg,color="#4ade80"){
-  const t=document.getElementById("toast");t.textContent=msg;t.style.background=color;t.style.color=color==="#4ade80"?"#000":"#fff";
-  t.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove("show"),2800);
-}
+function showToast(msg,color="#4ade80"){const t=document.getElementById("toast");t.textContent=msg;t.style.background=color;t.style.color=color==="#4ade80"?"#000":"#fff";t.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove("show"),2800);}
 </script>
 </body>
 </html>
