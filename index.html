@@ -82,8 +82,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .filter-chip-person-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.65rem;padding:0 0 0 2px;line-height:1;opacity:0;transition:opacity .15s}
 .filter-chip-person:hover .filter-chip-person-del{opacity:1}
 .filter-chip-person-del:hover{color:var(--red)}
-.filter-chip-bu{background:var(--s2);border:1px solid var(--border);color:var(--muted);padding:4px 11px;border-radius:20px;cursor:pointer;font-size:.73rem;font-weight:600;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
-.filter-chip-bu:hover{border-color:#f472b6;color:var(--text)}.filter-chip-bu.active{background:#f472b6;border-color:#f472b6;color:#fff}
 .filter-manage-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:3px 9px;border-radius:20px;cursor:pointer;font-size:.68rem;font-weight:700;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:3px}
 .filter-manage-btn:hover{border-color:var(--accent);color:var(--accent)}
 .filter-add-person{display:flex;align-items:center;gap:5px;margin-left:auto}
@@ -344,10 +342,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .dblock{background:var(--s2);border-radius:10px;padding:11px 13px}
 .dblock-lbl{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:5px;display:flex;align-items:center;gap:6px}
 .dblock-val{font-size:.83rem;line-height:1.6;white-space:pre-wrap}
-.dblock-dates{display:flex;gap:16px;flex-wrap:wrap}
-.ddate{display:flex;flex-direction:column;gap:2px}
-.ddate-lbl{font-size:.63rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.5px}
-.ddate-val{font-size:.83rem;font-weight:600}
 .tag-chip-sm{display:inline-flex;align-items:center;background:var(--s3);border:1px solid var(--border);padding:2px 8px;border-radius:20px;font-size:.69rem;font-weight:600}
 .detail-links-list{display:flex;flex-direction:column;gap:5px}
 .detail-link-item{display:flex;align-items:center;gap:7px}
@@ -369,7 +363,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .camp-add-row input:focus{border-color:var(--accent)}
 .camp-add-row button{background:var(--accent);border:none;color:#fff;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700}
 .camp-section-title{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 5px}
-/* ★ COMENTÁRIOS */
 .comments-area{display:flex;flex-direction:column;gap:10px}
 .comment-item{background:var(--s3);border:1px solid var(--border);border-radius:10px;padding:10px 13px}
 .comment-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
@@ -392,7 +385,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .add-comment-wrap textarea{min-height:66px}
 .btn-comment{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;align-self:flex-end}
 .btn-comment:hover{background:var(--accent);border-color:var(--accent);color:#fff}
-/* ★ OBSERVAÇÕES EDITÁVEIS */
 .obs-view{font-size:.83rem;line-height:1.6;white-space:pre-wrap;cursor:pointer;padding:4px 6px;border-radius:6px;border:1px solid transparent;transition:border-color .15s,background .15s}
 .obs-view:hover{border-color:var(--border);background:var(--s3)}
 .obs-edit-wrap{display:flex;flex-direction:column;gap:6px;margin-top:4px}
@@ -506,16 +498,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <button onclick="addPersonFromFilter()">+ Add</button>
         </div>
       </div>
-      <div class="filter-row">
-        <span class="filter-label">🏢 BU:</span>
-        <div class="filter-group" id="buFilters"></div>
-        <button class="filter-manage-btn" onclick="togglePanel('panelBU')">⚙️ Gerenciar</button>
-      </div>
-      <div class="inline-manage-panel" id="panelBU">
-        <div class="imp-title">Gerenciar BUs</div>
-        <div class="imp-list" id="impBUList"></div>
-        <div class="imp-add-row"><input type="text" id="impBUInput" placeholder="Nova BU…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addFilterBU()}"/><button onclick="addFilterBU()">+ Add</button></div>
-      </div>
     </div>
     <div id="mainContent"></div>
   </div>
@@ -590,14 +572,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         </div>
         <div class="fgrp"><label>ID Campanha <span class="opt-badge">opcional</span></label><div class="input-btn-wrap"><input type="text" id="cCampaignId" placeholder="Ex: camp-00101" maxlength="40"/><button type="button" class="input-action-btn" onclick="generateCampaignId()">⚡ Gerar</button></div></div>
       </div>
-      <div class="row2">
-        <div class="fgrp"><label>PMP <span class="opt-badge">opcional</span></label><input type="text" id="cPmp" placeholder="Código ou link…" maxlength="80"/></div>
-        <div class="fgrp"><label>📅 Data Início <span class="opt-badge">opcional</span></label><input type="date" id="cDateStart"/></div>
-      </div>
-      <div class="row2">
-        <div class="fgrp"><label>🏁 Data Fim <span class="opt-badge">opcional</span></label><input type="date" id="cDateEnd"/></div>
-        <div></div>
-      </div>
+      <div class="fgrp"><label>PMP <span class="opt-badge">opcional</span></label><input type="text" id="cPmp" placeholder="Código ou link…" maxlength="80"/></div>
       <div class="row2">
         <div class="fgrp"><label>👤 Responsável <span class="opt-badge">opcional</span></label>
           <div class="people-picker" id="ppResp">
@@ -815,7 +790,7 @@ let cards={},categories={},campaigns=[...DEFAULT_CAMPAIGNS];
 let currentYear=2026,dragCardId=null,editCardId=null;
 let chosenColor="#6c63ff",catChosenColor="#6c63ff",editCatId=null;
 let currentTags=[],selectedStatus="",selectedRecur="";
-let filterPlatform="Todas",filterResp="Todas",filterBU="Todas",filterStatus="",searchQuery="";
+let filterPlatform="Todas",filterResp="Todas",filterStatus="",searchQuery="";
 let selectedEmoji="📌",currentDetailCardId=null,useOverrideColor=false;
 let pickerSelected={ppResp:[],ppSolic:[]};
 let selectedPlatformForm="",selectedBUForm="";
@@ -840,7 +815,7 @@ function isDoneStatus(s){return DONE_STATUSES.has(s);}
 function togglePanel(id){
   document.querySelectorAll(".inline-manage-panel").forEach(p=>{if(p.id!==id)p.classList.remove("open");});
   const el=document.getElementById(id);el.classList.toggle("open");
-  if(el.classList.contains("open")){if(id==="panelPlatform")renderImpPlatforms();if(id==="panelBU")renderImpBUs();}
+  if(el.classList.contains("open")){if(id==="panelPlatform")renderImpPlatforms();}
 }
 
 // PLATAFORMAS
@@ -854,16 +829,57 @@ function renderManagePlatformsList(){const el=document.getElementById("managePla
 function addPlatformItem(){const inp=document.getElementById("newPlatformInput"),v=inp.value.trim();if(!v)return;if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}platforms.push(v);inp.value="";savePlatforms();renderPlatformPicker();buildPlatformFilters();renderImpPlatforms();showToast("✅ Adicionada!");}
 function removePlatformItem(i){if(DEFAULT_PLATFORMS.includes(platforms[i])){showToast("⚠️ Padrão não pode ser removida.","#f97316");return;}const removed=platforms[i];platforms.splice(i,1);savePlatforms();if(selectedPlatformForm===removed)selectedPlatformForm="";renderPlatformPicker();renderManagePlatformsList();buildPlatformFilters();renderImpPlatforms();showToast("🗑️ Removida.","#f87171");}
 
-// BUS
-function renderImpBUs(){const el=document.getElementById("impBUList");if(!el)return;el.innerHTML=buList.map((b,i)=>`<div class="imp-item">🏢 ${esc(b)}${DEFAULT_BUS.includes(b)?`<span class="imp-item-default">padrão</span>`:`<button class="imp-item-del" onclick="removeFilterBU(${i})">✕</button>`}</div>`).join("");}
-function addFilterBU(){const inp=document.getElementById("impBUInput"),v=inp.value.trim();if(!v)return;if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}buList.push(v);inp.value="";saveBUs();renderImpBUs();buildBUFilters();renderBUPicker();showToast("✅ BU adicionada!");}
-function removeFilterBU(i){if(DEFAULT_BUS.includes(buList[i])){showToast("⚠️ Padrão não pode ser removida.","#f97316");return;}const removed=buList[i];buList.splice(i,1);saveBUs();if(filterBU===removed)filterBU="Todas";if(selectedBUForm===removed)selectedBUForm="";renderImpBUs();buildBUFilters();renderBUPicker();showToast("🗑️ BU removida.","#f87171");}
-function renderBUPicker(){const el=document.getElementById("buPicker");if(!el)return;el.innerHTML=`<div class="tag-pick-item${selectedBUForm===""?" sel":""}" onclick="selectBUForm('')">Nenhuma</div>`+buList.map(b=>`<div class="tag-pick-item bu-item${selectedBUForm===b?" sel":""}" onclick="selectBUForm('${esc(b)}')">${esc(b)}</div>`).join("");renderManageBUsList();}
+// BUS — todas deletáveis, sem filtro no topo
+function buildBUFilters(){
+  const el=document.getElementById("buFilters");
+  if(el)el.innerHTML="";
+}
+function renderImpBUs(){}
+function addFilterBU(){
+  const inp=document.getElementById("impBUInput");
+  if(!inp)return;
+  const v=inp.value.trim();if(!v)return;
+  if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
+  buList.push(v);inp.value="";saveBUs();buildBUFilters();renderBUPicker();showToast("✅ BU adicionada!");
+}
+function removeFilterBU(i){
+  const removed=buList[i];buList.splice(i,1);saveBUs();
+  if(selectedBUForm===removed)selectedBUForm="";
+  buildBUFilters();renderBUPicker();showToast("🗑️ BU removida.","#f87171");
+}
+function renderBUPicker(){
+  const el=document.getElementById("buPicker");
+  if(!el)return;
+  el.innerHTML=`<div class="tag-pick-item${selectedBUForm===""?" sel":""}" onclick="selectBUForm('')">Nenhuma</div>`
+    +buList.map(b=>`<div class="tag-pick-item bu-item${selectedBUForm===b?" sel":""}" onclick="selectBUForm('${esc(b)}')">${esc(b)}</div>`).join("");
+  renderManageBUsList();
+}
 function selectBUForm(b){selectedBUForm=b;renderBUPicker();}
 function toggleManageBUs(){const b=document.getElementById("manageBUsBox");b.style.display=b.style.display==="none"?"block":"none";if(b.style.display==="block")renderManageBUsList();}
-function renderManageBUsList(){const el=document.getElementById("manageBUsList");if(!el)return;el.innerHTML=buList.map((b,i)=>`<div class="manage-item-row"><span class="manage-item-name">🏢 ${esc(b)}</span>${DEFAULT_BUS.includes(b)?`<span class="manage-item-default">padrão</span>`:`<button class="manage-item-del" onclick="removeBUItem(${i})">✕</button>`}</div>`).join("");}
-function addBUItem(){const inp=document.getElementById("newBUInput"),v=inp.value.trim();if(!v)return;if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}buList.push(v);inp.value="";saveBUs();renderBUPicker();buildBUFilters();renderImpBUs();showToast("✅ BU adicionada!");}
-function removeBUItem(i){if(DEFAULT_BUS.includes(buList[i])){showToast("⚠️ Padrão não pode ser removida.","#f97316");return;}const removed=buList[i];buList.splice(i,1);saveBUs();if(selectedBUForm===removed)selectedBUForm="";renderBUPicker();renderManageBUsList();buildBUFilters();renderImpBUs();showToast("🗑️ Removida.","#f87171");}
+function renderManageBUsList(){
+  const el=document.getElementById("manageBUsList");
+  if(!el)return;
+  el.innerHTML=buList.map((b,i)=>`
+    <div class="manage-item-row">
+      <span class="manage-item-name">🏢 ${esc(b)}</span>
+      <button class="manage-item-del" onclick="removeBUItem(${i})" title="Remover">✕</button>
+    </div>`
+  ).join("");
+}
+function addBUItem(){
+  const inp=document.getElementById("newBUInput"),v=inp.value.trim();
+  if(!v)return;
+  if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
+  buList.push(v);inp.value="";
+  saveBUs();renderBUPicker();buildBUFilters();showToast("✅ BU adicionada!");
+}
+function removeBUItem(i){
+  const removed=buList[i];
+  buList.splice(i,1);saveBUs();
+  if(selectedBUForm===removed)selectedBUForm="";
+  renderBUPicker();renderManageBUsList();buildBUFilters();
+  showToast("🗑️ Removida.","#f87171");
+}
 
 // FIREBASE
 window._fbReady=false;
@@ -891,15 +907,13 @@ function setSyncStatus(s){const d=document.getElementById("syncDot");if(d)d.clas
 
 // FILTROS
 function buildPlatformFilters(){document.getElementById("platformFilters").innerHTML=`<button class="filter-chip${filterPlatform==="Todas"?" active":""}" onclick="setFilterPlatform('Todas')">Todas</button>`+platforms.map(p=>`<button class="filter-chip${filterPlatform===p?" active":""}" onclick="setFilterPlatform('${esc(p)}')">${getPlatIcon(p)} ${esc(p)}</button>`).join("");}
-function buildBUFilters(){document.getElementById("buFilters").innerHTML=`<div class="filter-chip-bu${filterBU==="Todas"?" active":""}" onclick="setFilterBU('Todas')">Todas</div>`+buList.map(b=>`<div class="filter-chip-bu${filterBU===b?" active":""}" onclick="setFilterBU('${esc(b)}')">🏢 ${esc(b)}</div>`).join("");}
 function buildRespFilters(){const c=document.getElementById("respFilters");c.innerHTML=`<div class="filter-chip${filterResp==="Todas"?" active":""}" onclick="setFilterResp('Todas')">Todas</div>`+peopleList.map(p=>{const a=filterResp===p.name;return`<div class="filter-chip-person${a?" active":""}" style="${a?`border-color:${p.color};box-shadow:0 0 0 1px ${p.color}44`:""}" onclick="setFilterResp('${esc(p.name)}')"><div class="fcp-avatar" style="background:${p.color}">${initials(p.name)}</div><span style="${a?`color:${p.color};font-weight:700`:""}">${esc(p.name)}</span><button class="filter-chip-person-del" onclick="event.stopPropagation();removePersonFromFilter('${esc(p.name)}')" title="Remover">✕</button></div>`;}).join("");}
 function removePersonFromFilter(name){if(filterResp===name)filterResp="Todas";peopleList=peopleList.filter(p=>p.name!==name);savePeopleList();buildRespFilters();applyFilters();showToast(`🗑️ ${name} removido(a).`,"#f87171");}
 function setFilterPlatform(p){filterPlatform=p;buildPlatformFilters();applyFilters();}
-function setFilterBU(b){filterBU=b;buildBUFilters();applyFilters();}
 function setFilterResp(n){filterResp=n;buildRespFilters();applyFilters();}
 function applyFilters(){searchQuery=document.getElementById("searchInput").value.toLowerCase().trim();refreshAllDOM();}
 function addPersonFromFilter(){const inp=document.getElementById("newRespInput"),name=inp.value.trim();if(!name)return;if(!peopleList.find(p=>p.name.toLowerCase()===name.toLowerCase())){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});savePeopleList();}inp.value="";buildRespFilters();}
-function cardMatchesFilter(card){if(filterPlatform!=="Todas"&&card.platform!==filterPlatform)return false;if(filterResp!=="Todas"&&!toArr(card.responsavel).includes(filterResp))return false;if(filterBU!=="Todas"&&card.bu!==filterBU)return false;if(filterStatus&&getEffectiveStatus(card)!==filterStatus)return false;if(searchQuery){const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,card.bu,...toArr(card.responsavel),...(card.tags||[])].join(" ").toLowerCase();if(!hay.includes(searchQuery))return false;}return true;}
+function cardMatchesFilter(card){if(filterPlatform!=="Todas"&&card.platform!==filterPlatform)return false;if(filterResp!=="Todas"&&!toArr(card.responsavel).includes(filterResp))return false;if(filterStatus&&getEffectiveStatus(card)!==filterStatus)return false;if(searchQuery){const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.campaignId,card.bu,...toArr(card.responsavel),...(card.tags||[])].join(" ").toLowerCase();if(!hay.includes(searchQuery))return false;}return true;}
 function toggleStatusFilter(s){filterStatus=filterStatus===s?"":s;refreshAllDOM();}
 
 // PRIORIDADE
@@ -1005,12 +1019,12 @@ function setupDayModalDnd(mi,d,yr){const list=document.getElementById("dayCardsL
 
 // MODAL DIA
 function openDayModal(mi,d,e,keepOpen=false){if(e)e.stopPropagation();const yr=currentYear;_dayModalContext={mi,d,yr};const dateObj=new Date(yr,mi,d);document.getElementById("dayModalNum").textContent=d;document.getElementById("dayModalWeek").textContent=DAYS_PT[dateObj.getDay()];document.getElementById("dayModalMonthYear").textContent=`${MONTHS_PT[mi]} ${yr}`;document.getElementById("dayModalAddBtn").onclick=()=>{closeOverlay("dayOverlay");openAdd(mi,d);};const h=holiday(yr,mi,d),hEl=document.getElementById("dayModalHoliday");if(h){hEl.style.display="flex";hEl.className="day-modal-holiday";hEl.innerHTML=`🎉 ${h}`;}else hEl.style.display="none";const allCards=getCardsForDay(mi,d,yr),sc={};allCards.forEach(c=>{const s=getEffectiveStatus(c);if(s)sc[s]=(sc[s]||0)+1;});document.getElementById("dayModalStats").innerHTML=`<div class="day-stat-chip">📋 ${allCards.length} demanda${allCards.length!==1?"s":""}</div>`+Object.entries(sc).map(([s,n])=>{const c=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="day-stat-chip"><div class="day-stat-dot" style="background:${c.bg}"></div>${s}: ${n}</div>`;}).join("");const allSorted=smartSortCards(allCards.filter(c=>cardMatchesFilter(c)),mi,d,yr);const activeCards=allSorted.filter(c=>!isDoneStatus(getEffectiveStatus(c))&&!c._isRecurInstance);const doneCards=allSorted.filter(c=>isDoneStatus(getEffectiveStatus(c))&&!c._isRecurInstance);const recurCards=allCards.filter(c=>c._isRecurInstance&&cardMatchesFilter(c));const listEl=document.getElementById("dayCardsList");if(!allCards.length){listEl.innerHTML=`<div class="day-modal-empty"><div class="day-modal-empty-icon">📭</div><p>Nenhuma demanda neste dia.</p></div>`;}else{let html="";if(activeCards.length){html+=`<p style="font-size:.62rem;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;font-weight:800;margin-bottom:6px">☰ Arraste para reordenar por prioridade</p><div class="day-cards-list">`;activeCards.forEach(card=>{html+=buildDayCardRow(card,true,false);});html+=`</div>`;}if(recurCards.filter(c=>!isDoneStatus(getEffectiveStatus(c))).length){html+=`<div class="priority-section-label"><span></span>🔁 Recorrentes<span></span></div><div class="day-cards-list">`;recurCards.filter(c=>!isDoneStatus(getEffectiveStatus(c))).forEach(card=>{html+=buildDayCardRow(card,false,false);});html+=`</div>`;}const allDone=[...doneCards,...recurCards.filter(c=>isDoneStatus(getEffectiveStatus(c)))];if(allDone.length){html+=`<div class="done-section-label"><span></span>✅ Finalizados<span></span></div><div class="day-cards-list">`;allDone.forEach(card=>{html+=buildDayCardRow(card,false,true);});html+=`</div>`;}listEl.innerHTML=html;}if(!keepOpen)openOverlay("dayOverlay");setupDayModalDnd(mi,d,yr);}
-function buildDayCardRow(card,isDraggable,isDone){const color=getCardColor(card),cat=categories[card.catId],eff=getEffectiveStatus(card),s=STATUS_COLORS[eff],isRecur=card._isRecurInstance||false;const cl=card.checklist||[],{done,total,pct}=clStats(cl);const resps=toArr(card.responsavel);return`<div class="day-card-row${isDraggable?" draggable":""}${isRecur?" is-recur":""}${isDone?" is-done":""}" style="border-left-color:${color}" data-cardid="${card.id}">${isDraggable?`<div class="day-card-drag-handle">☰</div>`:"<div style='width:20px;flex-shrink:0'></div>"}<div class="day-card-info" onclick="openDetailFromDay('${card.id}')"><div class="day-card-title">${card.platform?`<span style="margin-right:4px">${getPlatIcon(card.platform)}</span>`:""}${esc(card.title)}${card.bu?` <span style="font-size:.58rem;color:#f472b6;font-weight:700">[${esc(card.bu)}]</span>`:""}</div><div class="day-card-meta">${cat?`<span class="day-card-badge" style="color:${color};border-color:${color}33;background:${color}15">${cat.emoji||""} ${esc(cat.name)}</span>`:""}${s?`<span class="day-card-status" style="background:${s.bg};color:${s.text}">${eff}</span>`:""}${cl.length?`<span class="day-card-cl"><div class="day-card-cl-bar"><div class="day-card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>${done}/${total}</span>`:""}</div></div><div class="day-card-right"><div class="day-card-avatars">${resps.slice(0,3).map(name=>`<div class="day-card-avatar" style="background:${getPersonColor(name)}">${initials(name)}</div>`).join("")}</div></div></div>`;}
+function buildDayCardRow(card,isDraggable,isDone){const color=getCardColor(card),cat=categories[card.catId],eff=getEffectiveStatus(card),s=STATUS_COLORS[eff],isRecur=card._isRecurInstance||false;const cl=card.checklist||[],{done,total,pct}=clStats(cl);const resps=toArr(card.responsavel);return`<div class="day-card-row${isDraggable?" draggable":""}${isRecur?" is-recur":""}${isDone?" is-done":""}" style="border-left-color:${color}" data-cardid="${card.id}"><${isDraggable?`div class="day-card-drag-handle"`:`div style="width:20px;flex-shrink:0"`}>☰</${isDraggable?"div":"div"}><div class="day-card-info" onclick="openDetailFromDay('${card.id}')"><div class="day-card-title">${card.platform?`<span style="margin-right:4px">${getPlatIcon(card.platform)}</span>`:""}${esc(card.title)}${card.bu?` <span style="font-size:.58rem;color:#f472b6;font-weight:700">[${esc(card.bu)}]</span>`:""}</div><div class="day-card-meta">${cat?`<span class="day-card-badge" style="color:${color};border-color:${color}33;background:${color}15">${cat.emoji||""} ${esc(cat.name)}</span>`:""}${s?`<span class="day-card-status" style="background:${s.bg};color:${s.text}">${eff}</span>`:""}${cl.length?`<span class="day-card-cl"><div class="day-card-cl-bar"><div class="day-card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>${done}/${total}</span>`:""}</div></div><div class="day-card-right"><div class="day-card-avatars">${resps.slice(0,3).map(name=>`<div class="day-card-avatar" style="background:${getPersonColor(name)}">${initials(name)}</div>`).join("")}</div></div></div>`;}
 function openDetailFromDay(id){_openedFromDayModal=true;closeOverlay("dayOverlay");openDetail(id,null);}
 function backToDayModal(){closeOverlay("detailOverlay");_openedFromDayModal=false;if(_dayModalContext){const{mi,d}=_dayModalContext;openDayModal(mi,d,null,false);}}
 
 // EXCEL
-function exportMonthExcel(mi){const yr=currentYear,dim=new Date(yr,mi+1,0).getDate();const rows=[["Data","Dia","Prioridade","Título","Plataforma","BU","Categoria","Responsável","Solicitante","Status","Campanha","ID Campanha","PMP","Data Início","Data Fim","Big Idea","Copy","Descrição","Tags","Recorrência","Checklist Total","Checklist Feitos","Links","Comentários"]];for(let d=1;d<=dim;d++){const sorted=smartSortCards(getCardsForDay(mi,d,yr).filter(c=>!c._isRecurInstance),mi,d,yr);sorted.forEach((c,pi)=>{const cat=categories[c.catId],cl=c.checklist||[],{total,done}=clStats(cl);rows.push([`${String(d).padStart(2,"0")}/${String(mi+1).padStart(2,"0")}/${yr}`,DAYS_PT[new Date(yr,mi,d).getDay()],pi+1,c.title||"",c.platform||"",c.bu||"",cat?(cat.emoji+" "+cat.name):"",toArr(c.responsavel).join(", "),toArr(c.solicitante).join(", "),c.briefing||"",c.campaign||"",c.campaignId||"",c.pmp||"",fmtDFull(c.dateStart),fmtDFull(c.dateEnd),c.bigIdea||"",c.copy||"",c.desc||"",(c.tags||[]).join(", "),RECUR_LABELS[c.recurrence||""]||"",total,done,(c.links||[]).map(l=>l.name+": "+l.url).join(" | "),(c.comments||[]).length]);});}const bom="\uFEFF",csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(";")).join("\n");const blob=new Blob([bom+csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`calendario_${MONTHS_PT[mi]}_${yr}.csv`;a.click();URL.revokeObjectURL(url);showToast(`📥 ${MONTHS_PT[mi]} ${yr} exportado!`,"#22c55e");}
+function exportMonthExcel(mi){const yr=currentYear,dim=new Date(yr,mi+1,0).getDate();const rows=[["Data","Dia","Prioridade","Título","Plataforma","BU","Categoria","Responsável","Solicitante","Status","Campanha","ID Campanha","PMP","Big Idea","Copy","Descrição","Tags","Recorrência","Checklist Total","Checklist Feitos","Links","Comentários"]];for(let d=1;d<=dim;d++){const sorted=smartSortCards(getCardsForDay(mi,d,yr).filter(c=>!c._isRecurInstance),mi,d,yr);sorted.forEach((c,pi)=>{const cat=categories[c.catId],cl=c.checklist||[],{total,done}=clStats(cl);rows.push([`${String(d).padStart(2,"0")}/${String(mi+1).padStart(2,"0")}/${yr}`,DAYS_PT[new Date(yr,mi,d).getDay()],pi+1,c.title||"",c.platform||"",c.bu||"",cat?(cat.emoji+" "+cat.name):"",toArr(c.responsavel).join(", "),toArr(c.solicitante).join(", "),c.briefing||"",c.campaign||"",c.campaignId||"",c.pmp||"",c.bigIdea||"",c.copy||"",c.desc||"",(c.tags||[]).join(", "),RECUR_LABELS[c.recurrence||""]||"",total,done,(c.links||[]).map(l=>l.name+": "+l.url).join(" | "),(c.comments||[]).length]);});}const bom="\uFEFF",csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(";")).join("\n");const blob=new Blob([bom+csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`calendario_${MONTHS_PT[mi]}_${yr}.csv`;a.click();URL.revokeObjectURL(url);showToast(`📥 ${MONTHS_PT[mi]} ${yr} exportado!`,"#22c55e");}
 
 // TABS
 function switchTab(pid,btn){document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById("tab-"+pid).classList.add("active");btn.classList.add("active");}
@@ -1022,11 +1036,11 @@ function renderLinksEdit(links){document.getElementById("linksListEdit").innerHT
 function onCatChange(){const catId=document.getElementById("cCatSel").value,cat=categories[catId],prev=document.getElementById("catColorPreview");if(cat){prev.style.display="flex";document.getElementById("catColorSwatch").style.background=cat.color;document.getElementById("catColorName").textContent=(cat.emoji||"")+" "+cat.name;document.getElementById("catColorHexPrev").textContent=cat.color;if(!useOverrideColor)chosenColor=cat.color;}else{prev.style.display="none";if(!useOverrideColor)chosenColor="#6c63ff";}}
 function toggleOverride(){useOverrideColor=document.getElementById("overrideColorCheck").checked;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);if(!useOverrideColor){const cat=categories[document.getElementById("cCatSel").value];chosenColor=cat?.color||"#6c63ff";}}
 function buildCatOpts(selId){return`<option value="">— Sem categoria —</option>`+Object.values(categories).map(c=>`<option value="${c.id}"${c.id===selId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");}
-function resetCardForm(month,day){const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;document.getElementById("cDate").value=iso;populateCampaignSelect();["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cDateStart","cDateEnd","cPmp"].forEach(id=>document.getElementById(id).value="");document.getElementById("cCatSel").innerHTML=buildCatOpts("");document.getElementById("catColorPreview").style.display="none";document.getElementById("overrideColorCheck").checked=false;document.getElementById("overrideSection").classList.remove("show");useOverrideColor=false;chosenColor="#6c63ff";setChosenColor(chosenColor);currentTags=[];selectedStatus="";renderTags();clearStatusSel();renderLinksEdit([]);pickerSelected={ppResp:[],ppSolic:[]};renderPickerTags("ppResp");renderPickerTags("ppSolic");selectRecur("");selectedPlatformForm="";selectedBUForm="";renderPlatformPicker();renderBUPicker();_clData=[];document.getElementById("clList").innerHTML="";document.getElementById("clProgressWrap").style.display="none";["err-date","err-title"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("show");});["cDate","cTitle"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("invalid");});document.getElementById("cardDelRow").style.display="none";document.getElementById("btnSaveCard").textContent="💾 Salvar";document.getElementById("btnSaveCard").disabled=false;document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById("tab-info").classList.add("active");document.querySelector("#cardOverlay .modal-tab").classList.add("active");document.getElementById("managePlatformsBox").style.display="none";document.getElementById("manageBUsBox").style.display="none";}
+function resetCardForm(month,day){const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;document.getElementById("cDate").value=iso;populateCampaignSelect();["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cPmp"].forEach(id=>document.getElementById(id).value="");document.getElementById("cCatSel").innerHTML=buildCatOpts("");document.getElementById("catColorPreview").style.display="none";document.getElementById("overrideColorCheck").checked=false;document.getElementById("overrideSection").classList.remove("show");useOverrideColor=false;chosenColor="#6c63ff";setChosenColor(chosenColor);currentTags=[];selectedStatus="";renderTags();clearStatusSel();renderLinksEdit([]);pickerSelected={ppResp:[],ppSolic:[]};renderPickerTags("ppResp");renderPickerTags("ppSolic");selectRecur("");selectedPlatformForm="";selectedBUForm="";renderPlatformPicker();renderBUPicker();_clData=[];document.getElementById("clList").innerHTML="";document.getElementById("clProgressWrap").style.display="none";["err-date","err-title"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("show");});["cDate","cTitle"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("invalid");});document.getElementById("cardDelRow").style.display="none";document.getElementById("btnSaveCard").textContent="💾 Salvar";document.getElementById("btnSaveCard").disabled=false;document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById("tab-info").classList.add("active");document.querySelector("#cardOverlay .modal-tab").classList.add("active");document.getElementById("managePlatformsBox").style.display="none";document.getElementById("manageBUsBox").style.display="none";}
 function openAdd(month,day){editCardId=null;resetCardForm(month,day);document.getElementById("cardModalTitle").textContent="Novo Item";openOverlay("cardOverlay");}
 function openAddGeneral(mi){openAdd(mi,1);document.getElementById("cDate").value=`${currentYear}-${String(mi+1).padStart(2,"0")}-01`;}
-function openEditCard(id){const c=cards[id];if(!c)return;editCardId=id;document.getElementById("cardModalTitle").textContent="Editar Item";document.getElementById("cDate").value=c.date||`${c.year}-${String(c.month+1).padStart(2,"0")}-${String(c.day).padStart(2,"0")}`;populateCampaignSelect(c.campaign||"");document.getElementById("cCampaignId").value=c.campaignId||"";document.getElementById("cTitle").value=c.title||"";document.getElementById("cBigIdea").value=c.bigIdea||"";document.getElementById("cCopy").value=c.copy||"";document.getElementById("cDesc").value=c.desc||"";document.getElementById("cDateStart").value=c.dateStart||"";document.getElementById("cDateEnd").value=c.dateEnd||"";document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");document.getElementById("cPmp").value=c.pmp||"";selectedPlatformForm=c.platform||"";selectedBUForm=c.bu||"";renderPlatformPicker();renderBUPicker();applyPeoplePicker("ppResp",c.responsavel||[]);applyPeoplePicker("ppSolic",c.solicitante||[]);selectRecur(c.recurrence||"");useOverrideColor=!!(c.overrideColor);document.getElementById("overrideColorCheck").checked=useOverrideColor;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);if(useOverrideColor){chosenColor=c.overrideColor;setChosenColor(chosenColor);}else{const cat=categories[c.catId];chosenColor=cat?.color||c.color||"#6c63ff";}onCatChange();currentTags=[...(c.tags||[])];renderTags();clLoadList(c.checklist||[]);selectedStatus=c.briefing||"";applyStatusSel();renderLinksEdit(c.links||[]);document.getElementById("cardDelRow").style.display="flex";document.getElementById("cardDelBtn").onclick=()=>doDelCard(id);document.getElementById("cardDupBtn").onclick=()=>{closeOverlay("cardOverlay");openDuplicate(id);};document.getElementById("managePlatformsBox").style.display="none";document.getElementById("manageBUsBox").style.display="none";document.getElementById("btnSaveCard").textContent="💾 Salvar";document.getElementById("btnSaveCard").disabled=false;openOverlay("cardOverlay");}
-async function saveCard(){const dateVal=document.getElementById("cDate").value,title=document.getElementById("cTitle").value.trim();let hasErr=false;if(!dateVal){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");hasErr=true;}else{document.getElementById("err-date").classList.remove("show");document.getElementById("cDate").classList.remove("invalid");}if(!title){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");hasErr=true;}else{document.getElementById("err-title").classList.remove("show");document.getElementById("cTitle").classList.remove("invalid");}if(hasErr){showToast("⚠️ Preencha Data e Título.","#f97316");return;}const btn=document.getElementById("btnSaveCard");btn.disabled=true;btn.textContent="⏳ Salvando…";const[yr,mo,dy]=dateVal.split("-").map(Number),existing=cards[editCardId||""];let finalColor=chosenColor,finalOverride=null;if(useOverrideColor)finalOverride=chosenColor;else{const cat=categories[document.getElementById("cCatSel").value];finalColor=cat?.color||"#6c63ff";}const resps=pickerSelected["ppResp"]||[],solics=pickerSelected["ppSolic"]||[];resps.forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});savePeopleList();const card={id:editCardId||("c"+Date.now()),year:yr,month:mo-1,day:dy,date:dateVal,platform:selectedPlatformForm,bu:selectedBUForm,campaign:document.getElementById("cCampaign").value,campaignId:document.getElementById("cCampaignId").value.trim(),title,bigIdea:document.getElementById("cBigIdea").value.trim(),copy:document.getElementById("cCopy").value.trim(),desc:document.getElementById("cDesc").value.trim(),dateStart:document.getElementById("cDateStart").value,dateEnd:document.getElementById("cDateEnd").value,catId:document.getElementById("cCatSel").value,pmp:document.getElementById("cPmp").value.trim(),responsavel:resps,solicitante:solics,recurrence:selectedRecur||"",color:finalColor,overrideColor:finalOverride,briefing:selectedStatus,tags:[...currentTags],links:readLinks(),checklist:clReadData(),comments:existing?.comments||[]};const old=cards[card.id];cards[card.id]=card;rebuildRecurInstances();if(old&&(old.day!==card.day||old.month!==card.month))refreshDay(old.month,old.day);refreshDay(card.month,card.day);refreshLeg(card.month);updateCounts();buildRespFilters();try{await dbSaveCard(card);closeOverlay("cardOverlay");showToast("✅ Card salvo!","#4ade80");}catch{btn.disabled=false;btn.textContent="💾 Salvar";showToast("❌ Erro ao salvar.","#f87171");}}
+function openEditCard(id){const c=cards[id];if(!c)return;editCardId=id;document.getElementById("cardModalTitle").textContent="Editar Item";document.getElementById("cDate").value=c.date||`${c.year}-${String(c.month+1).padStart(2,"0")}-${String(c.day).padStart(2,"0")}`;populateCampaignSelect(c.campaign||"");document.getElementById("cCampaignId").value=c.campaignId||"";document.getElementById("cTitle").value=c.title||"";document.getElementById("cBigIdea").value=c.bigIdea||"";document.getElementById("cCopy").value=c.copy||"";document.getElementById("cDesc").value=c.desc||"";document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");document.getElementById("cPmp").value=c.pmp||"";selectedPlatformForm=c.platform||"";selectedBUForm=c.bu||"";renderPlatformPicker();renderBUPicker();applyPeoplePicker("ppResp",c.responsavel||[]);applyPeoplePicker("ppSolic",c.solicitante||[]);selectRecur(c.recurrence||"");useOverrideColor=!!(c.overrideColor);document.getElementById("overrideColorCheck").checked=useOverrideColor;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);if(useOverrideColor){chosenColor=c.overrideColor;setChosenColor(chosenColor);}else{const cat=categories[c.catId];chosenColor=cat?.color||c.color||"#6c63ff";}onCatChange();currentTags=[...(c.tags||[])];renderTags();clLoadList(c.checklist||[]);selectedStatus=c.briefing||"";applyStatusSel();renderLinksEdit(c.links||[]);document.getElementById("cardDelRow").style.display="flex";document.getElementById("cardDelBtn").onclick=()=>doDelCard(id);document.getElementById("cardDupBtn").onclick=()=>{closeOverlay("cardOverlay");openDuplicate(id);};document.getElementById("managePlatformsBox").style.display="none";document.getElementById("manageBUsBox").style.display="none";document.getElementById("btnSaveCard").textContent="💾 Salvar";document.getElementById("btnSaveCard").disabled=false;openOverlay("cardOverlay");}
+async function saveCard(){const dateVal=document.getElementById("cDate").value,title=document.getElementById("cTitle").value.trim();let hasErr=false;if(!dateVal){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");hasErr=true;}else{document.getElementById("err-date").classList.remove("show");document.getElementById("cDate").classList.remove("invalid");}if(!title){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");hasErr=true;}else{document.getElementById("err-title").classList.remove("show");document.getElementById("cTitle").classList.remove("invalid");}if(hasErr){showToast("⚠️ Preencha Data e Título.","#f97316");return;}const btn=document.getElementById("btnSaveCard");btn.disabled=true;btn.textContent="⏳ Salvando…";const[yr,mo,dy]=dateVal.split("-").map(Number),existing=cards[editCardId||""];let finalColor=chosenColor,finalOverride=null;if(useOverrideColor)finalOverride=chosenColor;else{const cat=categories[document.getElementById("cCatSel").value];finalColor=cat?.color||"#6c63ff";}const resps=pickerSelected["ppResp"]||[],solics=pickerSelected["ppSolic"]||[];resps.forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});savePeopleList();const card={id:editCardId||("c"+Date.now()),year:yr,month:mo-1,day:dy,date:dateVal,platform:selectedPlatformForm,bu:selectedBUForm,campaign:document.getElementById("cCampaign").value,campaignId:document.getElementById("cCampaignId").value.trim(),title,bigIdea:document.getElementById("cBigIdea").value.trim(),copy:document.getElementById("cCopy").value.trim(),desc:document.getElementById("cDesc").value.trim(),pmp:document.getElementById("cPmp").value.trim(),responsavel:resps,solicitante:solics,recurrence:selectedRecur||"",color:finalColor,overrideColor:finalOverride,briefing:selectedStatus,tags:[...currentTags],links:readLinks(),checklist:clReadData(),comments:existing?.comments||[]};const old=cards[card.id];cards[card.id]=card;rebuildRecurInstances();if(old&&(old.day!==card.day||old.month!==card.month))refreshDay(old.month,old.day);refreshDay(card.month,card.day);refreshLeg(card.month);updateCounts();buildRespFilters();try{await dbSaveCard(card);closeOverlay("cardOverlay");showToast("✅ Card salvo!","#4ade80");}catch{btn.disabled=false;btn.textContent="💾 Salvar";showToast("❌ Erro ao salvar.","#f87171");}}
 async function doDelCard(id){const c=cards[id],mi=c?.month,d=c?.day;delete cards[id];closeOverlay("cardOverlay");closeOverlay("detailOverlay");rebuildRecurInstances();if(mi!==undefined){refreshDay(mi,d);refreshLeg(mi);updateCounts();}await dbDelCard(id);showToast("🗑️ Excluído.","#f87171");}
 function openDuplicate(id){dupSourceId=id;const c=cards[id];if(!c)return;const base=new Date(c.year,c.month,c.day+1);document.getElementById("dupDate").value=`${base.getFullYear()}-${String(base.getMonth()+1).padStart(2,"0")}-${String(base.getDate()).padStart(2,"0")}`;document.getElementById("dupTitle").value="";openOverlay("dupOverlay");}
 async function confirmDuplicate(){const dateVal=document.getElementById("dupDate").value;if(!dateVal){showToast("⚠️ Selecione uma data!","#f97316");return;}const src=cards[dupSourceId];if(!src)return;const[yr,mo,dy]=dateVal.split("-").map(Number);const newCard={...src,id:"c"+Date.now(),year:yr,month:mo-1,day:dy,date:dateVal,title:document.getElementById("dupTitle").value.trim()||src.title,comments:[]};closeOverlay("dupOverlay");closeOverlay("detailOverlay");cards[newCard.id]=newCard;rebuildRecurInstances();refreshDay(newCard.month,newCard.day);refreshLeg(newCard.month);updateCounts();await dbSaveCard(newCard);showToast("⧉ Card duplicado!");}
@@ -1035,140 +1049,23 @@ async function confirmDuplicate(){const dateVal=document.getElementById("dupDate
 function renderDetailStatusBar(effStatus){return`<div class="detail-status-bar"><div class="detail-status-label">🎯 Status da Demanda</div><div class="detail-status-opts">${Object.entries(STATUS_COLORS).map(([s,sc])=>{const active=s===effStatus;return`<div class="ds-opt${active?" ds-active":""}" data-val="${s}" style="${active?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""}" onclick="setDetailStatus('${s}')"><span class="s-dot" style="background:${sc.bg}"></span>${s}</div>`;}).join("")}</div></div>`;}
 async function setDetailStatus(newStatus){const isRecur=window._currentDetailIsRecur||false,recurDate=window._currentDetailDate||null,realId=currentDetailCardId;const card=cards[realId];if(!card)return;let effStatus;if(isRecur&&recurDate){const k=getRecurKey(realId,recurDate),cur=k in recurStatuses?recurStatuses[k]:(card.briefing||"");effStatus=cur===newStatus?"":newStatus;setRecurStatus(realId,recurDate,effStatus);const[yr,mo,dy]=recurDate.split("-").map(Number);refreshDay(mo-1,dy);}else{effStatus=card.briefing===newStatus?"":newStatus;const updated={...card,briefing:effStatus};cards[realId]=updated;rebuildRecurInstances();refreshDay(updated.month,updated.day);refreshLeg(updated.month);await dbSaveCard(updated);}document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,a=v===effStatus&&effStatus!=="",sc=STATUS_COLORS[v];el.className="ds-opt";el.style.cssText="";if(a){el.classList.add("ds-active");el.style.cssText=`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`;}});const badge=document.getElementById("detailStatusBadge");if(badge){if(effStatus){const sc=STATUS_COLORS[effStatus];badge.textContent=effStatus;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}else badge.style.display="none";}updateCounts();showToast(effStatus?"✅ Status atualizado!":"↩️ Status removido.");}
 
-// ★ OBSERVAÇÕES EDITÁVEIS
+// OBSERVAÇÕES EDITÁVEIS
 function renderObsBlock(desc){
-  if(desc){
-    return`<div class="dblock" id="obs-block">
-      <div class="dblock-lbl">📝 Observações <button class="lbl-btn" onclick="startEditObs()">✏️ Editar</button></div>
-      <div id="obs-content"><div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(desc)}</div></div>
-    </div>`;
-  }
-  return`<div class="dblock" id="obs-block">
-    <div class="dblock-lbl">📝 Observações</div>
-    <div id="obs-content"><div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div></div>
-  </div>`;
+  if(desc){return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações <button class="lbl-btn" onclick="startEditObs()">✏️ Editar</button></div><div id="obs-content"><div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(desc)}</div></div></div>`;}
+  return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações</div><div id="obs-content"><div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div></div></div>`;
 }
-function startEditObs(){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const content=document.getElementById("obs-content");if(!content)return;
-  content.innerHTML=`<div class="obs-edit-wrap">
-    <textarea class="obs-edit-inp" id="obsEditInp"></textarea>
-    <div class="obs-edit-actions">
-      ${card.desc?`<button class="obs-del-btn" onclick="deleteObs()">🗑 Apagar</button>`:""}
-      <button class="comment-edit-cancel" onclick="cancelEditObs()">Cancelar</button>
-      <button class="comment-edit-save" onclick="saveEditObs()">💾 Salvar</button>
-    </div>
-  </div>`;
-  const ta=document.getElementById("obsEditInp");
-  if(ta){ta.value=card.desc||"";ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}
-}
-function cancelEditObs(){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const content=document.getElementById("obs-content");if(!content)return;
-  if(card.desc){content.innerHTML=`<div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(card.desc)}</div>`;}
-  else{content.innerHTML=`<div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div>`;}
-}
-async function saveEditObs(){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const ta=document.getElementById("obsEditInp");if(!ta)return;
-  const newDesc=ta.value.trim();
-  const updated={...card,desc:newDesc};cards[currentDetailCardId]=updated;
-  const obsBlock=document.getElementById("obs-block");
-  if(obsBlock)obsBlock.outerHTML=renderObsBlock(newDesc);
-  refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Observação salva!");
-}
-async function deleteObs(){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const updated={...card,desc:""};cards[currentDetailCardId]=updated;
-  const obsBlock=document.getElementById("obs-block");
-  if(obsBlock)obsBlock.outerHTML=renderObsBlock("");
-  refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("🗑️ Observação apagada.","#f87171");
-}
+function startEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;content.innerHTML=`<div class="obs-edit-wrap"><textarea class="obs-edit-inp" id="obsEditInp"></textarea><div class="obs-edit-actions">${card.desc?`<button class="obs-del-btn" onclick="deleteObs()">🗑 Apagar</button>`:""}<button class="comment-edit-cancel" onclick="cancelEditObs()">Cancelar</button><button class="comment-edit-save" onclick="saveEditObs()">💾 Salvar</button></div></div>`;const ta=document.getElementById("obsEditInp");if(ta){ta.value=card.desc||"";ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}}
+function cancelEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;if(card.desc){content.innerHTML=`<div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(card.desc)}</div>`;}else{content.innerHTML=`<div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div>`;}}
+async function saveEditObs(){const card=cards[currentDetailCardId];if(!card)return;const ta=document.getElementById("obsEditInp");if(!ta)return;const newDesc=ta.value.trim();const updated={...card,desc:newDesc};cards[currentDetailCardId]=updated;const obsBlock=document.getElementById("obs-block");if(obsBlock)obsBlock.outerHTML=renderObsBlock(newDesc);refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Observação salva!");}
+async function deleteObs(){const card=cards[currentDetailCardId];if(!card)return;const updated={...card,desc:""};cards[currentDetailCardId]=updated;const obsBlock=document.getElementById("obs-block");if(obsBlock)obsBlock.outerHTML=renderObsBlock("");refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("🗑️ Observação apagada.","#f87171");}
 
-// ★ COMENTÁRIOS com edição e mais recente primeiro
-function renderComments(card){
-  const area=document.getElementById("commentsArea");
-  const allComments=card.comments||[];
-  if(!allComments.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda 💬</div>`;return;}
-  // mais recente primeiro (não altera o array original)
-  const displayed=[...allComments].reverse();
-  const total=allComments.length;
-  area.innerHTML=displayed.map((cm,revIdx)=>{
-    const realIdx=total-1-revIdx;
-    return`<div class="comment-item" id="ci-${realIdx}">
-      <div class="comment-header">
-        <span class="comment-author">👤 ${esc(cm.author||"Anônimo")}</span>
-        <div style="display:flex;align-items:center;gap:6px">
-          ${cm.edited?`<span class="comment-edited">(editado)</span>`:""}
-          <span class="comment-time">${cm.time||""}</span>
-          <button class="comment-edit-btn" onclick="startEditComment(${realIdx})" title="Editar comentário">✏️</button>
-          <button class="comment-del" onclick="deleteComment(${realIdx})">✕</button>
-        </div>
-      </div>
-      <div id="cb-${realIdx}"><div class="comment-text">${esc(cm.text)}</div></div>
-    </div>`;
-  }).join("");
-}
-
-function startEditComment(idx){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const cm=(card.comments||[])[idx];if(!cm)return;
-  const body=document.getElementById(`cb-${idx}`);if(!body)return;
-  body.innerHTML=`<div class="comment-edit-wrap">
-    <textarea class="comment-edit-inp" id="cedit-${idx}"></textarea>
-    <div class="comment-edit-actions">
-      <button class="comment-edit-cancel" onclick="cancelEditComment(${idx})">Cancelar</button>
-      <button class="comment-edit-save" onclick="saveEditComment(${idx})">💾 Salvar</button>
-    </div>
-  </div>`;
-  const ta=document.getElementById(`cedit-${idx}`);
-  if(ta){ta.value=cm.text;ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}
-}
-function cancelEditComment(idx){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const cm=(card.comments||[])[idx];if(!cm)return;
-  const body=document.getElementById(`cb-${idx}`);if(!body)return;
-  body.innerHTML=`<div class="comment-text">${esc(cm.text)}</div>`;
-}
-async function saveEditComment(idx){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const ta=document.getElementById(`cedit-${idx}`);if(!ta)return;
-  const newText=ta.value.trim();
-  if(!newText){showToast("⚠️ Comentário não pode ser vazio.","#f97316");return;}
-  const comments=[...(card.comments||[])];
-  comments[idx]={...comments[idx],text:newText,edited:true};
-  const updated={...card,comments};cards[currentDetailCardId]=updated;
-  renderComments(updated);
-  const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=comments.length;
-  refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Comentário editado!");
-}
-
-async function addComment(){
-  const author=document.getElementById("commentAuthor").value.trim()||"Anônimo";
-  const text=document.getElementById("commentText").value.trim();
-  if(!text){showToast("⚠️ Escreva um comentário!","#f97316");return;}
-  const card=cards[currentDetailCardId];if(!card)return;
-  const now=new Date();
-  const time=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
-  // ★ novo comentário vai para o INÍCIO (mais recente primeiro)
-  const updated={...card,comments:[{author,text,time},...(card.comments||[])]};
-  cards[currentDetailCardId]=updated;
-  document.getElementById("commentText").value="";
-  renderComments(updated);
-  const badge=document.getElementById("commentBadge");
-  badge.style.display="inline";badge.textContent=(updated.comments||[]).length;
-  refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("💬 Comentário adicionado!");
-}
-
-async function deleteComment(idx){
-  const card=cards[currentDetailCardId];if(!card)return;
-  const updated={...card,comments:(card.comments||[]).filter((_,i)=>i!==idx)};
-  cards[currentDetailCardId]=updated;
-  renderComments(updated);
-  const badge=document.getElementById("commentBadge"),cnt=(updated.comments||[]).length;
-  badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;
-  refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("🗑️ Comentário excluído.","#f87171");
-}
+// COMENTÁRIOS
+function renderComments(card){const area=document.getElementById("commentsArea");const allComments=card.comments||[];if(!allComments.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda 💬</div>`;return;}const displayed=[...allComments].reverse();const total=allComments.length;area.innerHTML=displayed.map((cm,revIdx)=>{const realIdx=total-1-revIdx;return`<div class="comment-item" id="ci-${realIdx}"><div class="comment-header"><span class="comment-author">👤 ${esc(cm.author||"Anônimo")}</span><div style="display:flex;align-items:center;gap:6px">${cm.edited?`<span class="comment-edited">(editado)</span>`:""}<span class="comment-time">${cm.time||""}</span><button class="comment-edit-btn" onclick="startEditComment(${realIdx})" title="Editar comentário">✏️</button><button class="comment-del" onclick="deleteComment(${realIdx})">✕</button></div></div><div id="cb-${realIdx}"><div class="comment-text">${esc(cm.text)}</div></div></div>`;}).join("");}
+function startEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const cm=(card.comments||[])[idx];if(!cm)return;const body=document.getElementById(`cb-${idx}`);if(!body)return;body.innerHTML=`<div class="comment-edit-wrap"><textarea class="comment-edit-inp" id="cedit-${idx}"></textarea><div class="comment-edit-actions"><button class="comment-edit-cancel" onclick="cancelEditComment(${idx})">Cancelar</button><button class="comment-edit-save" onclick="saveEditComment(${idx})">💾 Salvar</button></div></div>`;const ta=document.getElementById(`cedit-${idx}`);if(ta){ta.value=cm.text;ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}}
+function cancelEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const cm=(card.comments||[])[idx];if(!cm)return;const body=document.getElementById(`cb-${idx}`);if(!body)return;body.innerHTML=`<div class="comment-text">${esc(cm.text)}</div>`;}
+async function saveEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const ta=document.getElementById(`cedit-${idx}`);if(!ta)return;const newText=ta.value.trim();if(!newText){showToast("⚠️ Comentário não pode ser vazio.","#f97316");return;}const comments=[...(card.comments||[])];comments[idx]={...comments[idx],text:newText,edited:true};const updated={...card,comments};cards[currentDetailCardId]=updated;renderComments(updated);const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=comments.length;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Comentário editado!");}
+async function addComment(){const author=document.getElementById("commentAuthor").value.trim()||"Anônimo";const text=document.getElementById("commentText").value.trim();if(!text){showToast("⚠️ Escreva um comentário!","#f97316");return;}const card=cards[currentDetailCardId];if(!card)return;const now=new Date();const time=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;const updated={...card,comments:[{author,text,time},...(card.comments||[])]};cards[currentDetailCardId]=updated;document.getElementById("commentText").value="";renderComments(updated);const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=(updated.comments||[]).length;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("💬 Comentário adicionado!");}
+async function deleteComment(idx){const card=cards[currentDetailCardId];if(!card)return;const updated={...card,comments:(card.comments||[]).filter((_,i)=>i!==idx)};cards[currentDetailCardId]=updated;renderComments(updated);const badge=document.getElementById("commentBadge"),cnt=(updated.comments||[]).length;badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("🗑️ Comentário excluído.","#f87171");}
 
 // DETALHE
 function openDetail(id,e){
@@ -1181,7 +1078,6 @@ function openDetail(id,e){
   switchDetailTab("dtinfo",document.querySelector("#detailOverlay .modal-tab"));
   const recurNotice=isRecurInst?`<div class="recur-notice">🔁 Instância recorrente de <strong>${fmtDFull(raw.date)}</strong></div>`:"";
   const make=(lbl,val)=>val?`<div class="dblock"><div class="dblock-lbl">${lbl}</div><div class="dblock-val">${esc(val)}</div></div>`:"";
-  const datesBlock=(c.dateStart||c.dateEnd)?`<div class="dblock"><div class="dblock-lbl">📅 Período</div><div class="dblock-dates">${c.dateStart?`<div class="ddate"><span class="ddate-lbl">Início</span><span class="ddate-val">${fmtDFull(c.dateStart)}</span></div>`:""} ${c.dateEnd?`<div class="ddate"><span class="ddate-lbl">Fim</span><span class="ddate-val">${fmtDFull(c.dateEnd)}</span></div>`:""}</div></div>`:"";
   const tagsBlock=c.tags?.length?`<div class="dblock"><div class="dblock-lbl">🏷️ Tags</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">${c.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}</div></div>`:"";
   const resps=toArr(c.responsavel),solics=toArr(c.solicitante);
   const respBlock=(resps.length||solics.length)?`<div class="dblock"><div class="dblock-lbl">👥 Pessoas</div>${resps.length?`<div style="margin-top:6px"><span style="font-size:.63rem;color:var(--muted);font-weight:700;text-transform:uppercase">Responsável</span><div class="resp-badges-wrap">${resps.map(name=>{const pc=getPersonColor(name);return`<div class="resp-badge" style="background:${pc}18;border-color:${pc}44"><div class="resp-avatar" style="background:${pc}">${initials(name)}</div><strong style="color:${pc}">${esc(name)}</strong></div>`;}).join("")}</div></div>`:""}${solics.length?`<div style="margin-top:6px"><span style="font-size:.63rem;color:var(--muted);font-weight:700;text-transform:uppercase">Solicitante</span><div class="resp-badges-wrap">${solics.map(name=>{const pc=getPersonColor(name);return`<div class="resp-badge" style="background:${pc}18;border-color:${pc}44"><div class="resp-avatar" style="background:${pc}">${initials(name)}</div><strong style="color:${pc}">${esc(name)}</strong></div>`;}).join("")}</div></div>`:""}</div>`:"";
@@ -1208,7 +1104,7 @@ function openDetail(id,e){
       ${make("✍️ Copy",c.copy)}
       ${renderObsBlock(c.desc||"")}
       ${c.pmp?make("📋 PMP",c.pmp):""}
-      ${datesBlock}${tagsBlock}
+      ${tagsBlock}
     </div>`;
   renderDetailChecklist(c);updateClBadge(c);
   const links=c.links||[];document.getElementById("detailLinksBody").innerHTML=links.length?`<div class="dblock"><div class="dblock-lbl">🔗 Links</div><div class="detail-links-list" style="margin-top:6px">${links.map(l=>`<div class="detail-link-item"><span class="detail-link-name">${esc(l.name)}</span><a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.url)}</a></div>`).join("")}</div></div>`:`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:12px 0">Nenhum link.</p>`;
