@@ -95,11 +95,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .inline-manage-panel{background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:6px;display:none}
 .inline-manage-panel.open{display:block}
 .imp-title{font-size:.65rem;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.6px;margin-bottom:8px}
-.imp-list{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
-.imp-item{display:flex;align-items:center;gap:4px;background:var(--s3);border:1px solid var(--border);border-radius:20px;padding:3px 8px 3px 10px;font-size:.73rem;font-weight:600}
+.imp-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.imp-item{display:flex;align-items:center;gap:5px;width:100%}
 .imp-item-default{font-size:.6rem;color:var(--muted);margin-left:2px}
-.imp-item-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.65rem;padding:0 2px;line-height:1}
-.imp-item-del:hover{color:var(--red)}
+.imp-item-del{background:none;border:none;color:var(--red);cursor:pointer;font-size:.75rem;padding:2px 5px;line-height:1}
+.imp-item-del:hover{color:#ef4444}
 .imp-add-row{display:flex;gap:6px}
 .imp-add-row input{flex:1;background:var(--s3);border:1px solid var(--border);color:var(--text);padding:5px 9px;border-radius:8px;font-size:.8rem;font-family:inherit;outline:none}
 .imp-add-row input:focus{border-color:var(--accent)}
@@ -437,6 +437,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .toast{position:fixed;bottom:24px;right:24px;padding:10px 18px;border-radius:10px;font-weight:700;font-size:.8rem;box-shadow:var(--shadow);z-index:9000;transform:translateY(20px);opacity:0;transition:all .3s;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
 #sidebarOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
+.plat-edit-input{flex:1;background:var(--s3);border:1px solid var(--border);color:var(--text);padding:3px 7px;border-radius:6px;font-size:.75rem;font-family:inherit;outline:none;transition:border-color .2s}
+.plat-edit-input:focus{border-color:var(--accent)}
 @media(max-width:1000px){
   #sidebar{position:fixed;left:0;top:0;height:100vh;z-index:100;transform:translateX(-100%)}
   #sidebar.open{transform:translateX(0)}
@@ -486,9 +488,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <div class="search-wrap" style="margin-left:8px"><input type="text" id="searchInput" placeholder="Buscar..." oninput="applyFilters()"/></div>
       </div>
       <div class="inline-manage-panel" id="panelPlatform">
-        <div class="imp-title">Gerenciar Plataformas</div>
+        <div class="imp-title">✏️ Clique no nome para editar • 🗑 para excluir</div>
         <div class="imp-list" id="impPlatformList"></div>
-        <div class="imp-add-row"><input type="text" id="impPlatformInput" placeholder="Nova plataforma…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addFilterPlatform()}"/><button onclick="addFilterPlatform()">+ Add</button></div>
+        <div class="imp-add-row">
+          <input type="text" id="impPlatformInput" placeholder="Nova plataforma…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addFilterPlatform()}"/>
+          <button onclick="addFilterPlatform()">+ Add</button>
+        </div>
       </div>
       <div class="filter-row">
         <span class="filter-label">👤 Responsável:</span>
@@ -547,7 +552,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <div class="tag-picker-wrap" id="platformPicker"></div>
         <div id="managePlatformsBox" style="display:none">
           <div class="manage-items-box">
-            <div class="manage-items-title">Plataformas</div>
+            <div class="manage-items-title">✏️ Clique no nome para editar</div>
             <div class="manage-items-list" id="managePlatformsList"></div>
             <div class="manage-add-row"><input type="text" id="newPlatformInput" placeholder="Ex: Pinterest…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addPlatformItem()}"/><button type="button" onclick="addPlatformItem()">+ Add</button></div>
           </div>
@@ -818,22 +823,125 @@ function togglePanel(id){
   if(el.classList.contains("open")){if(id==="panelPlatform")renderImpPlatforms();}
 }
 
-// PLATAFORMAS
-function renderImpPlatforms(){const el=document.getElementById("impPlatformList");if(!el)return;el.innerHTML=platforms.map((p,i)=>`<div class="imp-item">${getPlatIcon(p)} ${esc(p)}${DEFAULT_PLATFORMS.includes(p)?`<span class="imp-item-default">padrão</span>`:`<button class="imp-item-del" onclick="removeFilterPlatform(${i})">✕</button>`}</div>`).join("");}
-function addFilterPlatform(){const inp=document.getElementById("impPlatformInput"),v=inp.value.trim();if(!v)return;if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}platforms.push(v);inp.value="";savePlatforms();renderImpPlatforms();buildPlatformFilters();renderPlatformPicker();showToast("✅ Plataforma adicionada!");}
-function removeFilterPlatform(i){if(DEFAULT_PLATFORMS.includes(platforms[i])){showToast("⚠️ Padrão não pode ser removida.","#f97316");return;}const removed=platforms[i];platforms.splice(i,1);savePlatforms();if(filterPlatform===removed)filterPlatform="Todas";if(selectedPlatformForm===removed)selectedPlatformForm="";renderImpPlatforms();buildPlatformFilters();renderPlatformPicker();showToast("🗑️ Plataforma removida.","#f87171");}
-function renderPlatformPicker(){const el=document.getElementById("platformPicker");if(!el)return;el.innerHTML=`<div class="tag-pick-item${selectedPlatformForm===""?" sel":""}" onclick="selectPlatformForm('')">Nenhuma</div>`+platforms.map(p=>`<div class="tag-pick-item${selectedPlatformForm===p?" sel":""}" onclick="selectPlatformForm('${esc(p)}')">${getPlatIcon(p)} ${esc(p)}</div>`).join("");renderManagePlatformsList();}
+// ══════════════════════════════════════════════════
+// PLATAFORMAS — gerenciamento completo (editar + excluir tudo)
+// ══════════════════════════════════════════════════
+function renderImpPlatforms(){
+  const el=document.getElementById("impPlatformList");
+  if(!el)return;
+  el.innerHTML=platforms.map((p,i)=>`
+    <div class="imp-item">
+      <span style="font-size:.9rem;flex-shrink:0">${getPlatIcon(p)}</span>
+      <input
+        class="plat-edit-input"
+        type="text"
+        value="${esc(p)}"
+        maxlength="40"
+        onchange="renamePlatform(${i},this.value)"
+        onfocus="this.style.borderColor='var(--accent)'"
+        onblur="this.style.borderColor='var(--border)'"
+        onkeydown="if(event.key==='Enter')this.blur()"
+      />
+      <button class="imp-item-del" onclick="removeFilterPlatform(${i})" title="Excluir plataforma">🗑</button>
+    </div>
+  `).join("");
+}
+
+function renamePlatform(i,newName){
+  const name=newName.trim();
+  if(!name){showToast("⚠️ Nome não pode ser vazio.","#f97316");renderImpPlatforms();renderManagePlatformsList();return;}
+  const lower=name.toLowerCase();
+  if(platforms.some((p,idx)=>idx!==i&&p.toLowerCase()===lower)){showToast("⚠️ Já existe uma plataforma com esse nome.","#f97316");renderImpPlatforms();renderManagePlatformsList();return;}
+  const oldName=platforms[i];
+  if(oldName===name)return;
+  platforms[i]=name;
+  savePlatforms();
+  // Propaga rename nos cards existentes
+  Object.values(cards).forEach(c=>{if(c.platform===oldName){c.platform=name;dbSaveCard(c);}});
+  if(filterPlatform===oldName)filterPlatform=name;
+  if(selectedPlatformForm===oldName)selectedPlatformForm=name;
+  buildPlatformFilters();
+  renderPlatformPicker();
+  renderManagePlatformsList();
+  showToast(`✅ Renomeado para "${name}"!`,"#4ade80");
+}
+
+function removeFilterPlatform(i){
+  const removed=platforms[i];
+  const inUse=Object.values(cards).filter(c=>c.platform===removed);
+  if(inUse.length){
+    if(!confirm(`A plataforma "${removed}" está em uso em ${inUse.length} card(s).\n\nDeseja remover mesmo assim? Os cards ficarão sem plataforma.`))return;
+    inUse.forEach(c=>{c.platform="";dbSaveCard(c);});
+  }
+  platforms.splice(i,1);
+  savePlatforms();
+  if(filterPlatform===removed)filterPlatform="Todas";
+  if(selectedPlatformForm===removed)selectedPlatformForm="";
+  renderImpPlatforms();
+  buildPlatformFilters();
+  renderPlatformPicker();
+  refreshAllDOM();
+  showToast(`🗑️ "${removed}" removida.`,"#f87171");
+}
+
+function addFilterPlatform(){
+  const inp=document.getElementById("impPlatformInput"),v=inp.value.trim();
+  if(!v)return;
+  if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
+  platforms.push(v);inp.value="";
+  savePlatforms();
+  renderImpPlatforms();
+  buildPlatformFilters();
+  renderPlatformPicker();
+  showToast("✅ Plataforma adicionada!");
+}
+
+function renderPlatformPicker(){
+  const el=document.getElementById("platformPicker");
+  if(!el)return;
+  el.innerHTML=`<div class="tag-pick-item${selectedPlatformForm===""?" sel":""}" onclick="selectPlatformForm('')">Nenhuma</div>`+platforms.map(p=>`<div class="tag-pick-item${selectedPlatformForm===p?" sel":""}" onclick="selectPlatformForm('${esc(p)}')">${getPlatIcon(p)} ${esc(p)}</div>`).join("");
+  renderManagePlatformsList();
+}
 function selectPlatformForm(p){selectedPlatformForm=p;renderPlatformPicker();}
 function toggleManagePlatforms(){const b=document.getElementById("managePlatformsBox");b.style.display=b.style.display==="none"?"block":"none";if(b.style.display==="block")renderManagePlatformsList();}
-function renderManagePlatformsList(){const el=document.getElementById("managePlatformsList");if(!el)return;el.innerHTML=platforms.map((p,i)=>`<div class="manage-item-row"><span class="manage-item-name">${getPlatIcon(p)} ${esc(p)}</span>${DEFAULT_PLATFORMS.includes(p)?`<span class="manage-item-default">padrão</span>`:`<button class="manage-item-del" onclick="removePlatformItem(${i})">✕</button>`}</div>`).join("");}
-function addPlatformItem(){const inp=document.getElementById("newPlatformInput"),v=inp.value.trim();if(!v)return;if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}platforms.push(v);inp.value="";savePlatforms();renderPlatformPicker();buildPlatformFilters();renderImpPlatforms();showToast("✅ Adicionada!");}
-function removePlatformItem(i){if(DEFAULT_PLATFORMS.includes(platforms[i])){showToast("⚠️ Padrão não pode ser removida.","#f97316");return;}const removed=platforms[i];platforms.splice(i,1);savePlatforms();if(selectedPlatformForm===removed)selectedPlatformForm="";renderPlatformPicker();renderManagePlatformsList();buildPlatformFilters();renderImpPlatforms();showToast("🗑️ Removida.","#f87171");}
+
+function renderManagePlatformsList(){
+  const el=document.getElementById("managePlatformsList");
+  if(!el)return;
+  el.innerHTML=platforms.map((p,i)=>`
+    <div class="manage-item-row">
+      <span style="font-size:.85rem;flex-shrink:0">${getPlatIcon(p)}</span>
+      <input
+        class="plat-edit-input"
+        type="text"
+        value="${esc(p)}"
+        maxlength="40"
+        onchange="renamePlatform(${i},this.value)"
+        onfocus="this.style.borderColor='var(--accent)'"
+        onblur="this.style.borderColor='var(--border)'"
+        onkeydown="if(event.key==='Enter')this.blur()"
+      />
+      <button class="manage-item-del" onclick="removePlatformItem(${i})" title="Excluir">🗑</button>
+    </div>
+  `).join("");
+}
+
+function addPlatformItem(){
+  const inp=document.getElementById("newPlatformInput"),v=inp.value.trim();
+  if(!v)return;
+  if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
+  platforms.push(v);inp.value="";
+  savePlatforms();
+  renderPlatformPicker();
+  buildPlatformFilters();
+  renderImpPlatforms();
+  showToast("✅ Adicionada!");
+}
+
+function removePlatformItem(i){removeFilterPlatform(i);}
 
 // BUS
 function buildBUFilters(){const el=document.getElementById("buFilters");if(el)el.innerHTML="";}
-function renderImpBUs(){}
-function addFilterBU(){const inp=document.getElementById("impBUInput");if(!inp)return;const v=inp.value.trim();if(!v)return;if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}buList.push(v);inp.value="";saveBUs();buildBUFilters();renderBUPicker();showToast("✅ BU adicionada!");}
-function removeFilterBU(i){const removed=buList[i];buList.splice(i,1);saveBUs();if(selectedBUForm===removed)selectedBUForm="";buildBUFilters();renderBUPicker();showToast("🗑️ BU removida.","#f87171");}
 function renderBUPicker(){const el=document.getElementById("buPicker");if(!el)return;el.innerHTML=`<div class="tag-pick-item${selectedBUForm===""?" sel":""}" onclick="selectBUForm('')">Nenhuma</div>`+buList.map(b=>`<div class="tag-pick-item bu-item${selectedBUForm===b?" sel":""}" onclick="selectBUForm('${esc(b)}')">${esc(b)}</div>`).join("");renderManageBUsList();}
 function selectBUForm(b){selectedBUForm=b;renderBUPicker();}
 function toggleManageBUs(){const b=document.getElementById("manageBUsBox");b.style.display=b.style.display==="none"?"block":"none";if(b.style.display==="block")renderManageBUsList();}
@@ -864,22 +972,15 @@ function listenData(){
           peopleList.push({name,color});
         }
       });
-      // ── FIX: garante que plataformas dos cards existam na lista local ──
-      if(c.platform&&!platforms.includes(c.platform)){
-        platforms.push(c.platform);
-        savePlatforms();
-      }
-      if(c.bu&&!buList.includes(c.bu)){
-        buList.push(c.bu);
-        saveBUs();
-      }
+      if(c.platform&&!platforms.includes(c.platform)){platforms.push(c.platform);savePlatforms();}
+      if(c.bu&&!buList.includes(c.bu)){buList.push(c.bu);saveBUs();}
     });
     savePeopleList();
     buildRespFilters();
-    buildPlatformFilters(); // ── FIX: reconstrói filtros ANTES de renderizar ──
+    buildPlatformFilters();
     buildBUFilters();
     rebuildRecurInstances();
-    renderAll();            // ── FIX: renderAll usa dados atualizados ──
+    renderAll();
     setSyncStatus("ok");
   },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("campaigns_cal"),snap=>{if(!snap.empty){campaigns=snap.docs[0].data().list||[...DEFAULT_CAMPAIGNS];}},()=>{});
@@ -983,7 +1084,7 @@ function buildMonthHTML(mi){
     <div class="cal-wrap"><div class="cal-grid">${cells}</div></div>
   </section>`;
 }
-function getCardColor(card){if(card.overrideColor)return card.overrideColor;const cat=categories[card.catId];return card.color||(cat?.color||"#6c63ff");}
+function getCardColor(card){if(card.overrideColor)return card.overrideColor;const cat=categories[card.catId];return cat?.color||card.color||"#6c63ff";}
 function cardHTML(card){if(!cardMatchesFilter(card))return"";const color=getCardColor(card),bg=color+"1e",cat=categories[card.catId],isRecur=card._isRecurInstance||false;const eff=getEffectiveStatus(card),sc=STATUS_COLORS[eff],isDone=isDoneStatus(eff);const resps=toArr(card.responsavel);const avatarsHTML=resps.length?`<div class="card-avatars">${resps.slice(0,2).map(name=>`<div class="card-avatar" style="background:${getPersonColor(name)}" title="${esc(name)}">${initials(name)}</div>`).join("")}${resps.length>2?`<div class="card-avatar" style="background:var(--s4);color:var(--muted)">+${resps.length-2}</div>`:""}</div>`:"";const statusDot=sc?`<div class="card-status-dot" style="background:${sc.bg}" title="${esc(eff)}"></div>`:"";const cl=card.checklist||[],{done,total,pct}=clStats(cl);const clBar=cl.length?`<div class="card-checklist-bar"><div class="card-cl-prog"><div class="card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div><span class="card-cl-label">${done}/${total}</span></div>`:"";const buBadge=card.bu?`<span class="card-bu">${esc(card.bu)}</span>`:"";const recurIcon=card.recurrence&&!isRecur?`<span class="card-recur">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";return`<div class="content-card${isRecur?" is-recur":""}${isDone?" status-done":""}" id="card-${card.id}" style="border-left-color:${color};background:${bg}" draggable="${!isRecur}" ondragstart="${!isRecur?`onDragStart(event,'${card.id}')`:"return false"}" ondragend="onDragEnd()" onclick="openDetail('${card.id}',event)"><div class="card-main-row">${card.platform?`<span class="card-plat-icon">${getPlatIcon(card.platform)}</span>`:""}<div class="card-inner"><div class="card-title">${esc(card.title)}</div>${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}</div>${avatarsHTML}${buBadge}${recurIcon}${statusDot}</div>${clBar}</div>`;}
 
 function refreshDay(mi,d){const area=document.getElementById(`dc-${mi}-${d}`);const cell=document.getElementById(`drop-${mi}-${d}`);if(!area||!cell)return;const allFiltered=smartSortCards(getCardsForDay(mi,d,currentYear).filter(c=>cardMatchesFilter(c)),mi,d,currentYear);const extra=allFiltered.length-MAX_VISIBLE;area.innerHTML=allFiltered.map(c=>cardHTML(c)).join("");let moreBtn=cell.querySelector(".day-more-btn");if(extra>0){if(!moreBtn){moreBtn=document.createElement("div");moreBtn.className="day-more-btn";const addBtn=cell.querySelector(".day-add-btn");cell.insertBefore(moreBtn,addBtn);}moreBtn.textContent=`+${extra} mais — ver todos`;moreBtn.onclick=(e)=>openDayModal(mi,d,e);}else if(moreBtn)moreBtn.remove();attachDropZones();}
@@ -1041,7 +1142,6 @@ function openEditCard(id){
   document.getElementById("cDesc").value=c.desc||"";
   document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");
   document.getElementById("cPmp").value=c.pmp||"";
-  // ── FIX: carrega plataforma e BU corretamente antes de renderizar o picker ──
   selectedPlatformForm=c.platform||"";
   selectedBUForm=c.bu||"";
   renderPlatformPicker();
@@ -1086,19 +1186,13 @@ async function saveCard(){
   const resps=pickerSelected["ppResp"]||[],solics=pickerSelected["ppSolic"]||[];
   resps.forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});
   savePeopleList();
-
-  // ── FIX: garante que a nova plataforma seja adicionada à lista local antes de salvar ──
-  if(selectedPlatformForm&&!platforms.includes(selectedPlatformForm)){
-    platforms.push(selectedPlatformForm);
-    savePlatforms();
-    buildPlatformFilters();
-  }
-
+  if(selectedPlatformForm&&!platforms.includes(selectedPlatformForm)){platforms.push(selectedPlatformForm);savePlatforms();buildPlatformFilters();}
   const card={
     id:editCardId||("c"+Date.now()),
     year:yr,month:mo-1,day:dy,date:dateVal,
     platform:selectedPlatformForm,
     bu:selectedBUForm,
+    catId:document.getElementById("cCatSel").value||"",
     campaign:document.getElementById("cCampaign").value,
     campaignId:document.getElementById("cCampaignId").value.trim(),
     title,
@@ -1115,31 +1209,16 @@ async function saveCard(){
     checklist:clReadData(),
     comments:existing?.comments||[]
   };
-
   const old=cards[card.id];
   cards[card.id]=card;
   rebuildRecurInstances();
-
-  // ── FIX: sempre atualiza o dia antigo (se mudou) E o dia atual ──
-  if(old&&(old.day!==card.day||old.month!==card.month)){
-    refreshDay(old.month,old.day);
-    refreshLeg(old.month);
-  }
-  // ── FIX: força re-render do dia e legenda mesmo quando só a plataforma mudou ──
+  if(old&&(old.day!==card.day||old.month!==card.month)){refreshDay(old.month,old.day);refreshLeg(old.month);}
   refreshDay(card.month,card.day);
   refreshLeg(card.month);
   updateCounts();
   buildRespFilters();
-
-  try{
-    await dbSaveCard(card);
-    closeOverlay("cardOverlay");
-    showToast("✅ Card salvo!","#4ade80");
-  }catch{
-    btn.disabled=false;
-    btn.textContent="💾 Salvar";
-    showToast("❌ Erro ao salvar.","#f87171");
-  }
+  try{await dbSaveCard(card);closeOverlay("cardOverlay");showToast("✅ Card salvo!","#4ade80");}
+  catch{btn.disabled=false;btn.textContent="💾 Salvar";showToast("❌ Erro ao salvar.","#f87171");}
 }
 
 async function doDelCard(id){const c=cards[id],mi=c?.month,d=c?.day;delete cards[id];closeOverlay("cardOverlay");closeOverlay("detailOverlay");rebuildRecurInstances();if(mi!==undefined){refreshDay(mi,d);refreshLeg(mi);updateCounts();}await dbDelCard(id);showToast("🗑️ Excluído.","#f87171");}
@@ -1150,7 +1229,7 @@ async function confirmDuplicate(){const dateVal=document.getElementById("dupDate
 function renderDetailStatusBar(effStatus){return`<div class="detail-status-bar"><div class="detail-status-label">🎯 Status da Demanda</div><div class="detail-status-opts">${Object.entries(STATUS_COLORS).map(([s,sc])=>{const active=s===effStatus;return`<div class="ds-opt${active?" ds-active":""}" data-val="${s}" style="${active?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""}" onclick="setDetailStatus('${s}')"><span class="s-dot" style="background:${sc.bg}"></span>${s}</div>`;}).join("")}</div></div>`;}
 async function setDetailStatus(newStatus){const isRecur=window._currentDetailIsRecur||false,recurDate=window._currentDetailDate||null,realId=currentDetailCardId;const card=cards[realId];if(!card)return;let effStatus;if(isRecur&&recurDate){const k=getRecurKey(realId,recurDate),cur=k in recurStatuses?recurStatuses[k]:(card.briefing||"");effStatus=cur===newStatus?"":newStatus;setRecurStatus(realId,recurDate,effStatus);const[yr,mo,dy]=recurDate.split("-").map(Number);refreshDay(mo-1,dy);}else{effStatus=card.briefing===newStatus?"":newStatus;const updated={...card,briefing:effStatus};cards[realId]=updated;rebuildRecurInstances();refreshDay(updated.month,updated.day);refreshLeg(updated.month);await dbSaveCard(updated);}document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,a=v===effStatus&&effStatus!=="",sc=STATUS_COLORS[v];el.className="ds-opt";el.style.cssText="";if(a){el.classList.add("ds-active");el.style.cssText=`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`;}});const badge=document.getElementById("detailStatusBadge");if(badge){if(effStatus){const sc=STATUS_COLORS[effStatus];badge.textContent=effStatus;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}else badge.style.display="none";}updateCounts();showToast(effStatus?"✅ Status atualizado!":"↩️ Status removido.");}
 
-// OBSERVAÇÕES EDITÁVEIS
+// OBSERVAÇÕES
 function renderObsBlock(desc){if(desc){return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações <button class="lbl-btn" onclick="startEditObs()">✏️ Editar</button></div><div id="obs-content"><div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(desc)}</div></div></div>`;}return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações</div><div id="obs-content"><div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div></div></div>`;}
 function startEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;content.innerHTML=`<div class="obs-edit-wrap"><textarea class="obs-edit-inp" id="obsEditInp"></textarea><div class="obs-edit-actions">${card.desc?`<button class="obs-del-btn" onclick="deleteObs()">🗑 Apagar</button>`:""}<button class="comment-edit-cancel" onclick="cancelEditObs()">Cancelar</button><button class="comment-edit-save" onclick="saveEditObs()">💾 Salvar</button></div></div>`;const ta=document.getElementById("obsEditInp");if(ta){ta.value=card.desc||"";ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}}
 function cancelEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;if(card.desc){content.innerHTML=`<div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(card.desc)}</div>`;}else{content.innerHTML=`<div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div>`;}}
