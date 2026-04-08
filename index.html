@@ -829,57 +829,17 @@ function renderManagePlatformsList(){const el=document.getElementById("managePla
 function addPlatformItem(){const inp=document.getElementById("newPlatformInput"),v=inp.value.trim();if(!v)return;if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}platforms.push(v);inp.value="";savePlatforms();renderPlatformPicker();buildPlatformFilters();renderImpPlatforms();showToast("✅ Adicionada!");}
 function removePlatformItem(i){if(DEFAULT_PLATFORMS.includes(platforms[i])){showToast("⚠️ Padrão não pode ser removida.","#f97316");return;}const removed=platforms[i];platforms.splice(i,1);savePlatforms();if(selectedPlatformForm===removed)selectedPlatformForm="";renderPlatformPicker();renderManagePlatformsList();buildPlatformFilters();renderImpPlatforms();showToast("🗑️ Removida.","#f87171");}
 
-// BUS — todas deletáveis, sem filtro no topo
-function buildBUFilters(){
-  const el=document.getElementById("buFilters");
-  if(el)el.innerHTML="";
-}
+// BUS
+function buildBUFilters(){const el=document.getElementById("buFilters");if(el)el.innerHTML="";}
 function renderImpBUs(){}
-function addFilterBU(){
-  const inp=document.getElementById("impBUInput");
-  if(!inp)return;
-  const v=inp.value.trim();if(!v)return;
-  if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
-  buList.push(v);inp.value="";saveBUs();buildBUFilters();renderBUPicker();showToast("✅ BU adicionada!");
-}
-function removeFilterBU(i){
-  const removed=buList[i];buList.splice(i,1);saveBUs();
-  if(selectedBUForm===removed)selectedBUForm="";
-  buildBUFilters();renderBUPicker();showToast("🗑️ BU removida.","#f87171");
-}
-function renderBUPicker(){
-  const el=document.getElementById("buPicker");
-  if(!el)return;
-  el.innerHTML=`<div class="tag-pick-item${selectedBUForm===""?" sel":""}" onclick="selectBUForm('')">Nenhuma</div>`
-    +buList.map(b=>`<div class="tag-pick-item bu-item${selectedBUForm===b?" sel":""}" onclick="selectBUForm('${esc(b)}')">${esc(b)}</div>`).join("");
-  renderManageBUsList();
-}
+function addFilterBU(){const inp=document.getElementById("impBUInput");if(!inp)return;const v=inp.value.trim();if(!v)return;if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}buList.push(v);inp.value="";saveBUs();buildBUFilters();renderBUPicker();showToast("✅ BU adicionada!");}
+function removeFilterBU(i){const removed=buList[i];buList.splice(i,1);saveBUs();if(selectedBUForm===removed)selectedBUForm="";buildBUFilters();renderBUPicker();showToast("🗑️ BU removida.","#f87171");}
+function renderBUPicker(){const el=document.getElementById("buPicker");if(!el)return;el.innerHTML=`<div class="tag-pick-item${selectedBUForm===""?" sel":""}" onclick="selectBUForm('')">Nenhuma</div>`+buList.map(b=>`<div class="tag-pick-item bu-item${selectedBUForm===b?" sel":""}" onclick="selectBUForm('${esc(b)}')">${esc(b)}</div>`).join("");renderManageBUsList();}
 function selectBUForm(b){selectedBUForm=b;renderBUPicker();}
 function toggleManageBUs(){const b=document.getElementById("manageBUsBox");b.style.display=b.style.display==="none"?"block":"none";if(b.style.display==="block")renderManageBUsList();}
-function renderManageBUsList(){
-  const el=document.getElementById("manageBUsList");
-  if(!el)return;
-  el.innerHTML=buList.map((b,i)=>`
-    <div class="manage-item-row">
-      <span class="manage-item-name">🏢 ${esc(b)}</span>
-      <button class="manage-item-del" onclick="removeBUItem(${i})" title="Remover">✕</button>
-    </div>`
-  ).join("");
-}
-function addBUItem(){
-  const inp=document.getElementById("newBUInput"),v=inp.value.trim();
-  if(!v)return;
-  if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
-  buList.push(v);inp.value="";
-  saveBUs();renderBUPicker();buildBUFilters();showToast("✅ BU adicionada!");
-}
-function removeBUItem(i){
-  const removed=buList[i];
-  buList.splice(i,1);saveBUs();
-  if(selectedBUForm===removed)selectedBUForm="";
-  renderBUPicker();renderManageBUsList();buildBUFilters();
-  showToast("🗑️ Removida.","#f87171");
-}
+function renderManageBUsList(){const el=document.getElementById("manageBUsList");if(!el)return;el.innerHTML=buList.map((b,i)=>`<div class="manage-item-row"><span class="manage-item-name">🏢 ${esc(b)}</span><button class="manage-item-del" onclick="removeBUItem(${i})" title="Remover">✕</button></div>`).join("");}
+function addBUItem(){const inp=document.getElementById("newBUInput"),v=inp.value.trim();if(!v)return;if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}buList.push(v);inp.value="";saveBUs();renderBUPicker();buildBUFilters();showToast("✅ BU adicionada!");}
+function removeBUItem(i){const removed=buList[i];buList.splice(i,1);saveBUs();if(selectedBUForm===removed)selectedBUForm="";renderBUPicker();renderManageBUsList();buildBUFilters();showToast("🗑️ Removida.","#f87171");}
 
 // FIREBASE
 window._fbReady=false;
@@ -887,16 +847,44 @@ window.addEventListener("firebaseReady",()=>{window._fbReady=true;startApp();});
 setTimeout(()=>{if(!window._fbReady){document.getElementById("loadingScreen").style.display="none";document.getElementById("appShell").style.display="flex";boot();}},4000);
 function startApp(){document.getElementById("loadingScreen").style.display="none";document.getElementById("appShell").style.display="flex";loadPeopleList();setSyncStatus("ok");boot();}
 function boot(){renderAll();renderMonthNav();renderCatSidebar();listenData();renderPresets("presetGrid");renderPresets("catPresetGrid");buildEmojiPanels();setupOverlayClose();buildPlatformFilters();buildRespFilters();buildBUFilters();document.getElementById("recurOpts").addEventListener("click",e=>{const b=e.target.closest(".recur-opt");if(b)selectRecur(b.dataset.val);});}
+
 function listenData(){
   if(!window._db)return;
-  window._onSnapshot(window._col("cats_cal"),snap=>{categories={};snap.forEach(d=>{categories[d.id]=d.data();});if(!Object.keys(categories).length)seedCats();renderCatSidebar();refreshAllDOM();},()=>setSyncStatus("err"));
+  window._onSnapshot(window._col("cats_cal"),snap=>{
+    categories={};snap.forEach(d=>{categories[d.id]=d.data();});
+    if(!Object.keys(categories).length)seedCats();
+    renderCatSidebar();refreshAllDOM();
+  },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("cards_cal"),snap=>{
     cards={};snap.forEach(d=>{cards[d.id]=d.data();});
-    Object.values(cards).forEach(c=>{toArr(c.responsavel).forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});if(c.platform&&!platforms.includes(c.platform)){platforms.push(c.platform);savePlatforms();}if(c.bu&&!buList.includes(c.bu)){buList.push(c.bu);saveBUs();}});
-    savePeopleList();buildRespFilters();buildPlatformFilters();buildBUFilters();rebuildRecurInstances();renderAll();setSyncStatus("ok");
+    Object.values(cards).forEach(c=>{
+      toArr(c.responsavel).forEach(name=>{
+        if(name&&!peopleList.find(p=>p.name===name)){
+          const color=generatePersonColor(name,peopleList.map(p=>p.color));
+          peopleList.push({name,color});
+        }
+      });
+      // ── FIX: garante que plataformas dos cards existam na lista local ──
+      if(c.platform&&!platforms.includes(c.platform)){
+        platforms.push(c.platform);
+        savePlatforms();
+      }
+      if(c.bu&&!buList.includes(c.bu)){
+        buList.push(c.bu);
+        saveBUs();
+      }
+    });
+    savePeopleList();
+    buildRespFilters();
+    buildPlatformFilters(); // ── FIX: reconstrói filtros ANTES de renderizar ──
+    buildBUFilters();
+    rebuildRecurInstances();
+    renderAll();            // ── FIX: renderAll usa dados atualizados ──
+    setSyncStatus("ok");
   },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("campaigns_cal"),snap=>{if(!snap.empty){campaigns=snap.docs[0].data().list||[...DEFAULT_CAMPAIGNS];}},()=>{});
 }
+
 async function seedCats(){const defs=[{id:"dc1",name:"Reels",color:"#6c63ff",emoji:"🎬"},{id:"dc2",name:"Feed",color:"#22d3ee",emoji:"🖼️"},{id:"dc3",name:"YouTube",color:"#f87171",emoji:"▶️"},{id:"dc4",name:"Evento",color:"#fb923c",emoji:"🏢"},{id:"dc5",name:"Stories",color:"#4ade80",emoji:"📖"},{id:"dc6",name:"Outros",color:"#94a3b8",emoji:"📌"}];for(const c of defs){categories[c.id]=c;await window._setDoc(window._doc("cats_cal",c.id),c);}}
 const dbSaveCard=async c=>window._setDoc&&window._setDoc(window._doc("cards_cal",c.id),c);
 const dbDelCard=async i=>window._deleteDoc&&window._deleteDoc(window._doc("cards_cal",i));
@@ -1039,8 +1027,121 @@ function buildCatOpts(selId){return`<option value="">— Sem categoria —</opti
 function resetCardForm(month,day){const iso=`${currentYear}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;document.getElementById("cDate").value=iso;populateCampaignSelect();["cCampaignId","cTitle","cBigIdea","cCopy","cDesc","cPmp"].forEach(id=>document.getElementById(id).value="");document.getElementById("cCatSel").innerHTML=buildCatOpts("");document.getElementById("catColorPreview").style.display="none";document.getElementById("overrideColorCheck").checked=false;document.getElementById("overrideSection").classList.remove("show");useOverrideColor=false;chosenColor="#6c63ff";setChosenColor(chosenColor);currentTags=[];selectedStatus="";renderTags();clearStatusSel();renderLinksEdit([]);pickerSelected={ppResp:[],ppSolic:[]};renderPickerTags("ppResp");renderPickerTags("ppSolic");selectRecur("");selectedPlatformForm="";selectedBUForm="";renderPlatformPicker();renderBUPicker();_clData=[];document.getElementById("clList").innerHTML="";document.getElementById("clProgressWrap").style.display="none";["err-date","err-title"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("show");});["cDate","cTitle"].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.remove("invalid");});document.getElementById("cardDelRow").style.display="none";document.getElementById("btnSaveCard").textContent="💾 Salvar";document.getElementById("btnSaveCard").disabled=false;document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));document.getElementById("tab-info").classList.add("active");document.querySelector("#cardOverlay .modal-tab").classList.add("active");document.getElementById("managePlatformsBox").style.display="none";document.getElementById("manageBUsBox").style.display="none";}
 function openAdd(month,day){editCardId=null;resetCardForm(month,day);document.getElementById("cardModalTitle").textContent="Novo Item";openOverlay("cardOverlay");}
 function openAddGeneral(mi){openAdd(mi,1);document.getElementById("cDate").value=`${currentYear}-${String(mi+1).padStart(2,"0")}-01`;}
-function openEditCard(id){const c=cards[id];if(!c)return;editCardId=id;document.getElementById("cardModalTitle").textContent="Editar Item";document.getElementById("cDate").value=c.date||`${c.year}-${String(c.month+1).padStart(2,"0")}-${String(c.day).padStart(2,"0")}`;populateCampaignSelect(c.campaign||"");document.getElementById("cCampaignId").value=c.campaignId||"";document.getElementById("cTitle").value=c.title||"";document.getElementById("cBigIdea").value=c.bigIdea||"";document.getElementById("cCopy").value=c.copy||"";document.getElementById("cDesc").value=c.desc||"";document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");document.getElementById("cPmp").value=c.pmp||"";selectedPlatformForm=c.platform||"";selectedBUForm=c.bu||"";renderPlatformPicker();renderBUPicker();applyPeoplePicker("ppResp",c.responsavel||[]);applyPeoplePicker("ppSolic",c.solicitante||[]);selectRecur(c.recurrence||"");useOverrideColor=!!(c.overrideColor);document.getElementById("overrideColorCheck").checked=useOverrideColor;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);if(useOverrideColor){chosenColor=c.overrideColor;setChosenColor(chosenColor);}else{const cat=categories[c.catId];chosenColor=cat?.color||c.color||"#6c63ff";}onCatChange();currentTags=[...(c.tags||[])];renderTags();clLoadList(c.checklist||[]);selectedStatus=c.briefing||"";applyStatusSel();renderLinksEdit(c.links||[]);document.getElementById("cardDelRow").style.display="flex";document.getElementById("cardDelBtn").onclick=()=>doDelCard(id);document.getElementById("cardDupBtn").onclick=()=>{closeOverlay("cardOverlay");openDuplicate(id);};document.getElementById("managePlatformsBox").style.display="none";document.getElementById("manageBUsBox").style.display="none";document.getElementById("btnSaveCard").textContent="💾 Salvar";document.getElementById("btnSaveCard").disabled=false;openOverlay("cardOverlay");}
-async function saveCard(){const dateVal=document.getElementById("cDate").value,title=document.getElementById("cTitle").value.trim();let hasErr=false;if(!dateVal){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");hasErr=true;}else{document.getElementById("err-date").classList.remove("show");document.getElementById("cDate").classList.remove("invalid");}if(!title){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");hasErr=true;}else{document.getElementById("err-title").classList.remove("show");document.getElementById("cTitle").classList.remove("invalid");}if(hasErr){showToast("⚠️ Preencha Data e Título.","#f97316");return;}const btn=document.getElementById("btnSaveCard");btn.disabled=true;btn.textContent="⏳ Salvando…";const[yr,mo,dy]=dateVal.split("-").map(Number),existing=cards[editCardId||""];let finalColor=chosenColor,finalOverride=null;if(useOverrideColor)finalOverride=chosenColor;else{const cat=categories[document.getElementById("cCatSel").value];finalColor=cat?.color||"#6c63ff";}const resps=pickerSelected["ppResp"]||[],solics=pickerSelected["ppSolic"]||[];resps.forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});savePeopleList();const card={id:editCardId||("c"+Date.now()),year:yr,month:mo-1,day:dy,date:dateVal,platform:selectedPlatformForm,bu:selectedBUForm,campaign:document.getElementById("cCampaign").value,campaignId:document.getElementById("cCampaignId").value.trim(),title,bigIdea:document.getElementById("cBigIdea").value.trim(),copy:document.getElementById("cCopy").value.trim(),desc:document.getElementById("cDesc").value.trim(),pmp:document.getElementById("cPmp").value.trim(),responsavel:resps,solicitante:solics,recurrence:selectedRecur||"",color:finalColor,overrideColor:finalOverride,briefing:selectedStatus,tags:[...currentTags],links:readLinks(),checklist:clReadData(),comments:existing?.comments||[]};const old=cards[card.id];cards[card.id]=card;rebuildRecurInstances();if(old&&(old.day!==card.day||old.month!==card.month))refreshDay(old.month,old.day);refreshDay(card.month,card.day);refreshLeg(card.month);updateCounts();buildRespFilters();try{await dbSaveCard(card);closeOverlay("cardOverlay");showToast("✅ Card salvo!","#4ade80");}catch{btn.disabled=false;btn.textContent="💾 Salvar";showToast("❌ Erro ao salvar.","#f87171");}}
+
+function openEditCard(id){
+  const c=cards[id];if(!c)return;
+  editCardId=id;
+  document.getElementById("cardModalTitle").textContent="Editar Item";
+  document.getElementById("cDate").value=c.date||`${c.year}-${String(c.month+1).padStart(2,"0")}-${String(c.day).padStart(2,"0")}`;
+  populateCampaignSelect(c.campaign||"");
+  document.getElementById("cCampaignId").value=c.campaignId||"";
+  document.getElementById("cTitle").value=c.title||"";
+  document.getElementById("cBigIdea").value=c.bigIdea||"";
+  document.getElementById("cCopy").value=c.copy||"";
+  document.getElementById("cDesc").value=c.desc||"";
+  document.getElementById("cCatSel").innerHTML=buildCatOpts(c.catId||"");
+  document.getElementById("cPmp").value=c.pmp||"";
+  // ── FIX: carrega plataforma e BU corretamente antes de renderizar o picker ──
+  selectedPlatformForm=c.platform||"";
+  selectedBUForm=c.bu||"";
+  renderPlatformPicker();
+  renderBUPicker();
+  applyPeoplePicker("ppResp",c.responsavel||[]);
+  applyPeoplePicker("ppSolic",c.solicitante||[]);
+  selectRecur(c.recurrence||"");
+  useOverrideColor=!!(c.overrideColor);
+  document.getElementById("overrideColorCheck").checked=useOverrideColor;
+  document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
+  if(useOverrideColor){chosenColor=c.overrideColor;setChosenColor(chosenColor);}
+  else{const cat=categories[c.catId];chosenColor=cat?.color||c.color||"#6c63ff";}
+  onCatChange();
+  currentTags=[...(c.tags||[])];renderTags();
+  clLoadList(c.checklist||[]);
+  selectedStatus=c.briefing||"";applyStatusSel();
+  renderLinksEdit(c.links||[]);
+  document.getElementById("cardDelRow").style.display="flex";
+  document.getElementById("cardDelBtn").onclick=()=>doDelCard(id);
+  document.getElementById("cardDupBtn").onclick=()=>{closeOverlay("cardOverlay");openDuplicate(id);};
+  document.getElementById("managePlatformsBox").style.display="none";
+  document.getElementById("manageBUsBox").style.display="none";
+  document.getElementById("btnSaveCard").textContent="💾 Salvar";
+  document.getElementById("btnSaveCard").disabled=false;
+  openOverlay("cardOverlay");
+}
+
+async function saveCard(){
+  const dateVal=document.getElementById("cDate").value,title=document.getElementById("cTitle").value.trim();
+  let hasErr=false;
+  if(!dateVal){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");hasErr=true;}
+  else{document.getElementById("err-date").classList.remove("show");document.getElementById("cDate").classList.remove("invalid");}
+  if(!title){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");hasErr=true;}
+  else{document.getElementById("err-title").classList.remove("show");document.getElementById("cTitle").classList.remove("invalid");}
+  if(hasErr){showToast("⚠️ Preencha Data e Título.","#f97316");return;}
+  const btn=document.getElementById("btnSaveCard");
+  btn.disabled=true;btn.textContent="⏳ Salvando…";
+  const[yr,mo,dy]=dateVal.split("-").map(Number),existing=cards[editCardId||""];
+  let finalColor=chosenColor,finalOverride=null;
+  if(useOverrideColor)finalOverride=chosenColor;
+  else{const cat=categories[document.getElementById("cCatSel").value];finalColor=cat?.color||"#6c63ff";}
+  const resps=pickerSelected["ppResp"]||[],solics=pickerSelected["ppSolic"]||[];
+  resps.forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});
+  savePeopleList();
+
+  // ── FIX: garante que a nova plataforma seja adicionada à lista local antes de salvar ──
+  if(selectedPlatformForm&&!platforms.includes(selectedPlatformForm)){
+    platforms.push(selectedPlatformForm);
+    savePlatforms();
+    buildPlatformFilters();
+  }
+
+  const card={
+    id:editCardId||("c"+Date.now()),
+    year:yr,month:mo-1,day:dy,date:dateVal,
+    platform:selectedPlatformForm,
+    bu:selectedBUForm,
+    campaign:document.getElementById("cCampaign").value,
+    campaignId:document.getElementById("cCampaignId").value.trim(),
+    title,
+    bigIdea:document.getElementById("cBigIdea").value.trim(),
+    copy:document.getElementById("cCopy").value.trim(),
+    desc:document.getElementById("cDesc").value.trim(),
+    pmp:document.getElementById("cPmp").value.trim(),
+    responsavel:resps,solicitante:solics,
+    recurrence:selectedRecur||"",
+    color:finalColor,overrideColor:finalOverride,
+    briefing:selectedStatus,
+    tags:[...currentTags],
+    links:readLinks(),
+    checklist:clReadData(),
+    comments:existing?.comments||[]
+  };
+
+  const old=cards[card.id];
+  cards[card.id]=card;
+  rebuildRecurInstances();
+
+  // ── FIX: sempre atualiza o dia antigo (se mudou) E o dia atual ──
+  if(old&&(old.day!==card.day||old.month!==card.month)){
+    refreshDay(old.month,old.day);
+    refreshLeg(old.month);
+  }
+  // ── FIX: força re-render do dia e legenda mesmo quando só a plataforma mudou ──
+  refreshDay(card.month,card.day);
+  refreshLeg(card.month);
+  updateCounts();
+  buildRespFilters();
+
+  try{
+    await dbSaveCard(card);
+    closeOverlay("cardOverlay");
+    showToast("✅ Card salvo!","#4ade80");
+  }catch{
+    btn.disabled=false;
+    btn.textContent="💾 Salvar";
+    showToast("❌ Erro ao salvar.","#f87171");
+  }
+}
+
 async function doDelCard(id){const c=cards[id],mi=c?.month,d=c?.day;delete cards[id];closeOverlay("cardOverlay");closeOverlay("detailOverlay");rebuildRecurInstances();if(mi!==undefined){refreshDay(mi,d);refreshLeg(mi);updateCounts();}await dbDelCard(id);showToast("🗑️ Excluído.","#f87171");}
 function openDuplicate(id){dupSourceId=id;const c=cards[id];if(!c)return;const base=new Date(c.year,c.month,c.day+1);document.getElementById("dupDate").value=`${base.getFullYear()}-${String(base.getMonth()+1).padStart(2,"0")}-${String(base.getDate()).padStart(2,"0")}`;document.getElementById("dupTitle").value="";openOverlay("dupOverlay");}
 async function confirmDuplicate(){const dateVal=document.getElementById("dupDate").value;if(!dateVal){showToast("⚠️ Selecione uma data!","#f97316");return;}const src=cards[dupSourceId];if(!src)return;const[yr,mo,dy]=dateVal.split("-").map(Number);const newCard={...src,id:"c"+Date.now(),year:yr,month:mo-1,day:dy,date:dateVal,title:document.getElementById("dupTitle").value.trim()||src.title,comments:[]};closeOverlay("dupOverlay");closeOverlay("detailOverlay");cards[newCard.id]=newCard;rebuildRecurInstances();refreshDay(newCard.month,newCard.day);refreshLeg(newCard.month);updateCounts();await dbSaveCard(newCard);showToast("⧉ Card duplicado!");}
@@ -1050,10 +1151,7 @@ function renderDetailStatusBar(effStatus){return`<div class="detail-status-bar">
 async function setDetailStatus(newStatus){const isRecur=window._currentDetailIsRecur||false,recurDate=window._currentDetailDate||null,realId=currentDetailCardId;const card=cards[realId];if(!card)return;let effStatus;if(isRecur&&recurDate){const k=getRecurKey(realId,recurDate),cur=k in recurStatuses?recurStatuses[k]:(card.briefing||"");effStatus=cur===newStatus?"":newStatus;setRecurStatus(realId,recurDate,effStatus);const[yr,mo,dy]=recurDate.split("-").map(Number);refreshDay(mo-1,dy);}else{effStatus=card.briefing===newStatus?"":newStatus;const updated={...card,briefing:effStatus};cards[realId]=updated;rebuildRecurInstances();refreshDay(updated.month,updated.day);refreshLeg(updated.month);await dbSaveCard(updated);}document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,a=v===effStatus&&effStatus!=="",sc=STATUS_COLORS[v];el.className="ds-opt";el.style.cssText="";if(a){el.classList.add("ds-active");el.style.cssText=`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`;}});const badge=document.getElementById("detailStatusBadge");if(badge){if(effStatus){const sc=STATUS_COLORS[effStatus];badge.textContent=effStatus;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}else badge.style.display="none";}updateCounts();showToast(effStatus?"✅ Status atualizado!":"↩️ Status removido.");}
 
 // OBSERVAÇÕES EDITÁVEIS
-function renderObsBlock(desc){
-  if(desc){return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações <button class="lbl-btn" onclick="startEditObs()">✏️ Editar</button></div><div id="obs-content"><div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(desc)}</div></div></div>`;}
-  return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações</div><div id="obs-content"><div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div></div></div>`;
-}
+function renderObsBlock(desc){if(desc){return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações <button class="lbl-btn" onclick="startEditObs()">✏️ Editar</button></div><div id="obs-content"><div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(desc)}</div></div></div>`;}return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações</div><div id="obs-content"><div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div></div></div>`;}
 function startEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;content.innerHTML=`<div class="obs-edit-wrap"><textarea class="obs-edit-inp" id="obsEditInp"></textarea><div class="obs-edit-actions">${card.desc?`<button class="obs-del-btn" onclick="deleteObs()">🗑 Apagar</button>`:""}<button class="comment-edit-cancel" onclick="cancelEditObs()">Cancelar</button><button class="comment-edit-save" onclick="saveEditObs()">💾 Salvar</button></div></div>`;const ta=document.getElementById("obsEditInp");if(ta){ta.value=card.desc||"";ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}}
 function cancelEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;if(card.desc){content.innerHTML=`<div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(card.desc)}</div>`;}else{content.innerHTML=`<div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div>`;}}
 async function saveEditObs(){const card=cards[currentDetailCardId];if(!card)return;const ta=document.getElementById("obsEditInp");if(!ta)return;const newDesc=ta.value.trim();const updated={...card,desc:newDesc};cards[currentDetailCardId]=updated;const obsBlock=document.getElementById("obs-block");if(obsBlock)obsBlock.outerHTML=renderObsBlock(newDesc);refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Observação salva!");}
