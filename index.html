@@ -31,8 +31,7 @@
   --accent:#6c63ff;--accent2:#a78bfa;
   --red:#f87171;--green:#4ade80;--orange:#fb923c;
   --radius:14px;--shadow:0 8px 36px rgba(0,0,0,.55);
-  --day-h:160px;
-  --ig:#e1306c;--yt:#ff0000;
+  --day-h:160px;--ig:#e1306c;--yt:#ff0000;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px}
@@ -103,9 +102,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .imp-title{font-size:.65rem;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.6px;margin-bottom:8px}
 .imp-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
 .imp-item{display:flex;align-items:center;gap:5px;width:100%}
-.imp-item-default{font-size:.6rem;color:var(--muted);margin-left:2px}
 .imp-item-del{background:none;border:none;color:var(--red);cursor:pointer;font-size:.75rem;padding:2px 5px;line-height:1}
-.imp-item-del:hover{color:#ef4444}
 .imp-add-row{display:flex;gap:6px}
 .imp-add-row input{flex:1;background:var(--s3);border:1px solid var(--border);color:var(--text);padding:5px 9px;border-radius:8px;font-size:.8rem;font-family:inherit;outline:none}
 .imp-add-row input:focus{border-color:var(--accent)}
@@ -136,17 +133,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .cal-day.holiday{border-top:2px solid #f472b6}
 .cal-day.drag-over{background:var(--s3)!important;box-shadow:inset 0 0 0 2px var(--accent)}
 .cal-day.highlight-pulse{animation:pulse 1.4s ease-out}
-@keyframes pulse{0%{box-sizing:inset 0 0 0 2px var(--accent),0 0 0 6px rgba(108,99,255,.3)}100%{box-shadow:inset 0 0 0 1.5px var(--accent)}}
+@keyframes pulse{0%{box-shadow:inset 0 0 0 2px var(--accent),0 0 0 6px rgba(108,99,255,.3)}100%{box-shadow:inset 0 0 0 1.5px var(--accent)}}
 .day-top{display:flex;align-items:center;gap:3px;flex-shrink:0}
 .day-num{font-size:.7rem;font-weight:700;color:var(--muted);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;cursor:pointer;transition:all .18s}
 .day-num:hover{background:var(--accent);color:#fff;transform:scale(1.15)}
 .cal-day.today .day-num{background:var(--accent);color:#fff}
 .holiday-tag{font-size:.54rem;color:#f472b6;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
-.day-cards-area{flex:1;display:flex;flex-direction:column;gap:2px;overflow-y:auto;overflow-x:hidden;min-height:0;scrollbar-width:none;-ms-overflow-style:none}
+.day-cards-area{flex:1;display:flex;flex-direction:column;gap:2px;overflow-y:auto;overflow-x:hidden;min-height:0;scrollbar-width:none}
 .day-cards-area::-webkit-scrollbar{display:none}
-.day-cards-area:hover{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-.day-cards-area:hover::-webkit-scrollbar{display:block;width:2px}
-.day-cards-area:hover::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .day-more-btn{flex-shrink:0;background:var(--s3);border:1px solid var(--border);color:var(--muted);font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:20px;cursor:pointer;text-align:center;transition:all .15s;line-height:1.5;width:100%}
 .day-more-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .day-add-btn{flex-shrink:0;background:none;border:none;color:var(--border);font-size:.85rem;cursor:pointer;width:100%;padding:1px 0;border-radius:4px;transition:color .15s;line-height:1.3}
@@ -176,7 +170,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:26px;width:100%;box-shadow:var(--shadow);transform:scale(.94) translateY(12px);transition:transform .22s;overflow-y:auto;max-height:92vh}
 .overlay.open .modal{transform:scale(1) translateY(0)}
-.modal-sm{max-width:420px}.modal-md{max-width:580px}.modal-lg{max-width:720px}.modal-xl{max-width:900px}
+.modal-sm{max-width:420px}.modal-md{max-width:580px}.modal-lg{max-width:720px}
 .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .modal-header h2{font-size:1rem;font-weight:800}
 .modal-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:2px 6px;border-radius:6px;line-height:1}
@@ -197,7 +191,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .fgrp .hint{font-size:.65rem;color:var(--muted);margin-top:3px}
 .err-msg{font-size:.68rem;color:var(--red);margin-top:3px;display:none}.err-msg.show{display:block}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .input-btn-wrap{display:flex;gap:6px;align-items:center}.input-btn-wrap input{flex:1}
 .input-action-btn{background:var(--s3);border:1px solid var(--border);color:var(--muted);padding:7px 10px;border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:700;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .input-action-btn:hover{border-color:var(--accent);color:var(--accent)}
@@ -210,7 +203,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .manage-items-list{display:flex;flex-direction:column;gap:4px;max-height:180px;overflow-y:auto;margin-bottom:8px}
 .manage-item-row{display:flex;align-items:center;gap:6px;padding:4px 6px;background:var(--s3);border-radius:7px}
 .manage-item-name{flex:1;font-size:.78rem;font-weight:600}
-.manage-item-default{font-size:.6rem;color:var(--muted);background:var(--s4);padding:1px 6px;border-radius:10px}
 .manage-item-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 4px;border-radius:4px}
 .manage-item-del:hover{color:var(--red)}
 .manage-add-row{display:flex;gap:6px}
@@ -257,7 +249,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .people-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--s2);border:1px solid var(--accent);border-radius:10px;z-index:600;overflow:hidden;box-shadow:var(--shadow);display:none}
 .people-dropdown.open{display:block}
 .people-list{max-height:180px;overflow-y:auto;padding:4px}
-.people-list::-webkit-scrollbar{width:3px}
 .people-opt{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;cursor:pointer;transition:background .15s;font-size:.83rem}
 .people-opt:hover{background:var(--s3)}.people-opt.selected{background:rgba(108,99,255,.2)}
 .people-opt-avatar{width:24px;height:24px;border-radius:50%;color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
@@ -377,9 +368,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .comment-time{font-size:.63rem;color:var(--muted)}
 .comment-edited{font-size:.6rem;color:var(--muted);font-style:italic}
 .comment-text{font-size:.82rem;line-height:1.55;white-space:pre-wrap}
-.comment-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:1px 4px;border-radius:4px;transition:color .15s}
+.comment-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:1px 4px;border-radius:4px}
 .comment-del:hover{color:var(--red)}
-.comment-edit-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:1px 4px;border-radius:4px;transition:color .15s}
+.comment-edit-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:1px 4px;border-radius:4px}
 .comment-edit-btn:hover{color:var(--accent2)}
 .comment-empty{font-size:.8rem;color:var(--muted);font-style:italic;text-align:center;padding:12px 0}
 .comment-edit-wrap{display:flex;flex-direction:column;gap:6px;margin-top:6px}
@@ -446,30 +437,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 #sidebarOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
 .plat-edit-input{flex:1;background:var(--s3);border:1px solid var(--border);color:var(--text);padding:3px 7px;border-radius:6px;font-size:.75rem;font-family:inherit;outline:none;transition:border-color .2s}
 .plat-edit-input:focus{border-color:var(--accent)}
-
-/* ═══════════════════════════════════════
-   DASHBOARD STYLES
-═══════════════════════════════════════ */
+/* DASHBOARD */
 #dashContent{padding:20px 24px;display:none}
 #dashContent.active{display:block}
 #mainContent.hidden{display:none}
 #filterBar.hidden{display:none}
-
 .dash-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;flex-wrap:wrap}
 .dash-topbar h2{font-size:1.2rem;font-weight:800}
 .dash-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .dash-year-sel{background:var(--s2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:9px;font-size:.82rem;font-family:inherit;outline:none;cursor:pointer}
-.dash-year-sel:focus{border-color:var(--accent)}
 .dash-platform-tabs{display:flex;gap:6px}
 .dash-plat-tab{padding:6px 16px;border-radius:20px;cursor:pointer;font-size:.78rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s}
 .dash-plat-tab:hover{border-color:var(--accent);color:var(--text)}
 .dash-plat-tab.active-ig{background:var(--ig);border-color:var(--ig);color:#fff}
 .dash-plat-tab.active-yt{background:var(--yt);border-color:var(--yt);color:#fff}
-
 .dash-section{margin-bottom:36px}
 .dash-section-title{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .dash-section-title::after{content:"";flex:1;height:1px;background:var(--border)}
-
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px}
 .kpi-card{background:var(--s2);border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden;transition:border-color .2s}
 .kpi-card:hover{border-color:var(--accent)}
@@ -482,46 +466,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .kpi-goal{font-size:.63rem;color:var(--muted);margin-top:2px}
 .kpi-goal-bar{height:4px;background:var(--s3);border-radius:2px;overflow:hidden;margin-top:4px}
 .kpi-goal-fill{height:100%;border-radius:2px;transition:width .5s}
-
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
 .chart-card{background:var(--s2);border:1px solid var(--border);border-radius:14px;padding:16px}
 .chart-card-title{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px}
 .chart-wrap{position:relative;height:200px}
 .chart-wrap canvas{max-height:200px}
-
 .month-input-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
 .metric-input-item{display:flex;flex-direction:column;gap:5px}
 .metric-input-item label{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
 .metric-input-item input{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:9px;font-size:.85rem;font-family:inherit;outline:none;transition:border-color .2s}
 .metric-input-item input:focus{border-color:var(--accent)}
-
 .dash-month-selector{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 .dash-month-chip{padding:5px 13px;border-radius:20px;cursor:pointer;font-size:.73rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .15s}
 .dash-month-chip:hover{border-color:var(--accent);color:var(--text)}
 .dash-month-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
-
 .goals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
 .goal-item{display:flex;flex-direction:column;gap:5px}
 .goal-item label{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
 .goal-item input{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:9px;font-size:.85rem;font-family:inherit;outline:none;transition:border-color .2s}
 .goal-item input:focus{border-color:var(--accent)}
 .semester-badge{font-size:.65rem;font-weight:800;background:rgba(108,99,255,.2);color:var(--accent);padding:3px 10px;border-radius:20px;border:1px solid rgba(108,99,255,.3)}
-
-/* Funil YouTube */
-.yt-videos-section{margin-bottom:24px}
 .yt-video-table{width:100%;border-collapse:collapse;font-size:.78rem}
 .yt-video-table th{background:var(--s3);padding:8px 12px;text-align:left;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);white-space:nowrap}
-.yt-video-table th:first-child{border-radius:8px 0 0 8px}
-.yt-video-table th:last-child{border-radius:0 8px 8px 0}
 .yt-video-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 .yt-video-table tr:hover td{background:var(--s3)}
-.yt-video-table tr:last-child td{border-bottom:none}
 .yt-td-title{font-weight:700;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .yt-td-bu{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(244,114,182,.15);color:#f472b6;border:1px solid rgba(244,114,182,.3);white-space:nowrap}
 .yt-td-input{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:4px 8px;border-radius:6px;font-size:.78rem;font-family:inherit;outline:none;width:80px;text-align:center}
 .yt-td-input:focus{border-color:var(--accent)}
-.yt-funnel-cell{display:flex;align-items:center;gap:6px}
-.yt-funnel-pct{font-size:.62rem;color:var(--muted)}
 .yt-add-video-btn{display:flex;align-items:center;gap:6px;background:transparent;border:1.5px dashed var(--border);color:var(--muted);padding:8px 14px;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;margin-top:10px}
 .yt-add-video-btn:hover{border-color:var(--yt);color:var(--yt)}
 .funnel-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
@@ -532,35 +504,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .funnel-step-label{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
 .funnel-step-value{font-size:1.3rem;font-weight:900;color:var(--text)}
 .funnel-step-pct{font-size:.62rem;color:var(--muted)}
-
-/* Seção de Publicações */
 .pub-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
 .pub-type-card{background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
-.pub-type-icon{font-size:1.5rem;margin-bottom:6px}
 .pub-type-label{font-size:.65rem;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.pub-type-value{font-size:1.6rem;font-weight:900;color:var(--accent)}
 .pub-type-input{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:5px 8px;border-radius:8px;font-size:.9rem;font-family:inherit;outline:none;width:80px;text-align:center;margin-top:6px}
 .pub-type-input:focus{border-color:var(--accent)}
-
-/* Save button dashboard */
-.dash-save-btn{display:flex;align-items:center;gap:6px;background:var(--accent);border:none;color:#fff;padding:8px 20px;border-radius:9px;cursor:pointer;font-size:.82rem;font-weight:700;transition:all .2s;margin-left:auto}
+.dash-save-btn{display:flex;align-items:center;gap:6px;background:var(--accent);border:none;color:#fff;padding:8px 20px;border-radius:9px;cursor:pointer;font-size:.82rem;font-weight:700;transition:all .2s}
 .dash-save-btn:hover{background:#5a51e0}
-.dash-save-btn:disabled{opacity:.6;cursor:not-allowed}
-
-/* Comparativo */
 .compare-table{width:100%;border-collapse:collapse;font-size:.8rem}
 .compare-table th{background:var(--s3);padding:9px 12px;text-align:center;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
-.compare-table th:first-child{text-align:left;border-radius:8px 0 0 8px}
-.compare-table th:last-child{border-radius:0 8px 8px 0}
+.compare-table th:first-child{text-align:left}
 .compare-table td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:center}
 .compare-table td:first-child{text-align:left;font-weight:700}
 .compare-table tr:hover td{background:rgba(255,255,255,.03)}
-.compare-table tr:last-child td{border-bottom:none}
 .ct-up{color:var(--green);font-weight:700}
 .ct-down{color:var(--red);font-weight:700}
 .ct-goal-ok{color:var(--green)}
 .ct-goal-no{color:var(--orange)}
-
 @media(max-width:1000px){
   #sidebar{position:fixed;left:0;top:0;height:100vh;z-index:100;transform:translateX(-100%)}
   #sidebar.open{transform:translateX(0)}
@@ -595,7 +555,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <div class="sb-label">Ano</div>
       <div class="year-sw"><button class="yr-btn" onclick="changeYear(-1)">‹</button><span class="yr-val" id="yearDisplay">2026</span><button class="yr-btn" onclick="changeYear(1)">›</button></div>
     </div>
-    <!-- NAVEGAÇÃO PRINCIPAL -->
     <div class="sb-nav-section">
       <div class="sb-nav-item active" id="nav-calendar" onclick="switchView('calendar')">📅 Calendário</div>
       <div class="sb-nav-item" id="nav-dashboard" onclick="switchView('dashboard')">📊 Dashboard</div>
@@ -643,7 +602,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <div id="dashContent"></div>
   </div>
 </div>
-
 <!-- MODAL DIA -->
 <div class="overlay" id="dayOverlay">
   <div class="modal">
@@ -664,7 +622,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <div id="dayCardsList"></div>
   </div>
 </div>
-
 <!-- MODAL CARD -->
 <div class="overlay" id="cardOverlay">
   <div class="modal modal-lg">
@@ -682,62 +639,26 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <div class="fgrp"><label>Título <span class="req-badge">obrigatório</span></label><input type="text" id="cTitle" placeholder="Título do conteúdo…" maxlength="100"/><div class="err-msg" id="err-title">Digite um título</div></div>
       </div>
       <div class="fgrp">
-        <label>📱 Plataforma <span class="opt-badge">opcional</span>
-          <button type="button" onclick="toggleManagePlatforms()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:1px 7px;font-size:.65rem;cursor:pointer;margin-left:6px">⚙️ Gerenciar</button>
-        </label>
+        <label>📱 Plataforma <span class="opt-badge">opcional</span><button type="button" onclick="toggleManagePlatforms()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:1px 7px;font-size:.65rem;cursor:pointer;margin-left:6px">⚙️ Gerenciar</button></label>
         <div class="tag-picker-wrap" id="platformPicker"></div>
-        <div id="managePlatformsBox" style="display:none">
-          <div class="manage-items-box">
-            <div class="manage-items-title">✏️ Clique no nome para editar</div>
-            <div class="manage-items-list" id="managePlatformsList"></div>
-            <div class="manage-add-row"><input type="text" id="newPlatformInput" placeholder="Ex: Pinterest…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addPlatformItem()}"/><button type="button" onclick="addPlatformItem()">+ Add</button></div>
-          </div>
-        </div>
+        <div id="managePlatformsBox" style="display:none"><div class="manage-items-box"><div class="manage-items-title">✏️ Clique no nome para editar</div><div class="manage-items-list" id="managePlatformsList"></div><div class="manage-add-row"><input type="text" id="newPlatformInput" placeholder="Ex: Pinterest…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addPlatformItem()}"/><button type="button" onclick="addPlatformItem()">+ Add</button></div></div></div>
       </div>
       <div class="fgrp">
-        <label>🏢 BU <span class="opt-badge">opcional</span>
-          <button type="button" onclick="toggleManageBUs()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:1px 7px;font-size:.65rem;cursor:pointer;margin-left:6px">⚙️ Gerenciar</button>
-        </label>
+        <label>🏢 BU <span class="opt-badge">opcional</span><button type="button" onclick="toggleManageBUs()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:1px 7px;font-size:.65rem;cursor:pointer;margin-left:6px">⚙️ Gerenciar</button></label>
         <div class="tag-picker-wrap" id="buPicker"></div>
-        <div id="manageBUsBox" style="display:none">
-          <div class="manage-items-box">
-            <div class="manage-items-title">BUs</div>
-            <div class="manage-items-list" id="manageBUsList"></div>
-            <div class="manage-add-row"><input type="text" id="newBUInput" placeholder="Ex: Finclass…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addBUItem()}"/><button type="button" onclick="addBUItem()">+ Add</button></div>
-          </div>
-        </div>
+        <div id="manageBUsBox" style="display:none"><div class="manage-items-box"><div class="manage-items-title">BUs</div><div class="manage-items-list" id="manageBUsList"></div><div class="manage-add-row"><input type="text" id="newBUInput" placeholder="Ex: Finclass…" maxlength="40" onkeydown="if(event.key==='Enter'){event.preventDefault();addBUItem()}"/><button type="button" onclick="addBUItem()">+ Add</button></div></div></div>
       </div>
       <div class="row2">
-        <div class="fgrp"><label>Campanha <span class="opt-badge">opcional</span></label>
-          <div style="display:flex;gap:6px;align-items:center"><select id="cCampaign" style="flex:1"></select><button type="button" class="input-action-btn" onclick="openCampaignManager()">⚙️</button></div>
-        </div>
+        <div class="fgrp"><label>Campanha <span class="opt-badge">opcional</span></label><div style="display:flex;gap:6px;align-items:center"><select id="cCampaign" style="flex:1"></select><button type="button" class="input-action-btn" onclick="openCampaignManager()">⚙️</button></div></div>
         <div class="fgrp"><label>ID Campanha <span class="opt-badge">opcional</span></label><div class="input-btn-wrap"><input type="text" id="cCampaignId" placeholder="Ex: camp-00101" maxlength="40"/><button type="button" class="input-action-btn" onclick="generateCampaignId()">⚡ Gerar</button></div></div>
       </div>
       <div class="fgrp"><label>PMP <span class="opt-badge">opcional</span></label><input type="text" id="cPmp" placeholder="Código ou link…" maxlength="80"/></div>
       <div class="row2">
         <div class="fgrp"><label>👤 Responsável <span class="opt-badge">opcional</span></label>
-          <div class="people-picker" id="ppResp">
-            <div class="people-display" id="ppResp-display" onclick="togglePeople('ppResp')">
-              <div class="people-sel-tags" id="ppResp-tags"><span class="people-placeholder" id="ppResp-placeholder">Selecione ou adicione…</span></div>
-              <span class="people-arrow">▼</span>
-            </div>
-            <div class="people-dropdown" id="ppResp-drop">
-              <div class="people-list" id="ppResp-list"></div>
-              <div class="people-add-row"><input type="text" id="ppResp-inp" placeholder="Novo nome…" maxlength="50" onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppResp')}" onclick="event.stopPropagation()"/><button class="people-add-btn" type="button" onclick="addPerson('ppResp')">+ Add</button></div>
-            </div>
-          </div>
+          <div class="people-picker" id="ppResp"><div class="people-display" id="ppResp-display" onclick="togglePeople('ppResp')"><div class="people-sel-tags" id="ppResp-tags"><span class="people-placeholder" id="ppResp-placeholder">Selecione ou adicione…</span></div><span class="people-arrow">▼</span></div><div class="people-dropdown" id="ppResp-drop"><div class="people-list" id="ppResp-list"></div><div class="people-add-row"><input type="text" id="ppResp-inp" placeholder="Novo nome…" maxlength="50" onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppResp')}" onclick="event.stopPropagation()"/><button class="people-add-btn" type="button" onclick="addPerson('ppResp')">+ Add</button></div></div></div>
         </div>
         <div class="fgrp"><label>📨 Solicitante <span class="opt-badge">opcional</span></label>
-          <div class="people-picker" id="ppSolic">
-            <div class="people-display" id="ppSolic-display" onclick="togglePeople('ppSolic')">
-              <div class="people-sel-tags" id="ppSolic-tags"><span class="people-placeholder" id="ppSolic-placeholder">Selecione ou adicione…</span></div>
-              <span class="people-arrow">▼</span>
-            </div>
-            <div class="people-dropdown" id="ppSolic-drop">
-              <div class="people-list" id="ppSolic-list"></div>
-              <div class="people-add-row"><input type="text" id="ppSolic-inp" placeholder="Novo nome…" maxlength="50" onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppSolic')}" onclick="event.stopPropagation()"/><button class="people-add-btn" type="button" onclick="addPerson('ppSolic')">+ Add</button></div>
-            </div>
-          </div>
+          <div class="people-picker" id="ppSolic"><div class="people-display" id="ppSolic-display" onclick="togglePeople('ppSolic')"><div class="people-sel-tags" id="ppSolic-tags"><span class="people-placeholder" id="ppSolic-placeholder">Selecione ou adicione…</span></div><span class="people-arrow">▼</span></div><div class="people-dropdown" id="ppSolic-drop"><div class="people-list" id="ppSolic-list"></div><div class="people-add-row"><input type="text" id="ppSolic-inp" placeholder="Novo nome…" maxlength="50" onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppSolic')}" onclick="event.stopPropagation()"/><button class="people-add-btn" type="button" onclick="addPerson('ppSolic')">+ Add</button></div></div></div>
         </div>
       </div>
       <div class="fgrp"><label>🔁 Recorrência <span class="opt-badge">opcional</span></label>
@@ -765,59 +686,27 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <div class="fgrp"><label>Big Idea <span class="opt-badge">opcional</span></label><input type="text" id="cBigIdea" placeholder="Conceito central…" maxlength="150"/></div>
       <div class="fgrp"><label>Copy <span class="opt-badge">opcional</span></label><textarea id="cCopy" placeholder="Texto/legenda…" style="min-height:100px"></textarea></div>
       <div class="fgrp"><label>Descrição / Observações <span class="opt-badge">opcional</span></label><textarea id="cDesc" placeholder="Notas internas…"></textarea></div>
-      <div class="fgrp"><label>🏷️ Tags <span class="opt-badge">opcional</span></label>
-        <div class="tags-wrap" id="tagsWrap" onclick="document.getElementById('tagInput').focus()">
-          <input class="tags-input" id="tagInput" placeholder="Digite e pressione Enter…" onkeydown="handleTagInput(event)"/>
-        </div>
-      </div>
+      <div class="fgrp"><label>🏷️ Tags <span class="opt-badge">opcional</span></label><div class="tags-wrap" id="tagsWrap" onclick="document.getElementById('tagInput').focus()"><input class="tags-input" id="tagInput" placeholder="Digite e pressione Enter…" onkeydown="handleTagInput(event)"/></div></div>
     </div>
     <div class="tab-panel" id="tab-checklist">
-      <div class="fgrp">
-        <label>☑️ Checklist <span class="opt-badge">opcional</span></label>
-        <p class="hint" style="margin-bottom:12px">Adicione tarefas e marque conforme for concluindo.</p>
-        <div class="cl-progress-wrap" id="clProgressWrap" style="display:none"><div class="cl-progress-bar"><div class="cl-progress-fill" id="clProgressFill"></div></div><span class="cl-progress-label" id="clProgressLabel">0 / 0</span></div>
-        <div class="cl-list" id="clList"></div>
-        <button type="button" class="cl-add-btn" onclick="clAddRow()">＋ Adicionar tarefa</button>
-      </div>
+      <div class="fgrp"><label>☑️ Checklist <span class="opt-badge">opcional</span></label><p class="hint" style="margin-bottom:12px">Adicione tarefas e marque conforme for concluindo.</p><div class="cl-progress-wrap" id="clProgressWrap" style="display:none"><div class="cl-progress-bar"><div class="cl-progress-fill" id="clProgressFill"></div></div><span class="cl-progress-label" id="clProgressLabel">0 / 0</span></div><div class="cl-list" id="clList"></div><button type="button" class="cl-add-btn" onclick="clAddRow()">＋ Adicionar tarefa</button></div>
     </div>
     <div class="tab-panel" id="tab-links">
-      <div class="fgrp"><label>Links <span class="opt-badge">opcional</span></label>
-        <div class="links-list" id="linksListEdit"></div>
-        <button class="add-link-btn" type="button" onclick="addLinkRow()">＋ Adicionar link</button>
-      </div>
+      <div class="fgrp"><label>Links <span class="opt-badge">opcional</span></label><div class="links-list" id="linksListEdit"></div><button class="add-link-btn" type="button" onclick="addLinkRow()">＋ Adicionar link</button></div>
     </div>
     <div class="tab-panel" id="tab-catvisual">
-      <div class="fgrp"><label>Categoria <span class="opt-badge">opcional</span></label>
-        <select id="cCatSel" onchange="onCatChange()"></select>
-        <div class="hint">A cor do card acompanha a cor da categoria.</div>
-      </div>
-      <div class="cat-color-preview" id="catColorPreview" style="display:none">
-        <div class="cat-color-swatch" id="catColorSwatch"></div>
-        <div class="cat-color-info"><strong id="catColorName">—</strong><span id="catColorHexPrev">#000</span></div>
-      </div>
-      <label class="override-toggle" style="margin-top:8px">
-        <input type="checkbox" id="overrideColorCheck" onchange="toggleOverride()"/>
-        <span>Usar cor personalizada</span>
-      </label>
-      <div class="override-section" id="overrideSection">
-        <div class="color-pick-area">
-          <div class="preset-grid" id="presetGrid"></div>
-          <div class="custom-row"><span>Cor livre:</span><input type="color" id="customColorPicker" value="#6c63ff" oninput="onCustomColor(this.value)"/><span id="colorHexLbl" style="font-size:.7rem;font-family:monospace;color:var(--muted)">#6c63ff</span></div>
-          <div class="color-bar" id="colorBar" style="background:#6c63ff"></div>
-        </div>
-      </div>
+      <div class="fgrp"><label>Categoria <span class="opt-badge">opcional</span></label><select id="cCatSel" onchange="onCatChange()"></select><div class="hint">A cor do card acompanha a cor da categoria.</div></div>
+      <div class="cat-color-preview" id="catColorPreview" style="display:none"><div class="cat-color-swatch" id="catColorSwatch"></div><div class="cat-color-info"><strong id="catColorName">—</strong><span id="catColorHexPrev">#000</span></div></div>
+      <label class="override-toggle" style="margin-top:8px"><input type="checkbox" id="overrideColorCheck" onchange="toggleOverride()"/><span>Usar cor personalizada</span></label>
+      <div class="override-section" id="overrideSection"><div class="color-pick-area"><div class="preset-grid" id="presetGrid"></div><div class="custom-row"><span>Cor livre:</span><input type="color" id="customColorPicker" value="#6c63ff" oninput="onCustomColor(this.value)"/><span id="colorHexLbl" style="font-size:.7rem;font-family:monospace;color:var(--muted)">#6c63ff</span></div><div class="color-bar" id="colorBar" style="background:#6c63ff"></div></div></div>
     </div>
     <div class="mactions">
-      <div id="cardDelRow" style="display:none;gap:6px;align-items:center;margin-right:auto">
-        <button class="btn-del" id="cardDelBtn">🗑 Excluir</button>
-        <button class="btn-dup" id="cardDupBtn">⧉ Duplicar</button>
-      </div>
+      <div id="cardDelRow" style="display:none;gap:6px;align-items:center;margin-right:auto"><button class="btn-del" id="cardDelBtn">🗑 Excluir</button><button class="btn-dup" id="cardDupBtn">⧉ Duplicar</button></div>
       <button class="btn-cancel" onclick="closeOverlay('cardOverlay')">Cancelar</button>
       <button class="btn-save" id="btnSaveCard" onclick="saveCard()">💾 Salvar</button>
     </div>
   </div>
 </div>
-
 <!-- MODAL DETALHE -->
 <div class="overlay" id="detailOverlay">
   <div class="modal modal-md">
@@ -833,11 +722,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <div class="tab-panel" id="dtlinks"><div id="detailLinksBody"></div></div>
     <div class="tab-panel" id="dtcomments">
       <div class="comments-area" id="commentsArea"></div>
-      <div class="add-comment-wrap">
-        <input type="text" id="commentAuthor" placeholder="Seu nome…" maxlength="40"/>
-        <textarea id="commentText" placeholder="Escreva um comentário…"></textarea>
-        <button class="btn-comment" onclick="addComment()">💬 Comentar</button>
-      </div>
+      <div class="add-comment-wrap"><input type="text" id="commentAuthor" placeholder="Seu nome…" maxlength="40"/><textarea id="commentText" placeholder="Escreva um comentário…"></textarea><button class="btn-comment" onclick="addComment()">💬 Comentar</button></div>
     </div>
     <div class="mactions">
       <button class="btn-back" id="btnBack" style="display:none" onclick="backToDayModal()">← Voltar ao dia</button>
@@ -848,7 +733,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     </div>
   </div>
 </div>
-
 <!-- MODAL DUPLICAR -->
 <div class="overlay" id="dupOverlay">
   <div class="modal modal-sm">
@@ -858,7 +742,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <div class="mactions"><button class="btn-cancel" onclick="closeOverlay('dupOverlay')">Cancelar</button><button class="btn-save" onclick="confirmDuplicate()">⧉ Duplicar</button></div>
   </div>
 </div>
-
 <!-- MODAL CAMPANHA -->
 <div class="overlay" id="campaignOverlay">
   <div class="modal modal-sm">
@@ -870,7 +753,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <div class="mactions" style="margin-top:14px"><button class="btn-save" onclick="closeCampaignManager()">✓ Concluído</button></div>
   </div>
 </div>
-
 <!-- MODAL CATEGORIA -->
 <div class="overlay" id="catOverlay">
   <div class="modal modal-sm">
@@ -881,44 +763,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     </div>
     <div class="tab-panel active" id="catinfo">
       <div class="fgrp"><label>Nome <span class="req-badge">obrigatório</span></label><input type="text" id="catName" placeholder="Ex: Reels, Feed…" maxlength="40"/></div>
-      <div class="fgrp"><label>Cor</label>
-        <div class="color-pick-area">
-          <div class="preset-grid" id="catPresetGrid"></div>
-          <div class="custom-row"><span>Cor livre:</span><input type="color" id="catColorPicker" value="#6c63ff" oninput="onCatCustomColor(this.value)"/><span id="catColorHex" style="font-size:.7rem;font-family:monospace;color:var(--muted)">#6c63ff</span></div>
-          <div class="color-bar" id="catColorBar" style="background:#6c63ff"></div>
-        </div>
-      </div>
+      <div class="fgrp"><label>Cor</label><div class="color-pick-area"><div class="preset-grid" id="catPresetGrid"></div><div class="custom-row"><span>Cor livre:</span><input type="color" id="catColorPicker" value="#6c63ff" oninput="onCatCustomColor(this.value)"/><span id="catColorHex" style="font-size:.7rem;font-family:monospace;color:var(--muted)">#6c63ff</span></div><div class="color-bar" id="catColorBar" style="background:#6c63ff"></div></div></div>
     </div>
     <div class="tab-panel" id="catemoji">
       <div class="selected-emoji-preview"><span class="big-emoji" id="selectedEmojiPreview">📌</span><span>Emoji selecionado</span></div>
       <input class="emoji-search" type="text" placeholder="Buscar emoji…" oninput="filterEmojis(this.value)"/>
       <div id="emojiPanels"></div>
     </div>
-    <div class="mactions">
-      <button class="btn-del" id="catDelBtn" style="display:none" onclick="deleteCat()">🗑 Excluir</button>
-      <button class="btn-cancel" onclick="closeOverlay('catOverlay')">Cancelar</button>
-      <button class="btn-save" onclick="saveCat()">Salvar</button>
-    </div>
+    <div class="mactions"><button class="btn-del" id="catDelBtn" style="display:none" onclick="deleteCat()">🗑 Excluir</button><button class="btn-cancel" onclick="closeOverlay('catOverlay')">Cancelar</button><button class="btn-save" onclick="saveCat()">Salvar</button></div>
   </div>
 </div>
-
-<!-- MODAL MÉTRICAS YT (por vídeo) -->
-<div class="overlay" id="ytVideoOverlay">
-  <div class="modal modal-md">
-    <div class="modal-header"><h2 id="ytVideoModalTitle">📹 Métricas do Vídeo</h2><button class="modal-close" onclick="closeOverlay('ytVideoOverlay')">✕</button></div>
-    <div id="ytVideoModalBody"></div>
-    <div class="mactions">
-      <button class="btn-cancel" onclick="closeOverlay('ytVideoOverlay')">Cancelar</button>
-      <button class="btn-save" onclick="saveYtVideoMetrics()">💾 Salvar</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 <script>
-// ══════════════════════════════════════════════════════════════
-// CONSTANTES E DADOS BASE
-// ══════════════════════════════════════════════════════════════
 const EMOJI_CATS={"📱 Mídias Sociais":["📱","📲","🤳","💬","📣","📢","🗣️","👥","❤️","🔔","🌐","📡"],"🎨 Criativo":["🎨","✏️","🖌️","🖼️","📸","🎬","🎥","🎞️","🎭","🎪","✨","💡"],"📊 Negócio":["📊","📈","📉","💼","🏆","🎯","💰","💳","🤝","📋","📌","🗂️"],"🎉 Eventos":["🎉","🎊","🎈","🎁","🥳","🏅","🎖️","🏟️","🎤","🎸","🎵","🎶"],"📅 Datas":["📅","🗓️","⏰","⌛","🕐","📆","🔴","🟡","🟢","🟣","🔵","⚪"],"🌟 Destaques":["⭐","🌟","💫","✨","🔥","💥","🚀","⚡","🌈","👑","💎","🏅"],"📝 Texto":["📝","✍️","📖","📚","📰","📄","🗒️","📜","💭","🗨️","💡","🔍"],"🛍️ Produto":["🛍️","🛒","🏪","🏬","📦","🎁","🏷️","💳","🛠️","⚙️","🔧","🔨"],"🌍 Outros":["🌍","🌎","🌏","🗺️","✈️","🚗","🏠","🌿","🌊","☀️","🌙","❄️"]};
 const MONTHS_PT=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 const MONTHS_SHORT=["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
@@ -937,8 +793,6 @@ const DEFAULT_PLATFORMS=["Instagram","YouTube","Facebook","TikTok","Twitter/X","
 const PLAT_ICONS_MAP={"Instagram":"📸","YouTube":"▶️","Facebook":"👥","TikTok":"🎵","Twitter/X":"🐦","LinkedIn":"💼","Email":"📧","Blog":"📝","Outro":"🌐"};
 function getPlatIcon(p){return PLAT_ICONS_MAP[p]||"🔹";}
 const DEFAULT_BUS=["Grão","Finclass","Sócios","Primo Rico","Thiago Nigro","Bruno Perini"];
-
-// ── Métricas Instagram ──
 const IG_METRIC_KEYS=["novosSeguidores","visualizacoes","alcance","atividadePerfil","visitasPerfil","cliquesLink","fechamentoSeguidores"];
 const IG_METRIC_LABELS={"novosSeguidores":"Novos Seguidores","visualizacoes":"Visualizações","alcance":"Alcance","atividadePerfil":"Atividade no Perfil","visitasPerfil":"Visitas no Perfil","cliquesLink":"Cliques no Link Externo","fechamentoSeguidores":"Fechamento Seguidores"};
 const IG_METRIC_ICONS={"novosSeguidores":"👥","visualizacoes":"👁️","alcance":"📡","atividadePerfil":"⚡","visitasPerfil":"🏠","cliquesLink":"🔗","fechamentoSeguidores":"🎯"};
@@ -946,16 +800,12 @@ const IG_METRIC_COLORS={"novosSeguidores":"#e1306c","visualizacoes":"#f472b6","a
 const IG_PUB_KEYS=["reels","carrosseis","postsEstaticos"];
 const IG_PUB_LABELS={"reels":"Reels","carrosseis":"Carrosséis","postsEstaticos":"Posts Estáticos"};
 const IG_PUB_ICONS={"reels":"🎬","carrosseis":"🗂️","postsEstaticos":"🖼️"};
-
-// ── Métricas YouTube ──
 const YT_METRIC_KEYS=["novosInscritos","visualizacoes","tempoExibicao","numVideos","numShorts","fechamentoInscritos"];
 const YT_METRIC_LABELS={"novosInscritos":"Novos Inscritos","visualizacoes":"Visualizações","tempoExibicao":"Tempo de Exibição (h)","numVideos":"Nº de Vídeos","numShorts":"Nº de Shorts","fechamentoInscritos":"Fechamento Inscritos"};
 const YT_METRIC_ICONS={"novosInscritos":"👥","visualizacoes":"👁️","tempoExibicao":"⏱️","numVideos":"🎬","numShorts":"📱","fechamentoInscritos":"🎯"};
 const YT_METRIC_COLORS={"novosInscritos":"#ff0000","visualizacoes":"#ff6b6b","tempoExibicao":"#fb923c","numVideos":"#facc15","numShorts":"#4ade80","fechamentoInscritos":"#38bdf8"};
 const YT_BREAKDOWN_KEYS=["shorts","videos","lives"];
 const YT_BREAKDOWN_LABELS={"shorts":"Shorts","videos":"Vídeo","lives":"Live"};
-
-// ── Funil YouTube (por vídeo) ──
 const YT_FUNNEL_KEYS=["cliquesLink","agendamentos","fechamentoPF","downloadsApp","iniciouInvestir"];
 const YT_FUNNEL_LABELS={"cliquesLink":"Cliques no Link","agendamentos":"Agendamentos","fechamentoPF":"Fechou PF","downloadsApp":"Downloads App","iniciouInvestir":"Iniciou Investir"};
 const YT_FUNNEL_ICONS={"cliquesLink":"🔗","agendamentos":"📅","fechamentoPF":"🤝","downloadsApp":"📲","iniciouInvestir":"💰"};
@@ -964,7 +814,6 @@ let platforms=JSON.parse(localStorage.getItem("cal_platforms")||"null")||[...DEF
 let buList=JSON.parse(localStorage.getItem("cal_bus")||"null")||[...DEFAULT_BUS];
 function savePlatforms(){localStorage.setItem("cal_platforms",JSON.stringify(platforms));}
 function saveBUs(){localStorage.setItem("cal_bus",JSON.stringify(buList));}
-
 let cards={},categories={},campaigns=[...DEFAULT_CAMPAIGNS];
 let currentYear=2026,dragCardId=null,editCardId=null;
 let chosenColor="#6c63ff",catChosenColor="#6c63ff",editCatId=null;
@@ -981,20 +830,11 @@ let dayPriority=JSON.parse(localStorage.getItem("cal_day_priority")||"{}");
 let _dayModalContext=null;
 let _openedFromDayModal=false;
 let currentView="calendar";
-
-// ── Dashboard state ──
-let dashPlatform="instagram"; // "instagram" | "youtube"
+let dashPlatform="instagram";
 let dashYear=2026;
 let dashMonth=TODAY.getMonth();
-let igMetrics={};   // {year: {month: {key:val,...}}}
-let ytMetrics={};   // {year: {month: {key:val,...}}}
-let igGoals={};     // {year: {semester: {key:val}}}  semester: 0=Jan-Jun, 1=Jul-Dez
-let ytGoals={};
-let ytVideos={};    // {year: {month: [{cardId, title, bu, funnel:{...}}]}}
-let ytBreakdown={}; // {year: {month: {shorts,videos,lives}}}
-let igPubs={};      // {year: {month: {reels,carrosseis,postsEstaticos}}}
+let igMetrics={},ytMetrics={},igGoals={},ytGoals={},ytVideos={},ytBreakdown={},igPubs={};
 let _dashCharts={};
-let _ytVideoEditIdx=null;
 
 function loadPeopleList(){const raw=localStorage.getItem("cal_people_v2");if(raw){try{peopleList=JSON.parse(raw);return;}catch{}}peopleList=[];}
 function savePeopleList(){localStorage.setItem("cal_people_v2",JSON.stringify(peopleList));}
@@ -1009,9 +849,6 @@ function fmtNum(n){if(!n&&n!==0)return"—";const num=Number(n);if(isNaN(num))re
 function pct(a,b){if(!b||b===0)return 0;return Math.round((a/b)*100);}
 function trendIcon(cur,prev){if(!prev||prev===0)return"";const d=cur-prev;if(d>0)return`<span class="kpi-trend-up">▲ ${fmtNum(Math.abs(d))}</span>`;if(d<0)return`<span class="kpi-trend-down">▼ ${fmtNum(Math.abs(d))}</span>`;return"";}
 
-// ══════════════════════════════════════════════════════════════
-// FIREBASE + BOOT
-// ══════════════════════════════════════════════════════════════
 window._fbReady=false;
 window.addEventListener("firebaseReady",()=>{window._fbReady=true;startApp();});
 setTimeout(()=>{if(!window._fbReady){document.getElementById("loadingScreen").style.display="none";document.getElementById("appShell").style.display="flex";boot();}},4000);
@@ -1020,37 +857,12 @@ function boot(){renderAll();renderMonthNav();renderCatSidebar();listenData();ren
 
 function listenData(){
   if(!window._db)return;
-  window._onSnapshot(window._col("cats_cal"),snap=>{
-    categories={};snap.forEach(d=>{categories[d.id]=d.data();});
-    if(!Object.keys(categories).length)seedCats();
-    renderCatSidebar();refreshAllDOM();
-  },()=>setSyncStatus("err"));
-  window._onSnapshot(window._col("cards_cal"),snap=>{
-    cards={};snap.forEach(d=>{cards[d.id]=d.data();});
-    Object.values(cards).forEach(c=>{
-      toArr(c.responsavel).forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});
-      if(c.platform&&!platforms.includes(c.platform)){platforms.push(c.platform);savePlatforms();}
-      if(c.bu&&!buList.includes(c.bu)){buList.push(c.bu);saveBUs();}
-    });
-    savePeopleList();buildRespFilters();buildPlatformFilters();buildBUFilters();rebuildRecurInstances();renderAll();setSyncStatus("ok");
-  },()=>setSyncStatus("err"));
+  window._onSnapshot(window._col("cats_cal"),snap=>{categories={};snap.forEach(d=>{categories[d.id]=d.data();});if(!Object.keys(categories).length)seedCats();renderCatSidebar();refreshAllDOM();},()=>setSyncStatus("err"));
+  window._onSnapshot(window._col("cards_cal"),snap=>{cards={};snap.forEach(d=>{cards[d.id]=d.data();});Object.values(cards).forEach(c=>{toArr(c.responsavel).forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});if(c.platform&&!platforms.includes(c.platform)){platforms.push(c.platform);savePlatforms();}if(c.bu&&!buList.includes(c.bu)){buList.push(c.bu);saveBUs();}});savePeopleList();buildRespFilters();buildPlatformFilters();buildBUFilters();rebuildRecurInstances();renderAll();setSyncStatus("ok");},()=>setSyncStatus("err"));
   window._onSnapshot(window._col("campaigns_cal"),snap=>{if(!snap.empty){campaigns=snap.docs[0].data().list||[...DEFAULT_CAMPAIGNS];}},()=>{});
-  // Dashboard listeners
-  window._onSnapshot(window._col("dash_ig"),snap=>{
-    igMetrics={};igPubs={};
-    snap.forEach(d=>{const dt=d.data();if(dt.type==="metrics")igMetrics[d.id]=dt.data||{};else if(dt.type==="pubs")igPubs[d.id]=dt.data||{};});
-    if(currentView==="dashboard"&&dashPlatform==="instagram")renderDashboard();
-  },()=>{});
-  window._onSnapshot(window._col("dash_yt"),snap=>{
-    ytMetrics={};ytVideos={};ytBreakdown={};
-    snap.forEach(d=>{const dt=d.data();if(dt.type==="metrics")ytMetrics[d.id]=dt.data||{};else if(dt.type==="videos")ytVideos[d.id]=dt.data||{};else if(dt.type==="breakdown")ytBreakdown[d.id]=dt.data||{};});
-    if(currentView==="dashboard"&&dashPlatform==="youtube")renderDashboard();
-  },()=>{});
-  window._onSnapshot(window._col("dash_goals"),snap=>{
-    igGoals={};ytGoals={};
-    snap.forEach(d=>{const dt=d.data();if(dt.type==="ig")igGoals[d.id]=dt.data||{};else if(dt.type==="yt")ytGoals[d.id]=dt.data||{};});
-    if(currentView==="dashboard")renderDashboard();
-  },()=>{});
+  window._onSnapshot(window._col("dash_ig"),snap=>{igMetrics={};igPubs={};snap.forEach(d=>{const dt=d.data();if(dt.type==="metrics")igMetrics[d.id]=dt.data||{};else if(dt.type==="pubs")igPubs[d.id]=dt.data||{};});if(currentView==="dashboard"&&dashPlatform==="instagram")renderDashboard();},()=>{});
+  window._onSnapshot(window._col("dash_yt"),snap=>{ytMetrics={};ytVideos={};ytBreakdown={};snap.forEach(d=>{const dt=d.data();if(dt.type==="metrics")ytMetrics[d.id]=dt.data||{};else if(dt.type==="videos")ytVideos[d.id]=dt.data||{};else if(dt.type==="breakdown")ytBreakdown[d.id]=dt.data||{};});if(currentView==="dashboard"&&dashPlatform==="youtube")renderDashboard();},()=>{});
+  window._onSnapshot(window._col("dash_goals"),snap=>{igGoals={};ytGoals={};snap.forEach(d=>{const dt=d.data();if(dt.type==="ig")igGoals[d.id]=dt.data||{};else if(dt.type==="yt")ytGoals[d.id]=dt.data||{};});if(currentView==="dashboard")renderDashboard();},()=>{});
 }
 
 async function seedCats(){const defs=[{id:"dc1",name:"Reels",color:"#6c63ff",emoji:"🎬"},{id:"dc2",name:"Feed",color:"#22d3ee",emoji:"🖼️"},{id:"dc3",name:"YouTube",color:"#f87171",emoji:"▶️"},{id:"dc4",name:"Evento",color:"#fb923c",emoji:"🏢"},{id:"dc5",name:"Stories",color:"#4ade80",emoji:"📖"},{id:"dc6",name:"Outros",color:"#94a3b8",emoji:"📌"}];for(const c of defs){categories[c.id]=c;await window._setDoc(window._doc("cats_cal",c.id),c);}}
@@ -1059,7 +871,6 @@ const dbDelCard=async i=>window._deleteDoc&&window._deleteDoc(window._doc("cards
 const dbSaveCat=async c=>window._setDoc&&window._setDoc(window._doc("cats_cal",c.id),c);
 const dbDelCat=async i=>window._deleteDoc&&window._deleteDoc(window._doc("cats_cal",i));
 const dbSaveCampaigns=async()=>{if(window._db&&window._setDoc)await window._setDoc(window._doc("campaigns_cal","main"),{list:campaigns});};
-// Dashboard DB
 function dashIgKey(yr,mi){return`${yr}_${mi}`;}
 async function dbSaveIgMetrics(yr,mi,data){if(!window._setDoc)return;await window._setDoc(window._doc("dash_ig",dashIgKey(yr,mi)),{type:"metrics",year:yr,month:mi,data});}
 async function dbSaveIgPubs(yr,mi,data){if(!window._setDoc)return;await window._setDoc(window._doc("dash_ig",`pubs_${yr}_${mi}`),{type:"pubs",year:yr,month:mi,data});}
@@ -1067,43 +878,22 @@ async function dbSaveYtMetrics(yr,mi,data){if(!window._setDoc)return;await windo
 async function dbSaveYtVideos(yr,mi,data){if(!window._setDoc)return;await window._setDoc(window._doc("dash_yt",`vid_${yr}_${mi}`),{type:"videos",year:yr,month:mi,data});}
 async function dbSaveYtBreakdown(yr,mi,data){if(!window._setDoc)return;await window._setDoc(window._doc("dash_yt",`bd_${yr}_${mi}`),{type:"breakdown",year:yr,month:mi,data});}
 async function dbSaveGoals(platform,yr,semester,data){if(!window._setDoc)return;const id=`${platform}_${yr}_${semester}`;await window._setDoc(window._doc("dash_goals",id),{type:platform,year:yr,semester,data});}
-
 function setSyncStatus(s){const d=document.getElementById("syncDot");if(d)d.className="sync-dot "+(s==="ok"?"ok":"err");}
 
-// ══════════════════════════════════════════════════════════════
-// VIEW SWITCHING
-// ══════════════════════════════════════════════════════════════
 function switchView(view){
   currentView=view;
   document.getElementById("nav-calendar").classList.toggle("active",view==="calendar");
   document.getElementById("nav-dashboard").classList.toggle("active",view==="dashboard");
-  const mainContent=document.getElementById("mainContent");
-  const dashContent=document.getElementById("dashContent");
-  const filterBar=document.getElementById("filterBar");
-  const btnToday=document.getElementById("btnToday");
-  const calSideExtra=document.getElementById("calendarSidebarExtra");
-  if(view==="calendar"){
-    mainContent.classList.remove("hidden");dashContent.classList.remove("active");
-    filterBar.classList.remove("hidden");btnToday.style.display="";
-    calSideExtra.style.display="";
-    document.getElementById("topbarTitle").innerHTML='Calendário de Conteúdo &nbsp;<span class="topbar-year" id="topbarYear">'+currentYear+'</span>';
-  } else {
-    mainContent.classList.add("hidden");dashContent.classList.add("active");
-    filterBar.classList.add("hidden");btnToday.style.display="none";
-    calSideExtra.style.display="none";
-    document.getElementById("topbarTitle").innerHTML='📊 Dashboard de Métricas &nbsp;<span class="topbar-year">'+dashYear+'</span>';
-    renderDashboard();
-  }
+  const mc=document.getElementById("mainContent"),dc=document.getElementById("dashContent"),fb=document.getElementById("filterBar"),bt=document.getElementById("btnToday"),ce=document.getElementById("calendarSidebarExtra");
+  if(view==="calendar"){mc.classList.remove("hidden");dc.classList.remove("active");fb.classList.remove("hidden");bt.style.display="";ce.style.display="";document.getElementById("topbarTitle").innerHTML='Calendário de Conteúdo &nbsp;<span class="topbar-year" id="topbarYear">'+currentYear+'</span>';}
+  else{mc.classList.add("hidden");dc.classList.add("active");fb.classList.add("hidden");bt.style.display="none";ce.style.display="none";document.getElementById("topbarTitle").innerHTML='📊 Dashboard de Métricas &nbsp;<span class="topbar-year">'+dashYear+'</span>';renderDashboard();}
   closeSidebar();
 }
 
-// ══════════════════════════════════════════════════════════════
-// DASHBOARD — RENDER PRINCIPAL
-// ══════════════════════════════════════════════════════════════
 function getIgData(yr,mi){return igMetrics[dashIgKey(yr,mi)]||{};}
 function getIgPubsData(yr,mi){return igPubs[`pubs_${yr}_${mi}`]||{};}
 function getYtData(yr,mi){return ytMetrics[dashIgKey(yr,mi)]||{};}
-function getYtVideosData(yr,mi){return (ytVideos[`vid_${yr}_${mi}`])||[];}
+function getYtVideosData(yr,mi){return ytVideos[`vid_${yr}_${mi}`]||[];}
 function getYtBreakdownData(yr,mi){return ytBreakdown[`bd_${yr}_${mi}`]||{};}
 function getSemester(mi){return mi<6?0:1;}
 function getGoal(platform,yr,mi,key){const sem=getSemester(mi);const store=platform==="ig"?igGoals:ytGoals;const id=`${platform}_${yr}_${sem}`;return Number((store[id]||{})[key])||0;}
@@ -1113,23 +903,9 @@ function renderDashboard(){
   const c=document.getElementById("dashContent");
   if(dashPlatform==="instagram")c.innerHTML=buildIgDashboard();
   else c.innerHTML=buildYtDashboard();
-  // bind year selector
-  const ySel=document.getElementById("dashYearSel");
-  if(ySel)ySel.value=dashYear;
-  // bind month chips
-  document.querySelectorAll(".dash-month-chip").forEach(ch=>{
-    ch.classList.toggle("active",parseInt(ch.dataset.mi)===dashMonth);
-  });
-  // Rebuild charts after DOM
-  setTimeout(()=>{
-    if(dashPlatform==="instagram"){buildIgCharts();}
-    else{buildYtCharts();}
-  },80);
+  setTimeout(()=>{if(dashPlatform==="instagram")buildIgCharts();else buildYtCharts();},80);
 }
 
-// ══════════════════════════════════════════════════════════════
-// INSTAGRAM DASHBOARD
-// ══════════════════════════════════════════════════════════════
 function buildIgDashboard(){
   const curData=getIgData(dashYear,dashMonth);
   const prevMi=dashMonth===0?11:dashMonth-1;
@@ -1138,125 +914,21 @@ function buildIgDashboard(){
   const pubData=getIgPubsData(dashYear,dashMonth);
   const sem=getSemester(dashMonth);
   const semLabel=sem===0?"1º Semestre (Jan–Jun)":"2º Semestre (Jul–Dez)";
-
-  // KPI cards
-  const kpiHTML=IG_METRIC_KEYS.map(k=>{
-    const val=Number(curData[k])||0,prev=Number(prevData[k])||0;
-    const goal=getGoal("ig",dashYear,dashMonth,k);
-    const goalPct=goal>0?Math.min(Math.round((val/goal)*100),100):0;
-    const goalColor=goalPct>=100?"var(--green)":goalPct>=70?"var(--orange)":"var(--red)";
-    return`<div class="kpi-card" style="--kpi-color:${IG_METRIC_COLORS[k]}">
-      <div class="kpi-label">${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</div>
-      <div class="kpi-value">${fmtNum(val)}</div>
-      <div class="kpi-meta">${trendIcon(val,prev)} ${prev>0?`vs ${fmtNum(prev)} mês ant.`:""}</div>
-      ${goal>0?`<div class="kpi-goal">Meta: ${fmtNum(goal)} — ${goalPct}%</div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${goalPct}%;background:${goalColor}"></div></div>`:""}
-    </div>`;
-  }).join("");
-
-  // Publicações do mês
+  const kpiHTML=IG_METRIC_KEYS.map(k=>{const val=Number(curData[k])||0,prev=Number(prevData[k])||0;const goal=getGoal("ig",dashYear,dashMonth,k);const goalPct=goal>0?Math.min(Math.round((val/goal)*100),100):0;const goalColor=goalPct>=100?"var(--green)":goalPct>=70?"var(--orange)":"var(--red)";return`<div class="kpi-card" style="--kpi-color:${IG_METRIC_COLORS[k]}"><div class="kpi-label">${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</div><div class="kpi-value">${fmtNum(val)}</div><div class="kpi-meta">${trendIcon(val,prev)} ${prev>0?`vs ${fmtNum(prev)} mês ant.`:""}</div>${goal>0?`<div class="kpi-goal">Meta: ${fmtNum(goal)} — ${goalPct}%</div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${goalPct}%;background:${goalColor}"></div></div>`:""}</div>`;}).join("");
   const totalPubs=(Number(pubData.reels)||0)+(Number(pubData.carrosseis)||0)+(Number(pubData.postsEstaticos)||0);
-  const pubTypeHTML=IG_PUB_KEYS.map(k=>`
-    <div class="pub-type-card">
-      <div class="pub-type-icon">${IG_PUB_ICONS[k]}</div>
-      <div class="pub-type-label">${IG_PUB_LABELS[k]}</div>
-      <input class="pub-type-input" type="number" min="0" id="igpub_${k}" value="${pubData[k]||""}" placeholder="0"/>
-    </div>`).join("");
-
-  // Mês seletor
+  const pubTypeHTML=IG_PUB_KEYS.map(k=>`<div class="pub-type-card"><div class="pub-type-label">${IG_PUB_ICONS[k]} ${IG_PUB_LABELS[k]}</div><input class="pub-type-input" type="number" min="0" id="igpub_${k}" value="${pubData[k]||""}" placeholder="0"/></div>`).join("");
   const monthChips=MONTHS_SHORT.map((m,i)=>`<div class="dash-month-chip${i===dashMonth?" active":""}" data-mi="${i}" onclick="setDashMonth(${i})">${m}</div>`).join("");
-
-  // Comparativo tabela
-  const compareRows=IG_METRIC_KEYS.map(k=>{
-    const months=[];for(let i=0;i<12;i++){const d=getIgData(dashYear,i);months.push(Number(d[k])||0);}
-    const g=getGoal("ig",dashYear,dashMonth,k);
-    const cur=Number(curData[k])||0;
-    const goalStatus=g>0?(cur>=g?`<span class="ct-goal-ok">✓ ${pct(cur,g)}%</span>`:`<span class="ct-goal-no">${pct(cur,g)}%</span>`):"—";
-    return`<tr><td>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</td>${months.map((v,i)=>`<td class="${i===dashMonth?"":""}${v>0?"":""}">${fmtNum(v)||"—"}</td>`).join("")}<td>${goalStatus}</td></tr>`;
-  }).join("");
-
-  return`
-  <div class="dash-topbar">
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <h2>📊 Dashboard de Métricas</h2>
-      <div class="dash-platform-tabs">
-        <div class="dash-plat-tab active-ig" onclick="setDashPlatform('instagram')">📸 Instagram</div>
-        <div class="dash-plat-tab" onclick="setDashPlatform('youtube')">▶️ YouTube</div>
-      </div>
-    </div>
-    <div class="dash-controls">
-      <select class="dash-year-sel" id="dashYearSel" onchange="setDashYear(this.value)">
-        ${[2024,2025,2026,2027,2028].map(y=>`<option value="${y}"${y===dashYear?" selected":""}>${y}</option>`).join("")}
-      </select>
-      <button class="dash-save-btn" onclick="saveDashboardIg()" id="btnSaveIg">💾 Salvar Dados</button>
-    </div>
-  </div>
-
-  <!-- Seletor de mês -->
-  <div class="dash-section">
-    <div class="dash-section-title">📅 Selecionar Mês</div>
-    <div class="dash-month-selector">${monthChips}</div>
-    <p style="font-size:.72rem;color:var(--muted)">Mês selecionado: <strong style="color:var(--text)">${MONTHS_PT[dashMonth]} ${dashYear}</strong></p>
-  </div>
-
-  <!-- KPIs -->
-  <div class="dash-section">
-    <div class="dash-section-title">📈 Indicadores — ${MONTHS_PT[dashMonth]}</div>
-    <div class="kpi-grid">${kpiHTML}</div>
-  </div>
-
-  <!-- Input métricas -->
-  <div class="dash-section">
-    <div class="dash-section-title">✏️ Preencher Métricas — ${MONTHS_PT[dashMonth]} ${dashYear}</div>
-    <div class="month-input-grid" id="igMetricInputs">
-      ${IG_METRIC_KEYS.map(k=>`<div class="metric-input-item"><label>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</label><input type="number" min="0" id="igm_${k}" placeholder="0" value="${curData[k]||""}"/></div>`).join("")}
-    </div>
-  </div>
-
-  <!-- Publicações -->
-  <div class="dash-section">
-    <div class="dash-section-title">📋 Publicações — ${MONTHS_PT[dashMonth]}</div>
-    <div style="margin-bottom:10px;font-size:.82rem;color:var(--muted)">Total: <strong style="color:var(--text);font-size:1rem">${totalPubs}</strong> publicações no mês</div>
-    <div class="pub-type-grid">${pubTypeHTML}</div>
-  </div>
-
-  <!-- Gráficos -->
-  <div class="dash-section">
-    <div class="dash-section-title">📊 Evolução Anual ${dashYear}</div>
-    <div class="charts-grid">
-      <div class="chart-card"><div class="chart-card-title">👥 Novos Seguidores</div><div class="chart-wrap"><canvas id="igChartSeg"></canvas></div></div>
-      <div class="chart-card"><div class="chart-card-title">👁️ Visualizações</div><div class="chart-wrap"><canvas id="igChartViz"></canvas></div></div>
-      <div class="chart-card"><div class="chart-card-title">📡 Alcance</div><div class="chart-wrap"><canvas id="igChartAlc"></canvas></div></div>
-      <div class="chart-card"><div class="chart-card-title">🎯 Fechamento Seguidores</div><div class="chart-wrap"><canvas id="igChartFech"></canvas></div></div>
-    </div>
-  </div>
-
-  <!-- Comparativo anual -->
-  <div class="dash-section">
-    <div class="dash-section-title">📋 Comparativo Anual ${dashYear}</div>
-    <div style="overflow-x:auto">
-      <table class="compare-table">
-        <thead><tr><th>Métrica</th>${MONTHS_SHORT.map((m,i)=>`<th class="${i===dashMonth?`style="color:var(--accent)"`:""}">  ${m}</th>`).join("")}<th>Meta ${MONTHS_PT[dashMonth].slice(0,3)}</th></tr></thead>
-        <tbody>${compareRows}</tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Metas -->
-  <div class="dash-section">
-    <div class="dash-section-title">🎯 Metas — <span class="semester-badge">${semLabel}</span></div>
-    <p style="font-size:.72rem;color:var(--muted);margin-bottom:12px">As metas se aplicam aos 6 meses do semestre. Altere a qualquer momento.</p>
-    <div class="goals-grid" id="igGoalInputs">
-      ${IG_METRIC_KEYS.map(k=>{const g=getGoal("ig",dashYear,dashMonth,k);return`<div class="goal-item"><label>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</label><input type="number" min="0" id="igg_${k}" placeholder="Meta…" value="${g||""}"/></div>`;}).join("")}
-    </div>
-    <div style="display:flex;justify-content:flex-end;margin-top:12px">
-      <button class="dash-save-btn" onclick="saveIgGoals()">🎯 Salvar Metas</button>
-    </div>
-  </div>`;
+  const compareRows=IG_METRIC_KEYS.map(k=>{const months=[];for(let i=0;i<12;i++){const d=getIgData(dashYear,i);months.push(Number(d[k])||0);}const g=getGoal("ig",dashYear,dashMonth,k);const cur=Number(curData[k])||0;const goalStatus=g>0?(cur>=g?`<span class="ct-goal-ok">✓ ${pct(cur,g)}%</span>`:`<span class="ct-goal-no">${pct(cur,g)}%</span>`):"—";return`<tr><td>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</td>${months.map((v,i)=>`<td style="${i===dashMonth?"color:var(--accent);font-weight:700":""}">${fmtNum(v)||"—"}</td>`).join("")}<td>${goalStatus}</td></tr>`;}).join("");
+  return`<div class="dash-topbar"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h2>📊 Dashboard de Métricas</h2><div class="dash-platform-tabs"><div class="dash-plat-tab active-ig" onclick="setDashPlatform('instagram')">📸 Instagram</div><div class="dash-plat-tab" onclick="setDashPlatform('youtube')">▶️ YouTube</div></div></div><div class="dash-controls"><select class="dash-year-sel" id="dashYearSel" onchange="setDashYear(this.value)">${[2024,2025,2026,2027,2028].map(y=>`<option value="${y}"${y===dashYear?" selected":""}>${y}</option>`).join("")}</select><button class="dash-save-btn" onclick="saveDashboardIg()" id="btnSaveIg">💾 Salvar Dados</button></div></div>
+  <div class="dash-section"><div class="dash-section-title">📅 Selecionar Mês</div><div class="dash-month-selector">${monthChips}</div><p style="font-size:.72rem;color:var(--muted)">Mês selecionado: <strong style="color:var(--text)">${MONTHS_PT[dashMonth]} ${dashYear}</strong></p></div>
+  <div class="dash-section"><div class="dash-section-title">📈 Indicadores — ${MONTHS_PT[dashMonth]}</div><div class="kpi-grid">${kpiHTML}</div></div>
+  <div class="dash-section"><div class="dash-section-title">✏️ Preencher Métricas — ${MONTHS_PT[dashMonth]} ${dashYear}</div><div class="month-input-grid">${IG_METRIC_KEYS.map(k=>`<div class="metric-input-item"><label>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</label><input type="number" min="0" id="igm_${k}" placeholder="0" value="${curData[k]||""}"/></div>`).join("")}</div></div>
+  <div class="dash-section"><div class="dash-section-title">📋 Publicações — ${MONTHS_PT[dashMonth]}</div><div style="margin-bottom:10px;font-size:.82rem;color:var(--muted)">Total: <strong style="color:var(--text);font-size:1rem">${totalPubs}</strong> publicações</div><div class="pub-type-grid">${pubTypeHTML}</div></div>
+  <div class="dash-section"><div class="dash-section-title">📊 Evolução Anual ${dashYear}</div><div class="charts-grid"><div class="chart-card"><div class="chart-card-title">👥 Novos Seguidores</div><div class="chart-wrap"><canvas id="igChartSeg"></canvas></div></div><div class="chart-card"><div class="chart-card-title">👁️ Visualizações</div><div class="chart-wrap"><canvas id="igChartViz"></canvas></div></div><div class="chart-card"><div class="chart-card-title">📡 Alcance</div><div class="chart-wrap"><canvas id="igChartAlc"></canvas></div></div><div class="chart-card"><div class="chart-card-title">🎯 Fechamento Seguidores</div><div class="chart-wrap"><canvas id="igChartFech"></canvas></div></div></div></div>
+  <div class="dash-section"><div class="dash-section-title">📋 Comparativo Anual ${dashYear}</div><div style="overflow-x:auto"><table class="compare-table"><thead><tr><th>Métrica</th>${MONTHS_SHORT.map(m=>`<th>${m}</th>`).join("")}<th>Meta</th></tr></thead><tbody>${compareRows}</tbody></table></div></div>
+  <div class="dash-section"><div class="dash-section-title">🎯 Metas — <span class="semester-badge">${semLabel}</span></div><p style="font-size:.72rem;color:var(--muted);margin-bottom:12px">As metas se aplicam aos 6 meses do semestre.</p><div class="goals-grid">${IG_METRIC_KEYS.map(k=>{const g=getGoal("ig",dashYear,dashMonth,k);return`<div class="goal-item"><label>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</label><input type="number" min="0" id="igg_${k}" placeholder="Meta…" value="${g||""}"/></div>`;}).join("")}</div><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="dash-save-btn" onclick="saveIgGoals()">🎯 Salvar Metas</button></div></div>`;
 }
 
-// ══════════════════════════════════════════════════════════════
-// YOUTUBE DASHBOARD
-// ══════════════════════════════════════════════════════════════
 function buildYtDashboard(){
   const curData=getYtData(dashYear,dashMonth);
   const prevMi=dashMonth===0?11:dashMonth-1;
@@ -1266,335 +938,100 @@ function buildYtDashboard(){
   const videosData=getYtVideosData(dashYear,dashMonth);
   const sem=getSemester(dashMonth);
   const semLabel=sem===0?"1º Semestre (Jan–Jun)":"2º Semestre (Jul–Dez)";
-
-  // KPI cards
-  const kpiHTML=YT_METRIC_KEYS.map(k=>{
-    const val=Number(curData[k])||0,prev=Number(prevData[k])||0;
-    const goal=getGoal("yt",dashYear,dashMonth,k);
-    const goalPct=goal>0?Math.min(Math.round((val/goal)*100),100):0;
-    const goalColor=goalPct>=100?"var(--green)":goalPct>=70?"var(--orange)":"var(--red)";
-    return`<div class="kpi-card" style="--kpi-color:${YT_METRIC_COLORS[k]}">
-      <div class="kpi-label">${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</div>
-      <div class="kpi-value">${fmtNum(val)}</div>
-      <div class="kpi-meta">${trendIcon(val,prev)} ${prev>0?`vs ${fmtNum(prev)} mês ant.`:""}</div>
-      ${goal>0?`<div class="kpi-goal">Meta: ${fmtNum(goal)} — ${goalPct}%</div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${goalPct}%;background:${goalColor}"></div></div>`:""}
-    </div>`;
-  }).join("");
-
-  // Breakdown (Shorts/Vídeo/Live)
-  const breakdownHTML=YT_BREAKDOWN_KEYS.map(k=>`
-    <div class="pub-type-card">
-      <div class="pub-type-label">${YT_BREAKDOWN_LABELS[k]}</div>
-      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <span style="font-size:.65rem;color:var(--muted)">Novos inscritos</span>
-          <input class="pub-type-input" type="number" min="0" id="ytbd_${k}_ins" value="${(bdData[k]||{}).inscritos||""}" placeholder="0" style="width:70px"/>
-        </div>
-      </div>
-    </div>`).join("");
-
-  // Funil consolidado do mês
-  const funnelTotals={};
-  YT_FUNNEL_KEYS.forEach(k=>{funnelTotals[k]=(videosData||[]).reduce((s,v)=>s+(Number((v.funnel||{})[k])||0),0);});
-  const funnelHTML=YT_FUNNEL_KEYS.map((k,i)=>{
-    const val=funnelTotals[k];
-    const prevKey=i>0?funnelTotals[YT_FUNNEL_KEYS[i-1]]:val;
-    const p=i>0?pct(val,prevKey):100;
-    return`<div class="funnel-step">
-      <div class="funnel-step-icon">${YT_FUNNEL_ICONS[k]}</div>
-      <div class="funnel-step-label">${YT_FUNNEL_LABELS[k]}</div>
-      <div class="funnel-step-value">${fmtNum(val)||"—"}</div>
-      ${i>0?`<div class="funnel-step-pct">${p}% do anterior</div>`:""}
-    </div>`;
-  }).join("");
-
-  // Tabela de vídeos — busca cards do calendário com plataforma YouTube no mês
+  const kpiHTML=YT_METRIC_KEYS.map(k=>{const val=Number(curData[k])||0,prev=Number(prevData[k])||0;const goal=getGoal("yt",dashYear,dashMonth,k);const goalPct=goal>0?Math.min(Math.round((val/goal)*100),100):0;const goalColor=goalPct>=100?"var(--green)":goalPct>=70?"var(--orange)":"var(--red)";return`<div class="kpi-card" style="--kpi-color:${YT_METRIC_COLORS[k]}"><div class="kpi-label">${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</div><div class="kpi-value">${fmtNum(val)}</div><div class="kpi-meta">${trendIcon(val,prev)} ${prev>0?`vs ${fmtNum(prev)} mês ant.`:""}</div>${goal>0?`<div class="kpi-goal">Meta: ${fmtNum(goal)} — ${goalPct}%</div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${goalPct}%;background:${goalColor}"></div></div>`:""}</div>`;}).join("");
+  const breakdownHTML=YT_BREAKDOWN_KEYS.map(k=>`<div class="pub-type-card"><div class="pub-type-label">${YT_BREAKDOWN_LABELS[k]}</div><div style="margin-top:8px;font-size:.63rem;color:var(--muted);margin-bottom:4px">Novos inscritos</div><input class="pub-type-input" type="number" min="0" id="ytbd_${k}_ins" value="${(bdData[k]||{}).inscritos||""}" placeholder="0"/></div>`).join("");
+  const funnelTotals={};YT_FUNNEL_KEYS.forEach(k=>{funnelTotals[k]=(videosData||[]).reduce((s,v)=>s+(Number((v.funnel||{})[k])||0),0);});
+  const funnelHTML=YT_FUNNEL_KEYS.map((k,i)=>{const val=funnelTotals[k];const prevVal=i>0?funnelTotals[YT_FUNNEL_KEYS[i-1]]:val;const p=i>0?pct(val,prevVal):100;return`<div class="funnel-step"><div class="funnel-step-icon">${YT_FUNNEL_ICONS[k]}</div><div class="funnel-step-label">${YT_FUNNEL_LABELS[k]}</div><div class="funnel-step-value">${fmtNum(val)||"—"}</div>${i>0?`<div class="funnel-step-pct">${p}% do anterior</div>`:""}</div>`;}).join("");
   const ytCardsMonth=Object.values(cards).filter(c=>c.platform==="YouTube"&&c.month===dashMonth&&c.year===dashYear);
-  // Mescla com dados salvos
-  const videoRows=ytCardsMonth.map(card=>{
-    const saved=(videosData||[]).find(v=>v.cardId===card.id)||{};
-    const funnel=saved.funnel||{};
-    return{cardId:card.id,title:card.title,bu:card.bu||"",funnel};
-  });
-  // Adiciona vídeos manuais (não vinculados a cards)
+  const videoRows=ytCardsMonth.map(card=>{const saved=(videosData||[]).find(v=>v.cardId===card.id)||{};return{cardId:card.id,title:card.title,bu:card.bu||"",funnel:saved.funnel||{}};});
   const manualVideos=(videosData||[]).filter(v=>!ytCardsMonth.find(c=>c.id===v.cardId));
   const allVideoRows=[...videoRows,...manualVideos];
-
-  const videoTableRows=allVideoRows.map((v,idx)=>`
-    <tr>
-      <td><div class="yt-td-title" title="${esc(v.title||"")}">${esc(v.title||"Sem título")}</div></td>
-      <td>${v.bu?`<span class="yt-td-bu">${esc(v.bu)}</span>`:""}</td>
-      ${YT_FUNNEL_KEYS.map(k=>`<td><input class="yt-td-input" type="number" min="0" data-vidx="${idx}" data-fkey="${k}" value="${(v.funnel||{})[k]||""}" placeholder="0" oninput="updateYtVideoFunnel(${idx},'${k}',this.value)"/></td>`).join("")}
-      <td><button onclick="removeYtVideo(${idx})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:.8rem;padding:2px 6px" title="Remover">🗑</button></td>
-    </tr>`).join("");
-
-  // Mês chips
-  const monthChips=MONTHS_SHORT.map((m,i)=>`<div class="dash-month-chip${i===dashMonth?" active":""}" data-mi="${i}" onclick="setDashMonth(${i})">${m}</div>`).join("");
-
-  // Comparativo
-  const compareRows=YT_METRIC_KEYS.map(k=>{
-    const months=[];for(let i=0;i<12;i++){const d=getYtData(dashYear,i);months.push(Number(d[k])||0);}
-    const g=getGoal("yt",dashYear,dashMonth,k);
-    const cur=Number(curData[k])||0;
-    const goalStatus=g>0?(cur>=g?`<span class="ct-goal-ok">✓ ${pct(cur,g)}%</span>`:`<span class="ct-goal-no">${pct(cur,g)}%</span>`):"—";
-    return`<tr><td>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</td>${months.map(v=>`<td>${fmtNum(v)||"—"}</td>`).join("")}<td>${goalStatus}</td></tr>`;
-  }).join("");
-
-  // Guarda referência temporária para salvar
   window._ytAllVideoRows=allVideoRows;
-
-  return`
-  <div class="dash-topbar">
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <h2>📊 Dashboard de Métricas</h2>
-      <div class="dash-platform-tabs">
-        <div class="dash-plat-tab" onclick="setDashPlatform('instagram')">📸 Instagram</div>
-        <div class="dash-plat-tab active-yt" onclick="setDashPlatform('youtube')">▶️ YouTube</div>
-      </div>
-    </div>
-    <div class="dash-controls">
-      <select class="dash-year-sel" id="dashYearSel" onchange="setDashYear(this.value)">
-        ${[2024,2025,2026,2027,2028].map(y=>`<option value="${y}"${y===dashYear?" selected":""}>${y}</option>`).join("")}
-      </select>
-      <button class="dash-save-btn" onclick="saveDashboardYt()">💾 Salvar Dados</button>
-    </div>
-  </div>
-
-  <!-- Seletor de mês -->
-  <div class="dash-section">
-    <div class="dash-section-title">📅 Selecionar Mês</div>
-    <div class="dash-month-selector">${monthChips}</div>
-    <p style="font-size:.72rem;color:var(--muted)">Mês selecionado: <strong style="color:var(--text)">${MONTHS_PT[dashMonth]} ${dashYear}</strong></p>
-  </div>
-
-  <!-- KPIs -->
-  <div class="dash-section">
-    <div class="dash-section-title">📈 Indicadores — ${MONTHS_PT[dashMonth]}</div>
-    <div class="kpi-grid">${kpiHTML}</div>
-  </div>
-
-  <!-- Input métricas -->
-  <div class="dash-section">
-    <div class="dash-section-title">✏️ Preencher Métricas — ${MONTHS_PT[dashMonth]} ${dashYear}</div>
-    <div class="month-input-grid" id="ytMetricInputs">
-      ${YT_METRIC_KEYS.map(k=>`<div class="metric-input-item"><label>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</label><input type="number" min="0" id="ytm_${k}" placeholder="0" value="${curData[k]||""}"/></div>`).join("")}
-    </div>
-  </div>
-
-  <!-- Breakdown inscritos por tipo -->
-  <div class="dash-section">
-    <div class="dash-section-title">📋 Inscritos por Tipo de Conteúdo — ${MONTHS_PT[dashMonth]}</div>
-    <div class="pub-type-grid">${breakdownHTML}</div>
-  </div>
-
-  <!-- Funil de conversão -->
-  <div class="dash-section">
-    <div class="dash-section-title">🔽 Funil de Conversão — ${MONTHS_PT[dashMonth]} (todos os vídeos)</div>
-    <div class="funnel-summary">${funnelHTML}</div>
-  </div>
-
-  <!-- Vídeos do mês -->
-  <div class="dash-section">
-    <div class="dash-section-title">🎬 Vídeos e Conversão — ${MONTHS_PT[dashMonth]} ${dashYear}</div>
-    <p style="font-size:.72rem;color:var(--muted);margin-bottom:10px">Vídeos vinculados automaticamente do calendário (plataforma YouTube). Preencha os dados de conversão de cada um.</p>
-    <div style="overflow-x:auto">
-      <table class="yt-video-table">
-        <thead><tr>
-          <th>Título</th><th>BU</th>
-          ${YT_FUNNEL_KEYS.map(k=>`<th>${YT_FUNNEL_ICONS[k]} ${YT_FUNNEL_LABELS[k]}</th>`).join("")}
-          <th></th>
-        </tr></thead>
-        <tbody id="ytVideoTableBody">${videoTableRows}</tbody>
-      </table>
-    </div>
-    <button class="yt-add-video-btn" onclick="addManualYtVideo()">＋ Adicionar vídeo manualmente</button>
-  </div>
-
-  <!-- Gráficos -->
-  <div class="dash-section">
-    <div class="dash-section-title">📊 Evolução Anual ${dashYear}</div>
-    <div class="charts-grid">
-      <div class="chart-card"><div class="chart-card-title">👥 Novos Inscritos</div><div class="chart-wrap"><canvas id="ytChartIns"></canvas></div></div>
-      <div class="chart-card"><div class="chart-card-title">👁️ Visualizações</div><div class="chart-wrap"><canvas id="ytChartViz"></canvas></div></div>
-      <div class="chart-card"><div class="chart-card-title">🔗 Funil: Cliques no Link</div><div class="chart-wrap"><canvas id="ytChartFunnel"></canvas></div></div>
-      <div class="chart-card"><div class="chart-card-title">🤝 Fechamentos por Mês</div><div class="chart-wrap"><canvas id="ytChartFech"></canvas></div></div>
-    </div>
-  </div>
-
-  <!-- Comparativo anual -->
-  <div class="dash-section">
-    <div class="dash-section-title">📋 Comparativo Anual ${dashYear}</div>
-    <div style="overflow-x:auto">
-      <table class="compare-table">
-        <thead><tr><th>Métrica</th>${MONTHS_SHORT.map(m=>`<th>${m}</th>`).join("")}<th>Meta</th></tr></thead>
-        <tbody>${compareRows}</tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Metas -->
-  <div class="dash-section">
-    <div class="dash-section-title">🎯 Metas — <span class="semester-badge">${semLabel}</span></div>
-    <p style="font-size:.72rem;color:var(--muted);margin-bottom:12px">Metas do semestre para YouTube.</p>
-    <div class="goals-grid">
-      ${YT_METRIC_KEYS.map(k=>{const g=getGoal("yt",dashYear,dashMonth,k);return`<div class="goal-item"><label>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</label><input type="number" min="0" id="ytg_${k}" placeholder="Meta…" value="${g||""}"/></div>`;}).join("")}
-    </div>
-    <div style="display:flex;justify-content:flex-end;margin-top:12px">
-      <button class="dash-save-btn" onclick="saveYtGoals()">🎯 Salvar Metas</button>
-    </div>
-  </div>`;
+  const videoTableRows=allVideoRows.map((v,idx)=>`<tr><td><div class="yt-td-title" title="${esc(v.title||"")}">${esc(v.title||"Sem título")}</div></td><td>${v.bu?`<span class="yt-td-bu">${esc(v.bu)}</span>`:""}</td>${YT_FUNNEL_KEYS.map(k=>`<td><input class="yt-td-input" type="number" min="0" data-vidx="${idx}" data-fkey="${k}" value="${(v.funnel||{})[k]||""}" placeholder="0" oninput="updateYtVideoFunnel(${idx},'${k}',this.value)"/></td>`).join("")}<td><button onclick="removeYtVideo(${idx})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:.8rem;padding:2px 6px">🗑</button></td></tr>`).join("");
+  const monthChips=MONTHS_SHORT.map((m,i)=>`<div class="dash-month-chip${i===dashMonth?" active":""}" data-mi="${i}" onclick="setDashMonth(${i})">${m}</div>`).join("");
+  const compareRows=YT_METRIC_KEYS.map(k=>{const months=[];for(let i=0;i<12;i++){const d=getYtData(dashYear,i);months.push(Number(d[k])||0);}const g=getGoal("yt",dashYear,dashMonth,k);const cur=Number(curData[k])||0;const goalStatus=g>0?(cur>=g?`<span class="ct-goal-ok">✓ ${pct(cur,g)}%</span>`:`<span class="ct-goal-no">${pct(cur,g)}%</span>`):"—";return`<tr><td>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</td>${months.map(v=>`<td>${fmtNum(v)||"—"}</td>`).join("")}<td>${goalStatus}</td></tr>`;}).join("");
+  return`<div class="dash-topbar"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h2>📊 Dashboard de Métricas</h2><div class="dash-platform-tabs"><div class="dash-plat-tab" onclick="setDashPlatform('instagram')">📸 Instagram</div><div class="dash-plat-tab active-yt" onclick="setDashPlatform('youtube')">▶️ YouTube</div></div></div><div class="dash-controls"><select class="dash-year-sel" id="dashYearSel" onchange="setDashYear(this.value)">${[2024,2025,2026,2027,2028].map(y=>`<option value="${y}"${y===dashYear?" selected":""}>${y}</option>`).join("")}</select><button class="dash-save-btn" onclick="saveDashboardYt()">💾 Salvar Dados</button></div></div>
+  <div class="dash-section"><div class="dash-section-title">📅 Selecionar Mês</div><div class="dash-month-selector">${monthChips}</div><p style="font-size:.72rem;color:var(--muted)">Mês selecionado: <strong style="color:var(--text)">${MONTHS_PT[dashMonth]} ${dashYear}</strong></p></div>
+  <div class="dash-section"><div class="dash-section-title">📈 Indicadores — ${MONTHS_PT[dashMonth]}</div><div class="kpi-grid">${kpiHTML}</div></div>
+  <div class="dash-section"><div class="dash-section-title">✏️ Preencher Métricas — ${MONTHS_PT[dashMonth]} ${dashYear}</div><div class="month-input-grid">${YT_METRIC_KEYS.map(k=>`<div class="metric-input-item"><label>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</label><input type="number" min="0" id="ytm_${k}" placeholder="0" value="${curData[k]||""}"/></div>`).join("")}</div></div>
+  <div class="dash-section"><div class="dash-section-title">📋 Inscritos por Tipo — ${MONTHS_PT[dashMonth]}</div><div class="pub-type-grid">${breakdownHTML}</div></div>
+  <div class="dash-section"><div class="dash-section-title">🔽 Funil de Conversão — ${MONTHS_PT[dashMonth]}</div><div class="funnel-summary">${funnelHTML}</div></div>
+  <div class="dash-section"><div class="dash-section-title">🎬 Vídeos e Conversão — ${MONTHS_PT[dashMonth]} ${dashYear}</div><p style="font-size:.72rem;color:var(--muted);margin-bottom:10px">Vídeos vinculados automaticamente do calendário (plataforma YouTube).</p><div style="overflow-x:auto"><table class="yt-video-table"><thead><tr><th>Título</th><th>BU</th>${YT_FUNNEL_KEYS.map(k=>`<th>${YT_FUNNEL_ICONS[k]} ${YT_FUNNEL_LABELS[k]}</th>`).join("")}<th></th></tr></thead><tbody id="ytVideoTableBody">${videoTableRows}</tbody></table></div><button class="yt-add-video-btn" onclick="addManualYtVideo()">＋ Adicionar vídeo manualmente</button></div>
+  <div class="dash-section"><div class="dash-section-title">📊 Evolução Anual ${dashYear}</div><div class="charts-grid"><div class="chart-card"><div class="chart-card-title">👥 Novos Inscritos</div><div class="chart-wrap"><canvas id="ytChartIns"></canvas></div></div><div class="chart-card"><div class="chart-card-title">👁️ Visualizações</div><div class="chart-wrap"><canvas id="ytChartViz"></canvas></div></div><div class="chart-card"><div class="chart-card-title">🔗 Cliques no Link</div><div class="chart-wrap"><canvas id="ytChartFunnel"></canvas></div></div><div class="chart-card"><div class="chart-card-title">🤝 Fechamentos PF</div><div class="chart-wrap"><canvas id="ytChartFech"></canvas></div></div></div></div>
+  <div class="dash-section"><div class="dash-section-title">📋 Comparativo Anual ${dashYear}</div><div style="overflow-x:auto"><table class="compare-table"><thead><tr><th>Métrica</th>${MONTHS_SHORT.map(m=>`<th>${m}</th>`).join("")}<th>Meta</th></tr></thead><tbody>${compareRows}</tbody></table></div></div>
+  <div class="dash-section"><div class="dash-section-title">🎯 Metas — <span class="semester-badge">${semLabel}</span></div><div class="goals-grid">${YT_METRIC_KEYS.map(k=>{const g=getGoal("yt",dashYear,dashMonth,k);return`<div class="goal-item"><label>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</label><input type="number" min="0" id="ytg_${k}" placeholder="Meta…" value="${g||""}"/></div>`;}).join("")}</div><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="dash-save-btn" onclick="saveYtGoals()">🎯 Salvar Metas</button></div></div>`;
 }
 
-// ── Vídeos YT ──
-function updateYtVideoFunnel(idx,key,val){
-  if(!window._ytAllVideoRows)return;
-  if(!window._ytAllVideoRows[idx])return;
-  if(!window._ytAllVideoRows[idx].funnel)window._ytAllVideoRows[idx].funnel={};
-  window._ytAllVideoRows[idx].funnel[key]=Number(val)||0;
-}
-function addManualYtVideo(){
-  if(!window._ytAllVideoRows)window._ytAllVideoRows=[];
-  const title=prompt("Título do vídeo:");
-  if(!title)return;
-  const bu=prompt("BU (deixe vazio se não houver):")||"";
-  window._ytAllVideoRows.push({cardId:null,title,bu,funnel:{}});
-  renderDashboard();
-  showToast("🎬 Vídeo adicionado!");
-}
-function removeYtVideo(idx){
-  if(!window._ytAllVideoRows)return;
-  window._ytAllVideoRows.splice(idx,1);
-  renderDashboard();
-}
+function updateYtVideoFunnel(idx,key,val){if(!window._ytAllVideoRows||!window._ytAllVideoRows[idx])return;if(!window._ytAllVideoRows[idx].funnel)window._ytAllVideoRows[idx].funnel={};window._ytAllVideoRows[idx].funnel[key]=Number(val)||0;}
+function addManualYtVideo(){if(!window._ytAllVideoRows)window._ytAllVideoRows=[];const title=prompt("Título do vídeo:");if(!title)return;const bu=prompt("BU (deixe vazio se não houver):")||"";window._ytAllVideoRows.push({cardId:null,title,bu,funnel:{}});renderDashboard();showToast("🎬 Vídeo adicionado!");}
+function removeYtVideo(idx){if(!window._ytAllVideoRows)return;window._ytAllVideoRows.splice(idx,1);renderDashboard();}
 
-// ── SALVAR ──
 async function saveDashboardIg(){
-  const btn=document.getElementById("btnSaveIg");
-  if(btn){btn.disabled=true;btn.textContent="⏳ Salvando…";}
-  const data={};
-  IG_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`igm_${k}`);if(el)data[k]=Number(el.value)||0;});
-  const pubData={};
-  IG_PUB_KEYS.forEach(k=>{const el=document.getElementById(`igpub_${k}`);if(el)pubData[k]=Number(el.value)||0;});
-  igMetrics[dashIgKey(dashYear,dashMonth)]=data;
-  igPubs[`pubs_${dashYear}_${dashMonth}`]=pubData;
-  await dbSaveIgMetrics(dashYear,dashMonth,data);
-  await dbSaveIgPubs(dashYear,dashMonth,pubData);
+  const btn=document.getElementById("btnSaveIg");if(btn){btn.disabled=true;btn.textContent="⏳ Salvando…";}
+  const data={};IG_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`igm_${k}`);if(el)data[k]=Number(el.value)||0;});
+  const pubData={};IG_PUB_KEYS.forEach(k=>{const el=document.getElementById(`igpub_${k}`);if(el)pubData[k]=Number(el.value)||0;});
+  igMetrics[dashIgKey(dashYear,dashMonth)]=data;igPubs[`pubs_${dashYear}_${dashMonth}`]=pubData;
+  await dbSaveIgMetrics(dashYear,dashMonth,data);await dbSaveIgPubs(dashYear,dashMonth,pubData);
   if(btn){btn.disabled=false;btn.textContent="💾 Salvar Dados";}
-  renderDashboard();
-  showToast("✅ Dados do Instagram salvos!","#e1306c");
+  renderDashboard();showToast("✅ Dados do Instagram salvos!","#e1306c");
 }
 async function saveDashboardYt(){
-  const data={};
-  YT_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`ytm_${k}`);if(el)data[k]=Number(el.value)||0;});
-  const bdData={};
-  YT_BREAKDOWN_KEYS.forEach(k=>{const el=document.getElementById(`ytbd_${k}_ins`);if(el){if(!bdData[k])bdData[k]={};bdData[k].inscritos=Number(el.value)||0;}});
-  ytMetrics[dashIgKey(dashYear,dashMonth)]=data;
-  ytBreakdown[`bd_${dashYear}_${dashMonth}`]=bdData;
-  // Vídeos
-  const videoData=window._ytAllVideoRows||[];
-  ytVideos[`vid_${dashYear}_${dashMonth}`]=videoData;
-  await dbSaveYtMetrics(dashYear,dashMonth,data);
-  await dbSaveYtBreakdown(dashYear,dashMonth,bdData);
-  await dbSaveYtVideos(dashYear,dashMonth,videoData);
-  renderDashboard();
-  showToast("✅ Dados do YouTube salvos!","#ff0000");
+  const data={};YT_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`ytm_${k}`);if(el)data[k]=Number(el.value)||0;});
+  const bdData={};YT_BREAKDOWN_KEYS.forEach(k=>{const el=document.getElementById(`ytbd_${k}_ins`);if(el){if(!bdData[k])bdData[k]={};bdData[k].inscritos=Number(el.value)||0;}});
+  ytMetrics[dashIgKey(dashYear,dashMonth)]=data;ytBreakdown[`bd_${dashYear}_${dashMonth}`]=bdData;
+  const videoData=window._ytAllVideoRows||[];ytVideos[`vid_${dashYear}_${dashMonth}`]=videoData;
+  await dbSaveYtMetrics(dashYear,dashMonth,data);await dbSaveYtBreakdown(dashYear,dashMonth,bdData);await dbSaveYtVideos(dashYear,dashMonth,videoData);
+  renderDashboard();showToast("✅ Dados do YouTube salvos!","#ff0000");
 }
-async function saveIgGoals(){
-  const sem=getSemester(dashMonth);
-  const id=`ig_${dashYear}_${sem}`;
-  const data={};
-  IG_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`igg_${k}`);if(el)data[k]=Number(el.value)||0;});
-  if(!igGoals[id])igGoals[id]={};
-  igGoals[id]=data;
-  await dbSaveGoals("ig",dashYear,sem,data);
-  renderDashboard();
-  showToast("🎯 Metas do Instagram salvas!","#e1306c");
-}
-async function saveYtGoals(){
-  const sem=getSemester(dashMonth);
-  const id=`yt_${dashYear}_${sem}`;
-  const data={};
-  YT_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`ytg_${k}`);if(el)data[k]=Number(el.value)||0;});
-  if(!ytGoals[id])ytGoals[id]={};
-  ytGoals[id]=data;
-  await dbSaveGoals("yt",dashYear,sem,data);
-  renderDashboard();
-  showToast("🎯 Metas do YouTube salvas!","#ff0000");
-}
+async function saveIgGoals(){const sem=getSemester(dashMonth);const id=`ig_${dashYear}_${sem}`;const data={};IG_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`igg_${k}`);if(el)data[k]=Number(el.value)||0;});if(!igGoals[id])igGoals[id]={};igGoals[id]=data;await dbSaveGoals("ig",dashYear,sem,data);renderDashboard();showToast("🎯 Metas do Instagram salvas!","#e1306c");}
+async function saveYtGoals(){const sem=getSemester(dashMonth);const id=`yt_${dashYear}_${sem}`;const data={};YT_METRIC_KEYS.forEach(k=>{const el=document.getElementById(`ytg_${k}`);if(el)data[k]=Number(el.value)||0;});if(!ytGoals[id])ytGoals[id]={};ytGoals[id]=data;await dbSaveGoals("yt",dashYear,sem,data);renderDashboard();showToast("🎯 Metas do YouTube salvas!","#ff0000");}
 function setDashPlatform(p){dashPlatform=p;renderDashboard();}
 function setDashYear(y){dashYear=parseInt(y);document.getElementById("topbarTitle").innerHTML='📊 Dashboard de Métricas &nbsp;<span class="topbar-year">'+dashYear+'</span>';renderDashboard();}
 function setDashMonth(mi){dashMonth=mi;renderDashboard();}
 
-// ══════════════════════════════════════════════════════════════
-// CHARTS (Chart.js)
-// ══════════════════════════════════════════════════════════════
 function destroyCharts(){Object.values(_dashCharts).forEach(ch=>{try{ch.destroy();}catch{}});_dashCharts={};}
 function makeLineChart(id,label,color,dataArr,goalArr){
   const el=document.getElementById(id);if(!el)return;
   const datasets=[{label,data:dataArr,borderColor:color,backgroundColor:color+"33",tension:.4,fill:true,pointBackgroundColor:color,pointRadius:4}];
-  if(goalArr&&goalArr.some(v=>v>0)){datasets.push({label:"Meta",data:goalArr,borderColor:"#6b7399",borderDash:[5,5],tension:0,fill:false,pointRadius:0,borderWidth:1.5});}
+  if(goalArr&&goalArr.some(v=>v>0))datasets.push({label:"Meta",data:goalArr,borderColor:"#6b7399",borderDash:[5,5],tension:0,fill:false,pointRadius:0,borderWidth:1.5});
   _dashCharts[id]=new Chart(el,{type:"line",data:{labels:MONTHS_SHORT,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:"#6b7399",font:{size:10},boxWidth:12}},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${fmtNum(ctx.raw)}`}}},scales:{x:{ticks:{color:"#6b7399",font:{size:10}},grid:{color:"rgba(255,255,255,.05)"}},y:{ticks:{color:"#6b7399",font:{size:10},callback:v=>fmtNum(v)},grid:{color:"rgba(255,255,255,.05)"}}}}});
 }
 function buildIgCharts(){
-  const getMonthly=k=>Array.from({length:12},(_,i)=>Number(getIgData(dashYear,i)[k])||0);
-  const getGoalMonthly=k=>Array.from({length:12},(_,i)=>getGoal("ig",dashYear,i,k));
-  makeLineChart("igChartSeg","Novos Seguidores","#e1306c",getMonthly("novosSeguidores"),getGoalMonthly("novosSeguidores"));
-  makeLineChart("igChartViz","Visualizações","#a78bfa",getMonthly("visualizacoes"),getGoalMonthly("visualizacoes"));
-  makeLineChart("igChartAlc","Alcance","#38bdf8",getMonthly("alcance"),getGoalMonthly("alcance"));
-  makeLineChart("igChartFech","Fechamento","#4ade80",getMonthly("fechamentoSeguidores"),getGoalMonthly("fechamentoSeguidores"));
+  const gm=k=>Array.from({length:12},(_,i)=>Number(getIgData(dashYear,i)[k])||0);
+  const gg=k=>Array.from({length:12},(_,i)=>getGoal("ig",dashYear,i,k));
+  makeLineChart("igChartSeg","Novos Seguidores","#e1306c",gm("novosSeguidores"),gg("novosSeguidores"));
+  makeLineChart("igChartViz","Visualizações","#a78bfa",gm("visualizacoes"),gg("visualizacoes"));
+  makeLineChart("igChartAlc","Alcance","#38bdf8",gm("alcance"),gg("alcance"));
+  makeLineChart("igChartFech","Fechamento","#4ade80",gm("fechamentoSeguidores"),gg("fechamentoSeguidores"));
 }
 function buildYtCharts(){
-  const getMonthly=k=>Array.from({length:12},(_,i)=>Number(getYtData(dashYear,i)[k])||0);
-  const getGoalMonthly=k=>Array.from({length:12},(_,i)=>getGoal("yt",dashYear,i,k));
-  const getFunnelMonthly=fk=>Array.from({length:12},(_,i)=>{const vids=getYtVideosData(dashYear,i);return (vids||[]).reduce((s,v)=>s+(Number((v.funnel||{})[fk])||0),0);});
-  makeLineChart("ytChartIns","Novos Inscritos","#ff0000",getMonthly("novosInscritos"),getGoalMonthly("novosInscritos"));
-  makeLineChart("ytChartViz","Visualizações","#ff6b6b",getMonthly("visualizacoes"),getGoalMonthly("visualizacoes"));
-  makeLineChart("ytChartFunnel","Cliques no Link","#4ade80",getFunnelMonthly("cliquesLink"),[]);
-  makeLineChart("ytChartFech","Fechamentos PF","#38bdf8",getFunnelMonthly("fechamentoPF"),[]);
+  const gm=k=>Array.from({length:12},(_,i)=>Number(getYtData(dashYear,i)[k])||0);
+  const gg=k=>Array.from({length:12},(_,i)=>getGoal("yt",dashYear,i,k));
+  const gf=fk=>Array.from({length:12},(_,i)=>(getYtVideosData(dashYear,i)||[]).reduce((s,v)=>s+(Number((v.funnel||{})[fk])||0),0));
+  makeLineChart("ytChartIns","Novos Inscritos","#ff0000",gm("novosInscritos"),gg("novosInscritos"));
+  makeLineChart("ytChartViz","Visualizações","#ff6b6b",gm("visualizacoes"),gg("visualizacoes"));
+  makeLineChart("ytChartFunnel","Cliques no Link","#4ade80",gf("cliquesLink"),[]);
+  makeLineChart("ytChartFech","Fechamentos PF","#38bdf8",gf("fechamentoPF"),[]);
 }
 
-// ══════════════════════════════════════════════════════════════
-// CALENDAR — Todo o código original preservado abaixo
-// ══════════════════════════════════════════════════════════════
-function togglePanel(id){
-  document.querySelectorAll(".inline-manage-panel").forEach(p=>{if(p.id!==id)p.classList.remove("open");});
-  const el=document.getElementById(id);el.classList.toggle("open");
-  if(el.classList.contains("open")){if(id==="panelPlatform")renderImpPlatforms();}
-}
-function renderImpPlatforms(){
-  const el=document.getElementById("impPlatformList");if(!el)return;
-  el.innerHTML=platforms.map((p,i)=>`<div class="imp-item"><span style="font-size:.9rem;flex-shrink:0">${getPlatIcon(p)}</span><input class="plat-edit-input" type="text" value="${esc(p)}" maxlength="40" onchange="renamePlatform(${i},this.value)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')this.blur()"/><button class="imp-item-del" onclick="removeFilterPlatform(${i})" title="Excluir plataforma">🗑</button></div>`).join("");
-}
-function renamePlatform(i,newName){
-  const name=newName.trim();if(!name){showToast("⚠️ Nome não pode ser vazio.","#f97316");renderImpPlatforms();renderManagePlatformsList();return;}
-  const lower=name.toLowerCase();if(platforms.some((p,idx)=>idx!==i&&p.toLowerCase()===lower)){showToast("⚠️ Já existe uma plataforma com esse nome.","#f97316");renderImpPlatforms();renderManagePlatformsList();return;}
-  const oldName=platforms[i];if(oldName===name)return;
-  platforms[i]=name;savePlatforms();
-  Object.values(cards).forEach(c=>{if(c.platform===oldName){c.platform=name;dbSaveCard(c);}});
-  if(filterPlatform===oldName)filterPlatform=name;if(selectedPlatformForm===oldName)selectedPlatformForm=name;
-  buildPlatformFilters();renderPlatformPicker();renderManagePlatformsList();showToast(`✅ Renomeado para "${name}"!`,"#4ade80");
-}
-function removeFilterPlatform(i){
-  const removed=platforms[i];const inUse=Object.values(cards).filter(c=>c.platform===removed);
-  if(inUse.length){if(!confirm(`A plataforma "${removed}" está em uso em ${inUse.length} card(s).\n\nDeseja remover mesmo assim? Os cards ficarão sem plataforma.`))return;inUse.forEach(c=>{c.platform="";dbSaveCard(c);});}
-  platforms.splice(i,1);savePlatforms();if(filterPlatform===removed)filterPlatform="Todas";if(selectedPlatformForm===removed)selectedPlatformForm="";
-  renderImpPlatforms();buildPlatformFilters();renderPlatformPicker();refreshAllDOM();showToast(`🗑️ "${removed}" removida.`,"#f87171");
-}
+function togglePanel(id){document.querySelectorAll(".inline-manage-panel").forEach(p=>{if(p.id!==id)p.classList.remove("open");});const el=document.getElementById(id);el.classList.toggle("open");if(el.classList.contains("open")&&id==="panelPlatform")renderImpPlatforms();}
+function renderImpPlatforms(){const el=document.getElementById("impPlatformList");if(!el)return;el.innerHTML=platforms.map((p,i)=>`<div class="imp-item"><span style="font-size:.9rem;flex-shrink:0">${getPlatIcon(p)}</span><input class="plat-edit-input" type="text" value="${esc(p)}" maxlength="40" onchange="renamePlatform(${i},this.value)" onkeydown="if(event.key==='Enter')this.blur()"/><button class="imp-item-del" onclick="removeFilterPlatform(${i})">🗑</button></div>`).join("");}
+function renamePlatform(i,newName){const name=newName.trim();if(!name){showToast("⚠️ Nome não pode ser vazio.","#f97316");renderImpPlatforms();return;}const lower=name.toLowerCase();if(platforms.some((p,idx)=>idx!==i&&p.toLowerCase()===lower)){showToast("⚠️ Já existe!","#f97316");renderImpPlatforms();return;}const oldName=platforms[i];if(oldName===name)return;platforms[i]=name;savePlatforms();Object.values(cards).forEach(c=>{if(c.platform===oldName){c.platform=name;dbSaveCard(c);}});if(filterPlatform===oldName)filterPlatform=name;if(selectedPlatformForm===oldName)selectedPlatformForm=name;buildPlatformFilters();renderPlatformPicker();renderManagePlatformsList();showToast(`✅ Renomeado para "${name}"!`,"#4ade80");}
+function removeFilterPlatform(i){const removed=platforms[i];const inUse=Object.values(cards).filter(c=>c.platform===removed);if(inUse.length){if(!confirm(`A plataforma "${removed}" está em uso em ${inUse.length} card(s). Remover mesmo assim?`))return;inUse.forEach(c=>{c.platform="";dbSaveCard(c);});}platforms.splice(i,1);savePlatforms();if(filterPlatform===removed)filterPlatform="Todas";if(selectedPlatformForm===removed)selectedPlatformForm="";renderImpPlatforms();buildPlatformFilters();renderPlatformPicker();refreshAllDOM();showToast(`🗑️ "${removed}" removida.`,"#f87171");}
 function addFilterPlatform(){const inp=document.getElementById("impPlatformInput"),v=inp.value.trim();if(!v)return;if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}platforms.push(v);inp.value="";savePlatforms();renderImpPlatforms();buildPlatformFilters();renderPlatformPicker();showToast("✅ Plataforma adicionada!");}
 function renderPlatformPicker(){const el=document.getElementById("platformPicker");if(!el)return;el.innerHTML=`<div class="tag-pick-item${selectedPlatformForm===""?" sel":""}" onclick="selectPlatformForm('')">Nenhuma</div>`+platforms.map(p=>`<div class="tag-pick-item${selectedPlatformForm===p?" sel":""}" onclick="selectPlatformForm('${esc(p)}')">${getPlatIcon(p)} ${esc(p)}</div>`).join("");renderManagePlatformsList();}
 function selectPlatformForm(p){selectedPlatformForm=p;renderPlatformPicker();}
 function toggleManagePlatforms(){const b=document.getElementById("managePlatformsBox");b.style.display=b.style.display==="none"?"block":"none";if(b.style.display==="block")renderManagePlatformsList();}
-function renderManagePlatformsList(){const el=document.getElementById("managePlatformsList");if(!el)return;el.innerHTML=platforms.map((p,i)=>`<div class="manage-item-row"><span style="font-size:.85rem;flex-shrink:0">${getPlatIcon(p)}</span><input class="plat-edit-input" type="text" value="${esc(p)}" maxlength="40" onchange="renamePlatform(${i},this.value)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')this.blur()"/><button class="manage-item-del" onclick="removePlatformItem(${i})" title="Excluir">🗑</button></div>`).join("");}
+function renderManagePlatformsList(){const el=document.getElementById("managePlatformsList");if(!el)return;el.innerHTML=platforms.map((p,i)=>`<div class="manage-item-row"><span style="font-size:.85rem;flex-shrink:0">${getPlatIcon(p)}</span><input class="plat-edit-input" type="text" value="${esc(p)}" maxlength="40" onchange="renamePlatform(${i},this.value)" onkeydown="if(event.key==='Enter')this.blur()"/><button class="manage-item-del" onclick="removePlatformItem(${i})">🗑</button></div>`).join("");}
 function addPlatformItem(){const inp=document.getElementById("newPlatformInput"),v=inp.value.trim();if(!v)return;if(platforms.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}platforms.push(v);inp.value="";savePlatforms();renderPlatformPicker();buildPlatformFilters();renderImpPlatforms();showToast("✅ Adicionada!");}
 function removePlatformItem(i){removeFilterPlatform(i);}
-function buildBUFilters(){const el=document.getElementById("buFilters");if(el)el.innerHTML="";}
+function buildBUFilters(){}
 function renderBUPicker(){const el=document.getElementById("buPicker");if(!el)return;el.innerHTML=`<div class="tag-pick-item${selectedBUForm===""?" sel":""}" onclick="selectBUForm('')">Nenhuma</div>`+buList.map(b=>`<div class="tag-pick-item bu-item${selectedBUForm===b?" sel":""}" onclick="selectBUForm('${esc(b)}')">${esc(b)}</div>`).join("");renderManageBUsList();}
 function selectBUForm(b){selectedBUForm=b;renderBUPicker();}
 function toggleManageBUs(){const b=document.getElementById("manageBUsBox");b.style.display=b.style.display==="none"?"block":"none";if(b.style.display==="block")renderManageBUsList();}
-function renderManageBUsList(){const el=document.getElementById("manageBUsList");if(!el)return;el.innerHTML=buList.map((b,i)=>`<div class="manage-item-row"><span class="manage-item-name">🏢 ${esc(b)}</span><button class="manage-item-del" onclick="removeBUItem(${i})" title="Remover">✕</button></div>`).join("");}
-function addBUItem(){const inp=document.getElementById("newBUInput"),v=inp.value.trim();if(!v)return;if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}buList.push(v);inp.value="";saveBUs();renderBUPicker();buildBUFilters();showToast("✅ BU adicionada!");}
-function removeBUItem(i){const removed=buList[i];buList.splice(i,1);saveBUs();if(selectedBUForm===removed)selectedBUForm="";renderBUPicker();renderManageBUsList();buildBUFilters();showToast("🗑️ Removida.","#f87171");}
-
+function renderManageBUsList(){const el=document.getElementById("manageBUsList");if(!el)return;el.innerHTML=buList.map((b,i)=>`<div class="manage-item-row"><span class="manage-item-name">🏢 ${esc(b)}</span><button class="manage-item-del" onclick="removeBUItem(${i})">✕</button></div>`).join("");}
+function addBUItem(){const inp=document.getElementById("newBUInput"),v=inp.value.trim();if(!v)return;if(buList.map(x=>x.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}buList.push(v);inp.value="";saveBUs();renderBUPicker();showToast("✅ BU adicionada!");}
+function removeBUItem(i){const removed=buList[i];buList.splice(i,1);saveBUs();if(selectedBUForm===removed)selectedBUForm="";renderBUPicker();renderManageBUsList();showToast("🗑️ Removida.","#f87171");}
 function buildPlatformFilters(){document.getElementById("platformFilters").innerHTML=`<button class="filter-chip${filterPlatform==="Todas"?" active":""}" onclick="setFilterPlatform('Todas')">Todas</button>`+platforms.map(p=>`<button class="filter-chip${filterPlatform===p?" active":""}" onclick="setFilterPlatform('${esc(p)}')">${getPlatIcon(p)} ${esc(p)}</button>`).join("");}
 function buildRespFilters(){const c=document.getElementById("respFilters");c.innerHTML=`<div class="filter-chip${filterResp==="Todas"?" active":""}" onclick="setFilterResp('Todas')">Todas</div>`+peopleList.map(p=>{const a=filterResp===p.name;return`<div class="filter-chip-person${a?" active":""}" style="${a?`border-color:${p.color};box-shadow:0 0 0 1px ${p.color}44`:""}" onclick="setFilterResp('${esc(p.name)}')"><div class="fcp-avatar" style="background:${p.color}">${initials(p.name)}</div><span style="${a?`color:${p.color};font-weight:700`:""}">${esc(p.name)}</span><button class="filter-chip-person-del" onclick="event.stopPropagation();removePersonFromFilter('${esc(p.name)}')" title="Remover">✕</button></div>`;}).join("");}
 function removePersonFromFilter(name){if(filterResp===name)filterResp="Todas";peopleList=peopleList.filter(p=>p.name!==name);savePeopleList();buildRespFilters();applyFilters();showToast(`🗑️ ${name} removido(a).`,"#f87171");}
@@ -1616,7 +1053,7 @@ function applyStatusSel(){document.querySelectorAll(".status-opt").forEach(o=>{o
 function clearStatusSel(){selectedStatus="";document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt");}
 function clStats(list){const t=(list||[]).length,d=(list||[]).filter(i=>i.done).length;return{total:t,done:d,pct:t>0?Math.round(d/t*100):0};}
 function clUpdateProgress(){const pw=document.getElementById("clProgressWrap"),fill=document.getElementById("clProgressFill"),lbl=document.getElementById("clProgressLabel");if(!pw)return;const{total,done,pct}=clStats(_clData);if(!total){pw.style.display="none";return;}pw.style.display="flex";fill.style.width=pct+"%";fill.style.background=pct===100?"var(--green)":"var(--accent)";lbl.textContent=`${done} / ${total}  (${pct}%)`;}
-function clAddRow(text="",done=false){const id="cl"+(Date.now()+Math.random()).toString(36).slice(-6),item={id,text,done};_clData.push(item);const container=document.getElementById("clList"),row=document.createElement("div");row.className="cl-row"+(done?" done-row":"");row.dataset.clid=id;const chk=document.createElement("div");chk.className="cl-checkbox"+(done?" on":"");chk.textContent=done?"✓":"";chk.onclick=()=>{item.done=!item.done;chk.className="cl-checkbox"+(item.done?" on":"");chk.textContent=item.done?"✓":"";row.className="cl-row"+(item.done?" done-row":"");clUpdateProgress();};const inp=document.createElement("input");inp.type="text";inp.className="cl-input";inp.placeholder="Descreva a tarefa…";inp.value=text;inp.autocomplete="off";inp.spellcheck=false;inp.oninput=()=>{item.text=inp.value;};inp.onkeydown=(e)=>{if(e.key==="Enter"){e.preventDefault();clAddRow();}};const del=document.createElement("button");del.type="button";del.className="cl-del-btn";del.textContent="✕";del.onclick=()=>{_clData=_clData.filter(x=>x.id!==id);row.remove();clUpdateProgress();};row.appendChild(chk);row.appendChild(inp);row.appendChild(del);container.appendChild(row);clUpdateProgress();setTimeout(()=>inp.focus(),30);}
+function clAddRow(text="",done=false){const id="cl"+(Date.now()+Math.random()).toString(36).slice(-6),item={id,text,done};_clData.push(item);const container=document.getElementById("clList"),row=document.createElement("div");row.className="cl-row"+(done?" done-row":"");row.dataset.clid=id;const chk=document.createElement("div");chk.className="cl-checkbox"+(done?" on":"");chk.textContent=done?"✓":"";chk.onclick=()=>{item.done=!item.done;chk.className="cl-checkbox"+(item.done?" on":"");chk.textContent=item.done?"✓":"";row.className="cl-row"+(item.done?" done-row":"");clUpdateProgress();};const inp=document.createElement("input");inp.type="text";inp.className="cl-input";inp.placeholder="Descreva a tarefa…";inp.value=text;inp.autocomplete="off";inp.oninput=()=>{item.text=inp.value;};inp.onkeydown=(e)=>{if(e.key==="Enter"){e.preventDefault();clAddRow();}};const del=document.createElement("button");del.type="button";del.className="cl-del-btn";del.textContent="✕";del.onclick=()=>{_clData=_clData.filter(x=>x.id!==id);row.remove();clUpdateProgress();};row.appendChild(chk);row.appendChild(inp);row.appendChild(del);container.appendChild(row);clUpdateProgress();setTimeout(()=>inp.focus(),30);}
 function clLoadList(list){_clData=[];document.getElementById("clList").innerHTML="";(list||[]).forEach(item=>clAddRow(item.text,item.done));clUpdateProgress();}
 function clReadData(){return _clData.map(i=>({id:i.id,text:i.text,done:i.done}));}
 function renderDetailChecklist(card){const list=card.checklist||[],body=document.getElementById("detailChecklistBody");if(!body)return;if(!list.length){body.innerHTML=`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:16px 0;text-align:center">Nenhuma tarefa.</p>`;return;}const{total,done,pct}=clStats(list);body.innerHTML=`<div class="cl-progress-wrap" style="margin-bottom:14px"><div class="cl-progress-bar"><div class="cl-progress-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div><span class="cl-progress-label">${done} / ${total} — ${pct}%</span></div><div class="detail-cl-list">${list.map((item,idx)=>`<div class="detail-cl-row"><div class="detail-cl-check${item.done?" on":""}" onclick="toggleDetailCl(${idx})">${item.done?"✓":""}</div><span class="detail-cl-text${item.done?" done":""}" onclick="toggleDetailCl(${idx})">${esc(item.text)||"<em style='color:var(--muted)'>sem título</em>"}</span><button class="detail-cl-del" onclick="deleteDetailCl(${idx})">✕</button></div>`).join("")}</div>`;}
@@ -1645,34 +1082,12 @@ function buildMonthHTML(mi){
   const dotsHTML=Object.keys(statusCounts).length?`<div class="month-status-dots">${Object.entries(statusCounts).map(([s,n])=>{const sc=STATUS_COLORS[s]||{bg:"#6b7399"},isActive=filterStatus===s;return`<div class="mstatus-dot${isActive?" active-filter":""}" onclick="toggleStatusFilter('${s}')"><div class="mstatus-circle" style="background:${sc.bg}"></div>${s} (${n})${isActive?" ✕":""}</div>`;}).join("")}</div>`:"";
   let cells=DAYS_PT.map(d=>`<div class="cal-hcell">${d}</div>`).join("");
   for(let i=0;i<fd;i++)cells+=`<div class="cal-day empty"></div>`;
-  for(let d=1;d<=dim;d++){
-    const h=holiday(yr,mi,d),isToday=TODAY.getFullYear()===yr&&TODAY.getMonth()===mi&&TODAY.getDate()===d;
-    const allFiltered=smartSortCards(getCardsForDay(mi,d,yr).filter(c=>cardMatchesFilter(c)),mi,d,yr);
-    const extra=allFiltered.length-MAX_VISIBLE;
-    cells+=`<div class="cal-day${isToday?" today":""}${h?" holiday":""}" id="drop-${mi}-${d}" data-month="${mi}" data-day="${d}">
-      <div class="day-top"><div class="day-num" onclick="openDayModal(${mi},${d},event)">${d}</div>${h?`<div class="holiday-tag">🎉 ${h}</div>`:""}</div>
-      <div class="day-cards-area" id="dc-${mi}-${d}">${allFiltered.map(c=>cardHTML(c)).join("")}</div>
-      ${extra>0?`<div class="day-more-btn" onclick="openDayModal(${mi},${d},event)">+${extra} mais — ver todos</div>`:""}
-      <button class="day-add-btn" onclick="openAdd(${mi},${d})">＋</button>
-    </div>`;
-  }
-  return`<section class="month-section" id="month-${mi}">
-    <div class="month-header">
-      <div class="month-left">
-        <div class="month-title-row"><h2 class="month-title">${MONTHS_PT[mi]} ${yr}</h2><span class="month-cnt" id="cnt-${mi}">${total===1?"1 card":`${total} cards`}</span>${filterStatus?`<span style="background:${STATUS_COLORS[filterStatus]?.bg||'var(--accent)'};color:${STATUS_COLORS[filterStatus]?.text||'#fff'};padding:2px 9px;border-radius:20px;font-size:.65rem;font-weight:700;cursor:pointer" onclick="toggleStatusFilter('${filterStatus}')">● ${filterStatus} ✕</span>`:""}</div>
-        <div id="mstatus-${mi}">${dotsHTML}</div>
-      </div>
-      <div class="month-right-btns">
-        <button class="btn-excel" onclick="exportMonthExcel(${mi})">📥 Excel</button>
-        <button class="btn-add-main" onclick="openAddGeneral(${mi})">＋ Adicionar</button>
-      </div>
-    </div>
-    <div class="cal-wrap"><div class="cal-grid">${cells}</div></div>
-  </section>`;
+  for(let d=1;d<=dim;d++){const h=holiday(yr,mi,d),isToday=TODAY.getFullYear()===yr&&TODAY.getMonth()===mi&&TODAY.getDate()===d;const allFiltered=smartSortCards(getCardsForDay(mi,d,yr).filter(c=>cardMatchesFilter(c)),mi,d,yr);const extra=allFiltered.length-MAX_VISIBLE;cells+=`<div class="cal-day${isToday?" today":""}${h?" holiday":""}" id="drop-${mi}-${d}" data-month="${mi}" data-day="${d}"><div class="day-top"><div class="day-num" onclick="openDayModal(${mi},${d},event)">${d}</div>${h?`<div class="holiday-tag">🎉 ${h}</div>`:""}</div><div class="day-cards-area" id="dc-${mi}-${d}">${allFiltered.map(c=>cardHTML(c)).join("")}</div>${extra>0?`<div class="day-more-btn" onclick="openDayModal(${mi},${d},event)">+${extra} mais</div>`:""}<button class="day-add-btn" onclick="openAdd(${mi},${d})">＋</button></div>`;}
+  return`<section class="month-section" id="month-${mi}"><div class="month-header"><div class="month-left"><div class="month-title-row"><h2 class="month-title">${MONTHS_PT[mi]} ${yr}</h2><span class="month-cnt" id="cnt-${mi}">${total===1?"1 card":`${total} cards`}</span>${filterStatus?`<span style="background:${STATUS_COLORS[filterStatus]?.bg||'var(--accent)'};color:${STATUS_COLORS[filterStatus]?.text||'#fff'};padding:2px 9px;border-radius:20px;font-size:.65rem;font-weight:700;cursor:pointer" onclick="toggleStatusFilter('${filterStatus}')">● ${filterStatus} ✕</span>`:""}</div><div id="mstatus-${mi}">${dotsHTML}</div></div><div class="month-right-btns"><button class="btn-excel" onclick="exportMonthExcel(${mi})">📥 Excel</button><button class="btn-add-main" onclick="openAddGeneral(${mi})">＋ Adicionar</button></div></div><div class="cal-wrap"><div class="cal-grid">${cells}</div></div></section>`;
 }
 function getCardColor(card){if(card.overrideColor)return card.overrideColor;const cat=categories[card.catId];return cat?.color||card.color||"#6c63ff";}
-function cardHTML(card){if(!cardMatchesFilter(card))return"";const color=getCardColor(card),bg=color+"1e",cat=categories[card.catId],isRecur=card._isRecurInstance||false;const eff=getEffectiveStatus(card),sc=STATUS_COLORS[eff],isDone=isDoneStatus(eff);const resps=toArr(card.responsavel);const avatarsHTML=resps.length?`<div class="card-avatars">${resps.slice(0,2).map(name=>`<div class="card-avatar" style="background:${getPersonColor(name)}" title="${esc(name)}">${initials(name)}</div>`).join("")}${resps.length>2?`<div class="card-avatar" style="background:var(--s4);color:var(--muted)">+${resps.length-2}</div>`:""}</div>`:"";const statusDot=sc?`<div class="card-status-dot" style="background:${sc.bg}" title="${esc(eff)}"></div>`:"";const cl=card.checklist||[],{done,total,pct}=clStats(cl);const clBar=cl.length?`<div class="card-checklist-bar"><div class="card-cl-prog"><div class="card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div><span class="card-cl-label">${done}/${total}</span></div>`:"";const buBadge=card.bu?`<span class="card-bu">${esc(card.bu)}</span>`:"";const recurIcon=card.recurrence&&!isRecur?`<span class="card-recur">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";return`<div class="content-card${isRecur?" is-recur":""}${isDone?" status-done":""}" id="card-${card.id}" style="border-left-color:${color};background:${bg}" draggable="${!isRecur}" ondragstart="${!isRecur?`onDragStart(event,'${card.id}')`:"return false"}" ondragend="onDragEnd()" onclick="openDetail('${card.id}',event)"><div class="card-main-row">${card.platform?`<span class="card-plat-icon">${getPlatIcon(card.platform)}</span>`:""}<div class="card-inner"><div class="card-title">${esc(card.title)}</div>${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}</div>${avatarsHTML}${buBadge}${recurIcon}${statusDot}</div>${clBar}</div>`;}
-function refreshDay(mi,d){const area=document.getElementById(`dc-${mi}-${d}`);const cell=document.getElementById(`drop-${mi}-${d}`);if(!area||!cell)return;const allFiltered=smartSortCards(getCardsForDay(mi,d,currentYear).filter(c=>cardMatchesFilter(c)),mi,d,currentYear);const extra=allFiltered.length-MAX_VISIBLE;area.innerHTML=allFiltered.map(c=>cardHTML(c)).join("");let moreBtn=cell.querySelector(".day-more-btn");if(extra>0){if(!moreBtn){moreBtn=document.createElement("div");moreBtn.className="day-more-btn";const addBtn=cell.querySelector(".day-add-btn");cell.insertBefore(moreBtn,addBtn);}moreBtn.textContent=`+${extra} mais — ver todos`;moreBtn.onclick=(e)=>openDayModal(mi,d,e);}else if(moreBtn)moreBtn.remove();attachDropZones();}
+function cardHTML(card){if(!cardMatchesFilter(card))return"";const color=getCardColor(card),bg=color+"1e",cat=categories[card.catId],isRecur=card._isRecurInstance||false;const eff=getEffectiveStatus(card),sc=STATUS_COLORS[eff],isDone=isDoneStatus(eff);const resps=toArr(card.responsavel);const avatarsHTML=resps.length?`<div class="card-avatars">${resps.slice(0,2).map(name=>`<div class="card-avatar" style="background:${getPersonColor(name)}">${initials(name)}</div>`).join("")}${resps.length>2?`<div class="card-avatar" style="background:var(--s4);color:var(--muted)">+${resps.length-2}</div>`:""}</div>`:"";const statusDot=sc?`<div class="card-status-dot" style="background:${sc.bg}"></div>`:"";const cl=card.checklist||[],{done,total,pct}=clStats(cl);const clBar=cl.length?`<div class="card-checklist-bar"><div class="card-cl-prog"><div class="card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div><span class="card-cl-label">${done}/${total}</span></div>`:"";const buBadge=card.bu?`<span class="card-bu">${esc(card.bu)}</span>`:"";const recurIcon=card.recurrence&&!isRecur?`<span class="card-recur">${RECUR_ICONS[card.recurrence]||"🔁"}</span>`:"";return`<div class="content-card${isRecur?" is-recur":""}${isDone?" status-done":""}" id="card-${card.id}" style="border-left-color:${color};background:${bg}" draggable="${!isRecur}" ondragstart="${!isRecur?`onDragStart(event,'${card.id}')`:"return false"}" ondragend="onDragEnd()" onclick="openDetail('${card.id}',event)"><div class="card-main-row">${card.platform?`<span class="card-plat-icon">${getPlatIcon(card.platform)}</span>`:""}<div class="card-inner"><div class="card-title">${esc(card.title)}</div>${card.platform?`<div class="card-sub">${esc(card.platform)}${cat?" · "+esc(cat.emoji||"")+" "+esc(cat.name):""}</div>`:cat?`<div class="card-sub">${esc(cat.emoji||"")} ${esc(cat.name)}</div>`:""}</div>${avatarsHTML}${buBadge}${recurIcon}${statusDot}</div>${clBar}</div>`;}
+function refreshDay(mi,d){const area=document.getElementById(`dc-${mi}-${d}`);const cell=document.getElementById(`drop-${mi}-${d}`);if(!area||!cell)return;const allFiltered=smartSortCards(getCardsForDay(mi,d,currentYear).filter(c=>cardMatchesFilter(c)),mi,d,currentYear);const extra=allFiltered.length-MAX_VISIBLE;area.innerHTML=allFiltered.map(c=>cardHTML(c)).join("");let moreBtn=cell.querySelector(".day-more-btn");if(extra>0){if(!moreBtn){moreBtn=document.createElement("div");moreBtn.className="day-more-btn";const addBtn=cell.querySelector(".day-add-btn");cell.insertBefore(moreBtn,addBtn);}moreBtn.textContent=`+${extra} mais`;moreBtn.onclick=(e)=>openDayModal(mi,d,e);}else if(moreBtn)moreBtn.remove();attachDropZones();}
 function refreshLeg(mi){const sd=document.getElementById(`mstatus-${mi}`);if(!sd)return;const sc=getStatusDotsForMonth(mi);sd.innerHTML=Object.keys(sc).length?`<div class="month-status-dots">${Object.entries(sc).map(([s,n])=>{const c=STATUS_COLORS[s]||{bg:"#6b7399"},isActive=filterStatus===s;return`<div class="mstatus-dot${isActive?" active-filter":""}" onclick="toggleStatusFilter('${s}')"><div class="mstatus-circle" style="background:${c.bg}"></div>${s} (${n})${isActive?" ✕":""}</div>`;}).join("")}</div>`:"";}
 function refreshAllDOM(){rebuildRecurInstances();MONTHS_PT.forEach((_,mi)=>{const dim=new Date(currentYear,mi+1,0).getDate();for(let d=1;d<=dim;d++)refreshDay(mi,d);refreshLeg(mi);});updateCounts();}
 function countCardsForMonth(mi){const yr=currentYear,dim=new Date(yr,mi+1,0).getDate();let t=0;for(let d=1;d<=dim;d++)t+=getCardsForDay(mi,d,yr).filter(c=>cardMatchesFilter(c)).length;return t;}
@@ -1686,8 +1101,8 @@ function onDragEnd(){document.querySelectorAll(".drag-over,.dragging").forEach(c
 async function dropCard(cell){cell.classList.remove("drag-over");if(!dragCardId)return;const nm=parseInt(cell.dataset.month),nd=parseInt(cell.dataset.day),card=cards[dragCardId];if(!card)return;if(card.month===nm&&card.day===nd&&card.year===currentYear){dragCardId=null;return;}const om=card.month,od=card.day,newDate=`${currentYear}-${String(nm+1).padStart(2,"0")}-${String(nd).padStart(2,"0")}`,upd={...card,month:nm,day:nd,year:currentYear,date:newDate};cards[dragCardId]=upd;rebuildRecurInstances();refreshDay(om,od);refreshDay(nm,nd);refreshLeg(om);refreshLeg(nm);updateCounts();await dbSaveCard(upd);showToast(`📅 Movido para ${nd} de ${MONTHS_PT[nm]}`);dragCardId=null;}
 let _dayDragId=null;
 function setupDayModalDnd(mi,d,yr){const list=document.getElementById("dayCardsList");if(!list)return;list.querySelectorAll(".day-card-row.draggable").forEach(row=>{row.setAttribute("draggable","true");row.ondragstart=(e)=>{_dayDragId=row.dataset.cardid;e.dataTransfer.effectAllowed="move";setTimeout(()=>row.classList.add("dnd-dragging"),0);};row.ondragend=()=>{row.classList.remove("dnd-dragging");list.querySelectorAll(".dnd-over").forEach(r=>r.classList.remove("dnd-over"));};row.ondragover=(e)=>{e.preventDefault();list.querySelectorAll(".dnd-over").forEach(r=>r.classList.remove("dnd-over"));if(row.dataset.cardid!==_dayDragId)row.classList.add("dnd-over");};row.ondrop=(e)=>{e.preventDefault();row.classList.remove("dnd-over");const targetId=row.dataset.cardid;if(!_dayDragId||targetId===_dayDragId)return;const active=getCardsForDay(mi,d,yr).filter(c=>!c._isRecurInstance&&!isDoneStatus(getEffectiveStatus(c)));const sorted=smartSortCards(active,mi,d,yr);const ids=sorted.map(c=>c.id);const fi=ids.indexOf(_dayDragId),ti=ids.indexOf(targetId);if(fi<0||ti<0)return;ids.splice(fi,1);ids.splice(ti,0,_dayDragId);setPriority(mi,d,yr,ids);refreshDay(mi,d);openDayModal(mi,d,null,true);showToast("↕️ Prioridade salva!");};});}
-function openDayModal(mi,d,e,keepOpen=false){if(e)e.stopPropagation();const yr=currentYear;_dayModalContext={mi,d,yr};const dateObj=new Date(yr,mi,d);document.getElementById("dayModalNum").textContent=d;document.getElementById("dayModalWeek").textContent=DAYS_PT[dateObj.getDay()];document.getElementById("dayModalMonthYear").textContent=`${MONTHS_PT[mi]} ${yr}`;document.getElementById("dayModalAddBtn").onclick=()=>{closeOverlay("dayOverlay");openAdd(mi,d);};const h=holiday(yr,mi,d),hEl=document.getElementById("dayModalHoliday");if(h){hEl.style.display="flex";hEl.className="day-modal-holiday";hEl.innerHTML=`🎉 ${h}`;}else hEl.style.display="none";const allCards=getCardsForDay(mi,d,yr),sc={};allCards.forEach(c=>{const s=getEffectiveStatus(c);if(s)sc[s]=(sc[s]||0)+1;});document.getElementById("dayModalStats").innerHTML=`<div class="day-stat-chip">📋 ${allCards.length} demanda${allCards.length!==1?"s":""}</div>`+Object.entries(sc).map(([s,n])=>{const c=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="day-stat-chip"><div class="day-stat-dot" style="background:${c.bg}"></div>${s}: ${n}</div>`;}).join("");const allSorted=smartSortCards(allCards.filter(c=>cardMatchesFilter(c)),mi,d,yr);const activeCards=allSorted.filter(c=>!isDoneStatus(getEffectiveStatus(c))&&!c._isRecurInstance);const doneCards=allSorted.filter(c=>isDoneStatus(getEffectiveStatus(c))&&!c._isRecurInstance);const recurCards=allCards.filter(c=>c._isRecurInstance&&cardMatchesFilter(c));const listEl=document.getElementById("dayCardsList");if(!allCards.length){listEl.innerHTML=`<div class="day-modal-empty"><div class="day-modal-empty-icon">📭</div><p>Nenhuma demanda neste dia.</p></div>`;}else{let html="";if(activeCards.length){html+=`<p style="font-size:.62rem;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;font-weight:800;margin-bottom:6px">☰ Arraste para reordenar por prioridade</p><div class="day-cards-list">`;activeCards.forEach(card=>{html+=buildDayCardRow(card,true,false);});html+=`</div>`;}if(recurCards.filter(c=>!isDoneStatus(getEffectiveStatus(c))).length){html+=`<div class="priority-section-label"><span></span>🔁 Recorrentes<span></span></div><div class="day-cards-list">`;recurCards.filter(c=>!isDoneStatus(getEffectiveStatus(c))).forEach(card=>{html+=buildDayCardRow(card,false,false);});html+=`</div>`;}const allDone=[...doneCards,...recurCards.filter(c=>isDoneStatus(getEffectiveStatus(c)))];if(allDone.length){html+=`<div class="done-section-label"><span></span>✅ Finalizados<span></span></div><div class="day-cards-list">`;allDone.forEach(card=>{html+=buildDayCardRow(card,false,true);});html+=`</div>`;}listEl.innerHTML=html;}if(!keepOpen)openOverlay("dayOverlay");setupDayModalDnd(mi,d,yr);}
-function buildDayCardRow(card,isDraggable,isDone){const color=getCardColor(card),cat=categories[card.catId],eff=getEffectiveStatus(card),s=STATUS_COLORS[eff],isRecur=card._isRecurInstance||false;const cl=card.checklist||[],{done,total,pct}=clStats(cl);const resps=toArr(card.responsavel);return`<div class="day-card-row${isDraggable?" draggable":""}${isRecur?" is-recur":""}${isDone?" is-done":""}" style="border-left-color:${color}" data-cardid="${card.id}"><${isDraggable?`div class="day-card-drag-handle"`:`div style="width:20px;flex-shrink:0"`}>☰</${isDraggable?"div":"div"}><div class="day-card-info" onclick="openDetailFromDay('${card.id}')"><div class="day-card-title">${card.platform?`<span style="margin-right:4px">${getPlatIcon(card.platform)}</span>`:""}${esc(card.title)}${card.bu?` <span style="font-size:.58rem;color:#f472b6;font-weight:700">[${esc(card.bu)}]</span>`:""}</div><div class="day-card-meta">${cat?`<span class="day-card-badge" style="color:${color};border-color:${color}33;background:${color}15">${cat.emoji||""} ${esc(cat.name)}</span>`:""}${s?`<span class="day-card-status" style="background:${s.bg};color:${s.text}">${eff}</span>`:""}${cl.length?`<span class="day-card-cl"><div class="day-card-cl-bar"><div class="day-card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>${done}/${total}</span>`:""}</div></div><div class="day-card-right"><div class="day-card-avatars">${resps.slice(0,3).map(name=>`<div class="day-card-avatar" style="background:${getPersonColor(name)}">${initials(name)}</div>`).join("")}</div></div></div>`;}
+function openDayModal(mi,d,e,keepOpen=false){if(e)e.stopPropagation();const yr=currentYear;_dayModalContext={mi,d,yr};const dateObj=new Date(yr,mi,d);document.getElementById("dayModalNum").textContent=d;document.getElementById("dayModalWeek").textContent=DAYS_PT[dateObj.getDay()];document.getElementById("dayModalMonthYear").textContent=`${MONTHS_PT[mi]} ${yr}`;document.getElementById("dayModalAddBtn").onclick=()=>{closeOverlay("dayOverlay");openAdd(mi,d);};const h=holiday(yr,mi,d),hEl=document.getElementById("dayModalHoliday");if(h){hEl.style.display="flex";hEl.className="day-modal-holiday";hEl.innerHTML=`🎉 ${h}`;}else hEl.style.display="none";const allCards=getCardsForDay(mi,d,yr),sc={};allCards.forEach(c=>{const s=getEffectiveStatus(c);if(s)sc[s]=(sc[s]||0)+1;});document.getElementById("dayModalStats").innerHTML=`<div class="day-stat-chip">📋 ${allCards.length} demanda${allCards.length!==1?"s":""}</div>`+Object.entries(sc).map(([s,n])=>{const c=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="day-stat-chip"><div class="day-stat-dot" style="background:${c.bg}"></div>${s}: ${n}</div>`;}).join("");const allSorted=smartSortCards(allCards.filter(c=>cardMatchesFilter(c)),mi,d,yr);const activeCards=allSorted.filter(c=>!isDoneStatus(getEffectiveStatus(c))&&!c._isRecurInstance);const doneCards=allSorted.filter(c=>isDoneStatus(getEffectiveStatus(c))&&!c._isRecurInstance);const recurCards=allCards.filter(c=>c._isRecurInstance&&cardMatchesFilter(c));const listEl=document.getElementById("dayCardsList");if(!allCards.length){listEl.innerHTML=`<div class="day-modal-empty"><div class="day-modal-empty-icon">📭</div><p>Nenhuma demanda neste dia.</p></div>`;}else{let html="";if(activeCards.length){html+=`<p style="font-size:.62rem;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;font-weight:800;margin-bottom:6px">☰ Arraste para reordenar</p><div class="day-cards-list">`;activeCards.forEach(card=>{html+=buildDayCardRow(card,true,false);});html+=`</div>`;}if(recurCards.filter(c=>!isDoneStatus(getEffectiveStatus(c))).length){html+=`<div class="priority-section-label"><span></span>🔁 Recorrentes<span></span></div><div class="day-cards-list">`;recurCards.filter(c=>!isDoneStatus(getEffectiveStatus(c))).forEach(card=>{html+=buildDayCardRow(card,false,false);});html+=`</div>`;}const allDone=[...doneCards,...recurCards.filter(c=>isDoneStatus(getEffectiveStatus(c)))];if(allDone.length){html+=`<div class="done-section-label"><span></span>✅ Finalizados<span></span></div><div class="day-cards-list">`;allDone.forEach(card=>{html+=buildDayCardRow(card,false,true);});html+=`</div>`;}listEl.innerHTML=html;}if(!keepOpen)openOverlay("dayOverlay");setupDayModalDnd(mi,d,yr);}
+function buildDayCardRow(card,isDraggable,isDone){const color=getCardColor(card),cat=categories[card.catId],eff=getEffectiveStatus(card),s=STATUS_COLORS[eff],isRecur=card._isRecurInstance||false;const cl=card.checklist||[],{done,total,pct}=clStats(cl);const resps=toArr(card.responsavel);return`<div class="day-card-row${isDraggable?" draggable":""}${isRecur?" is-recur":""}${isDone?" is-done":""}" style="border-left-color:${color}" data-cardid="${card.id}"><div class="${isDraggable?"day-card-drag-handle":""}">☰</div><div class="day-card-info" onclick="openDetailFromDay('${card.id}')"><div class="day-card-title">${card.platform?`<span style="margin-right:4px">${getPlatIcon(card.platform)}</span>`:""}${esc(card.title)}${card.bu?` <span style="font-size:.58rem;color:#f472b6;font-weight:700">[${esc(card.bu)}]</span>`:""}</div><div class="day-card-meta">${cat?`<span class="day-card-badge" style="color:${color};border-color:${color}33;background:${color}15">${cat.emoji||""} ${esc(cat.name)}</span>`:""}${s?`<span class="day-card-status" style="background:${s.bg};color:${s.text}">${eff}</span>`:""}${cl.length?`<span class="day-card-cl"><div class="day-card-cl-bar"><div class="day-card-cl-fill" style="width:${pct}%;background:${pct===100?"var(--green)":"var(--accent)"}"></div></div>${done}/${total}</span>`:""}</div></div><div class="day-card-right"><div class="day-card-avatars">${resps.slice(0,3).map(name=>`<div class="day-card-avatar" style="background:${getPersonColor(name)}">${initials(name)}</div>`).join("")}</div></div></div>`;}
 function openDetailFromDay(id){_openedFromDayModal=true;closeOverlay("dayOverlay");openDetail(id,null);}
 function backToDayModal(){closeOverlay("detailOverlay");_openedFromDayModal=false;if(_dayModalContext){const{mi,d}=_dayModalContext;openDayModal(mi,d,null,false);}}
 function exportMonthExcel(mi){const yr=currentYear,dim=new Date(yr,mi+1,0).getDate();const rows=[["Data","Dia","Prioridade","Título","Plataforma","BU","Categoria","Responsável","Solicitante","Status","Campanha","ID Campanha","PMP","Big Idea","Copy","Descrição","Tags","Recorrência","Checklist Total","Checklist Feitos","Links","Comentários"]];for(let d=1;d<=dim;d++){const sorted=smartSortCards(getCardsForDay(mi,d,yr).filter(c=>!c._isRecurInstance),mi,d,yr);sorted.forEach((c,pi)=>{const cat=categories[c.catId],cl=c.checklist||[],{total,done}=clStats(cl);rows.push([`${String(d).padStart(2,"0")}/${String(mi+1).padStart(2,"0")}/${yr}`,DAYS_PT[new Date(yr,mi,d).getDay()],pi+1,c.title||"",c.platform||"",c.bu||"",cat?(cat.emoji+" "+cat.name):"",toArr(c.responsavel).join(", "),toArr(c.solicitante).join(", "),c.briefing||"",c.campaign||"",c.campaignId||"",c.pmp||"",c.bigIdea||"",c.copy||"",c.desc||"",(c.tags||[]).join(", "),RECUR_LABELS[c.recurrence||""]||"",total,done,(c.links||[]).map(l=>l.name+": "+l.url).join(" | "),(c.comments||[]).length]);});}const bom="\uFEFF",csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(";")).join("\n");const blob=new Blob([bom+csv],{type:"text/csv;charset=utf-8;"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`calendario_${MONTHS_PT[mi]}_${yr}.csv`;a.click();URL.revokeObjectURL(url);showToast(`📥 ${MONTHS_PT[mi]} ${yr} exportado!`,"#22c55e");}
@@ -1710,15 +1125,15 @@ function openDuplicate(id){dupSourceId=id;const c=cards[id];if(!c)return;const b
 async function confirmDuplicate(){const dateVal=document.getElementById("dupDate").value;if(!dateVal){showToast("⚠️ Selecione uma data!","#f97316");return;}const src=cards[dupSourceId];if(!src)return;const[yr,mo,dy]=dateVal.split("-").map(Number);const newCard={...src,id:"c"+Date.now(),year:yr,month:mo-1,day:dy,date:dateVal,title:document.getElementById("dupTitle").value.trim()||src.title,comments:[]};closeOverlay("dupOverlay");closeOverlay("detailOverlay");cards[newCard.id]=newCard;rebuildRecurInstances();refreshDay(newCard.month,newCard.day);refreshLeg(newCard.month);updateCounts();await dbSaveCard(newCard);showToast("⧉ Card duplicado!");}
 function renderDetailStatusBar(effStatus){return`<div class="detail-status-bar"><div class="detail-status-label">🎯 Status da Demanda</div><div class="detail-status-opts">${Object.entries(STATUS_COLORS).map(([s,sc])=>{const active=s===effStatus;return`<div class="ds-opt${active?" ds-active":""}" data-val="${s}" style="${active?`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`:""}" onclick="setDetailStatus('${s}')"><span class="s-dot" style="background:${sc.bg}"></span>${s}</div>`;}).join("")}</div></div>`;}
 async function setDetailStatus(newStatus){const isRecur=window._currentDetailIsRecur||false,recurDate=window._currentDetailDate||null,realId=currentDetailCardId;const card=cards[realId];if(!card)return;let effStatus;if(isRecur&&recurDate){const k=getRecurKey(realId,recurDate),cur=k in recurStatuses?recurStatuses[k]:(card.briefing||"");effStatus=cur===newStatus?"":newStatus;setRecurStatus(realId,recurDate,effStatus);const[yr,mo,dy]=recurDate.split("-").map(Number);refreshDay(mo-1,dy);}else{effStatus=card.briefing===newStatus?"":newStatus;const updated={...card,briefing:effStatus};cards[realId]=updated;rebuildRecurInstances();refreshDay(updated.month,updated.day);refreshLeg(updated.month);await dbSaveCard(updated);}document.querySelectorAll("#detailBody .ds-opt").forEach(el=>{const v=el.dataset.val,a=v===effStatus&&effStatus!=="",sc=STATUS_COLORS[v];el.className="ds-opt";el.style.cssText="";if(a){el.classList.add("ds-active");el.style.cssText=`background:${sc.bg};border-color:${sc.bg};color:${sc.text}`;}});const badge=document.getElementById("detailStatusBadge");if(badge){if(effStatus){const sc=STATUS_COLORS[effStatus];badge.textContent=effStatus;badge.style.cssText=`background:${sc.bg};color:${sc.text}`;badge.style.display="inline-flex";}else badge.style.display="none";}updateCounts();showToast(effStatus?"✅ Status atualizado!":"↩️ Status removido.");}
-function renderObsBlock(desc){if(desc){return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações <button class="lbl-btn" onclick="startEditObs()">✏️ Editar</button></div><div id="obs-content"><div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(desc)}</div></div></div>`;}return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações</div><div id="obs-content"><div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div></div></div>`;}
+function renderObsBlock(desc){if(desc){return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações <button class="lbl-btn" onclick="startEditObs()">✏️ Editar</button></div><div id="obs-content"><div class="obs-view" onclick="startEditObs()">${esc(desc)}</div></div></div>`;}return`<div class="dblock" id="obs-block"><div class="dblock-lbl">📝 Observações</div><div id="obs-content"><div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div></div></div>`;}
 function startEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;content.innerHTML=`<div class="obs-edit-wrap"><textarea class="obs-edit-inp" id="obsEditInp"></textarea><div class="obs-edit-actions">${card.desc?`<button class="obs-del-btn" onclick="deleteObs()">🗑 Apagar</button>`:""}<button class="comment-edit-cancel" onclick="cancelEditObs()">Cancelar</button><button class="comment-edit-save" onclick="saveEditObs()">💾 Salvar</button></div></div>`;const ta=document.getElementById("obsEditInp");if(ta){ta.value=card.desc||"";ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}}
-function cancelEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;if(card.desc){content.innerHTML=`<div class="obs-view" onclick="startEditObs()" title="Clique para editar">${esc(card.desc)}</div>`;}else{content.innerHTML=`<div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div>`;}}
+function cancelEditObs(){const card=cards[currentDetailCardId];if(!card)return;const content=document.getElementById("obs-content");if(!content)return;if(card.desc){content.innerHTML=`<div class="obs-view" onclick="startEditObs()">${esc(card.desc)}</div>`;}else{content.innerHTML=`<div class="obs-hint" onclick="startEditObs()">＋ Adicionar observações</div>`;}}
 async function saveEditObs(){const card=cards[currentDetailCardId];if(!card)return;const ta=document.getElementById("obsEditInp");if(!ta)return;const newDesc=ta.value.trim();const updated={...card,desc:newDesc};cards[currentDetailCardId]=updated;const obsBlock=document.getElementById("obs-block");if(obsBlock)obsBlock.outerHTML=renderObsBlock(newDesc);refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Observação salva!");}
 async function deleteObs(){const card=cards[currentDetailCardId];if(!card)return;const updated={...card,desc:""};cards[currentDetailCardId]=updated;const obsBlock=document.getElementById("obs-block");if(obsBlock)obsBlock.outerHTML=renderObsBlock("");refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("🗑️ Observação apagada.","#f87171");}
-function renderComments(card){const area=document.getElementById("commentsArea");const allComments=card.comments||[];if(!allComments.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda 💬</div>`;return;}const displayed=[...allComments].reverse();const total=allComments.length;area.innerHTML=displayed.map((cm,revIdx)=>{const realIdx=total-1-revIdx;return`<div class="comment-item" id="ci-${realIdx}"><div class="comment-header"><span class="comment-author">👤 ${esc(cm.author||"Anônimo")}</span><div style="display:flex;align-items:center;gap:6px">${cm.edited?`<span class="comment-edited">(editado)</span>`:""}<span class="comment-time">${cm.time||""}</span><button class="comment-edit-btn" onclick="startEditComment(${realIdx})" title="Editar comentário">✏️</button><button class="comment-del" onclick="deleteComment(${realIdx})">✕</button></div></div><div id="cb-${realIdx}"><div class="comment-text">${esc(cm.text)}</div></div></div>`;}).join("");}
-function startEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const cm=(card.comments||[])[idx];if(!cm)return;const body=document.getElementById(`cb-${idx}`);if(!body)return;body.innerHTML=`<div class="comment-edit-wrap"><textarea class="comment-edit-inp" id="cedit-${idx}"></textarea><div class="comment-edit-actions"><button class="comment-edit-cancel" onclick="cancelEditComment(${idx})">Cancelar</button><button class="comment-edit-save" onclick="saveEditComment(${idx})">💾 Salvar</button></div></div>`;const ta=document.getElementById(`cedit-${idx}`);if(ta){ta.value=cm.text;ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}}
+function renderComments(card){const area=document.getElementById("commentsArea");const allComments=card.comments||[];if(!allComments.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda 💬</div>`;return;}const displayed=[...allComments].reverse();const total=allComments.length;area.innerHTML=displayed.map((cm,revIdx)=>{const realIdx=total-1-revIdx;return`<div class="comment-item" id="ci-${realIdx}"><div class="comment-header"><span class="comment-author">👤 ${esc(cm.author||"Anônimo")}</span><div style="display:flex;align-items:center;gap:6px">${cm.edited?`<span class="comment-edited">(editado)</span>`:""}<span class="comment-time">${cm.time||""}</span><button class="comment-edit-btn" onclick="startEditComment(${realIdx})">✏️</button><button class="comment-del" onclick="deleteComment(${realIdx})">✕</button></div></div><div id="cb-${realIdx}"><div class="comment-text">${esc(cm.text)}</div></div></div>`;}).join("");}
+function startEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const cm=(card.comments||[])[idx];if(!cm)return;const body=document.getElementById(`cb-${idx}`);if(!body)return;body.innerHTML=`<div class="comment-edit-wrap"><textarea class="comment-edit-inp" id="cedit-${idx}"></textarea><div class="comment-edit-actions"><button class="comment-edit-cancel" onclick="cancelEditComment(${idx})">Cancelar</button><button class="comment-edit-save" onclick="saveEditComment(${idx})">💾 Salvar</button></div></div>`;const ta=document.getElementById(`cedit-${idx}`);if(ta){ta.value=cm.text;ta.focus();}}
 function cancelEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const cm=(card.comments||[])[idx];if(!cm)return;const body=document.getElementById(`cb-${idx}`);if(!body)return;body.innerHTML=`<div class="comment-text">${esc(cm.text)}</div>`;}
-async function saveEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const ta=document.getElementById(`cedit-${idx}`);if(!ta)return;const newText=ta.value.trim();if(!newText){showToast("⚠️ Comentário não pode ser vazio.","#f97316");return;}const comments=[...(card.comments||[])];comments[idx]={...comments[idx],text:newText,edited:true};const updated={...card,comments};cards[currentDetailCardId]=updated;renderComments(updated);const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=comments.length;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Comentário editado!");}
+async function saveEditComment(idx){const card=cards[currentDetailCardId];if(!card)return;const ta=document.getElementById(`cedit-${idx}`);if(!ta)return;const newText=ta.value.trim();if(!newText){showToast("⚠️ Comentário vazio.","#f97316");return;}const comments=[...(card.comments||[])];comments[idx]={...comments[idx],text:newText,edited:true};const updated={...card,comments};cards[currentDetailCardId]=updated;renderComments(updated);const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=comments.length;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("✅ Comentário editado!");}
 async function addComment(){const author=document.getElementById("commentAuthor").value.trim()||"Anônimo";const text=document.getElementById("commentText").value.trim();if(!text){showToast("⚠️ Escreva um comentário!","#f97316");return;}const card=cards[currentDetailCardId];if(!card)return;const now=new Date();const time=`${String(now.getDate()).padStart(2,"0")}/${String(now.getMonth()+1).padStart(2,"0")} ${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;const updated={...card,comments:[{author,text,time},...(card.comments||[])]};cards[currentDetailCardId]=updated;document.getElementById("commentText").value="";renderComments(updated);const badge=document.getElementById("commentBadge");badge.style.display="inline";badge.textContent=(updated.comments||[]).length;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("💬 Comentário adicionado!");}
 async function deleteComment(idx){const card=cards[currentDetailCardId];if(!card)return;const updated={...card,comments:(card.comments||[]).filter((_,i)=>i!==idx)};cards[currentDetailCardId]=updated;renderComments(updated);const badge=document.getElementById("commentBadge"),cnt=(updated.comments||[]).length;badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;refreshDay(updated.month,updated.day);await dbSaveCard(updated);showToast("🗑️ Comentário excluído.","#f87171");}
 function openDetail(id,e){e?.stopPropagation();const raw=cards[id]||(window._recurInstances||{})[id];if(!raw)return;const isRecurInst=raw._isRecurInstance||false,c=isRecurInst?(cards[raw._sourceId]||raw):raw,realId=c.id;currentDetailCardId=realId;window._currentDetailIsRecur=isRecurInst;window._currentDetailDate=isRecurInst?raw.date:null;const effStatus=isRecurInst?(getRecurKey(realId,raw.date) in recurStatuses?recurStatuses[getRecurKey(realId,raw.date)]:c.briefing||""):c.briefing||"";const cat=categories[c.catId],color=getCardColor(c),sc=STATUS_COLORS[effStatus]||null;switchDetailTab("dtinfo",document.querySelector("#detailOverlay .modal-tab"));const recurNotice=isRecurInst?`<div class="recur-notice">🔁 Instância recorrente de <strong>${fmtDFull(raw.date)}</strong></div>`:"";const make=(lbl,val)=>val?`<div class="dblock"><div class="dblock-lbl">${lbl}</div><div class="dblock-val">${esc(val)}</div></div>`:"";const tagsBlock=c.tags?.length?`<div class="dblock"><div class="dblock-lbl">🏷️ Tags</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">${c.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}</div></div>`:"";const resps=toArr(c.responsavel),solics=toArr(c.solicitante);const respBlock=(resps.length||solics.length)?`<div class="dblock"><div class="dblock-lbl">👥 Pessoas</div>${resps.length?`<div style="margin-top:6px"><span style="font-size:.63rem;color:var(--muted);font-weight:700;text-transform:uppercase">Responsável</span><div class="resp-badges-wrap">${resps.map(name=>{const pc=getPersonColor(name);return`<div class="resp-badge" style="background:${pc}18;border-color:${pc}44"><div class="resp-avatar" style="background:${pc}">${initials(name)}</div><strong style="color:${pc}">${esc(name)}</strong></div>`;}).join("")}</div></div>`:""}${solics.length?`<div style="margin-top:6px"><span style="font-size:.63rem;color:var(--muted);font-weight:700;text-transform:uppercase">Solicitante</span><div class="resp-badges-wrap">${solics.map(name=>{const pc=getPersonColor(name);return`<div class="resp-badge" style="background:${pc}18;border-color:${pc}44"><div class="resp-avatar" style="background:${pc}">${initials(name)}</div><strong style="color:${pc}">${esc(name)}</strong></div>`;}).join("")}</div></div>`:""}</div>`:"";const buBlock=c.bu?`<div class="dblock"><div class="dblock-lbl">🏢 BU</div><div style="margin-top:4px"><span class="bu-detail-badge">🏢 ${esc(c.bu)}</span></div></div>`:"";document.getElementById("detailBody").innerHTML=`${recurNotice}<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:14px"><div class="detail-stripe" style="background:${color}"></div><div style="flex:1;min-width:0"><div class="detail-title">${esc(c.title)}</div><div class="detail-meta"><span>${isRecurInst?fmtDFull(raw.date):`${c.day} de ${MONTHS_PT[c.month]} ${c.year}`}</span>${c.platform?`<span class="detail-badge" style="background:var(--s3);border:1px solid var(--border)">${getPlatIcon(c.platform)} ${esc(c.platform)}</span>`:""}${cat?`<span class="detail-badge" style="background:${color}22;color:${color}">${cat.emoji||""} ${esc(cat.name)}</span>`:""}${sc?`<span class="status-badge" id="detailStatusBadge" style="background:${sc.bg};color:${sc.text}">${esc(effStatus)}</span>`:`<span class="status-badge" id="detailStatusBadge" style="display:none"></span>`}</div></div></div>${renderDetailStatusBar(effStatus)}<div class="detail-blocks">${buBlock}${respBlock}${c.recurrence?`<div class="dblock"><div class="dblock-lbl">🔁 Recorrência</div><div class="dblock-val">${RECUR_ICONS[c.recurrence]||"🔁"} ${RECUR_LABELS[c.recurrence]||c.recurrence}</div></div>`:""}${c.campaign?make("📣 Campanha",`${c.campaign}${c.campaignId?" — "+c.campaignId:""}`):""}${make("💡 Big Idea",c.bigIdea)}${make("✍️ Copy",c.copy)}${renderObsBlock(c.desc||"")}${c.pmp?make("📋 PMP",c.pmp):""}${tagsBlock}</div>`;renderDetailChecklist(c);updateClBadge(c);const links=c.links||[];document.getElementById("detailLinksBody").innerHTML=links.length?`<div class="dblock"><div class="dblock-lbl">🔗 Links</div><div class="detail-links-list" style="margin-top:6px">${links.map(l=>`<div class="detail-link-item"><span class="detail-link-name">${esc(l.name)}</span><a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.url)}</a></div>`).join("")}</div></div>`:`<p style="color:var(--muted);font-size:.82rem;font-style:italic;padding:12px 0">Nenhum link.</p>`;renderComments(c);const badge=document.getElementById("commentBadge"),cnt=(c.comments||[]).length;badge.style.display=cnt>0?"inline":"none";if(cnt>0)badge.textContent=cnt;const btnBack=document.getElementById("btnBack");if(btnBack)btnBack.style.display=(_openedFromDayModal&&_dayModalContext)?"flex":"none";document.getElementById("dDelBtn").onclick=()=>doDelCard(realId);document.getElementById("dDupBtn").onclick=()=>{closeOverlay("detailOverlay");openDuplicate(realId);};document.getElementById("dEditBtn").onclick=()=>{closeOverlay("detailOverlay");openEditCard(realId);};openOverlay("detailOverlay");}
@@ -1735,4 +1150,20 @@ async function deleteCat(){if(!editCatId)return;if(Object.values(cards).some(c=>
 function buildEmojiPanels(filter=""){const container=document.getElementById("emojiPanels");if(!container)return;const fl=filter.toLowerCase();container.innerHTML=Object.entries(EMOJI_CATS).map(([label,emojis])=>{const filtered=emojis.filter(e=>!fl||label.toLowerCase().includes(fl));if(!filtered.length)return"";return`<div class="emoji-section-label">${label}</div><div class="emoji-grid">${filtered.map(e=>`<button class="emoji-btn${e===selectedEmoji?" sel":""}" onclick="selectEmoji('${e}')" type="button">${e}</button>`).join("")}</div>`;}).join("");}
 function filterEmojis(val){buildEmojiPanels(val);}
 function selectEmoji(e){selectedEmoji=e;document.getElementById("selectedEmojiPreview").textContent=e;document.querySelectorAll(".emoji-btn").forEach(b=>b.classList.toggle("sel",b.textContent===e));}
-function handleTagInput(e){if(e.key==="Enter"||e.key===","){e.preventDefault();const val=document.getElementById("tagInput").value.trim().
+function handleTagInput(e){if(e.key==="Enter"||e.key===","){e.preventDefault();const val=document.getElementById("tagInput").value.trim().replace(/,/g,"");if(val&&!currentTags.includes(val)){currentTags.push(val);renderTags();}document.getElementById("tagInput").value="";}if(e.key==="Backspace"&&document.getElementById("tagInput").value===""&&currentTags.length){currentTags.pop();renderTags();}}
+function removeTag(t){currentTags=currentTags.filter(x=>x!==t);renderTags();}
+function renderTags(){const wrap=document.getElementById("tagsWrap"),input=document.getElementById("tagInput");wrap.innerHTML="";currentTags.forEach(t=>{const chip=document.createElement("div");chip.className="tag-chip";chip.innerHTML=`${esc(t)}<button onclick="removeTag('${esc(t)}')" type="button">✕</button>`;wrap.appendChild(chip);});wrap.appendChild(input);}
+function renderPresets(gid){const el=document.getElementById(gid);if(!el)return;const isCat=gid==="catPresetGrid",cur=isCat?catChosenColor:chosenColor;el.innerHTML=PRESETS.map(c=>`<div class="pdot${c===cur?" sel":""}" style="background:${c}" title="${c}" onclick="${isCat?`setCatColor('${c}')`:`setChosenColor('${c}')`}"></div>`).join("");}
+function setChosenColor(c){chosenColor=c;document.getElementById("customColorPicker").value=c;document.getElementById("colorHexLbl").textContent=c;document.getElementById("colorBar").style.background=c;renderPresets("presetGrid");}
+function onCustomColor(c){chosenColor=c;document.getElementById("colorHexLbl").textContent=c;document.getElementById("colorBar").style.background=c;renderPresets("presetGrid");}
+function setCatColor(c){catChosenColor=c;document.getElementById("catColorPicker").value=c;document.getElementById("catColorHex").textContent=c;document.getElementById("catColorBar").style.background=c;renderPresets("catPresetGrid");}
+function onCatCustomColor(c){catChosenColor=c;document.getElementById("catColorHex").textContent=c;document.getElementById("catColorBar").style.background=c;renderPresets("catPresetGrid");}
+function openOverlay(id){document.getElementById(id).classList.add("open");}
+function closeOverlay(id){document.getElementById(id).classList.remove("open");if(id==="detailOverlay")_openedFromDayModal=false;}
+function setupOverlayClose(){document.querySelectorAll(".overlay").forEach(ov=>{ov.addEventListener("click",e=>{if(e.target===ov){if(ov.id==="detailOverlay")_openedFromDayModal=false;closeOverlay(ov.id);}});});document.addEventListener("keydown",e=>{if(e.key==="Escape"){document.querySelectorAll(".overlay.open").forEach(o=>{if(o.id==="detailOverlay")_openedFromDayModal=false;closeOverlay(o.id);});}});document.addEventListener("click",e=>{if(!e.target.closest(".inline-manage-panel")&&!e.target.closest(".filter-manage-btn"))document.querySelectorAll(".inline-manage-panel.open").forEach(p=>p.classList.remove("open"));});}
+function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("sidebarOverlay").classList.toggle("open");}
+function closeSidebar(){document.getElementById("sidebar").classList.remove("open");document.getElementById("sidebarOverlay").classList.remove("open");}
+function showToast(msg,color="#4ade80"){const t=document.getElementById("toast");t.textContent=msg;t.style.background=color;t.style.color=color==="#4ade80"?"#000":"#fff";t.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove("show"),2800);}
+</script>
+</body>
+</html>
