@@ -418,7 +418,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .chart-wrap{position:relative;height:200px}
 .chart-wrap canvas{max-height:200px}
 .goals-platform-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
-.goals-plat-tab{padding:8px 20px;border-radius:20px;cursor:pointer;font-size:.78rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s}
+.goals-plat-tab{padding:8px 20px;border-radius:20px;cursor:pointer;font-size:.78rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18px}
 .goals-plat-tab:hover{border-color:var(--accent);color:var(--text)}
 .goals-plat-tab.active-ig{background:var(--ig);border-color:var(--ig);color:#fff}
 .goals-plat-tab.active-yt{background:var(--yt);border-color:var(--yt);color:#fff}
@@ -797,7 +797,7 @@ let currentCatId=null,currentCatColor='#6c63ff',currentCatEmoji='📌';
 let currentView='calendario';
 let dashPlatform='ig',dashYear=new Date().getFullYear();
 let goalsPlatform='ig';
-let dashActiveMonthIdx=0;
+let dashActiveMonthIdx=new Date().getMonth();
 let chartInstances={},pmpsCharts={};
 let draftTimer=null;
 let pmpsFilterCanal='todos',pmpsFilterCta='todos',pmpsFilterMes='todos';
@@ -916,7 +916,8 @@ function changeYear(d){
   currentYear+=d;
   document.getElementById('sidebarYear').textContent=currentYear;
   document.getElementById('topbarYear').textContent=currentYear;
-  renderCalendar();renderSidebarMonths();
+  renderCalendar();
+  renderSidebarMonths();
 }
 function renderSidebarMonths(){
   document.getElementById('sidebarMonths').innerHTML=
@@ -949,7 +950,8 @@ function renderPlatFilters(){
 }
 function togglePlatFilter(id){
   activePlatFilters.has(id)?activePlatFilters.delete(id):activePlatFilters.add(id);
-  renderPlatFilters();renderCalendar();
+  renderPlatFilters();
+  renderCalendar();
 }
 function renderPersonFilters(){
   document.getElementById('personFilterGroup').innerHTML=people.map(p=>`
@@ -961,7 +963,8 @@ function renderPersonFilters(){
 }
 function togglePersonFilter(id){
   activePersonFilters.has(id)?activePersonFilters.delete(id):activePersonFilters.add(id);
-  renderPersonFilters();renderCalendar();
+  renderPersonFilters();
+  renderCalendar();
 }
 function renderManagePeople(){
   document.getElementById('managePeopleList').innerHTML=people.map(p=>`
@@ -971,19 +974,28 @@ function renderManagePeople(){
       <button class="imp-item-del" onclick="deletePerson('${p.id}')">✕</button>
     </div>`).join('');
 }
-function toggleManagePanel(){document.getElementById('managePanel').classList.toggle('open')}
+function toggleManagePanel(){
+  document.getElementById('managePanel').classList.toggle('open');
+}
 function addPersonFromManage(){
   const inp=document.getElementById('managePeopleInput');
-  const name=inp.value.trim();if(!name)return;
-  const id='p_'+Date.now();fbSet('people',id,{id,name});inp.value='';
+  const name=inp.value.trim();
+  if(!name) return;
+  const id='p_'+Date.now();
+  fbSet('people',id,{id,name});
+  inp.value='';
 }
 function deletePerson(id){
-  fbDel('people',id);activePersonFilters.delete(id);renderCalendar();
+  fbDel('people',id);
+  activePersonFilters.delete(id);
+  renderCalendar();
 }
 function renderStatusFilters(){
-  const list=[{val:'Pendente',color:'#f97316'},{val:'Produção',color:'#38bdf8'},
+  const list=[
+    {val:'Pendente',color:'#f97316'},{val:'Produção',color:'#38bdf8'},
     {val:'Revisão',color:'#a78bfa'},{val:'Aprovado',color:'#4ade80'},
-    {val:'Publicado',color:'#6c63ff'},{val:'Programado',color:'#0ea5e9'}];
+    {val:'Publicado',color:'#6c63ff'},{val:'Programado',color:'#0ea5e9'}
+  ];
   document.getElementById('statusFilterGroup').innerHTML=list.map(s=>`
     <button class="filter-chip${activeStatusFilters.has(s.val)?' active':''}"
       style="${activeStatusFilters.has(s.val)?`background:${s.color};border-color:${s.color};color:#fff`:''}"
@@ -994,14 +1006,16 @@ function renderStatusFilters(){
 }
 function toggleStatusFilter(v){
   activeStatusFilters.has(v)?activeStatusFilters.delete(v):activeStatusFilters.add(v);
-  renderStatusFilters();renderCalendar();
+  renderStatusFilters();
+  renderCalendar();
 }
 
 // ══════════════════════════════════════
 // CALENDÁRIO
 // ══════════════════════════════════════
 function renderCalendar(){
-  renderSidebarMonths();renderStatusFilters();
+  renderSidebarMonths();
+  renderStatusFilters();
   const search=document.getElementById('searchInput')?.value?.toLowerCase()||'';
   let html='';
   for(let m=0;m<12;m++){
@@ -1134,1421 +1148,9 @@ function initDragDrop(){
     el.addEventListener('dragend',()=>{el.classList.remove('dragging');dragId=null});
   });
 }
-
-// ══════════════════════════════════════
-// MODAL CARD
-// ══════════════════════════════════════
-function openNewCard(m){
-  const d=new Date(currentYear,m,new Date().getDate());
-  openCardModal(null,`${currentYear}-${String(m+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`);
-}
-function openNewCardDate(date){openCardModal(null,date)}
-function openNewCardFromDay(){closeDayModal();if(currentDayModal)openCardModal(null,currentDayModal)}
-
-function openCardModal(id,defaultDate){
-  editingId=id;
-  const c=id?cards.find(x=>x.id===id):null;
-  document.getElementById('cardModalTitle').textContent=id?'Editar Conteúdo':'Novo Conteúdo';
-  document.getElementById('btnDel').style.display=id?'':'none';
-  document.getElementById('btnDup').style.display=id?'':'none';
-  document.getElementById('f-title').value=c?.title||'';
-  document.getElementById('f-title').classList.remove('invalid');
-  document.getElementById('err-title').classList.remove('show');
-  document.getElementById('f-date').value=c?.date||defaultDate||'';
-  document.getElementById('f-desc').value=c?.description||'';
-  document.getElementById('f-cta').value=c?.cta||'';
-  currentStatus=c?.status||'Pendente';
-  currentRecur=c?.recurrence||'none';
-  selectedPeople=[...(c?.people||[])];
-  selectedTags=[...(c?.tags||[])];
-  selectedLinks=[...(c?.links||[])];
-  selectedChecklist=(c?.checklist||[]).map(x=>({...x}));
-  renderStatusSel();renderPlatPicker(c?.platformId);renderCatPicker(c?.categoryId);
-  renderRecurOpts();renderTagsWrap();renderLinksList();renderClList();
-  renderPeopleDropdown();renderPeopleSelTags();renderComments(c);
-  switchTab('geral');
-  startDraftTimer(id,defaultDate);
-  document.getElementById('cardOverlay').classList.add('open');
-}
-function closeCardModal(){
-  clearDraftTimer();
-  document.getElementById('cardOverlay').classList.remove('open');
-  editingId=null;
-}
-
-// ── RASCUNHO AUTOMÁTICO ──
-function startDraftTimer(id,defaultDate){
-  clearDraftTimer();
-  const titleEl=document.getElementById('f-title');
-  const handler=()=>{
-    clearDraftTimer();
-    draftTimer=setTimeout(()=>autoSaveDraft(id,defaultDate),3000);
-  };
-  titleEl.addEventListener('input',handler);
-  titleEl._draftHandler=handler;
-  draftTimer=setInterval(()=>autoSaveDraft(id,defaultDate),30000);
-}
-function clearDraftTimer(){
-  if(draftTimer){clearInterval(draftTimer);clearTimeout(draftTimer);draftTimer=null}
-  const titleEl=document.getElementById('f-title');
-  if(titleEl&&titleEl._draftHandler){
-    titleEl.removeEventListener('input',titleEl._draftHandler);
-    titleEl._draftHandler=null;
-  }
-}
-function autoSaveDraft(id,defaultDate){
-  const title=document.getElementById('f-title')?.value?.trim();
-  const date=document.getElementById('f-date')?.value||defaultDate||'';
-  if(!title||!date) return;
-  const saveId=id||(editingId||('draft_'+Date.now()));
-  const data=buildCardData(true);
-  fbSet('cards',saveId,{...data,id:saveId});
-  if(!editingId) editingId=saveId;
-  showToast('📝 Rascunho salvo automaticamente','#fb923c');
-}
-function saveDraft(){
-  const title=document.getElementById('f-title').value.trim();
-  const date=document.getElementById('f-date').value;
-  if(!title){showToast('⚠️ Digite um título','#f97316');return}
-  if(!date){showToast('⚠️ Selecione uma data','#f97316');return}
-  const saveId=editingId||('draft_'+Date.now());
-  fbSet('cards',saveId,{...buildCardData(true),id:saveId});
-  showToast('📝 Rascunho salvo!','#fb923c');
-  closeCardModal();
-}
-function buildCardData(isDraft=false){
-  const platEl=document.querySelector('#platPicker .tag-pick-item.sel');
-  const catEl=document.querySelector('#catPicker .tag-pick-item.sel');
-  return {
-    title:document.getElementById('f-title').value.trim(),
-    date:document.getElementById('f-date').value,
-    platformId:platEl?.dataset.id||null,
-    categoryId:catEl?.dataset.id||null,
-    status:currentStatus,
-    description:document.getElementById('f-desc').value,
-    cta:document.getElementById('f-cta').value,
-    recurrence:currentRecur,
-    people:selectedPeople,
-    tags:selectedTags,
-    links:collectLinks(),
-    checklist:selectedChecklist,
-    draft:isDraft,
-    updatedAt:Date.now()
-  };
-}
-function saveCard(){
-  const title=document.getElementById('f-title').value.trim();
-  const date=document.getElementById('f-date').value;
-  if(!title){
-    document.getElementById('f-title').classList.add('invalid');
-    document.getElementById('err-title').classList.add('show');
-    switchTab('geral');return;
-  }
-  if(!date){showToast('⚠️ Selecione uma data','#f97316');return}
-  clearDraftTimer();
-  const id=editingId||('c_'+Date.now());
-  const data=buildCardData(false);
-  fbSet('cards',id,{...data,id});
-  if(currentRecur!=='none'&&!editingId) createRecurInstances(data,id);
-  showToast(editingId?'✅ Conteúdo atualizado!':'✅ Conteúdo criado!');
-  closeCardModal();
-}
-function createRecurInstances(base,baseId){
-  const intervals={weekly:7,biweekly:14};
-  let d=new Date(base.date+'T12:00:00');
-  for(let i=1;i<=11;i++){
-    if(base.recurrence==='monthly') d=new Date(d.getFullYear(),d.getMonth()+1,d.getDate());
-    else d.setDate(d.getDate()+intervals[base.recurrence]);
-    if(d.getFullYear()>currentYear+1) break;
-    const rid='c_'+Date.now()+'_r'+i;
-    fbSet('cards',rid,{...base,id:rid,date:d.toISOString().split('T')[0],isRecur:true,parentId:baseId,draft:false});
-  }
-}
-function deleteCard(){
-  if(!editingId||!confirm('Excluir este conteúdo?')) return;
-  fbDel('cards',editingId);
-  showToast('🗑️ Conteúdo excluído');closeCardModal();
-}
-function duplicateCard(){
-  if(!editingId) return;
-  const c=cards.find(x=>x.id===editingId);if(!c) return;
-  const newId='c_'+Date.now();
-  fbSet('cards',newId,{...c,id:newId,title:c.title+' (cópia)',draft:false});
-  showToast('⧉ Duplicado!');closeCardModal();
-}
-
-// ── TABS ──
-function switchTab(t){
-  const tabs=['geral','checklist','links','comentarios'];
-  document.querySelectorAll('.modal-tab').forEach((b,i)=>b.classList.toggle('active',tabs[i]===t));
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+t)?.classList.add('active');
-}
-
-// ── STATUS ──
-function renderStatusSel(){
-  document.getElementById('statusSel').innerHTML=STATUS_LIST.map(s=>`
-    <div class="status-opt${currentStatus===s?' sel-'+s.toLowerCase():''}"
-      onclick="setStatus('${s}')">
-      <span class="s-dot" style="background:${STATUS_COLORS[s]}"></span>${s}
-    </div>`).join('');
-}
-function setStatus(s){currentStatus=s;renderStatusSel()}
-
-// ── PLATAFORMAS / CATEGORIAS ──
-function renderPlatPicker(sel){
-  document.getElementById('platPicker').innerHTML=platforms.sort((a,b)=>a.order-b.order).map(p=>`
-    <div class="tag-pick-item${sel===p.id?' sel':''}" data-id="${p.id}" onclick="togglePlatPick(this)">
-      ${p.emoji} ${p.name}
-    </div>`).join('');
-}
-function togglePlatPick(el){
-  document.querySelectorAll('#platPicker .tag-pick-item').forEach(x=>x.classList.remove('sel'));
-  el.classList.toggle('sel');
-}
-function renderCatPicker(sel){
-  document.getElementById('catPicker').innerHTML=categories.map(c=>`
-    <div class="tag-pick-item${sel===c.id?' sel':''}" data-id="${c.id}" onclick="toggleCatPick(this)">
-      ${c.emoji} ${c.name}
-    </div>`).join('');
-}
-function toggleCatPick(el){
-  document.querySelectorAll('#catPicker .tag-pick-item').forEach(x=>x.classList.remove('sel'));
-  el.classList.toggle('sel');
-}
-
-// ── RECORRÊNCIA ──
-function renderRecurOpts(){
-  document.querySelectorAll('.recur-opt').forEach(b=>b.classList.toggle('sel',b.dataset.val===currentRecur));
-}
-function setRecur(btn){currentRecur=btn.dataset.val;renderRecurOpts()}
-
-// ── TAGS ──
-function renderTagsWrap(){
-  const wrap=document.getElementById('tagsWrap');
-  wrap.querySelectorAll('.tag-chip').forEach(x=>x.remove());
-  selectedTags.forEach((t,i)=>{
-    const chip=document.createElement('div');
-    chip.className='tag-chip';
-    chip.innerHTML=`${t}<button onclick="removeTag(${i})">✕</button>`;
-    wrap.insertBefore(chip,document.getElementById('tagsInput'));
-  });
-}
-function handleTagInput(e){
-  if(e.key==='Enter'||e.key===','){
-    e.preventDefault();
-    const v=e.target.value.trim().replace(/,$/,'');
-    if(v&&!selectedTags.includes(v)){selectedTags.push(v);renderTagsWrap()}
-    e.target.value='';
-  }
-}
-function removeTag(i){selectedTags.splice(i,1);renderTagsWrap()}
-
-// ── LINKS ──
-function renderLinksList(){
-  document.getElementById('linksList').innerHTML=selectedLinks.map((l,i)=>`
-    <div class="link-row-item">
-      <input class="link-name" type="text" placeholder="Nome" value="${l.name||''}" oninput="selectedLinks[${i}].name=this.value">
-      <input type="url" placeholder="https://…" value="${l.url||''}" oninput="selectedLinks[${i}].url=this.value">
-      <button class="link-del-btn" onclick="removeLink(${i})">✕</button>
-    </div>`).join('');
-}
-function addLinkRow(){selectedLinks.push({name:'',url:''});renderLinksList()}
-function removeLink(i){selectedLinks.splice(i,1);renderLinksList()}
-function collectLinks(){return selectedLinks.filter(l=>l.url||l.name)}
-
-// ── CHECKLIST ──
-function renderClList(){
-  document.getElementById('clList').innerHTML=selectedChecklist.map((item,i)=>`
-    <div class="cl-row${item.done?' done-row':''}">
-      <div class="cl-checkbox${item.done?' on':''}" onclick="toggleCl(${i})">${item.done?'✓':''}</div>
-      <input class="cl-input" type="text" value="${item.text||''}" placeholder="Item…"
-        oninput="selectedChecklist[${i}].text=this.value">
-      <button class="cl-del-btn" onclick="delCl(${i})">✕</button>
-    </div>`).join('');
-  updateClProgress();
-}
-function addClItem(){
-  selectedChecklist.push({text:'',done:false});renderClList();
-  const inputs=document.querySelectorAll('.cl-input');
-  if(inputs.length) inputs[inputs.length-1].focus();
-}
-function toggleCl(i){selectedChecklist[i].done=!selectedChecklist[i].done;renderClList()}
-function delCl(i){selectedChecklist.splice(i,1);renderClList()}
-function updateClProgress(){
-  const total=selectedChecklist.length,done=selectedChecklist.filter(x=>x.done).length;
-  const pct=total?Math.round(done/total*100):0;
-  const fill=document.getElementById('clFill');
-  if(fill){
-    fill.style.width=pct+'%';
-    fill.style.background=pct===100?'var(--green)':pct>50?'var(--accent)':'var(--orange)';
-  }
-  const lbl=document.getElementById('clLabel');
-  if(lbl) lbl.textContent=`${done} / ${total}`;
-}
-
-// ── PEOPLE ──
-function renderPeopleDropdown(){
-  document.getElementById('peopleList').innerHTML=people.length?people.map(p=>`
-    <div class="people-opt${selectedPeople.includes(p.id)?' selected':''}" onclick="togglePersonSel('${p.id}')">
-      <span class="people-opt-avatar" style="background:${getAvatarColor(p.name)}">${initials(p.name)}</span>
-      <span class="people-opt-name">${p.name}</span>
-      ${selectedPeople.includes(p.id)?'<span class="people-opt-check">✓</span>':''}
-    </div>`).join(''):`<div class="people-empty">Nenhum responsável cadastrado.</div>`;
-}
-function renderPeopleSelTags(){
-  const tags=document.getElementById('peopleSelTags');
-  const ph=document.getElementById('peoplePlaceholder');
-  tags.innerHTML=selectedPeople.map(pid=>{
-    const p=people.find(x=>x.id===pid);if(!p)return '';
-    return `<span class="people-sel-tag" style="background:${getAvatarColor(p.name)}22">
-      <span class="people-sel-tag-avatar" style="background:${getAvatarColor(p.name)}">${initials(p.name)}</span>
-      ${p.name}
-      <button class="people-sel-tag-remove" onclick="event.stopPropagation();togglePersonSel('${pid}')">✕</button>
-    </span>`;
-  }).join('');
-  ph.style.display=selectedPeople.length?'none':'';
-}
-function togglePersonSel(id){
-  const idx=selectedPeople.indexOf(id);
-  idx>=0?selectedPeople.splice(idx,1):selectedPeople.push(id);
-  renderPeopleDropdown();renderPeopleSelTags();
-}
-function togglePeopleDropdown(){
-  document.getElementById('peopleDropdown').classList.toggle('open');
-}
-function addPersonInline(){
-  const inp=document.getElementById('peopleAddInput');
-  const name=inp.value.trim();if(!name)return;
-  const id='p_'+Date.now();
-  fbSet('people',id,{id,name});
-  selectedPeople.push(id);inp.value='';
-}
-document.addEventListener('click',e=>{
-  const pp=document.getElementById('peoplePicker');
-  if(pp&&!pp.contains(e.target)) document.getElementById('peopleDropdown')?.classList.remove('open');
-});
-
-// ── COMENTÁRIOS ──
-function renderComments(c){
-  const area=document.getElementById('commentsArea');
-  if(!c){area.innerHTML='';return}
-  area.innerHTML=(c.comments||[]).map((cm,i)=>`
-    <div class="comment-item">
-      <div class="comment-header">
-        <span class="comment-author">${cm.author||'Anônimo'}</span>
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="comment-time">${formatCommentTime(cm.ts)}</span>
-          <button class="comment-del" onclick="deleteComment(${i})">✕</button>
-        </div>
-      </div>
-      <div class="comment-text">${cm.text}</div>
-    </div>`).join('');
-}
-function addComment(){
-  if(!editingId){showToast('Salve o card primeiro!','#f97316');return}
-  const input=document.getElementById('commentInput');
-  const text=input.value.trim();if(!text)return;
-  const c=cards.find(x=>x.id===editingId);if(!c)return;
-  fbSet('cards',editingId,{...c,comments:[...(c.comments||[]),{text,author:'Eu',ts:Date.now()}]});
-  input.value='';
-}
-function deleteComment(i){
-  if(!editingId)return;
-  const c=cards.find(x=>x.id===editingId);if(!c)return;
-  const comments=[...(c.comments||[])];
-  comments.splice(i,1);
-  fbSet('cards',editingId,{...c,comments});
-}
-function formatCommentTime(ts){
-  if(!ts)return '';
-  const d=new Date(ts);
-  return d.toLocaleDateString('pt-BR')+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-}
-
-// ══════════════════════════════════════
-// MODAL DIA
-// ══════════════════════════════════════
-function openDayModal(dateStr){
-  currentDayModal=dateStr;
-  const d=new Date(dateStr+'T12:00:00');
-  const dayCards=cards.filter(c=>c.date===dateStr);
-  document.getElementById('dayModalMonthLabel').textContent=`${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
-  document.getElementById('dayModalDateNum').textContent=d.getDate();
-  const statusCounts={};
-  dayCards.forEach(c=>{statusCounts[c.status]=(statusCounts[c.status]||0)+1});
-  document.getElementById('dayModalStats').innerHTML=Object.entries(statusCounts).map(([s,n])=>`
-    <div class="day-stat-chip">
-      <span class="day-stat-dot" style="background:${STATUS_COLORS[s]}"></span>${s}: ${n}
-    </div>`).join('');
-  const active=dayCards.filter(c=>c.status!=='Publicado');
-  const done=dayCards.filter(c=>c.status==='Publicado');
-  let html='';
-  if(active.length) html+=`<div class="priority-section-label">Ativos <span></span></div><div class="day-cards-list">${active.map(c=>buildDayCardRow(c)).join('')}</div>`;
-  if(done.length) html+=`<div class="done-section-label">Publicados <span></span></div><div class="day-cards-list">${done.map(c=>buildDayCardRow(c)).join('')}</div>`;
-  if(!dayCards.length) html=`<div class="day-modal-empty"><div class="day-modal-empty-icon">📭</div><p>Nenhum conteúdo para este dia.</p></div>`;
-  document.getElementById('dayCardsList').innerHTML=html;
-  document.getElementById('dayOverlay').classList.add('open');
-}
-function closeDayModal(){document.getElementById('dayOverlay').classList.remove('open')}
-function buildDayCardRow(c){
-  const cat=categories.find(x=>x.id===c.categoryId);
-  const plat=platforms.find(x=>x.id===c.platformId);
-  const color=c.colorOverride||(cat?.color||'#6c63ff');
-  const cl=c.checklist||[];
-  const done=cl.filter(x=>x.done).length;
-  const isDraft=c.draft===true;
-  const avatarHtml=(c.people||[]).slice(0,3).map(pid=>{
-    const p=people.find(x=>x.id===pid);
-    return p?`<span class="day-card-avatar" style="background:${getAvatarColor(p.name)}">${initials(p.name)}</span>`:'';
-  }).join('');
-  return `<div class="day-card-row${c.status==='Publicado'?' is-done':''}" style="border-left-color:${color}">
-    <span class="day-card-drag-handle">⠿</span>
-    <div class="day-card-info" onclick="closeDayModal();openDetailModal('${c.id}')">
-      <div class="day-card-title">${plat?plat.emoji+' ':''} ${c.title||'Sem título'}${isDraft?' <span class="draft-badge">✏️ rascunho</span>':''}</div>
-      <div class="day-card-meta">
-        ${cat?`<span class="day-card-badge">${cat.emoji} ${cat.name}</span>`:''}
-        <span class="day-card-status" style="background:${STATUS_COLORS[c.status]||'#6b7399'}22;color:${STATUS_COLORS[c.status]||'#6b7399'}">${c.status||''}</span>
-        ${cl.length?`<span class="day-card-cl">
-          <span class="day-card-cl-bar"><span class="day-card-cl-fill" style="width:${Math.round(done/cl.length*100)}%;background:${color}"></span></span>
-          ${done}/${cl.length}
-        </span>`:''}
-      </div>
-    </div>
-    <div class="day-card-right"><div class="day-card-avatars">${avatarHtml}</div></div>
-  </div>`;
-}
-
-// ══════════════════════════════════════
-// MODAL DETALHE
-// ══════════════════════════════════════
-function openDetailModal(id){
-  currentDetailId=id;
-  const c=cards.find(x=>x.id===id);if(!c)return;
-  const cat=categories.find(x=>x.id===c.categoryId);
-  const plat=platforms.find(x=>x.id===c.platformId);
-  const color=c.colorOverride||(cat?.color||'#6c63ff');
-  document.getElementById('detailTitle').textContent=(plat?plat.emoji+' ':'')+(cat?cat.emoji+' ':'')+c.title;
-  document.getElementById('detailStatusOpts').innerHTML=STATUS_LIST.map(s=>`
-    <div class="ds-opt${c.status===s?' ds-active':''}" data-val="${s}" onclick="setDetailStatus('${id}','${s}')">
-      <span class="s-dot" style="background:${STATUS_COLORS[s]}"></span>${s}
-    </div>`).join('');
-  const cl=c.checklist||[];
-  const doneCl=cl.filter(x=>x.done).length;
-  let body='';
-  if(c.draft) body+=`<div style="display:flex;align-items:center;gap:8px;background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.82rem;color:#fb923c;font-weight:700">✏️ Este conteúdo é um RASCUNHO. Clique em Editar para finalizar.</div>`;
-  body+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:14px">
-    <div style="background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:10px 12px">
-      <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Data</div>
-      <div style="font-weight:700">${formatDate(c.date)}</div>
-    </div>
-    ${plat?`<div style="background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:10px 12px">
-      <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Plataforma</div>
-      <div style="font-weight:700">${plat.emoji} ${plat.name}</div>
-    </div>`:''}
-    ${cat?`<div style="background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:10px 12px">
-      <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Categoria</div>
-      <div style="font-weight:700">${cat.emoji} ${cat.name}</div>
-    </div>`:''}
-  </div>`;
-  if(c.description) body+=`<div style="margin-bottom:14px"><div class="content-section-title">Descrição</div><div style="font-size:.88rem;line-height:1.65;color:var(--muted)">${c.description}</div></div>`;
-  if(c.cta) body+=`<div style="margin-bottom:14px"><div class="content-section-title">CTA</div><div style="font-size:.88rem;font-weight:700;color:var(--accent2)">${c.cta}</div></div>`;
-  if((c.people||[]).length){
-    const names=(c.people||[]).map(pid=>{
-      const p=people.find(x=>x.id===pid);
-      return p?`<span style="display:inline-flex;align-items:center;gap:5px;background:var(--s2);border:1px solid var(--border);padding:3px 9px;border-radius:20px;font-size:.75rem;font-weight:700">
-        <span style="width:18px;height:18px;border-radius:50%;background:${getAvatarColor(p.name)};color:#fff;font-size:.5rem;display:flex;align-items:center;justify-content:center">${initials(p.name)}</span>
-        ${p.name}</span>`:'';
-    }).join('');
-    body+=`<div style="margin-bottom:14px"><div class="content-section-title">Responsáveis</div><div style="display:flex;flex-wrap:wrap;gap:6px">${names}</div></div>`;
-  }
-  if(cl.length){
-    body+=`<div style="margin-bottom:14px"><div class="content-section-title">Checklist (${doneCl}/${cl.length})</div>
-      <div style="background:var(--s2);border-radius:10px;padding:8px;margin-bottom:8px">
-        <div style="height:6px;background:var(--s3);border-radius:3px;overflow:hidden">
-          <div style="width:${Math.round(doneCl/cl.length*100)}%;height:100%;background:${doneCl===cl.length?'var(--green)':'var(--accent)'};border-radius:3px"></div>
-        </div>
-        <div style="font-size:.65rem;color:var(--muted);margin-top:4px">${Math.round(doneCl/cl.length*100)}% concluído</div>
-      </div>
-      <div class="detail-cl-list">${cl.map((item,i)=>`
-        <div class="detail-cl-row">
-          <div class="detail-cl-check${item.done?' on':''}" onclick="toggleDetailCl('${id}',${i})">${item.done?'✓':''}</div>
-          <span class="detail-cl-text${item.done?' done':''}">${item.text}</span>
-          <button class="detail-cl-del" onclick="deleteDetailCl('${id}',${i})">✕</button>
-        </div>`).join('')}
-      </div></div>`;
-  }
-  if((c.links||[]).length){
-    body+=`<div style="margin-bottom:14px"><div class="content-section-title">Links</div>${(c.links||[]).map(l=>`
-      <a href="${l.url}" target="_blank" style="display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:9px 12px;text-decoration:none;color:var(--accent2);margin-bottom:6px;font-size:.83rem;font-weight:600">
-        🔗 ${l.name||l.url}
-      </a>`).join('')}</div>`;
-  }
-  if((c.tags||[]).length){
-    body+=`<div style="margin-bottom:14px"><div class="content-section-title">Tags</div><div style="display:flex;flex-wrap:wrap;gap:5px">${(c.tags||[]).map(t=>`<span class="tag-chip">${t}</span>`).join('')}</div></div>`;
-  }
-  document.getElementById('detailBody').innerHTML=body;
-  document.getElementById('detailOverlay').classList.add('open');
-}
-function closeDetailModal(){document.getElementById('detailOverlay').classList.remove('open')}
-function setDetailStatus(id,status){
-  const c=cards.find(x=>x.id===id);if(!c)return;
-  fbSet('cards',id,{...c,status,draft:false});
-  showToast('✅ Status atualizado!');closeDetailModal();
-}
-function toggleDetailCl(id,i){
-  const c=cards.find(x=>x.id===id);if(!c)return;
-  const cl=[...(c.checklist||[])];cl[i]={...cl[i],done:!cl[i].done};
-  fbSet('cards',id,{...c,checklist:cl});openDetailModal(id);
-}
-function deleteDetailCl(id,i){
-  const c=cards.find(x=>x.id===id);if(!c)return;
-  const cl=[...(c.checklist||[])];cl.splice(i,1);
-  fbSet('cards',id,{...c,checklist:cl});openDetailModal(id);
-}
-function editFromDetail(){closeDetailModal();openCardModal(currentDetailId)}
-function dupFromDetail(){
-  const c=cards.find(x=>x.id===currentDetailId);if(!c)return;
-  const newId='c_'+Date.now();
-  fbSet('cards',newId,{...c,id:newId,title:c.title+' (cópia)',draft:false});
-  showToast('⧉ Duplicado!');closeDetailModal();
-}
-
-// ══════════════════════════════════════
-// MODAL CATEGORIAS
-// ══════════════════════════════════════
-function openCatModal(id){
-  currentCatId=id||null;
-  const c=id?categories.find(x=>x.id===id):null;
-  document.getElementById('catModalTitle').textContent=id?'Editar Categoria':'Nova Categoria';
-  document.getElementById('catDelBtn').style.display=id?'':'none';
-  document.getElementById('cat-name-input').value=c?.name||'';
-  currentCatColor=c?.color||'#6c63ff';
-  currentCatEmoji=c?.emoji||'📌';
-  document.getElementById('catEmojiPreviewBig').textContent=currentCatEmoji;
-  document.getElementById('catColorBar').style.background=currentCatColor;
-  renderCatPresetColors();renderCatEmojiGrid('');
-  document.getElementById('catOverlay').classList.add('open');
-}
-function closeCatModal(){document.getElementById('catOverlay').classList.remove('open')}
-function renderCatPresetColors(){
-  document.getElementById('catPresetGrid').innerHTML=PRESET_COLORS.map(c=>`
-    <div class="pdot${currentCatColor===c?' sel':''}" style="background:${c}" onclick="setCatColor('${c}')"></div>`).join('');
-}
-function setCatColor(c){currentCatColor=c;document.getElementById('catColorBar').style.background=c;renderCatPresetColors()}
-function setCatCustomColor(c){currentCatColor=c;document.getElementById('catColorBar').style.background=c;renderCatPresetColors()}
-function renderCatEmojiGrid(filter){
-  document.getElementById('catEmojiGrid').innerHTML=ALL_EMOJIS
-    .filter(e=>!filter||e.includes(filter))
-    .map(e=>`<button class="emoji-btn${currentCatEmoji===e?' sel':''}" onclick="setCatEmoji('${e}')">${e}</button>`).join('');
-}
-function filterCatEmojis(v){renderCatEmojiGrid(v)}
-function setCatEmoji(e){currentCatEmoji=e;document.getElementById('catEmojiPreviewBig').textContent=e;renderCatEmojiGrid('')}
-function saveCat(){
-  const name=document.getElementById('cat-name-input').value.trim();
-  if(!name){showToast('⚠️ Preencha o nome','#f97316');return}
-  const id=currentCatId||('cat_'+Date.now());
-  fbSet('categories',id,{id,name,color:currentCatColor,emoji:currentCatEmoji});
-  showToast(currentCatId?'✅ Categoria atualizada!':'✅ Categoria criada!');closeCatModal();
-}
-function deleteCat(){
-  if(!currentCatId||!confirm('Excluir esta categoria?'))return;
-  fbDel('categories',currentCatId);showToast('🗑️ Excluída');closeCatModal();
-}
-
-// ══════════════════════════════════════
-// EXPORT EXCEL
-// ══════════════════════════════════════
-function exportMonthExcel(m){
-  const monthCards=cards.filter(c=>{
-    const d=new Date(c.date+'T12:00:00');
-    return d.getFullYear()===currentYear&&d.getMonth()===m;
-  });
-  let csv='Data,Título,Plataforma,Categoria,Status,CTA,Responsáveis,Tags\n';
-  monthCards.forEach(c=>{
-    const plat=platforms.find(x=>x.id===c.platformId)?.name||'';
-    const cat=categories.find(x=>x.id===c.categoryId)?.name||'';
-    const resp=(c.people||[]).map(pid=>people.find(x=>x.id===pid)?.name||'').join('; ');
-    csv+=`"${c.date}","${(c.title||'').replace(/"/g,'""')}","${plat}","${cat}","${c.status||''}","${(c.cta||'').replace(/"/g,'""')}","${resp}","${(c.tags||[]).join('; ')}"\n`;
-  });
-  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download=`conteudo_${MONTHS[m]}_${currentYear}.csv`;a.click();
-  showToast('📊 Exportado!');
-}
-
-// ══════════════════════════════════════
-// TODAY
-// ══════════════════════════════════════
-function goToday(){
-  const today=new Date();
-  currentYear=today.getFullYear();
-  document.getElementById('sidebarYear').textContent=currentYear;
-  document.getElementById('topbarYear').textContent=currentYear;
-  renderCalendar();
-  setTimeout(()=>{
-    document.getElementById('month-'+today.getMonth())?.scrollIntoView({behavior:'smooth'});
-    setTimeout(()=>{
-      const el=document.querySelector(`[data-date="${today.toISOString().split('T')[0]}"]`);
-      if(el) el.classList.add('highlight-pulse');
-    },400);
-  },100);
-}
-
-// ══════════════════════════════════════
-// DASHBOARD
-// ══════════════════════════════════════
-function renderDash(){
-  const el=document.getElementById('dashContent');
-  if(!el) return;
-  el.innerHTML=buildDashHTML();
-  setTimeout(()=>{
-    renderDashCharts();
-    renderDashMetricsPanel();
-    renderGoalsSection();
-  },50);
-}
-
-function buildDashHTML(){
-  const yearCards=cards.filter(c=>{
-    const d=new Date(c.date+'T12:00:00');
-    return d.getFullYear()===(dashYear||currentYear)&&!isNaN(d);
-  });
-  const monthsHtml=MONTHS_SHORT.map((m,i)=>`
-    <button class="month-tab-btn${dashActiveMonthIdx===i?' active':''}" onclick="switchDashMonth(${i})">${m}</button>`).join('');
-  return `
-  <div class="dash-topbar">
-    <h2>📊 Dashboard</h2>
-    <div class="dash-controls">
-      <select class="dash-year-sel" onchange="dashYear=+this.value;renderDash()">
-        ${[currentYear-1,currentYear,currentYear+1].map(y=>`<option${y===dashYear?' selected':''}>${y}</option>`).join('')}
-      </select>
-      <div class="dash-platform-tabs">
-        <button class="dash-plat-tab${dashPlatform==='ig'?' active-ig':''}" onclick="dashPlatform='ig';renderDash()">📸 Instagram</button>
-        <button class="dash-plat-tab${dashPlatform==='yt'?' active-yt':''}" onclick="dashPlatform='yt';renderDash()">🎬 YouTube</button>
-      </div>
-    </div>
-  </div>
-  <div class="dash-section">
-    <div class="dash-section-title">Visão Geral</div>
-    <div class="kpi-row">
-      <div class="kpi-card" style="--kpi-color:#6c63ff"><div class="kpi-icon">📝</div><div class="kpi-label">Total</div><div class="kpi-value">${yearCards.length}</div></div>
-      <div class="kpi-card" style="--kpi-color:#4ade80"><div class="kpi-icon">✅</div><div class="kpi-label">Publicados</div><div class="kpi-value">${yearCards.filter(c=>c.status==='Publicado').length}</div></div>
-      <div class="kpi-card" style="--kpi-color:#38bdf8"><div class="kpi-icon">⚙️</div><div class="kpi-label">Produção</div><div class="kpi-value">${yearCards.filter(c=>c.status==='Produção').length}</div></div>
-      <div class="kpi-card" style="--kpi-color:#f97316"><div class="kpi-icon">📌</div><div class="kpi-label">Pendentes</div><div class="kpi-value">${yearCards.filter(c=>c.status==='Pendente').length}</div></div>
-      <div class="kpi-card" style="--kpi-color:#fb923c"><div class="kpi-icon">✏️</div><div class="kpi-label">Rascunhos</div><div class="kpi-value">${yearCards.filter(c=>c.draft===true).length}</div></div>
-    </div>
-  </div>
-  <div class="dash-section">
-    <div class="dash-section-title">Análises</div>
-    <div class="charts-2col">
-      <div class="chart-card"><div class="chart-card-title">📅 Publicações por Mês</div><div class="chart-wrap"><canvas id="chartMonthly"></canvas></div></div>
-      <div class="chart-card"><div class="chart-card-title">🎯 Status dos Conteúdos</div><div class="chart-wrap"><canvas id="chartStatus"></canvas></div></div>
-    </div>
-  </div>
-  <div class="dash-section">
-    <div class="dash-section-title">🏆 Metas do Semestre</div>
-    <div id="goalsSectionContent"></div>
-  </div>
-  <div class="dash-section">
-    <div class="dash-section-title">📈 Métricas Mensais — ${dashPlatform==='ig'?'📸 Instagram':'🎬 YouTube'}</div>
-    <div class="month-tabs-row">${monthsHtml}</div>
-    <div id="dashMetricsPanel"></div>
-    <div style="display:flex;justify-content:flex-end;margin-top:12px">
-      <button class="dash-save-btn" onclick="saveAllMetrics()">💾 Salvar Métricas</button>
-    </div>
-  </div>`;
-}
-
-function switchDashMonth(i){
-  dashActiveMonthIdx=i;
-  renderDash();
-}
-
-function renderDashCharts(){
-  const yearCards=cards.filter(c=>{
-    const d=new Date(c.date+'T12:00:00');
-    return d.getFullYear()===(dashYear||currentYear)&&!isNaN(d);
-  });
-  const monthlyCounts=Array(12).fill(0);
-  yearCards.filter(c=>c.status==='Publicado').forEach(c=>{
-    monthlyCounts[new Date(c.date+'T12:00:00').getMonth()]++;
-  });
-  if(chartInstances.monthly) chartInstances.monthly.destroy();
-  const ctxM=document.getElementById('chartMonthly');
-  if(ctxM) chartInstances.monthly=new Chart(ctxM,{
-    type:'bar',
-    data:{labels:MONTHS_SHORT,datasets:[{label:'Publicados',data:monthlyCounts,backgroundColor:'#6c63ffcc',borderRadius:6,borderSkipped:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#6b7399'},grid:{display:false}},y:{ticks:{color:'#6b7399',stepSize:1},grid:{color:'#2e3350'}}}}
-  });
-  const statusCounts={};STATUS_LIST.forEach(s=>statusCounts[s]=0);
-  yearCards.forEach(c=>{if(c.status)statusCounts[c.status]++});
-  if(chartInstances.status) chartInstances.status.destroy();
-  const ctxS=document.getElementById('chartStatus');
-  if(ctxS) chartInstances.status=new Chart(ctxS,{
-    type:'doughnut',
-    data:{labels:STATUS_LIST,datasets:[{data:STATUS_LIST.map(s=>statusCounts[s]),backgroundColor:STATUS_LIST.map(s=>STATUS_COLORS[s]+'cc'),borderColor:STATUS_LIST.map(s=>STATUS_COLORS[s]),borderWidth:2,hoverOffset:8}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#e2e4f2',font:{size:11},padding:12}}}}
-  });
-}
-
-function renderDashMetricsPanel(){
-  const el=document.getElementById('dashMetricsPanel');if(!el)return;
-  const m=dashActiveMonthIdx;
-  const key=`${dashPlatform}_${dashYear}_${m}`;
-  const d=metrics[key]||{};
-  const fields=dashPlatform==='ig'
-    ?[['seg','👥 Seguidores'],['alcance','👁️ Alcance'],['impressoes','📣 Impressões'],['interacoes','❤️ Interações'],['visitas_perfil','🏠 Visitas Perfil'],['novos_seguidores','📈 Novos Seguidor.'],['stories','📖 Stories'],['reels','🎬 Reels'],['posts','🖼️ Posts']]
-    :[['seg','👥 Inscritos'],['views','▶️ Visualizações'],['watch_time','⏱️ Tempo Assistido (h)'],['videos','🎬 Vídeos Postados'],['shorts','📱 Shorts Postados'],['impressoes','📣 Impressões'],['ctr','🎯 CTR (%)'],['novos_seg','📈 Novos Inscrit.']];
-  el.innerHTML=`<div class="metrics-input-panel">
-    <div class="metrics-header-row">
-      <div><div class="metrics-month-title">${MONTHS[m]}</div><div class="metrics-month-sub">Métricas do ${dashPlatform==='ig'?'Instagram':'YouTube'}</div></div>
-    </div>
-    <div class="metrics-grid">
-      ${fields.map(([k,l])=>`
-        <div class="metric-field">
-          <label>${l}</label>
-          <input type="number" id="met_${k}" placeholder="0" value="${d[k]||''}">
-        </div>`).join('')}
-    </div>
-  </div>`;
-}
-
-function saveAllMetrics(){
-  const m=dashActiveMonthIdx;
-  const key=`${dashPlatform}_${dashYear}_${m}`;
-  const fields=dashPlatform==='ig'
-    ?['seg','alcance','impressoes','interacoes','visitas_perfil','novos_seguidores','stories','reels','posts']
-    :['seg','views','watch_time','videos','shorts','impressoes','ctr','novos_seg'];
-  const data={};
-  fields.forEach(k=>{const el=document.getElementById('met_'+k);if(el)data[k]=parseInt(el.value)||0});
-  fbSet('metrics',key,data);showToast('💾 Métricas salvas!');
-}
-
-// ══════════════════════════════════════
-// METAS DO SEMESTRE
-// ══════════════════════════════════════
-function renderGoalsSection(){
-  const el=document.getElementById('goalsSectionContent');if(!el)return;
-  const tabsHtml=`<div class="goals-platform-tabs">
-    <button class="goals-plat-tab${goalsPlatform==='ig'?' active-ig':''}" onclick="goalsPlatform='ig';renderGoalsSection()">📸 Instagram</button>
-    <button class="goals-plat-tab${goalsPlatform==='yt'?' active-yt':''}" onclick="goalsPlatform='yt';renderGoalsSection()">🎬 YouTube</button>
-  </div>`;
-  el.innerHTML=tabsHtml+(goalsPlatform==='ig'?buildIgGoals():buildYtGoals());
-  renderGoalsCharts();
-}
-
-function buildIgGoals(){
-  return ['s1','s2'].map((sem,si)=>{
-    const data=semGoals[`ig_${sem}_${dashYear}`]||{};
-    const months=si===0?['jan','fev','mar','abr','mai','jun']:['jul','ago','set','out','nov','dez'];
-    const semLabel=si===0?'1º':'2º';
-    return `<div class="goal-sem-card">
-      <div class="goal-sem-header">
-        <div>
-          <div class="goal-sem-title">📸 Instagram — ${semLabel} Semestre ${dashYear}</div>
-          <div class="goal-sem-subtitle">Meta de seguidores + acompanhamento mensal</div>
-        </div>
-        <button class="dash-save-btn" onclick="saveGoals('ig','${sem}')">💾 Salvar</button>
-      </div>
-      <div class="goal-inputs-row">
-        <div class="goal-input-item"><label>🎯 Meta Seguidores (semestre)</label><input type="number" id="ig_${sem}_meta_seg" placeholder="Ex: 10000" value="${data.meta_seg||''}"></div>
-        <div class="goal-input-item"><label>📊 Seguidores Atuais (início)</label><input type="number" id="ig_${sem}_seg_atual" placeholder="Ex: 5000" value="${data.seg_atual||''}"></div>
-      </div>
-      <div class="goal-progress-section">
-        <div class="goal-progress-title">Seguidores por Mês</div>
-        <div class="goal-month-inputs">
-          ${months.map(m=>`<div class="goal-month-field"><label>${m.toUpperCase()}</label><input type="number" id="ig_${sem}_seg_${m}" placeholder="0" value="${data['seg_'+m]||''}"></div>`).join('')}
-        </div>
-        <div class="goal-month-chart-wrap">
-          <div class="goal-month-chart-title">📈 Crescimento de Seguidores — ${semLabel} Semestre</div>
-          <div class="goal-chart-container"><canvas id="chartIgSeg${sem}"></canvas></div>
-        </div>
-        ${buildGoalsTable('ig',sem,months,data,'seg')}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function buildYtGoals(){
-  return ['s1','s2'].map((sem,si)=>{
-    const data=semGoals[`yt_${sem}_${dashYear}`]||{};
-    const months=si===0?['jan','fev','mar','abr','mai','jun']:['jul','ago','set','out','nov','dez'];
-    const semLabel=si===0?'1º':'2º';
-    return `<div class="goal-sem-card">
-      <div class="goal-sem-header">
-        <div>
-          <div class="goal-sem-title">🎬 YouTube — ${semLabel} Semestre ${dashYear}</div>
-          <div class="goal-sem-subtitle">Metas de seguidores, vídeos e shorts</div>
-        </div>
-        <button class="dash-save-btn" onclick="saveGoals('yt','${sem}')">💾 Salvar</button>
-      </div>
-      <div class="goal-inputs-row">
-        <div class="goal-input-item"><label>🎯 Meta Seguidores (semestre)</label><input type="number" id="yt_${sem}_meta_seg" placeholder="Ex: 5000" value="${data.meta_seg||''}"></div>
-        <div class="goal-input-item"><label>📊 Seguidores Atuais (início)</label><input type="number" id="yt_${sem}_seg_atual" placeholder="Ex: 2000" value="${data.seg_atual||''}"></div>
-        <div class="goal-input-item"><label>🎬 Meta Vídeos (semestre)</label><input type="number" id="yt_${sem}_meta_vid" placeholder="Ex: 12" value="${data.meta_vid||''}"></div>
-        <div class="goal-input-item"><label>📱 Meta Shorts (semestre)</label><input type="number" id="yt_${sem}_meta_shorts" placeholder="Ex: 24" value="${data.meta_shorts||''}"></div>
-      </div>
-      ${['seg','vid','shorts'].map(metric=>{
-        const labels={seg:'Seguidores por Mês',vid:'Vídeos Postados por Mês',shorts:'Shorts Postados por Mês'};
-        const chartLabels={seg:'📈 Crescimento de Seguidores',vid:'🎬 Vídeos Postados',shorts:'📱 Shorts Postados'};
-        return `<div class="goal-progress-section" style="margin-top:${metric==='seg'?'0':'20px'}px">
-          <div class="goal-progress-title">${labels[metric]}</div>
-          <div class="goal-month-inputs">
-            ${months.map(m=>`<div class="goal-month-field"><label>${m.toUpperCase()}</label><input type="number" id="yt_${sem}_${metric}_${m}" placeholder="0" value="${data[metric+'_'+m]||''}"></div>`).join('')}
-          </div>
-          <div class="goal-month-chart-wrap">
-            <div class="goal-month-chart-title">${chartLabels[metric]} — ${semLabel} Semestre</div>
-            <div class="goal-chart-container"><canvas id="chartYt${metric.charAt(0).toUpperCase()+metric.slice(1)}${sem}"></canvas></div>
-          </div>
-          ${buildGoalsTable('yt',sem,months,data,metric)}
-        </div>`;
-      }).join('')}
-    </div>`;
-  }).join('');
-}
-
-function buildGoalsTable(plat,sem,months,data,metric){
-  const metaKey=`meta_${metric}`;
-  const metaTotal=parseInt(data[metaKey])||0;
-  const metaMensal=metaTotal>0?Math.ceil(metaTotal/6):0;
-  const monthValues=months.map(m=>parseInt(data[`${metric}_${m}`])||0);
-  const totalRealizado=monthValues.reduce((a,b)=>a+b,0);
-  return `<div style="overflow-x:auto;margin-top:16px">
-    <table class="goal-progress-table">
-      <thead><tr><th>Mês</th><th>Realizado</th><th>Meta Mês</th><th>Status</th><th>Progresso</th></tr></thead>
-      <tbody>
-        ${months.map((m,i)=>{
-          const val=monthValues[i];
-          const pct=metaMensal>0?Math.min(Math.round(val/metaMensal*100),100):0;
-          const s=val===0?'neutral':pct>=100?'ok':pct>=60?'warn':'bad';
-          const lbl=val===0?'—':pct>=100?'✅ Meta atingida':pct>=60?'⚠️ Parcial':'❌ Abaixo';
-          return `<tr>
-            <td>${m.toUpperCase()}</td>
-            <td style="color:var(--accent);font-weight:800">${val.toLocaleString('pt-BR')}</td>
-            <td style="color:var(--muted)">${metaMensal>0?metaMensal.toLocaleString('pt-BR'):'—'}</td>
-            <td><span class="gpt-status ${s}">${lbl}</span></td>
-            <td>${metaMensal>0?`<div>${pct}%</div><div class="gpt-mini-bar"><div class="gpt-mini-fill" style="width:${pct}%;background:${pct>=100?'var(--green)':pct>=60?'var(--orange)':'var(--red)'}"></div></div>`:'—'}</td>
-          </tr>`;
-        }).join('')}
-        <tr style="background:var(--s4)">
-          <td style="font-weight:800">TOTAL</td>
-          <td style="font-weight:800;color:var(--accent)">${totalRealizado.toLocaleString('pt-BR')}</td>
-          <td style="color:var(--muted)">${metaTotal>0?metaTotal.toLocaleString('pt-BR'):'—'}</td>
-          <td>${metaTotal>0?`<span class="gpt-status ${totalRealizado>=metaTotal?'ok':totalRealizado/metaTotal>=0.6?'warn':'bad'}">${totalRealizado>=metaTotal?'✅ Meta atingida':Math.round(totalRealizado/metaTotal*100)+'% alcançado'}</span>`:'—'}</td>
-          <td>${metaTotal>0?`<div>${Math.min(Math.round(totalRealizado/metaTotal*100),100)}%</div><div class="gpt-mini-bar"><div class="gpt-mini-fill" style="width:${Math.min(Math.round(totalRealizado/metaTotal*100),100)}%;background:${totalRealizado>=metaTotal?'var(--green)':'var(--accent)'}"></div></div>`:'—'}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>`;
-}
-
-function renderGoalsCharts(){
-  setTimeout(()=>{
-    if(goalsPlatform==='ig'){
-      ['s1','s2'].forEach((sem,si)=>{
-        const data=semGoals[`ig_${sem}_${dashYear}`]||{};
-        const months=si===0?['jan','fev','mar','abr','mai','jun']:['jul','ago','set','out','nov','dez'];
-        const vals=months.map(m=>parseInt(data[`seg_${m}`])||0);
-        const meta=parseInt(data.meta_seg)||0;
-        const metaMensal=meta>0?Math.ceil(meta/6):0;
-        const key=`igSeg${sem}`;
-        const ctx=document.getElementById(`chartIgSeg${sem}`);
-        if(!ctx) return;
-        if(chartInstances[key]) chartInstances[key].destroy();
-        chartInstances[key]=new Chart(ctx,{
-          type:'line',
-          data:{labels:months.map(m=>m.toUpperCase()),datasets:[
-            {label:'Realizado',data:vals,borderColor:'#e1306c',backgroundColor:'rgba(225,48,108,.1)',fill:true,tension:.4,pointBackgroundColor:'#e1306c',pointRadius:5},
-            ...(metaMensal>0?[{label:`Meta (${metaMensal.toLocaleString('pt-BR')}/mês)`,data:Array(6).fill(metaMensal),borderColor:'#6c63ff',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]:[])
-          ]},
-          options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#e2e4f2',font:{size:11}}}},scales:{x:{ticks:{color:'#6b7399'},grid:{display:false}},y:{ticks:{color:'#6b7399'},grid:{color:'#2e3350'}}}}
-        });
-      });
-    } else {
-      ['s1','s2'].forEach((sem,si)=>{
-        const data=semGoals[`yt_${sem}_${dashYear}`]||{};
-        const months=si===0?['jan','fev','mar','abr','mai','jun']:['jul','ago','set','out','nov','dez'];
-        const labels=months.map(m=>m.toUpperCase());
-        [['Seg','seg','#ff0000','line'],['Vid','vid','#ff6b6b','bar'],['Shorts','shorts','#ffa500','bar']].forEach(([name,metric,color,type])=>{
-          const vals=months.map(m=>parseInt(data[`${metric}_${m}`])||0);
-          const metaTotal=parseInt(data[`meta_${metric}`])||0;
-          const metaMensal=metaTotal>0?Math.ceil(metaTotal/6):0;
-          const key=`chartYt${name}${sem}`;
-          const ctx=document.getElementById(key);if(!ctx)return;
-          if(chartInstances[key]) chartInstances[key].destroy();
-          chartInstances[key]=new Chart(ctx,{
-            type,
-            data:{labels,datasets:[
-              {label:name,data:vals,borderColor:color,backgroundColor:type==='line'?color+'22':color+'cc',fill:type==='line',tension:.4,pointRadius:type==='line'?5:0,borderRadius:type==='bar'?6:0,borderSkipped:false},
-              ...(metaMensal>0?[{label:`Meta (${metaMensal.toLocaleString('pt-BR')}/mês)`,data:Array(6).fill(metaMensal),type:'line',borderColor:'#6c63ff',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false}]:[])
-            ]},
-            options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#e2e4f2',font:{size:11}}}},scales:{x:{ticks:{color:'#6b7399'},grid:{display:false}},y:{ticks:{color:'#6b7399'},grid:{color:'#2e3350'}}}}
-          });
-        });
-      });
-    }
-  },150);
-}
-
-function saveGoals(plat,sem){
-  const key=`${plat}_${sem}_${dashYear}`;
-  const data={};
-  const baseKeys=plat==='ig'?['meta_seg','seg_atual']:['meta_seg','seg_atual','meta_vid','meta_shorts'];
-  const months=sem==='s1'?['jan','fev','mar','abr','mai','jun']:['jul','ago','set','out','nov','dez'];
-  const subMetrics=plat==='ig'?['seg']:['seg','vid','shorts'];
-  baseKeys.forEach(k=>{const el=document.getElementById(`${plat}_${sem}_${k}`);if(el)data[k]=parseInt(el.value)||0});
-  subMetrics.forEach(metric=>{
-    months.forEach(m=>{const el=document.getElementById(`${plat}_${sem}_${metric}_${m}`);if(el)data[`${metric}_${m}`]=parseInt(el.value)||0});
-  });
-  fbSet('semgoals',key,data);
-  showToast('💾 Metas salvas!');
-  setTimeout(()=>renderGoalsCharts(),300);
-}
-
-// ══════════════════════════════════════
-// PMPs
-// ══════════════════════════════════════
-function renderPmpsView(){
-  const el=document.getElementById('pmpsContent');if(!el)return;
-  el.innerHTML=`
-  <div class="pmps-header">
-    <h2>🔗 PMPs — Links de Performance</h2>
-  </div>
-  <div class="pmps-form-card">
-    <h3>➕ Adicionar / Editar PMP</h3>
-    <div class="pmps-form-grid">
-      <div class="fgrp"><label>Canal</label><select id="pmp-canal">${PMP_CANAIS.map(c=>`<option>${c}</option>`).join('')}</select></div>
-      <div class="fgrp"><label>CTA</label><select id="pmp-cta">${PMP_CTAS.map(c=>`<option>${c}</option>`).join('')}</select></div>
-      <div class="fgrp"><label>Nome do PMP</label><input type="text" id="pmp-nome" placeholder="Ex: GRA-LEX-YTB-X-BGRAO-APP-JAN26"></div>
-      <div class="fgrp"><label>Link</label><input type="url" id="pmp-link" placeholder="https://…"></div>
-      <div class="fgrp"><label>Mês</label><select id="pmp-mes">${PMP_MESES.map(m=>`<option>${m}</option>`).join('')}</select></div>
-      <div class="fgrp"><label>Cliques</label><input type="number" id="pmp-cliques" placeholder="0" min="0"></div>
-    </div>
-    <input type="hidden" id="pmp-edit-id">
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-save" onclick="savePmp()">💾 Salvar</button>
-      <button class="btn-cancel" onclick="cancelPmpEdit()">Cancelar</button>
-    </div>
-  </div>
-  <div class="pmps-filters">
-    <span class="pmps-filter-label">Canal:</span>
-    <select class="pmps-filter-sel" id="pmp-f-canal" onchange="pmpsFilterCanal=this.value;renderPmps()">
-      <option value="todos">Todos</option>${PMP_CANAIS.map(c=>`<option>${c}</option>`).join('')}
-    </select>
-    <span class="pmps-filter-label" style="margin-left:10px">CTA:</span>
-    <select class="pmps-filter-sel" id="pmp-f-cta" onchange="pmpsFilterCta=this.value;renderPmps()">
-      <option value="todos">Todos</option>${PMP_CTAS.map(c=>`<option>${c}</option>`).join('')}
-    </select>
-    <span class="pmps-filter-label" style="margin-left:10px">Mês:</span>
-    <select class="pmps-filter-sel" id="pmp-f-mes" onchange="pmpsFilterMes=this.value;renderPmps()">
-      <option value="todos">Todos</option>${PMP_MESES.map(m=>`<option>${m}</option>`).join('')}
-    </select>
-  </div>
-  <div class="pmps-table-card">
-    <h3>📋 Lista de PMPs</h3>
-    <div style="overflow-x:auto"><table class="pmps-table">
-      <thead><tr><th>Canal</th><th>CTA</th><th>Nome</th><th>Link</th><th>Mês</th><th>Cliques</th><th>Ações</th></tr></thead>
-      <tbody id="pmps-tbody"></tbody>
-    </table></div>
-  </div>
-  <div class="pmps-charts-grid">
-    <div class="pmps-chart-card"><div class="pmps-chart-title">📊 Cliques por PMP</div><div class="pmps-chart-wrap"><canvas id="pmpChartBarras"></canvas></div></div>
-    <div class="pmps-chart-card"><div class="pmps-chart-title">📈 Evolução por Canal/Mês</div><div class="pmps-chart-wrap"><canvas id="pmpChartLinha"></canvas></div></div>
-    <div class="pmps-chart-card"><div class="pmps-chart-title">🎯 Distribuição por CTA</div><div class="pmps-chart-wrap"><canvas id="pmpChartRosca"></canvas></div></div>
-  </div>`;
-  const fc=document.getElementById('pmp-f-canal');
-  const ft=document.getElementById('pmp-f-cta');
-  const fm=document.getElementById('pmp-f-mes');
-  if(fc) fc.value=pmpsFilterCanal;
-  if(ft) ft.value=pmpsFilterCta;
-  if(fm) fm.value=pmpsFilterMes;
-  renderPmps();
-}
-
-function renderPmps(){
-  const filtered=pmps.filter(p=>{
-    if(pmpsFilterCanal!=='todos'&&p.canal!==pmpsFilterCanal) return false;
-    if(pmpsFilterCta!=='todos'&&p.cta!==pmpsFilterCta) return false;
-    if(pmpsFilterMes!=='todos'&&p.mes!==pmpsFilterMes) return false;
-    return true;
-  });
-  const tbody=document.getElementById('pmps-tbody');
-  if(tbody){
-    tbody.innerHTML=filtered.length?filtered.map(p=>{
-      const canalCls=p.canal?.toLowerCase().replace(/\s/g,'')||'';
-      const ctaCls=p.cta==='Baixar o App'?'app':'plan';
-      return `<tr>
-        <td><span class="pmp-badge-canal ${canalCls}">${p.canal}</span></td>
-        <td><span class="pmp-badge-cta ${ctaCls}">${p.cta}</span></td>
-        <td><span class="pmp-nome-code" title="${p.nome}">${p.nome}</span></td>
-        <td>${p.link?`<a href="${p.link}" target="_blank" class="pmp-link-btn">🔗 abrir</a>`:'—'}</td>
-        <td style="font-weight:600">${p.mes}</td>
-        <td><span class="pmp-cliques">${(p.cliques||0).toLocaleString('pt-BR')}</span></td>
-        <td style="display:flex;gap:4px">
-          <button class="pmp-action-btn" onclick="editPmp('${p.id}')" title="Editar">✏️</button>
-          <button class="pmp-action-btn" onclick="deletePmp('${p.id}')" title="Excluir">🗑️</button>
-        </td>
-      </tr>`;
-    }).join(''):`<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--muted)">🔗 Nenhum PMP encontrado.</td></tr>`;
-  }
-  renderPmpsCharts(filtered);
-}
-
-function savePmp(){
-  const canal=document.getElementById('pmp-canal')?.value;
-  const cta=document.getElementById('pmp-cta')?.value;
-  const nome=document.getElementById('pmp-nome')?.value.trim();
-  const link=document.getElementById('pmp-link')?.value.trim();
-  const mes=document.getElementById('pmp-mes')?.value;
-  const cliques=parseInt(document.getElementById('pmp-cliques')?.value)||0;
-  const editId=document.getElementById('pmp-edit-id')?.value;
-  if(!nome){showToast('⚠️ Preencha o nome do PMP','#f97316');return}
-  const id=editId||('pmp_'+Date.now());
-  fbSet('pmps',id,{id,canal,cta,nome,link,mes,cliques});
-  showToast(editId?'✅ PMP atualizado!':'✅ PMP salvo!');
-  cancelPmpEdit();
-}
-function editPmp(id){
-  const p=pmps.find(x=>x.id===id);if(!p)return;
-  document.getElementById('pmp-canal').value=p.canal||'YouTube';
-  document.getElementById('pmp-cta').value=p.cta||'Baixar o App';
-  document.getElementById('pmp-nome').value=p.nome||'';
-  document.getElementById('pmp-link').value=p.link||'';
-  document.getElementById('pmp-mes').value=p.mes||'jan/26';
-  document.getElementById('pmp-cliques').value=p.cliques||0;
-  document.getElementById('pmp-edit-id').value=id;
-  window.scrollTo({top:0,behavior:'smooth'});
-  showToast('✏️ Editando PMP…','#a78bfa');
-}
-function cancelPmpEdit(){
-  ['pmp-nome','pmp-link','pmp-cliques','pmp-edit-id'].forEach(f=>{const el=document.getElementById(f);if(el)el.value=''});
-  ['pmp-canal','pmp-cta','pmp-mes'].forEach(f=>{const el=document.getElementById(f);if(el)el.selectedIndex=0});
-}
-function deletePmp(id){
-  if(!confirm('Excluir este PMP?'))return;
-  fbDel('pmps',id);showToast('🗑️ PMP excluído');
-}
-function renderPmpsCharts(filtered){
-  const ctxB=document.getElementById('pmpChartBarras');
-  if(ctxB){
-    if(pmpsCharts.barras) pmpsCharts.barras.destroy();
-    const top=filtered.slice(0,10);
-    pmpsCharts.barras=new Chart(ctxB,{
-      type:'bar',
-      data:{labels:top.map(p=>p.nome.length>18?p.nome.substring(0,18)+'…':p.nome),datasets:[{label:'Cliques',data:top.map(p=>p.cliques||0),backgroundColor:top.map(p=>(PMP_CANAL_COLORS[p.canal]||'#6c63ff')+'cc'),borderRadius:6,borderSkipped:false}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#6b7399',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#6b7399'},grid:{color:'#2e3350'}}}}
-    });
-  }
-  const ctxL=document.getElementById('pmpChartLinha');
-  if(ctxL){
-    if(pmpsCharts.linha) pmpsCharts.linha.destroy();
-    const canais=[...new Set(filtered.map(p=>p.canal))];
-    const meses=[...new Set(filtered.map(p=>p.mes))].sort((a,b)=>PMP_MESES.indexOf(a)-PMP_MESES.indexOf(b));
-    pmpsCharts.linha=new Chart(ctxL,{
-      type:'line',
-      data:{labels:meses,datasets:canais.map(canal=>({
-        label:canal,
-        data:meses.map(mes=>filtered.filter(p=>p.canal===canal&&p.mes===mes).reduce((a,p)=>a+(p.cliques||0),0)),
-        borderColor:PMP_CANAL_COLORS[canal]||'#6c63ff',backgroundColor:(PMP_CANAL_COLORS[canal]||'#6c63ff')+'22',
-        fill:false,tension:.4,pointRadius:4
-      }))},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#e2e4f2',font:{size:11}}}},scales:{x:{ticks:{color:'#6b7399'},grid:{display:false}},y:{ticks:{color:'#6b7399'},grid:{color:'#2e3350'}}}}
-    });
-  }
-  const ctxR=document.getElementById('pmpChartRosca');
-  if(ctxR){
-    if(pmpsCharts.rosca) pmpsCharts.rosca.destroy();
-    const ctaGroups={};PMP_CTAS.forEach(c=>ctaGroups[c]=0);
-    filtered.forEach(p=>{if(p.cta)ctaGroups[p.cta]=(ctaGroups[p.cta]||0)+(p.cliques||0)});
-    pmpsCharts.rosca=new Chart(ctxR,{
-      type:'doughnut',
-      data:{labels:PMP_CTAS,datasets:[{data:PMP_CTAS.map(c=>ctaGroups[c]||0),backgroundColor:['rgba(251,146,60,.8)','rgba(96,165,250,.8)'],borderColor:['#fb923c','#60a5fa'],borderWidth:2,hoverOffset:8}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#e2e4f2',font:{size:12},padding:16}}}}
-    });
-  }
-}
-
-// ══════════════════════════════════════
-// UTILITÁRIOS
-// ══════════════════════════════════════
-function showToast(msg,bg='#4ade80'){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.style.background=bg;
-  t.style.color=bg==='#4ade80'||bg==='var(--green)'?'#000':'#fff';
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2800);
-}
-function initials(name){return(name||'?').split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase()}
-function getAvatarColor(name){return AVATAR_COLORS[(name||'').charCodeAt(0)%AVATAR_COLORS.length]}
-function formatDate(d){
-  if(!d)return '—';
-  return new Date(d+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
-}
-
-// ── INIT ──
-document.getElementById('topbarYear').textContent=currentYear;
-document.getElementById('sidebarYear').textContent=currentYear;
-renderSidebarMonths();
-renderStatusFilters();
 </script>
-</body>
-</html>
 <script>
 // ══════════════════════════════════════
-// ESTADO GLOBAL
-// ══════════════════════════════════════
-let cards=[],categories=[],platforms=[],people=[];
-let metrics={},semGoals={},pmps=[];
-let currentYear=new Date().getFullYear();
-let activePlatFilters=new Set(),activePersonFilters=new Set(),activeStatusFilters=new Set();
-let monthStatusFilters={};
-let editingId=null,currentDayModal=null,currentDetailId=null;
-let selectedPeople=[],selectedTags=[],selectedLinks=[],selectedChecklist=[];
-let currentRecur='none',currentStatus='Pendente';
-let currentCatId=null,currentCatColor='#6c63ff',currentCatEmoji='📌';
-let currentView='calendario';
-let dashPlatform='ig',dashYear=new Date().getFullYear();
-let goalsPlatform='ig';
-let dashActiveMonthIdx=0;
-let chartInstances={},pmpsCharts={};
-let draftTimer=null;
-let pmpsFilterCanal='todos',pmpsFilterCta='todos',pmpsFilterMes='todos';
-
-const MONTHS=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-const MONTHS_SHORT=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-const WEEKDAYS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-const STATUS_LIST=['Pendente','Produção','Revisão','Aprovado','Publicado','Programado'];
-const STATUS_COLORS={Pendente:'#f97316',Produção:'#38bdf8',Revisão:'#a78bfa',Aprovado:'#4ade80',Publicado:'#6c63ff',Programado:'#0ea5e9'};
-const PRESET_COLORS=['#6c63ff','#f472b6','#fb923c','#4ade80','#38bdf8','#a78bfa','#f87171','#facc15','#34d399','#60a5fa','#e879f9','#2dd4bf'];
-const ALL_EMOJIS=['📌','📝','🎬','📸','🎯','💡','🚀','⭐','🔥','💎','🎨','🎵','📊','💼','🌟','✨','🎉','💪','🧠','❤️','🌈','🏆','💰','📱','🎤','🎥','📣','🔔','💬','🌍'];
-const AVATAR_COLORS=['#6c63ff','#f472b6','#fb923c','#4ade80','#38bdf8','#a78bfa','#f87171','#facc15'];
-const PMP_CANAIS=['YouTube','Instagram','WhatsApp','myhub','Linktree'];
-const PMP_CTAS=['Baixar o App','Planejamento Financeiro'];
-const PMP_MESES=['jan/26','fev/26','mar/26','abr/26','mai/26','jun/26','jul/26','ago/26','set/26','out/26','nov/26','dez/26'];
-const PMP_CANAL_COLORS={YouTube:'#dc2626',Instagram:'#db2777',WhatsApp:'#16a34a',myhub:'#4338ca',Linktree:'#7c3aed'};
-
-// ══════════════════════════════════════
-// FIREBASE
-// ══════════════════════════════════════
-window.addEventListener('firebaseReady',()=>{
-  setSyncDot('loading');
-  window._onSnapshot(window._col('cards'),snap=>{
-    cards=snap.docs.map(d=>({id:d.id,...d.data()}));
-    if(currentView==='calendario') renderCalendar();
-    if(currentView==='dashboard') renderDash();
-  });
-  window._onSnapshot(window._col('categories'),snap=>{
-    categories=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderSidebarCats();
-    if(currentView==='calendario') renderCalendar();
-  });
-  window._onSnapshot(window._col('platforms'),snap=>{
-    platforms=snap.docs.map(d=>({id:d.id,...d.data()}));
-    if(platforms.length===0) seedPlatforms();
-    renderPlatFilters();
-    if(currentView==='calendario') renderCalendar();
-  });
-  window._onSnapshot(window._col('people'),snap=>{
-    people=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderPersonFilters();
-    renderManagePeople();
-  });
-  window._onSnapshot(window._col('metrics'),snap=>{
-    metrics={};
-    snap.docs.forEach(d=>{metrics[d.id]=d.data()});
-    if(currentView==='dashboard') renderDash();
-  });
-  window._onSnapshot(window._col('semgoals'),snap=>{
-    semGoals={};
-    snap.docs.forEach(d=>{semGoals[d.id]=d.data()});
-    if(currentView==='dashboard') renderDash();
-  });
-  window._onSnapshot(window._col('pmps'),snap=>{
-    pmps=snap.docs.map(d=>({id:d.id,...d.data()}));
-    if(currentView==='pmps') renderPmps();
-  });
-  setSyncDot('ok');
-  setTimeout(()=>document.getElementById('loadingScreen').style.display='none',800);
-});
-
-function setSyncDot(s){
-  const d=document.getElementById('syncDot');
-  d.className='sync-dot'+(s==='ok'?' ok':s==='err'?' err':'');
-}
-async function fbSet(col,id,data){
-  try{await window._setDoc(window._doc(col,id),data);setSyncDot('ok')}
-  catch(e){setSyncDot('err');console.error(e)}
-}
-async function fbDel(col,id){
-  try{await window._deleteDoc(window._doc(col,id));setSyncDot('ok')}
-  catch(e){setSyncDot('err');console.error(e)}
-}
-function seedPlatforms(){
-  [{id:'ig',name:'Instagram',emoji:'📸',order:0},{id:'yt',name:'YouTube',emoji:'🎬',order:1},
-   {id:'wap',name:'WhatsApp',emoji:'💬',order:2},{id:'blog',name:'Blog',emoji:'📝',order:3},
-   {id:'tkt',name:'TikTok',emoji:'🎵',order:4}].forEach(p=>fbSet('platforms',p.id,p));
-}
-
-// ══════════════════════════════════════
-// NAVEGAÇÃO
-// ══════════════════════════════════════
-function showView(v){
-  currentView=v;
-  document.getElementById('mainContent').classList.toggle('hidden',v!=='calendario');
-  document.getElementById('filterBar').classList.toggle('hidden',v!=='calendario');
-  document.getElementById('dashContent').classList.toggle('active',v==='dashboard');
-  document.getElementById('pmpsContent').classList.toggle('active',v==='pmps');
-  ['navCalendario','navDashboard','navPmps'].forEach(id=>{
-    document.getElementById(id).classList.remove('active');
-  });
-  const map={calendario:'navCalendario',dashboard:'navDashboard',pmps:'navPmps'};
-  document.getElementById(map[v]).classList.add('active');
-  document.getElementById('sbMonthsLabel').style.display=v==='calendario'?'':'none';
-  document.getElementById('sidebarMonths').style.display=v==='calendario'?'':'none';
-  const titles={calendario:'📅 Calendário',dashboard:'📊 Dashboard',pmps:'🔗 PMPs'};
-  document.getElementById('topbarTitle').textContent=titles[v];
-  if(v==='dashboard') renderDash();
-  if(v==='pmps') renderPmpsView();
-  closeSidebar();
-}
-
-// ══════════════════════════════════════
-// SIDEBAR
-// ══════════════════════════════════════
-function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('sidebarOverlay').style.display=
-    document.getElementById('sidebar').classList.contains('open')?'block':'none';
-}
-function closeSidebar(){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').style.display='none';
-}
-function changeYear(d){
-  currentYear+=d;
-  document.getElementById('sidebarYear').textContent=currentYear;
-  document.getElementById('topbarYear').textContent=currentYear;
-  renderCalendar();renderSidebarMonths();
-}
-function renderSidebarMonths(){
-  document.getElementById('sidebarMonths').innerHTML=
-    MONTHS.map((m,i)=>`<a class="mlist-a" onclick="scrollToMonth(${i})">${m}</a>`).join('');
-}
-function scrollToMonth(i){
-  const el=document.getElementById('month-'+i);
-  if(el) el.scrollIntoView({behavior:'smooth'});
-  closeSidebar();
-}
-function renderSidebarCats(){
-  document.getElementById('catList').innerHTML=categories.map(c=>`
-    <div class="cat-item">
-      <span class="cat-emoji">${c.emoji||'📌'}</span>
-      <div class="cat-swatch" style="background:${c.color||'#6c63ff'}"></div>
-      <span class="cat-name">${c.name}</span>
-      <button class="cat-edit-btn" onclick="openCatModal('${c.id}')">✏️</button>
-    </div>`).join('');
-}
-
-// ══════════════════════════════════════
-// FILTROS
-// ══════════════════════════════════════
-function renderPlatFilters(){
-  document.getElementById('platFilterGroup').innerHTML=
-    platforms.sort((a,b)=>a.order-b.order).map(p=>`
-      <button class="filter-chip${activePlatFilters.has(p.id)?' active':''}" onclick="togglePlatFilter('${p.id}')">
-        ${p.emoji} ${p.name}
-      </button>`).join('');
-}
-function togglePlatFilter(id){
-  activePlatFilters.has(id)?activePlatFilters.delete(id):activePlatFilters.add(id);
-  renderPlatFilters();renderCalendar();
-}
-function renderPersonFilters(){
-  document.getElementById('personFilterGroup').innerHTML=people.map(p=>`
-    <button class="filter-chip-person${activePersonFilters.has(p.id)?' active':''}" onclick="togglePersonFilter('${p.id}')">
-      <span class="fcp-avatar" style="background:${getAvatarColor(p.name)}">${initials(p.name)}</span>
-      ${p.name}
-      <button class="filter-chip-person-del" onclick="event.stopPropagation();deletePerson('${p.id}')">✕</button>
-    </button>`).join('');
-}
-function togglePersonFilter(id){
-  activePersonFilters.has(id)?activePersonFilters.delete(id):activePersonFilters.add(id);
-  renderPersonFilters();renderCalendar();
-}
-function renderManagePeople(){
-  document.getElementById('managePeopleList').innerHTML=people.map(p=>`
-    <div style="display:flex;align-items:center;gap:8px;padding:5px 0">
-      <span style="width:22px;height:22px;border-radius:50%;background:${getAvatarColor(p.name)};color:#fff;font-size:.55rem;font-weight:800;display:flex;align-items:center;justify-content:center">${initials(p.name)}</span>
-      <span style="flex:1;font-size:.82rem">${p.name}</span>
-      <button class="imp-item-del" onclick="deletePerson('${p.id}')">✕</button>
-    </div>`).join('');
-}
-function toggleManagePanel(){document.getElementById('managePanel').classList.toggle('open')}
-function addPersonFromManage(){
-  const inp=document.getElementById('managePeopleInput');
-  const name=inp.value.trim();if(!name)return;
-  const id='p_'+Date.now();fbSet('people',id,{id,name});inp.value='';
-}
-function deletePerson(id){
-  fbDel('people',id);activePersonFilters.delete(id);renderCalendar();
-}
-function renderStatusFilters(){
-  const list=[{val:'Pendente',color:'#f97316'},{val:'Produção',color:'#38bdf8'},
-    {val:'Revisão',color:'#a78bfa'},{val:'Aprovado',color:'#4ade80'},
-    {val:'Publicado',color:'#6c63ff'},{val:'Programado',color:'#0ea5e9'}];
-  document.getElementById('statusFilterGroup').innerHTML=list.map(s=>`
-    <button class="filter-chip${activeStatusFilters.has(s.val)?' active':''}"
-      style="${activeStatusFilters.has(s.val)?`background:${s.color};border-color:${s.color};color:#fff`:''}"
-      onclick="toggleStatusFilter('${s.val}')">
-      <span style="width:6px;height:6px;border-radius:50%;background:${s.color};display:inline-block"></span>
-      ${s.val}
-    </button>`).join('');
-}
-function toggleStatusFilter(v){
-  activeStatusFilters.has(v)?activeStatusFilters.delete(v):activeStatusFilters.add(v);
-  renderStatusFilters();renderCalendar();
-}
-
-// ══════════════════════════════════════
-// CALENDÁRIO
-// ══════════════════════════════════════
-function renderCalendar(){
-  renderSidebarMonths();renderStatusFilters();
-  const search=document.getElementById('searchInput')?.value?.toLowerCase()||'';
-  let html='';
-  for(let m=0;m<12;m++){
-    const monthCards=getFilteredCards(m,search);
-    const statusCounts={};
-    STATUS_LIST.forEach(s=>statusCounts[s]=0);
-    monthCards.forEach(c=>{if(c.status)statusCounts[c.status]=(statusCounts[c.status]||0)+1});
-    html+=`<div class="month-section" id="month-${m}">
-      <div class="month-header">
-        <div class="month-left">
-          <div class="month-title-row">
-            <span class="month-title">${MONTHS[m]} ${currentYear}</span>
-            <span class="month-cnt">${monthCards.length} conteúdos</span>
-          </div>
-          <div class="month-status-dots">
-            ${STATUS_LIST.filter(s=>statusCounts[s]>0).map(s=>`
-              <div class="mstatus-dot${(monthStatusFilters[m]||new Set()).has(s)?' active-filter':''}"
-                onclick="toggleMonthStatus(${m},'${s}')" style="color:${STATUS_COLORS[s]}">
-                <span class="mstatus-circle" style="background:${STATUS_COLORS[s]}"></span>
-                ${s} ${statusCounts[s]}
-              </div>`).join('')}
-          </div>
-        </div>
-        <div class="month-right-btns">
-          <button class="btn-excel" onclick="exportMonthExcel(${m})">📊 Excel</button>
-          <button class="btn-add-main" onclick="openNewCard(${m})">+ Novo</button>
-        </div>
-      </div>
-      <div class="cal-wrap">${buildCalGrid(m,monthCards)}</div>
-    </div>`;
-  }
-  document.getElementById('mainContent').innerHTML=html;
-  initDragDrop();
-}
-function getFilteredCards(m,search=''){
-  return cards.filter(c=>{
-    const d=new Date(c.date+'T12:00:00');
-    if(isNaN(d)) return false;
-    if(d.getFullYear()!==currentYear||d.getMonth()!==m) return false;
-    if(activePlatFilters.size>0&&!activePlatFilters.has(c.platformId)) return false;
-    if(activePersonFilters.size>0&&!(c.people||[]).some(pid=>activePersonFilters.has(pid))) return false;
-    if(activeStatusFilters.size>0&&!activeStatusFilters.has(c.status)) return false;
-    const msf=monthStatusFilters[m];
-    if(msf&&msf.size>0&&!msf.has(c.status)) return false;
-    if(search&&!c.title?.toLowerCase().includes(search)) return false;
-    return true;
-  });
-}
-function toggleMonthStatus(m,s){
-  if(!monthStatusFilters[m]) monthStatusFilters[m]=new Set();
-  monthStatusFilters[m].has(s)?monthStatusFilters[m].delete(s):monthStatusFilters[m].add(s);
-  renderCalendar();
-}
-function buildCalGrid(m,monthCards){
-  const firstDay=new Date(currentYear,m,1).getDay();
-  const daysInMonth=new Date(currentYear,m+1,0).getDate();
-  const today=new Date();
-  let html=`<div class="cal-grid">`;
-  WEEKDAYS.forEach(d=>html+=`<div class="cal-hcell">${d}</div>`);
-  for(let i=0;i<firstDay;i++) html+=`<div class="cal-day empty"></div>`;
-  for(let day=1;day<=daysInMonth;day++){
-    const dateStr=`${currentYear}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-    const isToday=today.getFullYear()===currentYear&&today.getMonth()===m&&today.getDate()===day;
-    const dayCards=monthCards.filter(c=>c.date===dateStr);
-    html+=`<div class="cal-day${isToday?' today':''}" data-date="${dateStr}"
-      ondragover="event.preventDefault();this.classList.add('drag-over')"
-      ondragleave="this.classList.remove('drag-over')"
-      ondrop="dropCard(event,'${dateStr}')">
-      <div class="day-top">
-        <span class="day-num" onclick="openDayModal('${dateStr}')">${day}</span>
-      </div>
-      <div class="day-cards-area">${dayCards.map(c=>buildMiniCard(c)).join('')}</div>
-      <button class="day-add-btn" onclick="openNewCardDate('${dateStr}')">+</button>
-    </div>`;
-  }
-  return html+`</div>`;
-}
-function buildMiniCard(c){
-  const cat=categories.find(x=>x.id===c.categoryId);
-  const plat=platforms.find(x=>x.id===c.platformId);
-  const color=c.colorOverride||(cat?.color||'#6c63ff');
-  const cl=c.checklist||[];
-  const done=cl.filter(x=>x.done).length;
-  const isDraft=c.draft===true;
-  const avatarHtml=(c.people||[]).slice(0,2).map(pid=>{
-    const p=people.find(x=>x.id===pid);
-    return p?`<span class="card-avatar" style="background:${getAvatarColor(p.name)}">${initials(p.name)}</span>`:'';
-  }).join('');
-  return `<div class="content-card${isDraft?' is-draft':''} ${c.status==='Publicado'?'status-done':''}"
-    style="background:${color}22;border-left-color:${color}"
-    draggable="true" data-id="${c.id}"
-    ondragstart="dragStart(event,'${c.id}')"
-    onclick="openDetailModal('${c.id}')">
-    <div class="card-main-row">
-      ${plat?`<span class="card-plat-icon">${plat.emoji}</span>`:''}
-      ${cat?`<span class="card-cat-emoji">${cat.emoji}</span>`:''}
-      <div class="card-inner">
-        <span class="card-title">${c.title||'Sem título'}</span>
-        ${isDraft?`<span class="draft-badge">✏️ rascunho</span>`:''}
-      </div>
-      <span class="card-status-dot" style="background:${STATUS_COLORS[c.status]||'#6b7399'}"></span>
-      <div class="card-avatars">${avatarHtml}</div>
-    </div>
-    ${cl.length?`<div class="card-checklist-bar">
-      <div class="card-cl-prog"><div class="card-cl-fill" style="width:${Math.round(done/cl.length*100)}%;background:${color}"></div></div>
-      <span class="card-cl-label">${done}/${cl.length}</span>
-    </div>`:''}
-  </div>`;
-}
-
-// ══════════════════════════════════════
-// DRAG & DROP
-// ══════════════════════════════════════
-let dragId=null;
-function dragStart(e,id){
-  dragId=id;
-  const el=document.querySelector(`[data-id="${id}"]`);
-  if(el) el.classList.add('dragging');
-}
-function dropCard(e,date){
-  e.preventDefault();
-  document.querySelectorAll('.drag-over').forEach(el=>el.classList.remove('drag-over'));
-  if(!dragId) return;
-  const c=cards.find(x=>x.id===dragId);
-  if(c&&c.date!==date){fbSet('cards',dragId,{...c,date});showToast('📅 Data atualizada!')}
-  dragId=null;
-}
-function initDragDrop(){
-  document.querySelectorAll('.content-card').forEach(el=>{
-    el.addEventListener('dragend',()=>{el.classList.remove('dragging');dragId=null});
-  });
-}
-
-// ══════════════════════════════════════
 // MODAL CARD
 // ══════════════════════════════════════
 function openNewCard(m){
@@ -2576,9 +1178,16 @@ function openCardModal(id,defaultDate){
   selectedTags=[...(c?.tags||[])];
   selectedLinks=[...(c?.links||[])];
   selectedChecklist=(c?.checklist||[]).map(x=>({...x}));
-  renderStatusSel();renderPlatPicker(c?.platformId);renderCatPicker(c?.categoryId);
-  renderRecurOpts();renderTagsWrap();renderLinksList();renderClList();
-  renderPeopleDropdown();renderPeopleSelTags();renderComments(c);
+  renderStatusSel();
+  renderPlatPicker(c?.platformId);
+  renderCatPicker(c?.categoryId);
+  renderRecurOpts();
+  renderTagsWrap();
+  renderLinksList();
+  renderClList();
+  renderPeopleDropdown();
+  renderPeopleSelTags();
+  renderComments(c);
   switchTab('geral');
   startDraftTimer(id,defaultDate);
   document.getElementById('cardOverlay').classList.add('open');
@@ -2680,14 +1289,16 @@ function createRecurInstances(base,baseId){
 function deleteCard(){
   if(!editingId||!confirm('Excluir este conteúdo?')) return;
   fbDel('cards',editingId);
-  showToast('🗑️ Conteúdo excluído');closeCardModal();
+  showToast('🗑️ Conteúdo excluído');
+  closeCardModal();
 }
 function duplicateCard(){
   if(!editingId) return;
   const c=cards.find(x=>x.id===editingId);if(!c) return;
   const newId='c_'+Date.now();
   fbSet('cards',newId,{...c,id:newId,title:c.title+' (cópia)',draft:false});
-  showToast('⧉ Duplicado!');closeCardModal();
+  showToast('⧉ Duplicado!');
+  closeCardModal();
 }
 
 // ── TABS ──
@@ -2825,7 +1436,8 @@ function renderPeopleSelTags(){
 function togglePersonSel(id){
   const idx=selectedPeople.indexOf(id);
   idx>=0?selectedPeople.splice(idx,1):selectedPeople.push(id);
-  renderPeopleDropdown();renderPeopleSelTags();
+  renderPeopleDropdown();
+  renderPeopleSelTags();
 }
 function togglePeopleDropdown(){
   document.getElementById('peopleDropdown').classList.toggle('open');
@@ -2835,7 +1447,8 @@ function addPersonInline(){
   const name=inp.value.trim();if(!name)return;
   const id='p_'+Date.now();
   fbSet('people',id,{id,name});
-  selectedPeople.push(id);inp.value='';
+  selectedPeople.push(id);
+  inp.value='';
 }
 document.addEventListener('click',e=>{
   const pp=document.getElementById('peoplePicker');
@@ -3007,24 +1620,28 @@ function closeDetailModal(){document.getElementById('detailOverlay').classList.r
 function setDetailStatus(id,status){
   const c=cards.find(x=>x.id===id);if(!c)return;
   fbSet('cards',id,{...c,status,draft:false});
-  showToast('✅ Status atualizado!');closeDetailModal();
+  showToast('✅ Status atualizado!');
+  closeDetailModal();
 }
 function toggleDetailCl(id,i){
   const c=cards.find(x=>x.id===id);if(!c)return;
   const cl=[...(c.checklist||[])];cl[i]={...cl[i],done:!cl[i].done};
-  fbSet('cards',id,{...c,checklist:cl});openDetailModal(id);
+  fbSet('cards',id,{...c,checklist:cl});
+  openDetailModal(id);
 }
 function deleteDetailCl(id,i){
   const c=cards.find(x=>x.id===id);if(!c)return;
   const cl=[...(c.checklist||[])];cl.splice(i,1);
-  fbSet('cards',id,{...c,checklist:cl});openDetailModal(id);
+  fbSet('cards',id,{...c,checklist:cl});
+  openDetailModal(id);
 }
 function editFromDetail(){closeDetailModal();openCardModal(currentDetailId)}
 function dupFromDetail(){
   const c=cards.find(x=>x.id===currentDetailId);if(!c)return;
   const newId='c_'+Date.now();
   fbSet('cards',newId,{...c,id:newId,title:c.title+' (cópia)',draft:false});
-  showToast('⧉ Duplicado!');closeDetailModal();
+  showToast('⧉ Duplicado!');
+  closeDetailModal();
 }
 
 // ══════════════════════════════════════
@@ -3040,7 +1657,8 @@ function openCatModal(id){
   currentCatEmoji=c?.emoji||'📌';
   document.getElementById('catEmojiPreviewBig').textContent=currentCatEmoji;
   document.getElementById('catColorBar').style.background=currentCatColor;
-  renderCatPresetColors();renderCatEmojiGrid('');
+  renderCatPresetColors();
+  renderCatEmojiGrid('');
   document.getElementById('catOverlay').classList.add('open');
 }
 function closeCatModal(){document.getElementById('catOverlay').classList.remove('open')}
@@ -3062,11 +1680,14 @@ function saveCat(){
   if(!name){showToast('⚠️ Preencha o nome','#f97316');return}
   const id=currentCatId||('cat_'+Date.now());
   fbSet('categories',id,{id,name,color:currentCatColor,emoji:currentCatEmoji});
-  showToast(currentCatId?'✅ Categoria atualizada!':'✅ Categoria criada!');closeCatModal();
+  showToast(currentCatId?'✅ Categoria atualizada!':'✅ Categoria criada!');
+  closeCatModal();
 }
 function deleteCat(){
   if(!currentCatId||!confirm('Excluir esta categoria?'))return;
-  fbDel('categories',currentCatId);showToast('🗑️ Excluída');closeCatModal();
+  fbDel('categories',currentCatId);
+  showToast('🗑️ Excluída');
+  closeCatModal();
 }
 
 // ══════════════════════════════════════
@@ -3085,8 +1706,10 @@ function exportMonthExcel(m){
     csv+=`"${c.date}","${(c.title||'').replace(/"/g,'""')}","${plat}","${cat}","${c.status||''}","${(c.cta||'').replace(/"/g,'""')}","${resp}","${(c.tags||[]).join('; ')}"\n`;
   });
   const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download=`conteudo_${MONTHS[m]}_${currentYear}.csv`;a.click();
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`conteudo_${MONTHS[m]}_${currentYear}.csv`;
+  a.click();
   showToast('📊 Exportado!');
 }
 
@@ -3121,7 +1744,6 @@ function renderDash(){
     renderGoalsSection();
   },50);
 }
-
 function buildDashHTML(){
   const yearCards=cards.filter(c=>{
     const d=new Date(c.date+'T12:00:00');
@@ -3172,12 +1794,10 @@ function buildDashHTML(){
     </div>
   </div>`;
 }
-
 function switchDashMonth(i){
   dashActiveMonthIdx=i;
   renderDash();
 }
-
 function renderDashCharts(){
   const yearCards=cards.filter(c=>{
     const d=new Date(c.date+'T12:00:00');
@@ -3204,7 +1824,6 @@ function renderDashCharts(){
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#e2e4f2',font:{size:11},padding:12}}}}
   });
 }
-
 function renderDashMetricsPanel(){
   const el=document.getElementById('dashMetricsPanel');if(!el)return;
   const m=dashActiveMonthIdx;
@@ -3226,7 +1845,6 @@ function renderDashMetricsPanel(){
     </div>
   </div>`;
 }
-
 function saveAllMetrics(){
   const m=dashActiveMonthIdx;
   const key=`${dashPlatform}_${dashYear}_${m}`;
@@ -3235,7 +1853,8 @@ function saveAllMetrics(){
     :['seg','views','watch_time','videos','shorts','impressoes','ctr','novos_seg'];
   const data={};
   fields.forEach(k=>{const el=document.getElementById('met_'+k);if(el)data[k]=parseInt(el.value)||0});
-  fbSet('metrics',key,data);showToast('💾 Métricas salvas!');
+  fbSet('metrics',key,data);
+  showToast('💾 Métricas salvas!');
 }
 
 // ══════════════════════════════════════
@@ -3250,7 +1869,6 @@ function renderGoalsSection(){
   el.innerHTML=tabsHtml+(goalsPlatform==='ig'?buildIgGoals():buildYtGoals());
   renderGoalsCharts();
 }
-
 function buildIgGoals(){
   return ['s1','s2'].map((sem,si)=>{
     const data=semGoals[`ig_${sem}_${dashYear}`]||{};
@@ -3282,7 +1900,6 @@ function buildIgGoals(){
     </div>`;
   }).join('');
 }
-
 function buildYtGoals(){
   return ['s1','s2'].map((sem,si)=>{
     const data=semGoals[`yt_${sem}_${dashYear}`]||{};
@@ -3320,7 +1937,6 @@ function buildYtGoals(){
     </div>`;
   }).join('');
 }
-
 function buildGoalsTable(plat,sem,months,data,metric){
   const metaKey=`meta_${metric}`;
   const metaTotal=parseInt(data[metaKey])||0;
@@ -3355,7 +1971,6 @@ function buildGoalsTable(plat,sem,months,data,metric){
     </table>
   </div>`;
 }
-
 function renderGoalsCharts(){
   setTimeout(()=>{
     if(goalsPlatform==='ig'){
@@ -3403,7 +2018,6 @@ function renderGoalsCharts(){
     }
   },150);
 }
-
 function saveGoals(plat,sem){
   const key=`${plat}_${sem}_${dashYear}`;
   const data={};
@@ -3478,7 +2092,6 @@ function renderPmpsView(){
   if(fm) fm.value=pmpsFilterMes;
   renderPmps();
 }
-
 function renderPmps(){
   const filtered=pmps.filter(p=>{
     if(pmpsFilterCanal!=='todos'&&p.canal!==pmpsFilterCanal) return false;
@@ -3507,7 +2120,6 @@ function renderPmps(){
   }
   renderPmpsCharts(filtered);
 }
-
 function savePmp(){
   const canal=document.getElementById('pmp-canal')?.value;
   const cta=document.getElementById('pmp-cta')?.value;
@@ -3535,12 +2147,17 @@ function editPmp(id){
   showToast('✏️ Editando PMP…','#a78bfa');
 }
 function cancelPmpEdit(){
-  ['pmp-nome','pmp-link','pmp-cliques','pmp-edit-id'].forEach(f=>{const el=document.getElementById(f);if(el)el.value=''});
-  ['pmp-canal','pmp-cta','pmp-mes'].forEach(f=>{const el=document.getElementById(f);if(el)el.selectedIndex=0});
+  ['pmp-nome','pmp-link','pmp-cliques','pmp-edit-id'].forEach(f=>{
+    const el=document.getElementById(f);if(el)el.value='';
+  });
+  ['pmp-canal','pmp-cta','pmp-mes'].forEach(f=>{
+    const el=document.getElementById(f);if(el)el.selectedIndex=0;
+  });
 }
 function deletePmp(id){
   if(!confirm('Excluir este PMP?'))return;
-  fbDel('pmps',id);showToast('🗑️ PMP excluído');
+  fbDel('pmps',id);
+  showToast('🗑️ PMP excluído');
 }
 function renderPmpsCharts(filtered){
   const ctxB=document.getElementById('pmpChartBarras');
@@ -3563,7 +2180,8 @@ function renderPmpsCharts(filtered){
       data:{labels:meses,datasets:canais.map(canal=>({
         label:canal,
         data:meses.map(mes=>filtered.filter(p=>p.canal===canal&&p.mes===mes).reduce((a,p)=>a+(p.cliques||0),0)),
-        borderColor:PMP_CANAL_COLORS[canal]||'#6c63ff',backgroundColor:(PMP_CANAL_COLORS[canal]||'#6c63ff')+'22',
+        borderColor:PMP_CANAL_COLORS[canal]||'#6c63ff',
+        backgroundColor:(PMP_CANAL_COLORS[canal]||'#6c63ff')+'22',
         fill:false,tension:.4,pointRadius:4
       }))},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#e2e4f2',font:{size:11}}}},scales:{x:{ticks:{color:'#6b7399'},grid:{display:false}},y:{ticks:{color:'#6b7399'},grid:{color:'#2e3350'}}}}
@@ -3587,19 +2205,26 @@ function renderPmpsCharts(filtered){
 // ══════════════════════════════════════
 function showToast(msg,bg='#4ade80'){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.style.background=bg;
+  t.textContent=msg;
+  t.style.background=bg;
   t.style.color=bg==='#4ade80'||bg==='var(--green)'?'#000':'#fff';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2800);
 }
-function initials(name){return(name||'?').split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase()}
-function getAvatarColor(name){return AVATAR_COLORS[(name||'').charCodeAt(0)%AVATAR_COLORS.length]}
+function initials(name){
+  return(name||'?').split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+}
+function getAvatarColor(name){
+  return AVATAR_COLORS[(name||'').charCodeAt(0)%AVATAR_COLORS.length];
+}
 function formatDate(d){
   if(!d)return '—';
   return new Date(d+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
 }
 
-// ── INIT ──
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
 document.getElementById('topbarYear').textContent=currentYear;
 document.getElementById('sidebarYear').textContent=currentYear;
 renderSidebarMonths();
