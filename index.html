@@ -31,11 +31,14 @@
   --accent:#6c63ff;--accent2:#a78bfa;
   --red:#f87171;--green:#4ade80;--orange:#fb923c;
   --radius:14px;--shadow:0 8px 36px rgba(0,0,0,.55);
-  --day-h:180px;--ig:#e1306c;--yt:#ff0000;
+  --day-h:150px;
+  --ig:#e1306c;--yt:#ff0000;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px}
-::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 #loadingScreen{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:16px}
 .spinner{width:42px;height:42px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -44,16 +47,19 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .sidebar-head{padding:18px 14px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px}
 .sidebar-head h2{font-size:1.1rem;font-weight:800;background:linear-gradient(90deg,#6c63ff,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
 .sync-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0}
-.sync-dot.ok{background:var(--green);animation:blink 2s infinite}.sync-dot.err{background:var(--red)}
+.sync-dot.ok{background:var(--green);animation:blink 2s infinite}
+.sync-dot.err{background:var(--red)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .sb-section{padding:10px 12px 6px;border-bottom:1px solid var(--border)}
 .sb-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
 .year-sw{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:5px 10px}
-.yr-btn{background:none;border:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:0 3px}.yr-btn:hover{color:var(--accent)}
+.yr-btn{background:none;border:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:0 3px}
+.yr-btn:hover{color:var(--accent)}
 .yr-val{font-size:.93rem;font-weight:800;color:var(--text);min-width:38px;text-align:center}
 .sb-nav-section{padding:8px 0}
 .sb-nav-item{display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;border-left:3px solid transparent}
-.sb-nav-item:hover{background:var(--s2);color:var(--text)}.sb-nav-item.active{background:var(--s2);color:var(--accent);border-left-color:var(--accent)}
+.sb-nav-item:hover{background:var(--s2);color:var(--text)}
+.sb-nav-item.active{background:var(--s2);color:var(--accent);border-left-color:var(--accent)}
 .sb-months-label{padding:10px 14px 4px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
 .month-list{padding:2px 0 8px}
 .mlist-a{display:block;padding:6px 14px;font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;text-decoration:none}
@@ -78,12 +84,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .filter-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);white-space:nowrap;min-width:100px}
 .filter-group{display:flex;align-items:center;gap:5px;flex-wrap:wrap;flex:1}
 .filter-chip{background:var(--s2);border:1px solid var(--border);color:var(--muted);padding:4px 11px;border-radius:20px;cursor:pointer;font-size:.73rem;font-weight:600;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
-.filter-chip:hover{border-color:var(--accent);color:var(--text)}.filter-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.filter-chip:hover{border-color:var(--accent);color:var(--text)}
+.filter-chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .filter-chip-person{background:var(--s2);border:1px solid var(--border);color:var(--muted);padding:3px 10px 3px 4px;border-radius:20px;cursor:pointer;font-size:.73rem;font-weight:600;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:5px}
-.filter-chip-person:hover{border-color:var(--accent);color:var(--text)}.filter-chip-person.active{color:var(--text);background:var(--s3)}
+.filter-chip-person:hover{border-color:var(--accent);color:var(--text)}
+.filter-chip-person.active{color:var(--text);background:var(--s3)}
 .fcp-avatar{width:20px;height:20px;border-radius:50%;color:#fff;font-size:.55rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
 .filter-chip-person-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.65rem;padding:0 0 0 2px;line-height:1;opacity:0;transition:opacity .15s}
-.filter-chip-person:hover .filter-chip-person-del{opacity:1}.filter-chip-person-del:hover{color:var(--red)}
+.filter-chip-person:hover .filter-chip-person-del{opacity:1}
+.filter-chip-person-del:hover{color:var(--red)}
 .filter-manage-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:3px 9px;border-radius:20px;cursor:pointer;font-size:.68rem;font-weight:700;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:3px}
 .filter-manage-btn:hover{border-color:var(--accent);color:var(--accent)}
 .filter-add-person{display:flex;align-items:center;gap:5px;margin-left:auto}
@@ -122,39 +131,43 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .month-cnt{background:var(--s2);border:1px solid var(--border);color:var(--muted);font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:20px}
 .month-status-dots{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
 .mstatus-dot{display:flex;align-items:center;gap:4px;background:var(--s2);border:1px solid var(--border);padding:2px 8px;border-radius:20px;font-size:.64rem;font-weight:700;white-space:nowrap;cursor:pointer;transition:all .18s;user-select:none}
-.mstatus-dot:hover{border-color:var(--accent2)}.mstatus-dot.active-filter{border-color:var(--accent);box-shadow:0 0 0 2px rgba(108,99,255,.3)}
+.mstatus-dot:hover{border-color:var(--accent2)}
+.mstatus-dot.active-filter{border-color:var(--accent);box-shadow:0 0 0 2px rgba(108,99,255,.3)}
 .mstatus-circle{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .month-right-btns{display:flex;align-items:center;gap:8px}
 .btn-add-main{display:flex;align-items:center;gap:5px;background:var(--accent);border:none;color:#fff;padding:7px 14px;border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s;box-shadow:0 2px 12px rgba(108,99,255,.3);white-space:nowrap}
 .btn-add-main:hover{background:#5a51e0;transform:translateY(-1px)}
 .btn-excel{display:flex;align-items:center;gap:5px;background:var(--s2);border:1px solid #22c55e;color:#22c55e;padding:7px 12px;border-radius:9px;cursor:pointer;font-size:.75rem;font-weight:700;transition:all .2s;white-space:nowrap}
 .btn-excel:hover{background:#22c55e;color:#000}
-.cal-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border)}
-.cal-hcell{background:var(--s2);text-align:center;padding:8px 4px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
-.cal-day{background:var(--s1);min-height:var(--day-h);padding:4px 3px 2px;display:flex;flex-direction:column;gap:2px;position:relative;transition:background .15s}
-.cal-day.empty{background:#0c0e18}.cal-day.today{box-shadow:inset 0 0 0 1.5px var(--accent)}.cal-day.holiday{border-top:2px solid #f472b6}
+.cal-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;width:100%}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:var(--border);width:100%;min-width:0}
+.cal-hcell{background:var(--s2);text-align:center;padding:8px 2px;font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);overflow:hidden;white-space:nowrap}
+.cal-day{background:var(--s1);height:var(--day-h);min-height:var(--day-h);padding:4px 3px 2px;display:flex;flex-direction:column;gap:2px;position:relative;transition:background .15s;overflow:hidden}
+.cal-day.empty{background:#0c0e18}
+.cal-day.today{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.cal-day.holiday{border-top:2px solid #f472b6}
 .cal-day.drag-over{background:var(--s3)!important;box-shadow:inset 0 0 0 2px var(--accent)}
 .cal-day.highlight-pulse{animation:pulse 1.4s ease-out}
 @keyframes pulse{0%{box-shadow:inset 0 0 0 2px var(--accent),0 0 0 6px rgba(108,99,255,.3)}100%{box-shadow:inset 0 0 0 1.5px var(--accent)}}
 .day-top{display:flex;align-items:center;gap:3px;flex-shrink:0}
 .day-num{font-size:.7rem;font-weight:700;color:var(--muted);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;cursor:pointer;transition:all .18s}
-.day-num:hover{background:var(--accent);color:#fff;transform:scale(1.15)}.cal-day.today .day-num{background:var(--accent);color:#fff}
-.holiday-tag{font-size:.54rem;color:#f472b6;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.day-num:hover{background:var(--accent);color:#fff;transform:scale(1.15)}
+.cal-day.today .day-num{background:var(--accent);color:#fff}
+.holiday-tag{font-size:.52rem;color:#f472b6;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .day-cards-area{flex:1;display:flex;flex-direction:column;gap:2px;overflow-y:auto;overflow-x:hidden;min-height:0;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .day-cards-area::-webkit-scrollbar{width:3px}
 .day-cards-area::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 .day-add-btn{flex-shrink:0;background:none;border:none;color:var(--border);font-size:.85rem;cursor:pointer;width:100%;padding:1px 0;border-radius:4px;transition:color .15s;line-height:1.3}
 .day-add-btn:hover{color:var(--accent)}
 .content-card{width:100%;flex-shrink:0;display:flex;flex-direction:column;border-left:3px solid;border-radius:5px;padding:3px 5px;cursor:grab;transition:filter .15s,transform .15s,box-shadow .15s;user-select:none;overflow:hidden}
-.content-card:active{cursor:grabbing}.content-card:hover{filter:brightness(1.18);transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.35)}
-.content-card.dragging{opacity:.25;transform:scale(.95)}.content-card.is-recur{opacity:.82;border-left-style:dashed}.content-card.status-done{opacity:.55;border-left-style:dashed}
-/* ── RASCUNHO: card com visual diferenciado ── */
-.content-card.is-draft{border-left-style:dotted;opacity:.75}
-.content-card.is-draft::after{content:"✏️";position:absolute;top:2px;right:3px;font-size:.55rem;opacity:.7}
+.content-card:active{cursor:grabbing}
+.content-card:hover{filter:brightness(1.18);transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.35)}
+.content-card.dragging{opacity:.25;transform:scale(.95)}
+.content-card.is-recur{opacity:.82;border-left-style:dashed}
+.content-card.status-done{opacity:.55;border-left-style:dashed}
 .card-main-row{display:flex;align-items:center;gap:2px;min-height:24px}
-.card-plat-icon{font-size:.75rem;margin-right:3px;flex-shrink:0;line-height:1}
-.card-cat-emoji{font-size:.7rem;flex-shrink:0;line-height:1;margin-right:2px}
+.card-plat-icon{display:none}
+.card-cat-emoji{font-size:.8rem;flex-shrink:0;line-height:1;margin-right:3px}
 .card-inner{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .card-title{font-size:.62rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);line-height:1.2}
 .card-sub{font-size:.53rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
@@ -167,8 +180,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .card-cl-prog{flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
 .card-cl-fill{height:100%;border-radius:2px;transition:width .3s}
 .card-cl-label{font-size:.5rem;color:var(--muted);white-space:nowrap;flex-shrink:0}
-/* ── DRAFT BADGE no calendário ── */
-.draft-badge{display:inline-flex;align-items:center;gap:3px;background:rgba(251,146,60,.15);border:1px solid rgba(251,146,60,.4);color:#fb923c;font-size:.52rem;font-weight:800;padding:1px 5px;border-radius:4px;flex-shrink:0;margin-left:2px}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(7px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
 .overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:26px;width:100%;box-shadow:var(--shadow);transform:scale(.94) translateY(12px);transition:transform .22s;overflow-y:auto;max-height:92vh}
@@ -180,7 +191,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .modal-close:hover{color:var(--red)}
 .modal-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:18px;overflow-x:auto}
 .modal-tab{background:none;border:none;color:var(--muted);padding:8px 14px;font-size:.78rem;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
-.modal-tab:hover{color:var(--text)}.modal-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.modal-tab:hover{color:var(--text)}
+.modal-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-panel{display:none}.tab-panel.active{display:block}
 .fgrp{margin-bottom:12px}
 .fgrp label{display:flex;align-items:center;gap:5px;font-size:.68rem;font-weight:800;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;flex-wrap:wrap}
@@ -189,16 +201,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .fgrp input,.fgrp textarea,.fgrp select{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:8px 11px;border-radius:9px;font-size:.84rem;font-family:inherit;outline:none;transition:border-color .2s}
 .fgrp input:focus,.fgrp textarea:focus,.fgrp select:focus{border-color:var(--accent)}
 .fgrp input.invalid{border-color:var(--red)!important;background:rgba(248,113,113,.05)!important}
-.fgrp textarea{resize:vertical;min-height:76px}.fgrp select option{background:var(--s2)}
+.fgrp textarea{resize:vertical;min-height:76px}
+.fgrp select option{background:var(--s2)}
 .fgrp .hint{font-size:.65rem;color:var(--muted);margin-top:3px}
-.err-msg{font-size:.68rem;color:var(--red);margin-top:3px;display:none}.err-msg.show{display:block}
+.err-msg{font-size:.68rem;color:var(--red);margin-top:3px;display:none}
+.err-msg.show{display:block}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.input-btn-wrap{display:flex;gap:6px;align-items:center}.input-btn-wrap input{flex:1}
+.input-btn-wrap{display:flex;gap:6px;align-items:center}
+.input-btn-wrap input{flex:1}
 .input-action-btn{background:var(--s3);border:1px solid var(--border);color:var(--muted);padding:7px 10px;border-radius:8px;cursor:pointer;font-size:.72rem;font-weight:700;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .input-action-btn:hover{border-color:var(--accent);color:var(--accent)}
 .tag-picker-wrap{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
 .tag-pick-item{display:flex;align-items:center;gap:4px;background:var(--s2);border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:.75rem;font-weight:600;color:var(--muted);transition:all .15s;user-select:none}
-.tag-pick-item:hover{border-color:var(--accent);color:var(--text)}.tag-pick-item.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.tag-pick-item:hover{border-color:var(--accent);color:var(--text)}
+.tag-pick-item.sel{background:var(--accent);border-color:var(--accent);color:#fff}
 .tag-pick-item.bu-item.sel{background:#f472b6;border-color:#f472b6;color:#fff}
 .manage-items-box{background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:8px}
 .manage-items-title{font-size:.65rem;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.6px;margin-bottom:8px}
@@ -223,16 +239,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .ref-file-del:hover{color:var(--red)}
 .content-section-title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--accent2);margin:14px 0 8px;display:flex;align-items:center;gap:8px}
 .content-section-title::after{content:"";flex:1;height:1px;background:var(--border)}
-.cta-sel{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.cta-opt{padding:6px 14px;border-radius:20px;cursor:pointer;font-size:.76rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s;user-select:none}
-.cta-opt:hover{border-color:var(--accent2);color:var(--text)}.cta-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.cta-text-input{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:8px 11px;border-radius:9px;font-size:.84rem;font-family:inherit;outline:none;transition:border-color .2s}
+.cta-text-input:focus{border-color:var(--accent)}
 .cl-progress-wrap{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:10px 12px;background:var(--s2);border-radius:10px;border:1px solid var(--border)}
 .cl-progress-bar{flex:1;height:8px;background:var(--s3);border-radius:4px;overflow:hidden}
 .cl-progress-fill{height:100%;border-radius:4px;transition:width .4s,background .4s}
 .cl-progress-label{font-size:.72rem;color:var(--muted);white-space:nowrap;font-weight:700;min-width:70px;text-align:right}
 .cl-list{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
 .cl-row{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:8px 10px}
-.cl-row:hover{border-color:var(--accent2)}.cl-row.done-row{opacity:.65}
+.cl-row:hover{border-color:var(--accent2)}
+.cl-row.done-row{opacity:.65}
 .cl-row.done-row .cl-input{text-decoration:line-through;color:var(--muted)}
 .cl-checkbox{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);background:transparent;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.7rem;color:#fff}
 .cl-checkbox.on{background:var(--accent);border-color:var(--accent)}
@@ -250,10 +266,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .detail-cl-text{flex:1;font-size:.83rem;line-height:1.4;cursor:pointer}
 .detail-cl-text.done{text-decoration:line-through;color:var(--muted)}
 .detail-cl-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;padding:2px 5px;border-radius:4px;flex-shrink:0;opacity:0}
-.detail-cl-row:hover .detail-cl-del{opacity:1}.detail-cl-del:hover{color:var(--red);opacity:1!important}
+.detail-cl-row:hover .detail-cl-del{opacity:1}
+.detail-cl-del:hover{color:var(--red);opacity:1!important}
 .recur-opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
 .recur-opt{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:.76rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .18s;font-family:inherit;line-height:1}
-.recur-opt:hover{border-color:var(--accent2);color:var(--text);background:var(--s3)}.recur-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+.recur-opt:hover{border-color:var(--accent2);color:var(--text);background:var(--s3)}
+.recur-opt.sel{background:var(--accent);border-color:var(--accent);color:#fff}
 .people-picker{position:relative}
 .people-display{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--border);border-radius:9px;padding:6px 11px;cursor:pointer;transition:border-color .2s;min-height:38px;user-select:none;flex-wrap:wrap}
 .people-display:hover{border-color:var(--accent)}
@@ -267,7 +285,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .people-dropdown.open{display:block}
 .people-list{max-height:180px;overflow-y:auto;padding:4px}
 .people-opt{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:7px;cursor:pointer;transition:background .15s;font-size:.83rem}
-.people-opt:hover{background:var(--s3)}.people-opt.selected{background:rgba(108,99,255,.2)}
+.people-opt:hover{background:var(--s3)}
+.people-opt.selected{background:rgba(108,99,255,.2)}
 .people-opt-avatar{width:24px;height:24px;border-radius:50%;color:#fff;font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
 .people-opt-name{flex:1;font-weight:600}
 .people-opt-check{font-size:.8rem;color:var(--accent);font-weight:800;flex-shrink:0}
@@ -325,7 +344,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .override-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;margin-bottom:10px}
 .override-toggle input[type=checkbox]{accent-color:var(--accent);width:14px;height:14px;cursor:pointer}
 .override-toggle span{font-size:.78rem;color:var(--muted)}
-.override-section{display:none}.override-section.show{display:block}
+.override-section{display:none}
+.override-section.show{display:block}
 .emoji-section-label{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:10px 0 6px}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
 .emoji-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--s2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15px}
@@ -336,19 +356,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .selected-emoji-preview{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:12px}
 .selected-emoji-preview .big-emoji{font-size:1.8rem;line-height:1}
 .selected-emoji-preview span{font-size:.8rem;color:var(--muted)}
-/* ── AUTO-SAVE DRAFT INDICATOR ── */
-.draft-indicator{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--muted);padding:4px 10px;border-radius:20px;background:var(--s2);border:1px solid var(--border);transition:all .3s;white-space:nowrap}
-.draft-indicator.saving{color:var(--orange);border-color:rgba(251,146,60,.4)}
-.draft-indicator.saved{color:var(--green);border-color:rgba(74,222,128,.4)}
-.draft-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
-.draft-indicator.saving .draft-dot{animation:blink .6s infinite}
-.btn-draft{background:transparent;border:1px solid var(--orange);color:var(--orange);padding:8px 14px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:700;transition:all .2s;white-space:nowrap}
-.btn-draft:hover{background:rgba(251,146,60,.12)}
 .mactions{display:flex;gap:8px;margin-top:16px;justify-content:flex-end;flex-wrap:wrap;align-items:center}
 .btn-cancel{background:var(--s2);border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
 .btn-cancel:hover{border-color:var(--red);color:var(--red)}
 .btn-save{background:var(--accent);border:none;color:#fff;padding:8px 22px;border-radius:9px;cursor:pointer;font-size:.85rem;font-weight:700;transition:all .2s;display:flex;align-items:center;gap:6px}
-.btn-save:hover{background:#5a51e0}.btn-save:disabled{opacity:.6;cursor:not-allowed}
+.btn-save:hover{background:#5a51e0}
+.btn-save:disabled{opacity:.6;cursor:not-allowed}
 .btn-del{background:transparent;border:1px solid var(--red);color:var(--red);padding:8px 12px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s;margin-right:auto}
 .btn-del:hover{background:rgba(248,113,113,.12)}
 .btn-dup{background:transparent;border:1px solid var(--accent2);color:var(--accent2);padding:8px 12px;border-radius:9px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
@@ -371,11 +384,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .done-section-label span{flex:1;height:1px;background:var(--border)}
 .day-cards-list{display:flex;flex-direction:column;gap:6px}
 .day-card-row{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:11px 14px;border-left:4px solid;transition:all .2s}
-.day-card-row.draggable{cursor:grab}.day-card-row.draggable:active{cursor:grabbing}
-.day-card-row.dnd-over{border-top:2px solid var(--accent)}.day-card-row.dnd-dragging{opacity:.3;transform:scale(.97)}
-.day-card-row:hover{background:var(--s3)}.day-card-row.is-done{opacity:.6}
-/* Rascunho no modal de dia */
-.day-card-row.is-draft-row{border-left-style:dashed;opacity:.8}
+.day-card-row.draggable{cursor:grab}
+.day-card-row.draggable:active{cursor:grabbing}
+.day-card-row.dnd-over{border-top:2px solid var(--accent)}
+.day-card-row.dnd-dragging{opacity:.3;transform:scale(.97)}
+.day-card-row:hover{background:var(--s3)}
+.day-card-row.is-done{opacity:.6}
 .day-card-drag-handle{color:var(--muted);font-size:.9rem;flex-shrink:0;cursor:grab;padding:0 4px;opacity:.4}
 .day-card-row:hover .day-card-drag-handle{opacity:1}
 .day-card-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;cursor:pointer}
@@ -396,8 +410,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .toast{position:fixed;bottom:24px;right:24px;padding:10px 18px;border-radius:10px;font-weight:700;font-size:.8rem;box-shadow:var(--shadow);z-index:9000;transform:translateY(20px);opacity:0;transition:all .3s;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
 #sidebarOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
-#dashContent{padding:20px 24px;display:none}
-#dashContent.active{display:block}
+#dashContent{padding:20px 24px;display:none;min-height:100vh}
+#dashContent.active{display:block!important;visibility:visible!important}
 #mainContent.hidden{display:none}
 #filterBar.hidden{display:none}
 .dash-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px;flex-wrap:wrap}
@@ -425,15 +439,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .kpi-value{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1}
 .kpi-footer{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
 .kpi-trend{font-size:.65rem;display:flex;align-items:center;gap:3px}
-.kpi-trend-up{color:var(--green)}.kpi-trend-down{color:var(--red)}.kpi-trend-flat{color:var(--muted)}
+.kpi-trend-up{color:var(--green)}
+.kpi-trend-down{color:var(--red)}
+.kpi-trend-flat{color:var(--muted)}
 .kpi-goal-wrap{display:flex;flex-direction:column;gap:3px;width:100%}
 .kpi-goal-label{font-size:.6rem;color:var(--muted);display:flex;justify-content:space-between}
 .kpi-goal-bar{height:4px;background:var(--s3);border-radius:2px;overflow:hidden}
 .kpi-goal-fill{height:100%;border-radius:2px;transition:width .6s}
-
-/* ══════════════════════════════════════════
-   METAS SEMESTRAIS — NOVOS ESTILOS
-══════════════════════════════════════════ */
 .sem-goals-wrap{display:flex;flex-direction:column;gap:16px}
 .sem-block{background:var(--s2);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
 .sem-block-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
@@ -444,44 +456,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .sem-goal-item label{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
 .sem-goal-item input{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:9px;font-size:.88rem;font-family:inherit;outline:none;transition:border-color .2s;width:100%}
 .sem-goal-item input:focus{border-color:var(--accent)}
-
-/* Progresso da meta semestral */
-.sem-progress-section{margin-top:20px;display:flex;flex-direction:column;gap:10px}
-.sem-progress-title{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:4px;display:flex;align-items:center;gap:6px}
-.sem-progress-title::after{content:"";flex:1;height:1px;background:var(--border)}
-.sem-progress-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.sem-progress-item{background:var(--s3);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
-.spi-header{display:flex;align-items:center;justify-content:space-between;gap:6px}
-.spi-label{font-size:.65rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:5px}
-.spi-pct-badge{font-size:.68rem;font-weight:900;padding:2px 8px;border-radius:20px;flex-shrink:0}
-.spi-pct-badge.on-track{background:rgba(74,222,128,.2);color:var(--green);border:1px solid rgba(74,222,128,.3)}
-.spi-pct-badge.warning{background:rgba(251,146,60,.2);color:var(--orange);border:1px solid rgba(251,146,60,.3)}
-.spi-pct-badge.danger{background:rgba(248,113,113,.2);color:var(--red);border:1px solid rgba(248,113,113,.3)}
-.spi-pct-badge.exceeded{background:rgba(74,222,128,.3);color:#fff;border:1px solid var(--green)}
-.spi-bar-wrap{height:6px;background:var(--s2);border-radius:3px;overflow:hidden}
-.spi-bar-fill{height:100%;border-radius:3px;transition:width .6s}
-.spi-values{display:flex;align-items:center;justify-content:space-between;font-size:.6rem;color:var(--muted)}
-.spi-values strong{color:var(--text)}
-.spi-trend{font-size:.6rem;display:flex;align-items:center;gap:3px;margin-top:1px}
-.spi-trend-up{color:var(--green)}.spi-trend-down{color:var(--red)}.spi-trend-flat{color:var(--muted)}
-
-/* Evolução mensal semestral */
-.sem-monthly-evolution{margin-top:16px}
-.sem-monthly-table{width:100%;border-collapse:collapse;font-size:.76rem}
-.sem-monthly-table th{background:var(--s3);padding:7px 10px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);text-align:center;white-space:nowrap}
-.sem-monthly-table th:first-child{text-align:left;border-radius:8px 0 0 8px}
-.sem-monthly-table th:last-child{border-radius:0 8px 8px 0}
-.sem-monthly-table td{padding:7px 10px;border-bottom:1px solid var(--border);text-align:center;vertical-align:middle}
-.sem-monthly-table td:first-child{text-align:left;font-weight:700}
-.sem-monthly-table tr:last-child td{border-bottom:none}
-.sem-monthly-table tr:hover td{background:rgba(255,255,255,.02)}
-.smt-growth-up{color:var(--green);font-weight:800;font-size:.68rem}
-.smt-growth-down{color:var(--red);font-weight:800;font-size:.68rem}
-.smt-growth-flat{color:var(--muted);font-size:.68rem}
-.smt-cur{color:var(--accent);font-weight:800}
-.smt-pct-ok{background:rgba(74,222,128,.15);color:var(--green);padding:2px 6px;border-radius:20px;font-size:.63rem;font-weight:800}
-.smt-pct-warn{background:rgba(251,146,60,.15);color:var(--orange);padding:2px 6px;border-radius:20px;font-size:.63rem;font-weight:800}
-
 .month-tabs-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:18px}
 .month-tab-btn{padding:5px 13px;border-radius:20px;cursor:pointer;font-size:.73rem;font-weight:700;border:1px solid var(--border);color:var(--muted);background:var(--s2);transition:all .15s}
 .month-tab-btn:hover{border-color:var(--accent);color:var(--text)}
@@ -545,17 +519,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .ig-pub-label{font-size:.65rem;font-weight:800;text-transform:uppercase;color:var(--muted)}
 .ig-pub-input{background:var(--s3);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:8px;font-size:.95rem;font-family:inherit;outline:none;width:90px;text-align:center}
 .ig-pub-input:focus{border-color:var(--accent)}
-.obs-view{font-size:.83rem;line-height:1.6;white-space:pre-wrap;cursor:pointer;padding:4px 6px;border-radius:6px;border:1px solid transparent;transition:border-color .15s,background .15s}
-.obs-view:hover{border-color:var(--border);background:var(--s3)}
-.obs-edit-wrap{display:flex;flex-direction:column;gap:6px;margin-top:4px}
-.obs-edit-inp{background:var(--s3);border:1px solid var(--accent);color:var(--text);padding:8px 10px;border-radius:8px;font-size:.83rem;font-family:inherit;outline:none;resize:vertical;min-height:76px;width:100%}
-.obs-edit-actions{display:flex;gap:6px;justify-content:flex-end;align-items:center}
-.obs-del-btn{background:none;border:1px solid var(--red);color:var(--red);padding:5px 10px;border-radius:7px;cursor:pointer;font-size:.75rem;font-weight:600;margin-right:auto}
-.obs-del-btn:hover{background:rgba(248,113,113,.1)}
-.obs-hint{font-size:.72rem;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:8px;border-radius:6px;border:1px dashed var(--border);transition:all .15s}
-.obs-hint:hover{border-color:var(--accent);color:var(--accent)}
-.lbl-btn{background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:.6rem;padding:1px 6px;border-radius:4px;transition:all .15s;font-weight:600}
-.lbl-btn:hover{border-color:var(--accent);color:var(--accent)}
 .comments-area{display:flex;flex-direction:column;gap:10px}
 .comment-item{background:var(--s3);border:1px solid var(--border);border-radius:10px;padding:10px 13px}
 .comment-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
@@ -614,14 +577,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   #mainContent,#dashContent{padding:14px 10px}
   #topbar,#filterBar{padding-left:14px;padding-right:14px}
   #filterBar{top:42px}
-  :root{--day-h:140px}
+  :root{--day-h:130px}
+  .cal-hcell{font-size:.55rem;padding:5px 1px;letter-spacing:0}
   .charts-2col{grid-template-columns:1fr}
   .funnel-row{grid-template-columns:repeat(3,1fr)}
   .breakdown-grid{grid-template-columns:1fr}
-  .sem-progress-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:680px){
-  :root{--day-h:120px}
+  :root{--day-h:110px}
   .day-num{font-size:.63rem;width:18px;height:18px}
   .card-sub{display:none}
   .row2{grid-template-columns:1fr}
@@ -629,7 +592,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   .funnel-row{grid-template-columns:repeat(2,1fr)}
   .ig-pubs-grid,.breakdown-grid{grid-template-columns:1fr}
   .sem-goals-grid{grid-template-columns:repeat(2,1fr)}
-  .sem-progress-grid{grid-template-columns:1fr}
 }
   </style>
 </head>
@@ -724,14 +686,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   <div class="modal modal-lg">
     <div class="modal-header">
       <h2 id="cardModalTitle">Novo Item</h2>
-      <!-- INDICADOR DE AUTO-SAVE -->
-      <div style="display:flex;align-items:center;gap:8px">
-        <div class="draft-indicator" id="draftIndicator" style="display:none">
-          <div class="draft-dot"></div>
-          <span id="draftIndicatorText">Rascunho</span>
-        </div>
-        <button class="modal-close" onclick="closeOverlay('cardOverlay')">✕</button>
-      </div>
+      <button class="modal-close" onclick="closeOverlay('cardOverlay')">✕</button>
     </div>
     <div class="modal-tabs">
       <button class="modal-tab active" onclick="switchTab('info',this)">📋 Informações</button>
@@ -742,6 +697,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <button class="modal-tab" onclick="switchTab('links',this)">🔗 Links</button>
     </div>
 
+    <!-- ABA INFORMAÇÕES -->
     <div class="tab-panel active" id="tab-info">
       <div class="fgrp">
         <label>Data <span class="req-badge">obrigatório</span></label>
@@ -780,6 +736,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           </div>
         </div>
       </div>
+
       <div class="fgrp">
         <label>🏷️ Categoria <span class="opt-badge">opcional</span></label>
         <select id="cCatSel" onchange="onCatChange()"></select>
@@ -807,6 +764,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           </div>
         </div>
       </div>
+
       <div class="fgrp">
         <label>Status <span class="opt-badge">opcional</span></label>
         <div class="status-sel" id="briefingStatusSel">
@@ -818,40 +776,49 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           <div class="status-opt" data-val="Programado" onclick="toggleStatus(this)"><span class="s-dot" style="background:#0ea5e9"></span>Programado</div>
         </div>
       </div>
+
       <div class="fgrp">
         <label>👤 Responsável <span class="opt-badge">opcional</span></label>
         <div class="people-picker" id="ppResp">
           <div class="people-display" id="ppResp-display" onclick="togglePeople('ppResp')">
-            <div class="people-sel-tags" id="ppResp-tags"><span class="people-placeholder" id="ppResp-placeholder">Selecione ou adicione…</span></div>
+            <div class="people-sel-tags" id="ppResp-tags">
+              <span class="people-placeholder" id="ppResp-placeholder">Selecione ou adicione…</span>
+            </div>
             <span class="people-arrow">▼</span>
           </div>
           <div class="people-dropdown" id="ppResp-drop">
             <div class="people-list" id="ppResp-list"></div>
             <div class="people-add-row">
               <input type="text" id="ppResp-inp" placeholder="Novo nome…" maxlength="50"
-                onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppResp')}" onclick="event.stopPropagation()"/>
+                onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppResp')}"
+                onclick="event.stopPropagation()"/>
               <button class="people-add-btn" type="button" onclick="addPerson('ppResp')">+ Add</button>
             </div>
           </div>
         </div>
       </div>
+
       <div class="fgrp">
         <label>📨 Solicitante <span class="opt-badge">opcional</span></label>
         <div class="people-picker" id="ppSolic">
           <div class="people-display" id="ppSolic-display" onclick="togglePeople('ppSolic')">
-            <div class="people-sel-tags" id="ppSolic-tags"><span class="people-placeholder" id="ppSolic-placeholder">Selecione ou adicione…</span></div>
+            <div class="people-sel-tags" id="ppSolic-tags">
+              <span class="people-placeholder" id="ppSolic-placeholder">Selecione ou adicione…</span>
+            </div>
             <span class="people-arrow">▼</span>
           </div>
           <div class="people-dropdown" id="ppSolic-drop">
             <div class="people-list" id="ppSolic-list"></div>
             <div class="people-add-row">
               <input type="text" id="ppSolic-inp" placeholder="Novo nome…" maxlength="50"
-                onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppSolic')}" onclick="event.stopPropagation()"/>
+                onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('ppSolic')}"
+                onclick="event.stopPropagation()"/>
               <button class="people-add-btn" type="button" onclick="addPerson('ppSolic')">+ Add</button>
             </div>
           </div>
         </div>
       </div>
+
       <div class="fgrp">
         <label>🏢 BU <span class="opt-badge">opcional</span>
           <button type="button" onclick="toggleManageBUs()"
@@ -872,6 +839,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
           </div>
         </div>
       </div>
+
       <div class="fgrp">
         <label>📣 Campanha <span class="opt-badge">opcional</span></label>
         <div style="display:flex;gap:6px;align-items:center">
@@ -896,6 +864,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
     </div>
 
+    <!-- ABA IDEIAS -->
     <div class="tab-panel" id="tab-content">
       <div class="fgrp"><label>💡 Big Idea <span class="opt-badge">opcional</span></label>
         <input type="text" id="cBigIdea" placeholder="Conceito central…" maxlength="150"/></div>
@@ -910,6 +879,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
     </div>
 
+    <!-- ABA INSTAGRAM -->
     <div class="tab-panel" id="tab-instagram">
       <div class="content-section-title">📸 Conteúdo para Instagram</div>
       <div class="fgrp"><label>💡 Big Ideia <span class="opt-badge">opcional</span></label>
@@ -923,7 +893,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       <div class="content-section-title">📎 Referências</div>
       <div class="fgrp">
         <div class="upload-area" onclick="document.getElementById('igRefInput').click()">
-          <input type="file" id="igRefInput" multiple accept="image/*,video/*,.pdf,.doc,.docx" onchange="handleRefUpload('ig',this)"/>
+          <input type="file" id="igRefInput" multiple accept="image/*,video/*,.pdf,.doc,.docx"
+            onchange="handleRefUpload('ig',this)"/>
           <label class="upload-area-label"><span>📎</span><span>Clique para adicionar referências</span>
             <small style="color:var(--muted);font-size:.68rem">Imagens, vídeos, PDFs…</small></label>
         </div>
@@ -931,6 +902,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
     </div>
 
+    <!-- ABA YOUTUBE -->
     <div class="tab-panel" id="tab-youtube">
       <div class="content-section-title">▶️ Conteúdo para YouTube</div>
       <div class="fgrp"><label>💡 Big Ideia <span class="opt-badge">opcional</span></label>
@@ -940,32 +912,38 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <input type="text" id="ytPushTitle" placeholder="Título da notificação push…" maxlength="100"/></div>
       <div class="fgrp"><label>📝 Descrição do Push <span class="opt-badge">opcional</span></label>
         <textarea id="ytPushDesc" placeholder="Texto da notificação push…" style="min-height:70px"></textarea></div>
-      <div class="fgrp">
-        <label>📣 CTA do Push <span class="opt-badge">opcional</span></label>
-        <div class="cta-sel" id="ctaSel">
-          <div class="cta-opt" data-val="" onclick="selectCTA(this)">🚫 Nenhum</div>
-          <div class="cta-opt" data-val="Planejamento Financeiro" onclick="selectCTA(this)">💼 Planejamento Financeiro</div>
-          <div class="cta-opt" data-val="Baixar o Aplicativo" onclick="selectCTA(this)">📲 Baixar o Aplicativo</div>
-        </div>
-      </div>
+      <div class="fgrp"><label>📣 CTA do Push <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ctaText" placeholder="Ex: Baixe o app, Acesse o link, Saiba mais…" maxlength="100"/></div>
       <div class="content-section-title">🎬 Ideias de Título</div>
-      <div class="fgrp"><label>Título 1 <span class="opt-badge">opcional</span></label><input type="text" id="ytTitle1" placeholder="Opção 1…" maxlength="100"/></div>
-      <div class="fgrp"><label>Título 2 <span class="opt-badge">opcional</span></label><input type="text" id="ytTitle2" placeholder="Opção 2…" maxlength="100"/></div>
-      <div class="fgrp"><label>Título 3 <span class="opt-badge">opcional</span></label><input type="text" id="ytTitle3" placeholder="Opção 3…" maxlength="100"/></div>
+      <div class="fgrp"><label>Título 1 <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytTitle1" placeholder="Opção 1…" maxlength="100"/></div>
+      <div class="fgrp"><label>Título 2 <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytTitle2" placeholder="Opção 2…" maxlength="100"/></div>
+      <div class="fgrp"><label>Título 3 <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytTitle3" placeholder="Opção 3…" maxlength="100"/></div>
       <div class="content-section-title">🖼️ Ideias de Thumbnail</div>
-      <div class="fgrp"><label>Thumbnail 1 <span class="opt-badge">opcional</span></label><input type="text" id="ytThumb1" placeholder="Conceito 1…" maxlength="150"/></div>
-      <div class="fgrp"><label>Thumbnail 2 <span class="opt-badge">opcional</span></label><input type="text" id="ytThumb2" placeholder="Conceito 2…" maxlength="150"/></div>
-      <div class="fgrp"><label>Thumbnail 3 <span class="opt-badge">opcional</span></label><input type="text" id="ytThumb3" placeholder="Conceito 3…" maxlength="150"/></div>
+      <div class="fgrp"><label>Thumbnail 1 <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytThumb1" placeholder="Conceito 1…" maxlength="150"/></div>
+      <div class="fgrp"><label>Thumbnail 2 <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytThumb2" placeholder="Conceito 2…" maxlength="150"/></div>
+      <div class="fgrp"><label>Thumbnail 3 <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytThumb3" placeholder="Conceito 3…" maxlength="150"/></div>
       <div class="content-section-title">📋 Detalhes do Vídeo</div>
-      <div class="fgrp"><label>🔗 Link Descrição <span class="opt-badge">opcional</span></label><input type="url" id="ytLinkDesc" placeholder="https://…"/></div>
-      <div class="fgrp"><label>📋 PMP <span class="opt-badge">opcional</span></label><input type="text" id="ytPmp" placeholder="Código ou link…" maxlength="80"/></div>
-      <div class="fgrp"><label>📝 Descrição <span class="opt-badge">opcional</span></label><textarea id="ytDesc" placeholder="Descrição para publicação…" style="min-height:90px"></textarea></div>
-      <div class="fgrp"><label>🎵 Playlist <span class="opt-badge">opcional</span></label><input type="text" id="ytPlaylist" placeholder="Nome ou link da playlist…" maxlength="150"/></div>
-      <div class="fgrp"><label>#️⃣ Hashtags <span class="opt-badge">opcional</span></label><textarea id="ytHashtags" placeholder="#finanças #investimentos…" style="min-height:60px"></textarea></div>
+      <div class="fgrp"><label>🔗 Link Descrição <span class="opt-badge">opcional</span></label>
+        <input type="url" id="ytLinkDesc" placeholder="https://…"/></div>
+      <div class="fgrp"><label>📋 PMP <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytPmp" placeholder="Código ou link…" maxlength="80"/></div>
+      <div class="fgrp"><label>📝 Descrição <span class="opt-badge">opcional</span></label>
+        <textarea id="ytDesc" placeholder="Descrição para publicação…" style="min-height:90px"></textarea></div>
+      <div class="fgrp"><label>🎵 Playlist <span class="opt-badge">opcional</span></label>
+        <input type="text" id="ytPlaylist" placeholder="Nome ou link da playlist…" maxlength="150"/></div>
+      <div class="fgrp"><label>#️⃣ Hashtags <span class="opt-badge">opcional</span></label>
+        <textarea id="ytHashtags" placeholder="#finanças #investimentos…" style="min-height:60px"></textarea></div>
       <div class="content-section-title">📎 Referências</div>
       <div class="fgrp">
         <div class="upload-area" onclick="document.getElementById('ytRefInput').click()">
-          <input type="file" id="ytRefInput" multiple accept="image/*,video/*,.pdf,.doc,.docx" onchange="handleRefUpload('yt',this)"/>
+          <input type="file" id="ytRefInput" multiple accept="image/*,video/*,.pdf,.doc,.docx"
+            onchange="handleRefUpload('yt',this)"/>
           <label class="upload-area-label"><span>📎</span><span>Clique para adicionar referências</span>
             <small style="color:var(--muted);font-size:.68rem">Imagens, vídeos, PDFs…</small></label>
         </div>
@@ -973,6 +951,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
     </div>
 
+    <!-- ABA CHECKLIST -->
     <div class="tab-panel" id="tab-checklist">
       <div class="fgrp">
         <label>☑️ Checklist <span class="opt-badge">opcional</span></label>
@@ -986,6 +965,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
       </div>
     </div>
 
+    <!-- ABA LINKS -->
     <div class="tab-panel" id="tab-links">
       <div class="fgrp">
         <label>Links <span class="opt-badge">opcional</span></label>
@@ -999,9 +979,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <button class="btn-del" id="cardDelBtn">🗑 Excluir</button>
         <button class="btn-dup" id="cardDupBtn">⧉ Duplicar</button>
       </div>
-      <!-- BOTÃO SALVAR RASCUNHO MANUAL -->
-      <button class="btn-draft" id="btnSaveDraft" onclick="saveDraftManual()" style="display:none">✏️ Rascunho</button>
-      <button class="btn-cancel" onclick="discardDraftAndClose()">Cancelar</button>
+      <button class="btn-cancel" onclick="closeOverlay('cardOverlay')">Cancelar</button>
       <button class="btn-save" id="btnSaveCard" onclick="saveCard()">💾 Salvar</button>
     </div>
   </div>
@@ -1127,7 +1105,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 </div>
 
 <div class="toast" id="toast"></div>
-
 <script>
 // ===================== CONSTANTES =====================
 const EMOJI_CATS={
@@ -1161,8 +1138,6 @@ const DONE_STATUSES=new Set(["Publicado","Aprovado","Programado"]);
 const DEFAULT_PLATFORMS=["Instagram","YouTube","Facebook","TikTok","Twitter/X","LinkedIn","Email","Blog","Outro"];
 const PLAT_ICONS_MAP={"Instagram":"📸","YouTube":"▶️","Facebook":"👥","TikTok":"🎵","Twitter/X":"🐦","LinkedIn":"💼","Email":"📧","Blog":"📝","Outro":"🌐"};
 const DEFAULT_BUS=["Grão","Finclass","Sócios","Primo Rico","Thiago Nigro","Bruno Perini"];
-
-// Dashboard
 const IG_METRIC_KEYS=["novosSeguidores","visualizacoes","alcance","atividadePerfil","visitasPerfil","cliquesLink","fechamentoSeguidores"];
 const IG_METRIC_LABELS={"novosSeguidores":"Novos Seguidores","visualizacoes":"Visualizações","alcance":"Alcance","atividadePerfil":"Atividade no Perfil","visitasPerfil":"Visitas no Perfil","cliquesLink":"Cliques no Link","fechamentoSeguidores":"Fechamento Seguidores"};
 const IG_METRIC_ICONS={"novosSeguidores":"👥","visualizacoes":"👁️","alcance":"📡","atividadePerfil":"⚡","visitasPerfil":"🏠","cliquesLink":"🔗","fechamentoSeguidores":"🎯"};
@@ -1205,171 +1180,9 @@ let _dayModalContext=null,_openedFromDayModal=false,currentView="calendar";
 let dashPlatform="instagram",dashYear=2026,dashMonth=TODAY.getMonth();
 let igMetrics={},ytMetrics={},igGoals={},ytGoals={},ytVideos={},ytBreakdown={},igPubs={};
 let _dashCharts={};
-let _igRefs=[],_ytRefs=[],selectedCTA="";
+let _igRefs=[],_ytRefs=[];
 let _impEmojiSelected="🔹",_mpEmojiSelected="🔹";
 let _impEmojiEditIdx=-1,_mpEmojiEditIdx=-1;
-
-// ══════════════════════════════════════
-//   AUTO-SAVE RASCUNHO
-// ══════════════════════════════════════
-const DRAFT_KEY="cal_draft_card";
-let _draftTimer=null;
-let _draftExists=false;
-
-function getDraftData(){
-  try{return JSON.parse(localStorage.getItem(DRAFT_KEY)||"null");}catch{return null;}
-}
-function clearDraft(){
-  localStorage.removeItem(DRAFT_KEY);
-  _draftExists=false;
-  updateDraftIndicator("idle");
-}
-function updateDraftIndicator(state){
-  const ind=document.getElementById("draftIndicator");
-  const txt=document.getElementById("draftIndicatorText");
-  const btn=document.getElementById("btnSaveDraft");
-  if(!ind||!txt)return;
-  ind.style.display="flex";
-  if(btn)btn.style.display="inline-flex";
-  ind.className="draft-indicator";
-  if(state==="saving"){
-    ind.classList.add("saving");
-    txt.textContent="Salvando…";
-  }else if(state==="saved"){
-    ind.classList.add("saved");
-    txt.textContent="Rascunho salvo";
-    setTimeout(()=>{
-      ind.className="draft-indicator";
-      txt.textContent="Rascunho";
-    },2000);
-  }else{
-    txt.textContent="Rascunho";
-  }
-}
-function collectFormForDraft(){
-  return{
-    _draftId:editCardId||null,
-    _draftTs:Date.now(),
-    date:document.getElementById("cDate")?.value||"",
-    title:document.getElementById("cTitle")?.value||"",
-    platform:selectedPlatformForm||"",
-    bu:selectedBUForm||"",
-    category:document.getElementById("cCatSel")?.value||"",
-    status:selectedStatus||"",
-    recur:selectedRecur||"",
-    campaign:document.getElementById("cCampaign")?.value||"",
-    pmp:document.getElementById("cPmp")?.value||"",
-    bigIdea:document.getElementById("cBigIdea")?.value||"",
-    copy:document.getElementById("cCopy")?.value||"",
-    desc:document.getElementById("cDesc")?.value||"",
-    tags:[...currentTags],
-    responsavel:[...(pickerSelected.ppResp||[])],
-    solicitante:[...(pickerSelected.ppSolic||[])],
-    igBigIdea:document.getElementById("igBigIdea")?.value||"",
-    igBriefing:document.getElementById("igBriefing")?.value||"",
-    igDesc:document.getElementById("igDesc")?.value||"",
-    igLegenda:document.getElementById("igLegenda")?.value||"",
-    ytBigIdea:document.getElementById("ytBigIdea")?.value||"",
-    ytPushTitle:document.getElementById("ytPushTitle")?.value||"",
-    ytPushDesc:document.getElementById("ytPushDesc")?.value||"",
-    ytTitle1:document.getElementById("ytTitle1")?.value||"",
-    ytTitle2:document.getElementById("ytTitle2")?.value||"",
-    ytTitle3:document.getElementById("ytTitle3")?.value||"",
-    ytThumb1:document.getElementById("ytThumb1")?.value||"",
-    ytThumb2:document.getElementById("ytThumb2")?.value||"",
-    ytThumb3:document.getElementById("ytThumb3")?.value||"",
-    ytLinkDesc:document.getElementById("ytLinkDesc")?.value||"",
-    ytPmp:document.getElementById("ytPmp")?.value||"",
-    ytDesc:document.getElementById("ytDesc")?.value||"",
-    ytPlaylist:document.getElementById("ytPlaylist")?.value||"",
-    ytHashtags:document.getElementById("ytHashtags")?.value||"",
-    ytCta:selectedCTA||"",
-    checklist:_clData.map(i=>({...i})),
-    links:collectLinks(),
-    colorOverride:useOverrideColor?chosenColor:"",
-    igRefs:[..._igRefs],
-    ytRefs:[..._ytRefs]
-  };
-}
-function saveDraftNow(){
-  if(!document.getElementById("cardOverlay")?.classList.contains("open"))return;
-  updateDraftIndicator("saving");
-  const data=collectFormForDraft();
-  localStorage.setItem(DRAFT_KEY,JSON.stringify(data));
-  _draftExists=true;
-  updateDraftIndicator("saved");
-}
-function scheduleDraft(){
-  clearTimeout(_draftTimer);
-  _draftTimer=setTimeout(saveDraftNow,1500);
-}
-function saveDraftManual(){
-  clearTimeout(_draftTimer);
-  saveDraftNow();
-  showToast("✏️ Rascunho salvo!","#fb923c");
-}
-function discardDraftAndClose(){
-  clearTimeout(_draftTimer);
-  clearDraft();
-  closeOverlay("cardOverlay");
-}
-function setupAutoSave(){
-  const overlay=document.getElementById("cardOverlay");
-  if(!overlay)return;
-  overlay.querySelectorAll("input,textarea,select").forEach(el=>{
-    el.addEventListener("input",scheduleDraft);
-    el.addEventListener("change",scheduleDraft);
-  });
-}
-function restoreDraft(){
-  const d=getDraftData();
-  if(!d)return;
-  const ago=Math.round((Date.now()-d._draftTs)/60000);
-  const label=ago<1?"agora mesmo":ago===1?"1 minuto atrás":`${ago} minutos atrás`;
-  if(!confirm(`📝 Existe um rascunho salvo (${label}).\n\n"${d.title||'Sem título'}"\n\nDeseja restaurar?`))return;
-  // Restaura campos
-  if(d.date)document.getElementById("cDate").value=d.date;
-  if(d.title)document.getElementById("cTitle").value=d.title;
-  if(d.pmp)document.getElementById("cPmp").value=d.pmp;
-  if(d.bigIdea)document.getElementById("cBigIdea").value=d.bigIdea;
-  if(d.copy)document.getElementById("cCopy").value=d.copy;
-  if(d.desc)document.getElementById("cDesc").value=d.desc;
-  if(d.igBigIdea)document.getElementById("igBigIdea").value=d.igBigIdea;
-  if(d.igBriefing)document.getElementById("igBriefing").value=d.igBriefing;
-  if(d.igDesc)document.getElementById("igDesc").value=d.igDesc;
-  if(d.igLegenda)document.getElementById("igLegenda").value=d.igLegenda;
-  if(d.ytBigIdea)document.getElementById("ytBigIdea").value=d.ytBigIdea;
-  if(d.ytPushTitle)document.getElementById("ytPushTitle").value=d.ytPushTitle;
-  if(d.ytPushDesc)document.getElementById("ytPushDesc").value=d.ytPushDesc;
-  if(d.ytTitle1)document.getElementById("ytTitle1").value=d.ytTitle1;
-  if(d.ytTitle2)document.getElementById("ytTitle2").value=d.ytTitle2;
-  if(d.ytTitle3)document.getElementById("ytTitle3").value=d.ytTitle3;
-  if(d.ytThumb1)document.getElementById("ytThumb1").value=d.ytThumb1;
-  if(d.ytThumb2)document.getElementById("ytThumb2").value=d.ytThumb2;
-  if(d.ytThumb3)document.getElementById("ytThumb3").value=d.ytThumb3;
-  if(d.ytLinkDesc)document.getElementById("ytLinkDesc").value=d.ytLinkDesc;
-  if(d.ytPmp)document.getElementById("ytPmp").value=d.ytPmp;
-  if(d.ytDesc)document.getElementById("ytDesc").value=d.ytDesc;
-  if(d.ytPlaylist)document.getElementById("ytPlaylist").value=d.ytPlaylist;
-  if(d.ytHashtags)document.getElementById("ytHashtags").value=d.ytHashtags;
-  if(d.tags){currentTags=[...d.tags];renderTags();}
-  if(d.platform){selectedPlatformForm=d.platform;renderPlatformPicker();}
-  if(d.bu){selectedBUForm=d.bu;renderBUPicker();}
-  if(d.status){selectedStatus=d.status;document.querySelectorAll(".status-opt").forEach(o=>{if(o.dataset.val===d.status)o.classList.add("sel-"+d.status.toLowerCase());});}
-  if(d.recur){selectedRecur=d.recur;document.querySelectorAll(".recur-opt").forEach(b=>b.classList.toggle("sel",b.dataset.val===d.recur));}
-  if(d.campaign)populateCampaignSelect(d.campaign);
-  if(d.ytCta){selectedCTA=d.ytCta;applyCTASel(d.ytCta);}
-  if(d.responsavel)applyPeoplePicker("ppResp",d.responsavel);
-  if(d.solicitante)applyPeoplePicker("ppSolic",d.solicitante);
-  if(d.category){document.getElementById("cCatSel").value=d.category;onCatChange();}
-  if(d.colorOverride){useOverrideColor=true;chosenColor=d.colorOverride;document.getElementById("overrideColorCheck").checked=true;document.getElementById("overrideSection").classList.add("show");document.getElementById("customColorPicker").value=d.colorOverride;document.getElementById("colorHexLbl").textContent=d.colorOverride;document.getElementById("colorBar").style.background=d.colorOverride;}
-  if(d.checklist){_clData=d.checklist.map(i=>({...i}));renderClList();}
-  if(d.links&&d.links.length){renderLinksList(d.links);}
-  if(d.igRefs){_igRefs=[...d.igRefs];renderRefList("ig");}
-  if(d.ytRefs){_ytRefs=[...d.ytRefs];renderRefList("yt");}
-  updateDraftIndicator("saved");
-  showToast("✅ Rascunho restaurado!","#fb923c");
-}
 
 // ===================== HELPERS =====================
 function loadPeopleList(){const r=localStorage.getItem("cal_people_v2");if(r){try{peopleList=JSON.parse(r);return;}catch{}}peopleList=[];}
@@ -1383,26 +1196,11 @@ function toArr(v){if(!v)return[];if(Array.isArray(v))return v;return[v];}
 function isDoneStatus(s){return DONE_STATUSES.has(s);}
 function fmtNum(n){if(!n&&n!==0)return"—";const num=Number(n);if(isNaN(num))return"—";if(num>=1000000)return(num/1000000).toFixed(1).replace(".",",")+"M";if(num>=1000)return(num/1000).toFixed(1).replace(".",",")+"K";return num.toLocaleString("pt-BR");}
 function pct(a,b){if(!b||b===0)return 0;return Math.round((a/b)*100);}
-function trendHtml(cur,prev){
-  if(!prev||prev===0)return`<span class="kpi-trend-flat">—</span>`;
-  const d=cur-prev;
-  const pctChange=Math.round(Math.abs(d/prev)*100);
-  if(d>0)return`<span class="kpi-trend-up">▲ ${fmtNum(Math.abs(d))} (+${pctChange}%)</span>`;
-  if(d<0)return`<span class="kpi-trend-down">▼ ${fmtNum(Math.abs(d))} (-${pctChange}%)</span>`;
-  return`<span class="kpi-trend-flat">= igual</span>`;
-}
-function trendSmall(cur,prev){
-  if(!prev||prev===0)return`<span class="spi-trend-flat">—</span>`;
-  const d=cur-prev;
-  const pctChange=Math.round(Math.abs(d/prev)*100);
-  if(d>0)return`<span class="spi-trend-up">▲ +${pctChange}% vs mês anterior</span>`;
-  if(d<0)return`<span class="spi-trend-down">▼ -${pctChange}% vs mês anterior</span>`;
-  return`<span class="spi-trend-flat">= igual ao mês anterior</span>`;
-}
+function trendHtml(cur,prev){if(!prev||prev===0)return`<span class="kpi-trend-flat">—</span>`;const d=cur-prev;if(d>0)return`<span class="kpi-trend-up">▲ ${fmtNum(Math.abs(d))}</span>`;if(d<0)return`<span class="kpi-trend-down">▼ ${fmtNum(Math.abs(d))}</span>`;return`<span class="kpi-trend-flat">= igual</span>`;}
 function showToast(msg,color="#6c63ff"){const t=document.getElementById("toast");t.textContent=msg;t.style.background=color;t.style.color=color==="#facc15"||color==="#4ade80"?"#000":"#fff";t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);}
 function openOverlay(id){document.getElementById(id).classList.add("open");document.body.style.overflow="hidden";}
 function closeOverlay(id){document.getElementById(id).classList.remove("open");const anyOpen=document.querySelectorAll(".overlay.open").length>0;if(!anyOpen)document.body.style.overflow="";}
-function setupOverlayClose(){document.querySelectorAll(".overlay").forEach(ov=>{ov.addEventListener("click",e=>{if(e.target===ov){if(ov.id==="cardOverlay")discardDraftAndClose();else closeOverlay(ov.id);}});});}
+function setupOverlayClose(){document.querySelectorAll(".overlay").forEach(ov=>{ov.addEventListener("click",e=>{if(e.target===ov)closeOverlay(ov.id);});});}
 function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("sidebarOverlay").classList.toggle("open");}
 function closeSidebar(){document.getElementById("sidebar").classList.remove("open");document.getElementById("sidebarOverlay").classList.remove("open");}
 
@@ -1411,26 +1209,37 @@ window._fbReady=false;
 window.addEventListener("firebaseReady",()=>{window._fbReady=true;startApp();});
 setTimeout(()=>{if(!window._fbReady){document.getElementById("loadingScreen").style.display="none";document.getElementById("appShell").style.display="flex";boot();}},4000);
 function startApp(){document.getElementById("loadingScreen").style.display="none";document.getElementById("appShell").style.display="flex";loadPeopleList();setSyncStatus("ok");boot();}
-function boot(){renderAll();renderMonthNav();renderCatSidebar();listenData();renderPresets("presetGrid");renderPresets("catPresetGrid");buildEmojiPanels();setupOverlayClose();buildPlatformFilters();buildRespFilters();document.getElementById("recurOpts").addEventListener("click",e=>{const b=e.target.closest(".recur-opt");if(b)selectRecur(b.dataset.val);});setupAutoSave();}
+function boot(){renderAll();renderMonthNav();renderCatSidebar();listenData();renderPresets("presetGrid");renderPresets("catPresetGrid");buildEmojiPanels();setupOverlayClose();buildPlatformFilters();buildRespFilters();document.getElementById("recurOpts").addEventListener("click",e=>{const b=e.target.closest(".recur-opt");if(b)selectRecur(b.dataset.val);});}
 
 // ===================== FIREBASE =====================
 function listenData(){
   if(!window._db)return;
   window._onSnapshot(window._col("cats_cal"),snap=>{
-    categories={};snap.forEach(d=>{categories[d.id]=d.data();});
+    categories={};
+    snap.forEach(d=>{categories[d.id]=d.data();});
     if(!Object.keys(categories).length)seedCats();
-    renderCatSidebar();refreshAllDOM();
+    renderCatSidebar();
+    refreshAllDOM();
   },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("cards_cal"),snap=>{
-    cards={};snap.forEach(d=>{cards[d.id]=d.data();});
+    cards={};
+    snap.forEach(d=>{cards[d.id]=d.data();});
     Object.values(cards).forEach(c=>{
       toArr(c.responsavel).forEach(name=>{
-        if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}
+        if(name&&!peopleList.find(p=>p.name===name)){
+          const color=generatePersonColor(name,peopleList.map(p=>p.color));
+          peopleList.push({name,color});
+        }
       });
       if(c.platform&&!platforms.includes(c.platform)){platforms.push(c.platform);savePlatforms();}
       if(c.bu&&!buList.includes(c.bu)){buList.push(c.bu);saveBUs();}
     });
-    savePeopleList();buildRespFilters();buildPlatformFilters();rebuildRecurInstances();renderAll();setSyncStatus("ok");
+    savePeopleList();
+    buildRespFilters();
+    buildPlatformFilters();
+    rebuildRecurInstances();
+    renderAll();
+    setSyncStatus("ok");
   },()=>setSyncStatus("err"));
   window._onSnapshot(window._col("campaigns_cal"),snap=>{
     if(!snap.empty){campaigns=snap.docs[0].data().list||[...DEFAULT_CAMPAIGNS];}
@@ -1470,7 +1279,10 @@ async function dbSaveGoals(platform,yr,semester,data){if(!window._setDoc)return;
 function setSyncStatus(s){const d=document.getElementById("syncDot");if(d)d.className="sync-dot "+(s==="ok"?"ok":"err");}
 
 // ===================== EMOJI =====================
-function buildInlineEmojiGrid(gridId,cb){const grid=document.getElementById(gridId);if(!grid)return;grid.innerHTML=ALL_EMOJIS_FLAT.map(e=>`<button class="emoji-inline-btn" type="button" onclick="(${cb.toString()})('${e}')">${e}</button>`).join("");}
+function buildInlineEmojiGrid(gridId,cb){
+  const grid=document.getElementById(gridId);if(!grid)return;
+  grid.innerHTML=ALL_EMOJIS_FLAT.map(e=>`<button class="emoji-inline-btn" type="button" onclick="(${cb.toString()})('${e}')">${e}</button>`).join("");
+}
 function toggleImpEmojiPanel(){const p=document.getElementById("impEmojiPanel");p.classList.toggle("open");if(p.classList.contains("open"))buildInlineEmojiGrid("impEmojiGrid",function(e){_impEmojiSelected=e;document.getElementById("impEmojiBtn").textContent=e;document.getElementById("impEmojiPanel").classList.remove("open");});}
 function toggleMpEmojiPanel(){const p=document.getElementById("mpEmojiPanel");p.classList.toggle("open");if(p.classList.contains("open"))buildInlineEmojiGrid("mpEmojiGrid",function(e){_mpEmojiSelected=e;document.getElementById("mpEmojiBtn").textContent=e;document.getElementById("mpEmojiPanel").classList.remove("open");});}
 function openImpEmojiForItem(idx){_impEmojiEditIdx=idx;const p=document.getElementById("impEmojiPanel");p.classList.add("open");buildInlineEmojiGrid("impEmojiGrid",function(e){platEmojis[platforms[_impEmojiEditIdx]]=e;savePlatEmojis();document.getElementById("impEmojiPanel").classList.remove("open");renderImpPlatforms();buildPlatformFilters();renderPlatformPicker();showToast("✅ Emoji atualizado!");});}
@@ -1484,8 +1296,6 @@ function handleRefUpload(type,input){const files=Array.from(input.files);if(!fil
 function renderRefList(type){const list=type==="ig"?_igRefs:_ytRefs;const el=document.getElementById(type+"RefList");if(!el)return;el.innerHTML=list.map((f,i)=>`<div class="ref-file-item"><span>${getFileIcon(f.name)}</span><span class="ref-file-name">${esc(f.name)}</span><button class="ref-file-del" type="button" onclick="removeRef('${type}',${i})">✕</button></div>`).join("");}
 function getFileIcon(name){const ext=(name.split(".").pop()||"").toLowerCase();if(["jpg","jpeg","png","gif","webp","svg"].includes(ext))return"🖼️";if(["mp4","mov","avi","webm"].includes(ext))return"🎬";if(ext==="pdf")return"📄";return"📎";}
 function removeRef(type,idx){if(type==="ig")_igRefs.splice(idx,1);else _ytRefs.splice(idx,1);renderRefList(type);}
-function selectCTA(el){document.querySelectorAll(".cta-opt").forEach(o=>o.classList.remove("sel"));selectedCTA=el.dataset.val===selectedCTA?"":el.dataset.val;if(selectedCTA)el.classList.add("sel");}
-function applyCTASel(val){selectedCTA=val||"";document.querySelectorAll(".cta-opt").forEach(o=>o.classList.toggle("sel",o.dataset.val===selectedCTA&&selectedCTA!==""));}
 
 // ===================== PLATAFORMAS =====================
 function togglePanel(id){document.querySelectorAll(".inline-manage-panel").forEach(p=>{if(p.id!==id)p.classList.remove("open");});const el=document.getElementById(id);el.classList.toggle("open");if(el.classList.contains("open")&&id==="panelPlatform")renderImpPlatforms();}
@@ -1531,7 +1341,13 @@ function cardMatchesFilter(card){
   if(filterPlatform!=="Todas"&&card.platform!==filterPlatform)return false;
   if(filterResp!=="Todas"&&!toArr(card.responsavel).includes(filterResp))return false;
   if(filterStatus&&getEffectiveStatus(card)!==filterStatus)return false;
-  if(searchQuery){const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.bu,card.igBigIdea,card.igLegenda,card.ytBigIdea,card.ytPushTitle,...toArr(card.responsavel),...(card.tags||[]),...(card.ytTitles||[])].join(" ").toLowerCase();if(!hay.includes(searchQuery))return false;}
+  if(searchQuery){
+    const hay=[card.title,card.bigIdea,card.copy,card.desc,card.pmp,card.bu,
+      card.igBigIdea,card.igLegenda,card.ytBigIdea,card.ytPushTitle,
+      ...toArr(card.responsavel),...(card.tags||[]),...(card.ytTitles||[])
+    ].join(" ").toLowerCase();
+    if(!hay.includes(searchQuery))return false;
+  }
   return true;
 }
 function toggleStatusFilter(s){filterStatus=filterStatus===s?"":s;refreshAllDOM();}
@@ -1559,21 +1375,54 @@ function addPerson(pid){const inp=document.getElementById(pid+"-inp"),name=inp.v
 function applyPeoplePicker(pid,val){if(Array.isArray(val))pickerSelected[pid]=[...val];else pickerSelected[pid]=val?[val]:[];renderPickerTags(pid);}
 document.addEventListener("click",e=>{if(!e.target.closest(".people-picker"))document.querySelectorAll(".people-dropdown.open").forEach(d=>d.classList.remove("open"));});
 
-// ===================== NAVEGAÇÃO =====================
+// ===================== VIEWS =====================
 function switchView(view){
   currentView=view;
-  document.getElementById("mainContent").classList.toggle("hidden",view!=="calendar");
-  document.getElementById("dashContent").classList.toggle("active",view==="dashboard");
-  document.getElementById("filterBar").classList.toggle("hidden",view!=="calendar");
-  document.getElementById("calendarSidebarExtra").style.display=view==="calendar"?"block":"none";
-  document.getElementById("nav-calendar").classList.toggle("active",view==="calendar");
-  document.getElementById("nav-dashboard").classList.toggle("active",view==="dashboard");
-  document.getElementById("btnToday").style.display=view==="calendar"?"flex":"none";
-  document.getElementById("topbarTitle").innerHTML=view==="calendar"?`Calendário de Conteúdo &nbsp;<span class="topbar-year" id="topbarYear">${currentYear}</span>`:`📊 Dashboard`;
-  if(view==="dashboard")renderDashboard();
+  const mainContent=document.getElementById("mainContent");
+  const dashContent=document.getElementById("dashContent");
+  const filterBar=document.getElementById("filterBar");
+  const calSidebarExtra=document.getElementById("calendarSidebarExtra");
+  const navCal=document.getElementById("nav-calendar");
+  const navDash=document.getElementById("nav-dashboard");
+  const btnToday=document.getElementById("btnToday");
+  const topbarTitle=document.getElementById("topbarTitle");
+  if(view==="calendar"){
+    mainContent.classList.remove("hidden");
+    mainContent.style.display="";
+    dashContent.classList.remove("active");
+    dashContent.style.display="none";
+    filterBar.classList.remove("hidden");
+    calSidebarExtra.style.display="block";
+    navCal.classList.add("active");
+    navDash.classList.remove("active");
+    btnToday.style.display="flex";
+    topbarTitle.innerHTML=`Calendário de Conteúdo &nbsp;<span class="topbar-year" id="topbarYear">${currentYear}</span>`;
+  } else {
+    mainContent.classList.add("hidden");
+    mainContent.style.display="none";
+    dashContent.style.display="block";
+    dashContent.classList.add("active");
+    filterBar.classList.add("hidden");
+    calSidebarExtra.style.display="none";
+    navCal.classList.remove("active");
+    navDash.classList.add("active");
+    btnToday.style.display="none";
+    topbarTitle.innerHTML=`📊 Dashboard`;
+    setTimeout(()=>{
+      if(dashContent.style.display==="block"){
+        renderDashboard();
+      }
+    },100);
+  }
   closeSidebar();
 }
-function changeYear(d){currentYear+=d;document.getElementById("yearDisplay").textContent=currentYear;const el=document.getElementById("topbarYear");if(el)el.textContent=currentYear;rebuildRecurInstances();renderAll();renderMonthNav();}
+
+function changeYear(d){
+  currentYear+=d;
+  document.getElementById("yearDisplay").textContent=currentYear;
+  const el=document.getElementById("topbarYear");if(el)el.textContent=currentYear;
+  rebuildRecurInstances();renderAll();renderMonthNav();
+}
 
 // ===================== RECORRÊNCIA =====================
 function rebuildRecurInstances(){
@@ -1581,27 +1430,52 @@ function rebuildRecurInstances(){
   Object.values(cards).forEach(card=>{
     if(!card.recur||card.isRecurInstance)return;
     const dates=getRecurDates(card);
-    dates.forEach(iso=>{if(!window._recurInstances[iso])window._recurInstances[iso]=[];window._recurInstances[iso].push({...card,_recurSource:card.id,_recurDate:iso,id:card.id+"_r_"+iso});});
+    dates.forEach(iso=>{
+      if(!window._recurInstances[iso])window._recurInstances[iso]=[];
+      window._recurInstances[iso].push({...card,_recurSource:card.id,_recurDate:iso,id:card.id+"_r_"+iso});
+    });
   });
 }
 function getRecurDates(card){
   const dates=[];if(!card.recur||!card.date)return dates;
-  const origin=new Date(card.date+"T12:00:00");const end=new Date(currentYear,11,31);let cur=new Date(origin);let safety=0;
-  while(cur<=end&&safety<500){safety++;if(cur.getFullYear()===currentYear){const iso=cur.toISOString().slice(0,10);if(iso!==card.date)dates.push(iso);}
-  if(card.recur==="daily")cur.setDate(cur.getDate()+1);else if(card.recur==="weekly")cur.setDate(cur.getDate()+7);else if(card.recur==="biweekly")cur.setDate(cur.getDate()+14);else if(card.recur==="monthly")cur.setMonth(cur.getMonth()+1);else break;}
+  const origin=new Date(card.date+"T12:00:00");
+  const end=new Date(currentYear,11,31);
+  let cur=new Date(origin);let safety=0;
+  while(cur<=end&&safety<500){
+    safety++;
+    if(cur.getFullYear()===currentYear){const iso=cur.toISOString().slice(0,10);if(iso!==card.date)dates.push(iso);}
+    if(card.recur==="daily")cur.setDate(cur.getDate()+1);
+    else if(card.recur==="weekly")cur.setDate(cur.getDate()+7);
+    else if(card.recur==="biweekly")cur.setDate(cur.getDate()+14);
+    else if(card.recur==="monthly")cur.setMonth(cur.getMonth()+1);
+    else break;
+  }
   return dates;
 }
-function selectRecur(val){selectedRecur=val;document.querySelectorAll(".recur-opt").forEach(b=>b.classList.toggle("sel",b.dataset.val===val));const hint=document.getElementById("recurHint");if(!hint)return;const msgs={"daily":"📆 Cria instâncias diárias para o ano todo.","weekly":"🗓️ Cria instâncias semanais.","biweekly":"📅 Cria instâncias a cada 14 dias.","monthly":"🗃️ Cria instâncias mensais."};hint.textContent=msgs[val]||"";}
-function getEffectiveStatus(card){if(card.isRecurInstance||card._recurSource){const key=card._recurDate||card.date;return recurStatuses[card._recurSource+"_"+key]||card.status||"";}return card.status||"";}
+function selectRecur(val){
+  selectedRecur=val;
+  document.querySelectorAll(".recur-opt").forEach(b=>b.classList.toggle("sel",b.dataset.val===val));
+  const hint=document.getElementById("recurHint");if(!hint)return;
+  const msgs={"daily":"📆 Cria instâncias diárias para o ano todo.","weekly":"🗓️ Cria instâncias semanais.","biweekly":"📅 Cria instâncias a cada 14 dias.","monthly":"🗃️ Cria instâncias mensais."};
+  hint.textContent=msgs[val]||"";
+}
+function getEffectiveStatus(card){
+  if(card.isRecurInstance||card._recurSource){const key=card._recurDate||card.date;return recurStatuses[card._recurSource+"_"+key]||card.status||"";}
+  return card.status||"";
+}
 
-// ===================== RENDERIZAÇÃO PRINCIPAL =====================
-function renderAll(){const mc=document.getElementById("mainContent");if(!mc)return;mc.innerHTML="";for(let m=0;m<12;m++)mc.appendChild(buildMonth(m));}
+// ===================== CALENDÁRIO =====================
+function renderAll(){
+  const mc=document.getElementById("mainContent");if(!mc)return;
+  mc.innerHTML="";
+  for(let m=0;m<12;m++)mc.appendChild(buildMonth(m));
+}
 function refreshAllDOM(){
   document.querySelectorAll(".cal-day").forEach(cell=>{
     const iso=cell.dataset.date;if(!iso)return;
     const area=cell.querySelector(".day-cards-area");if(area)area.innerHTML="";
-    cell.querySelectorAll(".day-more-btn").forEach(b=>b.remove());
-    const dayCards=getCardsForDate(iso);renderDayCards(cell,dayCards,iso);
+    const dayCards=getCardsForDate(iso);
+    renderDayCards(cell,dayCards,iso);
   });
   updateMonthCounts();
 }
@@ -1614,20 +1488,44 @@ function getCardsForDate(iso){
   return all;
 }
 function buildMonth(monthIdx){
-  const year=currentYear,monthName=MONTHS_PT[monthIdx],monthHolidays=HOLIDAYS[year]||{};
-  const firstDay=new Date(year,monthIdx,1).getDay(),daysInMonth=new Date(year,monthIdx+1,0).getDate();
-  const allCards=Object.values(cards),recurInsts=window._recurInstances||{};
+  const year=currentYear;
+  const monthName=MONTHS_PT[monthIdx];
+  const monthHolidays=HOLIDAYS[year]||{};
+  const firstDay=new Date(year,monthIdx,1).getDay();
+  const daysInMonth=new Date(year,monthIdx+1,0).getDate();
+  const allCards=Object.values(cards);
+  const recurInsts=window._recurInstances||{};
   let monthCardCount=0;
-  for(let d=1;d<=daysInMonth;d++){const iso=`${year}-${String(monthIdx+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;const dc=allCards.filter(c=>c.date===iso&&!c.isRecurInstance).length+(recurInsts[iso]||[]).length;monthCardCount+=dc;}
+  for(let d=1;d<=daysInMonth;d++){
+    const iso=`${year}-${String(monthIdx+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const dc=allCards.filter(c=>c.date===iso&&!c.isRecurInstance).length+(recurInsts[iso]||[]).length;
+    monthCardCount+=dc;
+  }
   const statusCounts={};
-  allCards.forEach(c=>{if(!c.date||c.isRecurInstance)return;const[cy,cm]=c.date.split("-").map(Number);if(cy===year&&cm-1===monthIdx){const s=getEffectiveStatus(c)||"Pendente";statusCounts[s]=(statusCounts[s]||0)+1;}});
-  Object.entries(recurInsts).forEach(([iso,insts])=>{const[cy,cm]=iso.split("-").map(Number);if(cy===year&&cm-1===monthIdx)insts.forEach(c=>{const s=getEffectiveStatus(c)||"Pendente";statusCounts[s]=(statusCounts[s]||0)+1;});});
-  const statusDotsHtml=Object.entries(statusCounts).map(([s,cnt])=>{const sc=STATUS_COLORS[s]||{bg:"#6b7399",text:"#fff"};const isActive=filterStatus===s;return`<div class="mstatus-dot${isActive?" active-filter":""}" onclick="toggleStatusFilter('${s}')" title="${s}"><span class="mstatus-circle" style="background:${sc.bg}"></span>${s}: ${cnt}</div>`;}).join("");
-  const section=document.createElement("div");section.className="month-section";section.id=`month-${monthIdx}`;
+  allCards.forEach(c=>{
+    if(!c.date||c.isRecurInstance)return;
+    const[cy,cm]=c.date.split("-").map(Number);
+    if(cy===year&&cm-1===monthIdx){const s=getEffectiveStatus(c)||"Pendente";statusCounts[s]=(statusCounts[s]||0)+1;}
+  });
+  Object.entries(recurInsts).forEach(([iso,insts])=>{
+    const[cy,cm]=iso.split("-").map(Number);
+    if(cy===year&&cm-1===monthIdx)insts.forEach(c=>{const s=getEffectiveStatus(c)||"Pendente";statusCounts[s]=(statusCounts[s]||0)+1;});
+  });
+  const statusDotsHtml=Object.entries(statusCounts).map(([s,cnt])=>{
+    const sc=STATUS_COLORS[s]||{bg:"#6b7399",text:"#fff"};
+    const isActive=filterStatus===s;
+    return`<div class="mstatus-dot${isActive?" active-filter":""}" onclick="toggleStatusFilter('${s}')" title="${s}"><span class="mstatus-circle" style="background:${sc.bg}"></span>${s}: ${cnt}</div>`;
+  }).join("");
+  const section=document.createElement("div");
+  section.className="month-section";
+  section.id=`month-${monthIdx}`;
   section.innerHTML=`
     <div class="month-header">
       <div class="month-left">
-        <div class="month-title-row"><span class="month-title">${monthName}</span><span class="month-cnt" id="mcnt-${monthIdx}">${monthCardCount} item${monthCardCount!==1?"s":""}</span></div>
+        <div class="month-title-row">
+          <span class="month-title">${monthName}</span>
+          <span class="month-cnt" id="mcnt-${monthIdx}">${monthCardCount} item${monthCardCount!==1?"s":""}</span>
+        </div>
         <div class="month-status-dots" id="mstatus-${monthIdx}">${statusDotsHtml}</div>
       </div>
       <div class="month-right-btns">
@@ -1635,10 +1533,12 @@ function buildMonth(monthIdx){
         <button class="btn-add-main" onclick="openCardModal(null,'${year}-${String(monthIdx+1).padStart(2,"0")}-01')">＋ Adicionar</button>
       </div>
     </div>
-    <div class="cal-wrap"><div class="cal-grid">
-      ${DAYS_PT.map(d=>`<div class="cal-hcell">${d}</div>`).join("")}
-      ${Array(firstDay).fill('<div class="cal-day empty"></div>').join("")}
-    </div></div>`;
+    <div class="cal-wrap">
+      <div class="cal-grid">
+        ${DAYS_PT.map(d=>`<div class="cal-hcell">${d}</div>`).join("")}
+        ${Array(firstDay).fill('<div class="cal-day empty"></div>').join("")}
+      </div>
+    </div>`;
   const grid=section.querySelector(".cal-grid");
   for(let d=1;d<=daysInMonth;d++){
     const iso=`${year}-${String(monthIdx+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
@@ -1648,16 +1548,28 @@ function buildMonth(monthIdx){
     const cell=document.createElement("div");
     cell.className="cal-day"+(isToday?" today":"")+(holiday?" holiday":"");
     cell.dataset.date=iso;
-    cell.innerHTML=`<div class="day-top"><span class="day-num" onclick="openDayModal('${iso}')">${d}</span>${holiday?`<span class="holiday-tag" title="${esc(holiday)}">🗓️ ${esc(holiday)}</span>`:""}</div><div class="day-cards-area"></div><button class="day-add-btn" onclick="openCardModal(null,'${iso}')">＋</button>`;
+    cell.innerHTML=`
+      <div class="day-top">
+        <span class="day-num" onclick="openDayModal('${iso}')">${d}</span>
+        ${holiday?`<span class="holiday-tag" title="${esc(holiday)}">🗓️ ${esc(holiday)}</span>`:""}
+      </div>
+      <div class="day-cards-area"></div>
+      <button class="day-add-btn" onclick="openCardModal(null,'${iso}')">＋</button>`;
     setupDayDrop(cell,iso);
-    renderDayCards(cell,getCardsForDate(iso),iso);
+    const dayCards=getCardsForDate(iso);
+    renderDayCards(cell,dayCards,iso);
     grid.appendChild(cell);
   }
   return section;
 }
 function renderDayCards(cell,dayCards,iso){
-  const area=cell.querySelector(".day-cards-area");if(!area)return;area.innerHTML="";
-  dayCards.forEach(card=>{area.appendChild(buildCardEl(card));});
+  const area=cell.querySelector(".day-cards-area");
+  if(!area)return;
+  area.innerHTML="";
+  dayCards.forEach(card=>{
+    const el=buildCardEl(card);
+    area.appendChild(el);
+  });
 }
 function buildCardEl(card){
   const cat=categories[card.category];
@@ -1666,22 +1578,19 @@ function buildCardEl(card){
   const bg=color+"22";
   const status=getEffectiveStatus(card);
   const sc=STATUS_COLORS[status]||{bg:"#6b7399",text:"#fff"};
-  const platIcon=getPlatIcon(card.platform||"");
   const resps=toArr(card.responsavel);
   const cl=card.checklist||[];
   const clDone=cl.filter(i=>i.done).length;
-  const isDraft=!!card.isDraft;
   const el=document.createElement("div");
-  el.className="content-card"+(card.isRecurInstance||card._recurSource?" is-recur":"")+(isDoneStatus(status)?" status-done":"")+(isDraft?" is-draft":"");
-  el.style.cssText=`border-left-color:${color};background:${bg};position:relative`;
+  el.className="content-card"+(card.isRecurInstance||card._recurSource?" is-recur":"")+(isDoneStatus(status)?" status-done":"");
+  el.style.cssText=`border-left-color:${color};background:${bg}`;
   el.dataset.id=card.id;
   el.draggable=!(card.isRecurInstance||card._recurSource);
   el.innerHTML=`
     <div class="card-main-row">
       ${catEmoji?`<span class="card-cat-emoji" title="${esc(cat?.name||"")}">${catEmoji}</span>`:""}
-      <span class="card-plat-icon">${platIcon}</span>
       <div class="card-inner">
-        <div class="card-title">${isDraft?`<span style="color:var(--orange);font-size:.5rem;font-weight:900;margin-right:3px">RASCUNHO</span>`:""}${esc(card.title||"Sem título")}</div>
+        <div class="card-title">${esc(card.title||"Sem título")}</div>
         ${card.bu?`<div class="card-sub">${esc(card.bu)}</div>`:""}
       </div>
       <span class="card-status-dot" style="background:${sc.bg}" title="${status}"></span>
@@ -1691,8 +1600,17 @@ function buildCardEl(card){
     ${cl.length?`<div class="card-checklist-bar"><div class="card-cl-prog"><div class="card-cl-fill" style="width:${pct(clDone,cl.length)}%;background:${sc.bg}"></div></div><span class="card-cl-label">${clDone}/${cl.length}</span></div>`:""}`;
   el.addEventListener("click",e=>{if(!e.defaultPrevented)openDetail(card.id,card._recurDate);});
   if(!card.isRecurInstance&&!card._recurSource){
-    el.addEventListener("dragstart",e=>{dragCardId=card.id;dragCardEl=el;el.classList.add("dragging");e.dataTransfer.effectAllowed="move";e.dataTransfer.setData("text/plain",card.id);});
-    el.addEventListener("dragend",()=>{dragCardId=null;dragCardEl=null;el.classList.remove("dragging");document.querySelectorAll(".drag-over").forEach(c=>c.classList.remove("drag-over"));});
+    el.addEventListener("dragstart",e=>{
+      dragCardId=card.id;dragCardEl=el;
+      el.classList.add("dragging");
+      e.dataTransfer.effectAllowed="move";
+      e.dataTransfer.setData("text/plain",card.id);
+    });
+    el.addEventListener("dragend",()=>{
+      dragCardId=null;dragCardEl=null;
+      el.classList.remove("dragging");
+      document.querySelectorAll(".drag-over").forEach(c=>c.classList.remove("drag-over"));
+    });
   }
   return el;
 }
@@ -1701,53 +1619,75 @@ function buildCardEl(card){
 function setupDayDrop(cell,iso){
   cell.addEventListener("dragover",e=>{if(dragCardId){e.preventDefault();e.dataTransfer.dropEffect="move";cell.classList.add("drag-over");}});
   cell.addEventListener("dragleave",e=>{if(!cell.contains(e.relatedTarget))cell.classList.remove("drag-over");});
-  cell.addEventListener("drop",async e=>{e.preventDefault();e.stopPropagation();cell.classList.remove("drag-over");const id=dragCardId||e.dataTransfer.getData("text/plain");if(!id)return;const card=cards[id];if(!card)return;if(card.date===iso)return;card.date=iso;await dbSaveCard(card);showToast("📅 Card movido!","#4ade80");});
+  cell.addEventListener("drop",async e=>{
+    e.preventDefault();e.stopPropagation();
+    cell.classList.remove("drag-over");
+    const id=dragCardId||e.dataTransfer.getData("text/plain");
+    if(!id)return;
+    const card=cards[id];if(!card)return;
+    if(card.date===iso)return;
+    card.date=iso;
+    await dbSaveCard(card);
+    showToast("📅 Card movido!","#4ade80");
+  });
 }
 
 // ===================== MODAL DIA =====================
 function openDayModal(iso){
   _dayModalContext=iso;
-  const[y,m,d]=iso.split("-").map(Number);const date=new Date(y,m-1,d);
+  const[y,m,d]=iso.split("-").map(Number);
+  const date=new Date(y,m-1,d);
   document.getElementById("dayModalNum").textContent=d;
   document.getElementById("dayModalWeek").textContent=DAYS_PT[date.getDay()];
   document.getElementById("dayModalMonthYear").textContent=`${MONTHS_PT[m-1]} ${y}`;
   const hkey=`${String(m).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
   const holiday=(HOLIDAYS[y]||{})[hkey];
   const hEl=document.getElementById("dayModalHoliday");
-  if(holiday){hEl.style.display="flex";hEl.className="day-modal-holiday";hEl.innerHTML=`<span>🗓️</span><strong>${esc(holiday)}</strong>`;}else hEl.style.display="none";
+  if(holiday){hEl.style.display="flex";hEl.className="day-modal-holiday";hEl.innerHTML=`<span>🗓️</span><strong>${esc(holiday)}</strong>`;}
+  else hEl.style.display="none";
   document.getElementById("dayModalAddBtn").onclick=()=>{closeOverlay("dayOverlay");openCardModal(null,iso);};
-  renderDayModalCards(iso);openOverlay("dayOverlay");
+  renderDayModalCards(iso);
+  openOverlay("dayOverlay");
 }
 function renderDayModalCards(iso){
   const allCards=getCardsForDate(iso);
   const statsEl=document.getElementById("dayModalStats");
-  const statusCount={};allCards.forEach(c=>{const s=getEffectiveStatus(c)||"Pendente";statusCount[s]=(statusCount[s]||0)+1;});
+  const statusCount={};
+  allCards.forEach(c=>{const s=getEffectiveStatus(c)||"Pendente";statusCount[s]=(statusCount[s]||0)+1;});
   statsEl.innerHTML=Object.entries(statusCount).map(([s,cnt])=>{const sc=STATUS_COLORS[s]||{bg:"#6b7399"};return`<div class="day-stat-chip"><div class="day-stat-dot" style="background:${sc.bg}"></div>${cnt} ${s}</div>`;}).join("");
   const listEl=document.getElementById("dayCardsList");
   if(!allCards.length){listEl.innerHTML=`<div class="day-modal-empty"><div class="day-modal-empty-icon">📭</div><p>Nenhuma demanda para este dia.<br>Clique em <strong>+ Nova demanda</strong> para adicionar.</p></div>`;return;}
-  const done=allCards.filter(c=>isDoneStatus(getEffectiveStatus(c)));const notDone=allCards.filter(c=>!isDoneStatus(getEffectiveStatus(c)));
-  const pri=dayPriority[iso]||[];notDone.sort((a,b)=>{const ia=pri.indexOf(a.id),ib=pri.indexOf(b.id);if(ia>=0&&ib>=0)return ia-ib;if(ia>=0)return-1;if(ib>=0)return 1;return 0;});
+  const done=allCards.filter(c=>isDoneStatus(getEffectiveStatus(c)));
+  const notDone=allCards.filter(c=>!isDoneStatus(getEffectiveStatus(c)));
+  const pri=dayPriority[iso]||[];
+  notDone.sort((a,b)=>{const ia=pri.indexOf(a.id),ib=pri.indexOf(b.id);if(ia>=0&&ib>=0)return ia-ib;if(ia>=0)return-1;if(ib>=0)return 1;return 0;});
   let html="";
   if(notDone.length)html+=`<div class="priority-section-label">Em andamento <span></span></div><div class="day-cards-list" id="dayCardsNotDone">${notDone.map(c=>buildDayCardRow(c,iso)).join("")}</div>`;
   if(done.length)html+=`<div class="done-section-label">✅ Concluídos <span></span></div><div class="day-cards-list">${done.map(c=>buildDayCardRow(c,iso)).join("")}</div>`;
-  listEl.innerHTML=html;setupDayModalDnD(iso);
+  listEl.innerHTML=html;
+  setupDayModalDnD(iso);
 }
 function buildDayCardRow(card,iso){
-  const cat=categories[card.category];const color=card.colorOverride||(cat?cat.color:"#6b7399");const catEmoji=cat?cat.emoji:"";
-  const status=getEffectiveStatus(card);const sc=STATUS_COLORS[status]||{bg:"#6b7399",text:"#fff"};
-  const resps=toArr(card.responsavel);const cl=card.checklist||[];const clDone=cl.filter(i=>i.done).length;
-  const isDone=isDoneStatus(status);const isRecur=!!(card.isRecurInstance||card._recurSource);const isDraft=!!card.isDraft;
-  return`<div class="day-card-row${isDone?" is-done":""}${isDraft?" is-draft-row":""}" style="border-left-color:${color}" data-id="${card.id}" ${!isRecur?`draggable="true"`:""}>
+  const cat=categories[card.category];
+  const color=card.colorOverride||(cat?cat.color:"#6b7399");
+  const catEmoji=cat?cat.emoji:"";
+  const status=getEffectiveStatus(card);
+  const sc=STATUS_COLORS[status]||{bg:"#6b7399",text:"#fff"};
+  const resps=toArr(card.responsavel);
+  const cl=card.checklist||[];
+  const clDone=cl.filter(i=>i.done).length;
+  const isDone=isDoneStatus(status);
+  const isRecur=!!(card.isRecurInstance||card._recurSource);
+  return`<div class="day-card-row${isDone?" is-done":""}" style="border-left-color:${color}" data-id="${card.id}" ${!isRecur?`draggable="true"`:""}>
     ${!isRecur?`<div class="day-card-drag-handle" title="Arrastar">⠿</div>`:""}
     <div class="day-card-info" onclick="openDetailFromDay('${card.id}','${card._recurDate||""}')">
-      <div class="day-card-title">${catEmoji?`<span style="margin-right:4px">${catEmoji}</span>`:""}${isDraft?`<span style="color:var(--orange);font-size:.6rem;font-weight:900;margin-right:4px">✏️</span>`:""}${esc(card.title||"Sem título")}</div>
+      <div class="day-card-title">${catEmoji?`<span style="margin-right:4px">${catEmoji}</span>`:""}${esc(card.title||"Sem título")}</div>
       <div class="day-card-meta">
         ${card.platform?`<span class="day-card-badge">${getPlatIcon(card.platform)} ${esc(card.platform)}</span>`:""}
         ${card.bu?`<span class="day-card-badge" style="color:#f472b6;border-color:rgba(244,114,182,.3)">${esc(card.bu)}</span>`:""}
         <span class="day-card-status" style="background:${sc.bg};color:${sc.text}">${status||"—"}</span>
         ${cl.length?`<span class="day-card-cl">${clDone}/${cl.length} <span class="day-card-cl-bar"><span class="day-card-cl-fill" style="width:${pct(clDone,cl.length)}%;background:${sc.bg}"></span></span></span>`:""}
         ${isRecur?`<span style="font-size:.6rem;color:var(--muted)">🔁 recorrente</span>`:""}
-        ${isDraft?`<span style="font-size:.6rem;color:var(--orange)">✏️ rascunho</span>`:""}
       </div>
     </div>
     <div class="day-card-right">
@@ -1758,7 +1698,8 @@ function buildDayCardRow(card,iso){
 function openDetailFromDay(cardId,recurDate){_openedFromDayModal=true;openDetail(cardId,recurDate||undefined);}
 function backToDayModal(){closeOverlay("detailOverlay");if(_dayModalContext)openDayModal(_dayModalContext);}
 function setupDayModalDnD(iso){
-  const list=document.getElementById("dayCardsNotDone");if(!list)return;let dragSrc=null;
+  const list=document.getElementById("dayCardsNotDone");if(!list)return;
+  let dragSrc=null;
   list.querySelectorAll(".day-card-row[draggable]").forEach(row=>{
     row.addEventListener("dragstart",e=>{dragSrc=row;row.classList.add("dnd-dragging");e.dataTransfer.effectAllowed="move";});
     row.addEventListener("dragend",()=>{dragSrc=null;list.querySelectorAll(".day-card-row").forEach(r=>r.classList.remove("dnd-over","dnd-dragging"));saveDayPriority(iso,list);renderDayModalCards(iso);refreshAllDOM();});
@@ -1768,27 +1709,50 @@ function setupDayModalDnD(iso){
   });
 }
 function saveDayPriority(iso,list){const ids=[...list.querySelectorAll(".day-card-row")].map(r=>r.dataset.id).filter(Boolean);dayPriority[iso]=ids;localStorage.setItem("cal_day_priority",JSON.stringify(dayPriority));}
-
 // ===================== MODAL CARD =====================
 function switchTab(tabId,btn){
   document.querySelectorAll("#cardOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll("#cardOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
-  const tp=document.getElementById("tab-"+tabId);if(tp)tp.classList.add("active");if(btn)btn.classList.add("active");
+  const tp=document.getElementById("tab-"+tabId);if(tp)tp.classList.add("active");
+  if(btn)btn.classList.add("active");
 }
 function openCardModal(cardId,defaultDate){
   editCardId=cardId;
   document.getElementById("cardModalTitle").textContent=cardId?"Editar Item":"Novo Item";
   document.getElementById("cardDelRow").style.display=cardId?"flex":"none";
   switchTab("info",document.querySelector("#cardOverlay .modal-tab"));
-
-  // Reseta campos
-  ["cDate","cTitle","cDesc","cPmp","cCopy","cBigIdea","igBigIdea","igBriefing","igDesc","igLegenda",
-   "ytBigIdea","ytPushTitle","ytPushDesc","ytTitle1","ytTitle2","ytTitle3","ytThumb1","ytThumb2","ytThumb3",
-   "ytLinkDesc","ytPmp","ytDesc","ytPlaylist","ytHashtags"].forEach(id=>{const el=document.getElementById(id);if(el)el.value="";});
-  if(defaultDate)document.getElementById("cDate").value=defaultDate;
+  document.getElementById("cDate").value=defaultDate||"";
+  document.getElementById("cTitle").value="";
+  document.getElementById("cDesc").value="";
+  document.getElementById("cPmp").value="";
+  document.getElementById("cCopy").value="";
+  document.getElementById("cBigIdea").value="";
+  document.getElementById("igBigIdea").value="";
+  document.getElementById("igBriefing").value="";
+  document.getElementById("igDesc").value="";
+  document.getElementById("igLegenda").value="";
+  document.getElementById("ytBigIdea").value="";
+  document.getElementById("ytPushTitle").value="";
+  document.getElementById("ytPushDesc").value="";
+  document.getElementById("ctaText").value="";
+  document.getElementById("ytTitle1").value="";
+  document.getElementById("ytTitle2").value="";
+  document.getElementById("ytTitle3").value="";
+  document.getElementById("ytThumb1").value="";
+  document.getElementById("ytThumb2").value="";
+  document.getElementById("ytThumb3").value="";
+  document.getElementById("ytLinkDesc").value="";
+  document.getElementById("ytPmp").value="";
+  document.getElementById("ytDesc").value="";
+  document.getElementById("ytPlaylist").value="";
+  document.getElementById("ytHashtags").value="";
   currentTags=[];renderTags();
-  selectedPlatformForm="";selectedBUForm="";chosenColor="#6c63ff";useOverrideColor=false;selectedStatus="";selectedRecur="";selectedCTA="";
-  _igRefs=[];_ytRefs=[];pickerSelected={ppResp:[],ppSolic:[]};_clData=[];
+  selectedPlatformForm="";selectedBUForm="";
+  chosenColor="#6c63ff";useOverrideColor=false;
+  selectedStatus="";selectedRecur="";
+  _igRefs=[];_ytRefs=[];
+  pickerSelected={ppResp:[],ppSolic:[]};
+  _clData=[];
   document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt");
   document.querySelectorAll(".recur-opt").forEach(b=>b.classList.toggle("sel",b.dataset.val===""));
   document.getElementById("recurHint").textContent="";
@@ -1799,527 +1763,860 @@ function openCardModal(cardId,defaultDate){
   document.getElementById("catColorPreview").style.display="none";
   document.getElementById("managePlatformsBox").style.display="none";
   document.getElementById("manageBUsBox").style.display="none";
-
-  renderPlatformPicker();renderBUPicker();populateCampaignSelect();populateCatSelect();
-  renderPresets("presetGrid");renderClList();renderLinksList();renderRefList("ig");renderRefList("yt");applyCTASel("");
-
-  // Indicador de draft
-  const ind=document.getElementById("draftIndicator");
-  const btn=document.getElementById("btnSaveDraft");
-  if(ind)ind.style.display="none";
-  if(btn)btn.style.display="none";
-
+  renderCatSelect();
+  renderPlatformPicker();
+  renderBUPicker();
+  renderPickerTags("ppResp");
+  renderPickerTags("ppSolic");
+  renderCampaignSelect();
+  renderPresets("presetGrid");
+  clRenderList();
+  renderLinksEdit([]);
   if(cardId){
-    const card=cards[cardId];if(!card){openOverlay("cardOverlay");return;}
-    document.getElementById("cDate").value=card.date||"";
-    document.getElementById("cTitle").value=card.title||"";
-    document.getElementById("cDesc").value=card.desc||"";
-    document.getElementById("cPmp").value=card.pmp||"";
-    document.getElementById("cCopy").value=card.copy||"";
-    document.getElementById("cBigIdea").value=card.bigIdea||"";
-    document.getElementById("igBigIdea").value=card.igBigIdea||"";
-    document.getElementById("igBriefing").value=card.igBriefing||"";
-    document.getElementById("igDesc").value=card.igDesc||"";
-    document.getElementById("igLegenda").value=card.igLegenda||"";
-    document.getElementById("ytBigIdea").value=card.ytBigIdea||"";
-    document.getElementById("ytPushTitle").value=card.ytPushTitle||"";
-    document.getElementById("ytPushDesc").value=card.ytPushDesc||"";
-    const yt=card.ytTitles||[];document.getElementById("ytTitle1").value=yt[0]||"";document.getElementById("ytTitle2").value=yt[1]||"";document.getElementById("ytTitle3").value=yt[2]||"";
-    const yth=card.ytThumbs||[];document.getElementById("ytThumb1").value=yth[0]||"";document.getElementById("ytThumb2").value=yth[1]||"";document.getElementById("ytThumb3").value=yth[2]||"";
-    document.getElementById("ytLinkDesc").value=card.ytLinkDesc||"";document.getElementById("ytPmp").value=card.ytPmp||"";document.getElementById("ytDesc").value=card.ytDesc||"";
-    document.getElementById("ytPlaylist").value=card.ytPlaylist||"";document.getElementById("ytHashtags").value=card.ytHashtags||"";
-    currentTags=[...(card.tags||[])];renderTags();
-    selectedPlatformForm=card.platform||"";selectedBUForm=card.bu||"";chosenColor=card.color||"#6c63ff";
-    useOverrideColor=!!card.colorOverride;selectedStatus=card.status||"";selectedRecur=card.recur||"";selectedCTA=card.ytCta||"";
-    _igRefs=[...(card.igRefs||[])];_ytRefs=[...(card.ytRefs||[])];_clData=(card.checklist||[]).map(i=>({...i}));
-    applyPeoplePicker("ppResp",card.responsavel||[]);applyPeoplePicker("ppSolic",card.solicitante||[]);
-    if(selectedStatus)document.querySelectorAll(".status-opt").forEach(o=>{if(o.dataset.val===selectedStatus)o.classList.add("sel-"+selectedStatus.toLowerCase());});
-    document.querySelectorAll(".recur-opt").forEach(b=>b.classList.toggle("sel",b.dataset.val===selectedRecur));
-    renderPlatformPicker();renderBUPicker();populateCampaignSelect(card.campaign);applyCTASel(card.ytCta||"");
-    if(card.category){const catSel=document.getElementById("cCatSel");if(catSel){catSel.value=card.category;onCatChange();}}
-    document.getElementById("overrideColorCheck").checked=useOverrideColor;
-    if(useOverrideColor){document.getElementById("overrideSection").classList.add("show");document.getElementById("customColorPicker").value=chosenColor;document.getElementById("colorHexLbl").textContent=chosenColor;document.getElementById("colorBar").style.background=chosenColor;}
-    renderClList();renderLinksList(card.links||[]);renderRefList("ig");renderRefList("yt");
-    document.getElementById("cardDelBtn").onclick=()=>deleteCard(cardId);
+    const c=cards[cardId];if(!c)return;
+    document.getElementById("cDate").value=c.date||"";
+    document.getElementById("cTitle").value=c.title||"";
+    document.getElementById("cDesc").value=c.desc||"";
+    document.getElementById("cPmp").value=c.pmp||"";
+    document.getElementById("cCopy").value=c.copy||"";
+    document.getElementById("cBigIdea").value=c.bigIdea||"";
+    document.getElementById("igBigIdea").value=c.igBigIdea||"";
+    document.getElementById("igBriefing").value=c.igBriefing||"";
+    document.getElementById("igDesc").value=c.igDesc||"";
+    document.getElementById("igLegenda").value=c.igLegenda||"";
+    document.getElementById("ytBigIdea").value=c.ytBigIdea||"";
+    document.getElementById("ytPushTitle").value=c.ytPushTitle||"";
+    document.getElementById("ytPushDesc").value=c.ytPushDesc||"";
+    document.getElementById("ctaText").value=c.ctaText||"";
+    const titles=c.ytTitles||[];
+    document.getElementById("ytTitle1").value=titles[0]||"";
+    document.getElementById("ytTitle2").value=titles[1]||"";
+    document.getElementById("ytTitle3").value=titles[2]||"";
+    const thumbs=c.ytThumbs||[];
+    document.getElementById("ytThumb1").value=thumbs[0]||"";
+    document.getElementById("ytThumb2").value=thumbs[1]||"";
+    document.getElementById("ytThumb3").value=thumbs[2]||"";
+    document.getElementById("ytLinkDesc").value=c.ytLinkDesc||"";
+    document.getElementById("ytPmp").value=c.ytPmp||"";
+    document.getElementById("ytDesc").value=c.ytDesc||"";
+    document.getElementById("ytPlaylist").value=c.ytPlaylist||"";
+    document.getElementById("ytHashtags").value=c.ytHashtags||"";
+    currentTags=[...(c.tags||[])];renderTags();
+    selectedPlatformForm=c.platform||"";
+    selectedBUForm=c.bu||"";
+    selectedStatus=c.status||"";
+    selectedRecur=c.recur||"";
+    useOverrideColor=!!c.colorOverride;
+    if(useOverrideColor){chosenColor=c.colorOverride;document.getElementById("overrideColorCheck").checked=true;document.getElementById("overrideSection").classList.add("show");document.getElementById("customColorPicker").value=chosenColor;document.getElementById("colorHexLbl").textContent=chosenColor;document.getElementById("colorBar").style.background=chosenColor;}
+    if(selectedStatus){const opt=document.querySelector(`.status-opt[data-val="${selectedStatus}"]`);if(opt)opt.classList.add("sel-"+selectedStatus.toLowerCase());}
+    selectRecur(selectedRecur);
+    applyPeoplePicker("ppResp",toArr(c.responsavel));
+    applyPeoplePicker("ppSolic",toArr(c.solicitante));
+    renderPlatformPicker();
+    renderBUPicker();
+    renderCatSelect(c.category);
+    onCatChange();
+    renderCampaignSelect(c.campaign);
+    _igRefs=[...(c.igRefs||[])];renderRefList("ig");
+    _ytRefs=[...(c.ytRefs||[])];renderRefList("yt");
+    _clData=(c.checklist||[]).map(i=>({...i}));clRenderList();
+    renderLinksEdit(c.links||[]);
+    document.getElementById("cardDelBtn").onclick=()=>{if(confirm("Excluir este card?"))deleteCard(cardId);};
     document.getElementById("cardDupBtn").onclick=()=>{closeOverlay("cardOverlay");openDupModal(cardId);};
   }
-
   openOverlay("cardOverlay");
-
-  // Ativa indicador e verifica rascunho
-  if(ind)ind.style.display="flex";
-  if(btn)btn.style.display="inline-flex";
-  updateDraftIndicator("idle");
-
-  // Verifica rascunho salvo (só para novo card, não para edição)
-  if(!cardId){
-    const draft=getDraftData();
-    if(draft&&draft.title){
-      setTimeout(()=>restoreDraft(),300);
-    }
+}
+function toggleStatus(el){
+  const val=el.dataset.val;
+  const wasSelected=el.classList.contains("sel-"+val.toLowerCase());
+  document.querySelectorAll(".status-opt").forEach(o=>o.className="status-opt");
+  if(!wasSelected){el.classList.add("sel-"+val.toLowerCase());selectedStatus=val;}
+  else selectedStatus="";
+}
+function toggleOverride(){
+  useOverrideColor=document.getElementById("overrideColorCheck").checked;
+  document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);
+}
+function onCatChange(){
+  const sel=document.getElementById("cCatSel");
+  const catId=sel.value;
+  const cat=categories[catId];
+  const prev=document.getElementById("catColorPreview");
+  if(cat){
+    prev.style.display="flex";
+    document.getElementById("catColorSwatch").style.background=cat.color;
+    document.getElementById("catColorName").textContent=cat.name;
+    document.getElementById("catColorHexPrev").textContent=cat.color;
+  } else {
+    prev.style.display="none";
   }
 }
+function renderCatSelect(selectedId){
+  const sel=document.getElementById("cCatSel");
+  sel.innerHTML=`<option value="">— Sem categoria —</option>`+Object.entries(categories).map(([id,c])=>`<option value="${id}"${id===selectedId?" selected":""}>${c.emoji||""} ${esc(c.name)}</option>`).join("");
+}
+function renderCampaignSelect(selected){
+  const sel=document.getElementById("cCampaign");
+  sel.innerHTML=`<option value="">— Nenhuma —</option>`+campaigns.map(c=>`<option value="${esc(c)}"${c===selected?" selected":""}>${esc(c)}</option>`).join("");
+}
 
+// ===================== CHECKLIST =====================
+function clRenderList(){
+  const list=document.getElementById("clList");
+  const wrap=document.getElementById("clProgressWrap");
+  if(!list)return;
+  list.innerHTML="";
+  if(_clData.length){
+    const done=_clData.filter(i=>i.done).length;
+    const pctVal=pct(done,_clData.length);
+    if(wrap){wrap.style.display="flex";document.getElementById("clProgressFill").style.width=pctVal+"%";document.getElementById("clProgressFill").style.background=pctVal===100?"#4ade80":"#6c63ff";document.getElementById("clProgressLabel").textContent=`${done} / ${_clData.length} concluídos`;}
+  } else {if(wrap)wrap.style.display="none";}
+  _clData.forEach((item,i)=>{
+    const row=document.createElement("div");
+    row.className="cl-row"+(item.done?" done-row":"");
+    row.innerHTML=`<div class="cl-checkbox${item.done?" on":""}" onclick="clToggle(${i})">${item.done?"✓":""}</div><input class="cl-input" type="text" value="${esc(item.text||"")}" placeholder="Tarefa…" oninput="_clData[${i}].text=this.value"/><button class="cl-del-btn" onclick="clDel(${i})">✕</button>`;
+    list.appendChild(row);
+  });
+}
+function clAddRow(){_clData.push({text:"",done:false});clRenderList();const inputs=document.querySelectorAll(".cl-input");if(inputs.length)inputs[inputs.length-1].focus();}
+function clToggle(i){_clData[i].done=!_clData[i].done;clRenderList();}
+function clDel(i){_clData.splice(i,1);clRenderList();}
+
+// ===================== LINKS =====================
+let _linksData=[];
+function renderLinksEdit(links){
+  _linksData=links.map(l=>({...l}));
+  const el=document.getElementById("linksListEdit");if(!el)return;
+  el.innerHTML="";
+  _linksData.forEach((l,i)=>{
+    const row=document.createElement("div");row.className="link-row-item";
+    row.innerHTML=`<input class="link-name" type="text" placeholder="Nome…" value="${esc(l.name||"")}" maxlength="40" oninput="_linksData[${i}].name=this.value"/><input type="url" placeholder="https://…" value="${esc(l.url||"")}" oninput="_linksData[${i}].url=this.value"/><button class="link-del-btn" onclick="delLinkRow(${i})">✕</button>`;
+    el.appendChild(row);
+  });
+}
+function addLinkRow(){_linksData.push({name:"",url:""});renderLinksEdit(_linksData);}
+function delLinkRow(i){_linksData.splice(i,1);renderLinksEdit(_linksData);}
+
+// ===================== SALVAR CARD =====================
 async function saveCard(){
-  const btn=document.getElementById("btnSaveCard");
-  const dateVal=document.getElementById("cDate").value;
-  const titleVal=document.getElementById("cTitle").value.trim();
+  const date=document.getElementById("cDate").value;
+  const title=document.getElementById("cTitle").value.trim();
+  const platform=selectedPlatformForm;
   let valid=true;
-  document.querySelectorAll(".err-msg").forEach(e=>e.classList.remove("show"));
-  document.querySelectorAll(".fgrp input,.fgrp textarea").forEach(i=>i.classList.remove("invalid"));
-  if(!dateVal){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");valid=false;}
-  if(!titleVal){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");valid=false;}
-  if(!valid)return;
-  btn.disabled=true;btn.innerHTML="⏳ Salvando…";
-  const catSel=document.getElementById("cCatSel").value;
-  const cat=categories[catSel];
-  const finalColor=useOverrideColor?chosenColor:(cat?cat.color:"#6c63ff");
-  const id=editCardId||(Date.now()+"_"+Math.random().toString(36).slice(2,7));
-  const existingCard=editCardId?(cards[editCardId]||{}):{};
+  if(!date){document.getElementById("err-date").classList.add("show");document.getElementById("cDate").classList.add("invalid");valid=false;}
+  else{document.getElementById("err-date").classList.remove("show");document.getElementById("cDate").classList.remove("invalid");}
+  if(!title){document.getElementById("err-title").classList.add("show");document.getElementById("cTitle").classList.add("invalid");valid=false;}
+  else{document.getElementById("err-title").classList.remove("show");document.getElementById("cTitle").classList.remove("invalid");}
+  if(!platform){document.getElementById("err-platform").classList.add("show");valid=false;}
+  else document.getElementById("err-platform").classList.remove("show");
+  if(!valid){switchTab("info",document.querySelector("#cardOverlay .modal-tab"));showToast("⚠️ Preencha os campos obrigatórios.","#f97316");return;}
+  const btn=document.getElementById("btnSaveCard");btn.disabled=true;btn.textContent="Salvando…";
+  const id=editCardId||("c"+Date.now());
   const card={
-    ...existingCard,id,date:dateVal,title:titleVal,platform:selectedPlatformForm||"",bu:selectedBUForm||"",
-    category:catSel||"",color:finalColor,colorOverride:useOverrideColor?chosenColor:"",catOverride:useOverrideColor,
-    desc:document.getElementById("cDesc").value.trim(),pmp:document.getElementById("cPmp").value.trim(),
-    copy:document.getElementById("cCopy").value.trim(),bigIdea:document.getElementById("cBigIdea").value.trim(),
-    igBigIdea:document.getElementById("igBigIdea").value.trim(),igBriefing:document.getElementById("igBriefing").value.trim(),
-    igDesc:document.getElementById("igDesc").value.trim(),igLegenda:document.getElementById("igLegenda").value.trim(),igRefs:[..._igRefs],
-    ytBigIdea:document.getElementById("ytBigIdea").value.trim(),ytPushTitle:document.getElementById("ytPushTitle").value.trim(),
-    ytPushDesc:document.getElementById("ytPushDesc").value.trim(),ytCta:selectedCTA||"",
+    id,date,title,
+    platform,
+    category:document.getElementById("cCatSel").value,
+    status:selectedStatus,
+    recur:selectedRecur,
+    responsavel:pickerSelected.ppResp||[],
+    solicitante:pickerSelected.ppSolic||[],
+    bu:selectedBUForm,
+    campaign:document.getElementById("cCampaign").value,
+    pmp:document.getElementById("cPmp").value.trim(),
+    bigIdea:document.getElementById("cBigIdea").value.trim(),
+    copy:document.getElementById("cCopy").value.trim(),
+    desc:document.getElementById("cDesc").value.trim(),
+    tags:currentTags,
+    colorOverride:useOverrideColor?chosenColor:"",
+    igBigIdea:document.getElementById("igBigIdea").value.trim(),
+    igBriefing:document.getElementById("igBriefing").value.trim(),
+    igDesc:document.getElementById("igDesc").value.trim(),
+    igLegenda:document.getElementById("igLegenda").value.trim(),
+    igRefs:_igRefs,
+    ytBigIdea:document.getElementById("ytBigIdea").value.trim(),
+    ytPushTitle:document.getElementById("ytPushTitle").value.trim(),
+    ytPushDesc:document.getElementById("ytPushDesc").value.trim(),
+    ctaText:document.getElementById("ctaText").value.trim(),
     ytTitles:[document.getElementById("ytTitle1").value.trim(),document.getElementById("ytTitle2").value.trim(),document.getElementById("ytTitle3").value.trim()].filter(Boolean),
     ytThumbs:[document.getElementById("ytThumb1").value.trim(),document.getElementById("ytThumb2").value.trim(),document.getElementById("ytThumb3").value.trim()].filter(Boolean),
-    ytLinkDesc:document.getElementById("ytLinkDesc").value.trim(),ytPmp:document.getElementById("ytPmp").value.trim(),
-    ytDesc:document.getElementById("ytDesc").value.trim(),ytPlaylist:document.getElementById("ytPlaylist").value.trim(),
-    ytHashtags:document.getElementById("ytHashtags").value.trim(),ytRefs:[..._ytRefs],
-    tags:[...currentTags],responsavel:[...(pickerSelected.ppResp||[])],solicitante:[...(pickerSelected.ppSolic||[])],
-    status:selectedStatus||"",recur:selectedRecur||"",campaign:document.getElementById("cCampaign").value||"",
-    checklist:_clData.map(i=>({...i})),links:collectLinks(),isDraft:false,updatedAt:Date.now()
+    ytLinkDesc:document.getElementById("ytLinkDesc").value.trim(),
+    ytPmp:document.getElementById("ytPmp").value.trim(),
+    ytDesc:document.getElementById("ytDesc").value.trim(),
+    ytPlaylist:document.getElementById("ytPlaylist").value.trim(),
+    ytHashtags:document.getElementById("ytHashtags").value.trim(),
+    ytRefs:_ytRefs,
+    checklist:_clData,
+    links:_linksData.filter(l=>l.url),
+    comments:editCardId?(cards[editCardId]?.comments||[]):[],
+    updatedAt:Date.now()
   };
   if(!editCardId)card.createdAt=Date.now();
-  [...(card.responsavel||[])].forEach(name=>{if(name&&!peopleList.find(p=>p.name===name)){const color=generatePersonColor(name,peopleList.map(p=>p.color));peopleList.push({name,color});}});
-  savePeopleList();buildRespFilters();
   await dbSaveCard(card);
-  clearDraft(); // Limpa rascunho ao salvar
-  rebuildRecurInstances();
-  btn.disabled=false;btn.innerHTML="💾 Salvar";
+  btn.disabled=false;btn.textContent="💾 Salvar";
   closeOverlay("cardOverlay");
-  showToast(editCardId?"✅ Atualizado!":"✅ Criado!","#4ade80");
-  setTimeout(()=>{const cell=document.querySelector(`.cal-day[data-date="${card.date}"]`);if(cell){cell.classList.add("highlight-pulse");setTimeout(()=>cell.classList.remove("highlight-pulse"),1500);}},300);
+  showToast(editCardId?"✅ Card atualizado!":"✅ Card criado!","#4ade80");
+  const cell=document.querySelector(`.cal-day[data-date="${date}"]`);
+  if(cell){cell.classList.add("highlight-pulse");setTimeout(()=>cell.classList.remove("highlight-pulse"),1500);}
 }
-async function deleteCard(id){if(!confirm("Excluir este item?"))return;await dbDelCard(id);closeOverlay("cardOverlay");showToast("🗑️ Excluído.","#f87171");}
 
-// ===================== CHECKLIST MODAL =====================
-function renderClList(){
-  const list=document.getElementById("clList");const prog=document.getElementById("clProgressWrap");if(!list)return;
-  list.innerHTML=_clData.map((item,i)=>`<div class="cl-row${item.done?" done-row":""}"><div class="cl-checkbox${item.done?" on":""}" onclick="clToggle(${i})">${item.done?"✓":""}</div><input class="cl-input" type="text" value="${esc(item.text||"")}" placeholder="Tarefa…" onchange="_clData[${i}].text=this.value" onkeydown="if(event.key==='Enter'){event.preventDefault();clAddRow(${i})}"/><button class="cl-del-btn" type="button" onclick="clDelRow(${i})">✕</button></div>`).join("");
-  if(prog){if(_clData.length){prog.style.display="flex";const done=_clData.filter(i=>i.done).length;const p=pct(done,_clData.length);const fill=document.getElementById("clProgressFill");if(fill){fill.style.width=p+"%";fill.style.background=p===100?"var(--green)":p>50?"var(--accent)":"var(--orange)";}const lbl=document.getElementById("clProgressLabel");if(lbl)lbl.textContent=`${done} / ${_clData.length} (${p}%)`;}else prog.style.display="none";}
-}
-function clAddRow(afterIdx){const newItem={text:"",done:false,id:Date.now()+"_cl"};if(afterIdx!==undefined)_clData.splice(afterIdx+1,0,newItem);else _clData.push(newItem);renderClList();setTimeout(()=>{const inputs=document.querySelectorAll(".cl-input");if(inputs.length){const idx=afterIdx!==undefined?afterIdx+1:inputs.length-1;inputs[idx]?.focus();}},50);}
-function clToggle(i){_clData[i].done=!_clData[i].done;renderClList();}
-function clDelRow(i){_clData.splice(i,1);renderClList();}
-
-// ===================== LINKS MODAL =====================
-function renderLinksList(links){const el=document.getElementById("linksListEdit");if(!el)return;if(links){el.innerHTML="";links.forEach(l=>addLinkRow(l.name,l.url));}}
-function addLinkRow(name,url){const el=document.getElementById("linksListEdit");if(!el)return;const row=document.createElement("div");row.className="link-row-item";row.innerHTML=`<input type="text" class="link-name" placeholder="Nome…" value="${esc(name||"")}" maxlength="40"/><input type="url" placeholder="https://…" value="${esc(url||"")}" maxlength="300"/><button class="link-del-btn" type="button" onclick="this.closest('.link-row-item').remove()">✕</button>`;el.appendChild(row);}
-function collectLinks(){const rows=document.querySelectorAll(".link-row-item");return[...rows].map(r=>{const inputs=r.querySelectorAll("input");return{name:inputs[0]?.value.trim()||"",url:inputs[1]?.value.trim()||""};}).filter(l=>l.url);}
-
-// ===================== CATEGORIA (FORM) =====================
-function populateCatSelect(){const sel=document.getElementById("cCatSel");if(!sel)return;sel.innerHTML=`<option value="">— Sem categoria —</option>`+Object.entries(categories).map(([id,c])=>`<option value="${id}">${c.emoji||"📌"} ${esc(c.name)}</option>`).join("");}
-function onCatChange(){const val=document.getElementById("cCatSel").value;const preview=document.getElementById("catColorPreview");if(val&&categories[val]){const c=categories[val];document.getElementById("catColorSwatch").style.background=c.color||"#6c63ff";document.getElementById("catColorName").textContent=(c.emoji||"")+" "+c.name;document.getElementById("catColorHexPrev").textContent=c.color||"";preview.style.display="flex";}else preview.style.display="none";}
-function toggleOverride(){useOverrideColor=document.getElementById("overrideColorCheck").checked;document.getElementById("overrideSection").classList.toggle("show",useOverrideColor);}
-
-// ===================== CAMPANHA =====================
-function populateCampaignSelect(selected){const sel=document.getElementById("cCampaign");if(!sel)return;sel.innerHTML=`<option value="">— Nenhuma —</option>`+campaigns.map(c=>`<option value="${esc(c)}"${c===selected?` selected`:""} >${esc(c)}</option>`).join("");}
-function openCampaignManager(){populateCampList();populateCampaignSelect(document.getElementById("cCampaign").value);openOverlay("campaignOverlay");}
-function closeCampaignManager(){closeOverlay("campaignOverlay");populateCampaignSelect(document.getElementById("cCampaign").value);}
-function populateCampList(){document.getElementById("campList").innerHTML=campaigns.map((c,i)=>`<div class="camp-item"><span class="camp-item-name">${esc(c)}</span><button class="camp-del-btn" onclick="removeCampaign(${i})">✕</button></div>`).join("");}
-async function addCampaign(){const inp=document.getElementById("newCampName"),v=inp.value.trim();if(!v)return;if(campaigns.map(c=>c.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}campaigns.push(v);inp.value="";await dbSaveCampaigns();populateCampList();populateCampaignSelect(document.getElementById("cCampaign").value);showToast("✅ Campanha adicionada!");}
-async function removeCampaign(i){campaigns.splice(i,1);await dbSaveCampaigns();populateCampList();populateCampaignSelect(document.getElementById("cCampaign").value);showToast("🗑️ Removida.","#f87171");}
-
-// ===================== STATUS =====================
-function toggleStatus(el){
-  const val=el.dataset.val;document.querySelectorAll(".status-opt").forEach(o=>{o.className="status-opt";});
-  if(selectedStatus===val){selectedStatus="";}else{selectedStatus=val;el.classList.add("sel-"+val.toLowerCase());}
+// ===================== EXCLUIR CARD =====================
+async function deleteCard(id){
+  await dbDelCard(id);
+  closeOverlay("cardOverlay");
+  closeOverlay("detailOverlay");
+  showToast("🗑️ Card excluído.","#f87171");
 }
 
 // ===================== DUPLICAR =====================
-function openDupModal(cardId){dupSourceId=cardId;const card=cards[cardId];document.getElementById("dupDate").value=card?.date||"";document.getElementById("dupTitle").value="";openOverlay("dupOverlay");}
+function openDupModal(id){dupSourceId=id;const c=cards[id];document.getElementById("dupDate").value=c?.date||"";document.getElementById("dupTitle").value="";openOverlay("dupOverlay");}
 async function confirmDuplicate(){
-  const newDate=document.getElementById("dupDate").value;if(!newDate){showToast("⚠️ Selecione uma data.","#f97316");return;}
-  const source=cards[dupSourceId];if(!source)return;
-  const newId=Date.now()+"_dup_"+Math.random().toString(36).slice(2,6);
-  const newTitle=document.getElementById("dupTitle").value.trim()||source.title;
-  const newCard={...source,id:newId,date:newDate,title:newTitle,createdAt:Date.now(),updatedAt:Date.now(),recur:"",comments:[]};
-  await dbSaveCard(newCard);closeOverlay("dupOverlay");showToast("⧉ Duplicado!","#a78bfa");
+  const date=document.getElementById("dupDate").value;
+  if(!date){showToast("⚠️ Selecione uma data.","#f97316");return;}
+  const src=cards[dupSourceId];if(!src)return;
+  const newId="c"+Date.now();
+  const titleVal=document.getElementById("dupTitle").value.trim();
+  const copy={...src,id:newId,date,title:titleVal||src.title,createdAt:Date.now(),updatedAt:Date.now(),comments:[]};
+  await dbSaveCard(copy);
+  closeOverlay("dupOverlay");
+  showToast("⧉ Card duplicado!","#a78bfa");
 }
 
-// ===================== CATEGORIA MODAL =====================
-function switchCatTab(tabId,btn){document.querySelectorAll("#catOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#catOverlay .modal-tab").forEach(b=>b.classList.remove("active"));const tp=document.getElementById(tabId);if(tp)tp.classList.add("active");if(btn)btn.classList.add("active");}
-function openCatModal(catId){
-  editCatId=catId||null;document.getElementById("catModalTitle").textContent=catId?"Editar Categoria":"Nova Categoria";document.getElementById("catDelBtn").style.display=catId?"block":"none";
-  switchCatTab("catinfo",document.querySelector("#catOverlay .modal-tab"));
-  if(catId&&categories[catId]){const c=categories[catId];document.getElementById("catName").value=c.name||"";catChosenColor=c.color||"#6c63ff";selectedEmoji=c.emoji||"📌";}
-  else{document.getElementById("catName").value="";catChosenColor="#6c63ff";selectedEmoji="📌";}
-  document.getElementById("catColorPicker").value=catChosenColor;document.getElementById("catColorHex").textContent=catChosenColor;document.getElementById("catColorBar").style.background=catChosenColor;document.getElementById("selectedEmojiPreview").textContent=selectedEmoji;
-  renderCatPresets();buildEmojiPanels();openOverlay("catOverlay");
+// ===================== DETALHE =====================
+function switchDetailTab(tabId,btn){
+  document.querySelectorAll("#detailOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll("#detailOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
+  const tp=document.getElementById(tabId);if(tp)tp.classList.add("active");
+  if(btn)btn.classList.add("active");
 }
-async function saveCat(){const name=document.getElementById("catName").value.trim();if(!name){showToast("⚠️ Nome obrigatório.","#f97316");return;}const id=editCatId||(Date.now()+"_cat");const cat={id,name,color:catChosenColor,emoji:selectedEmoji};await dbSaveCat(cat);closeOverlay("catOverlay");showToast(editCatId?"✅ Categoria atualizada!":"✅ Categoria criada!","#4ade80");}
-async function deleteCat(){if(!editCatId)return;if(!confirm("Excluir esta categoria?"))return;await dbDelCat(editCatId);closeOverlay("catOverlay");showToast("🗑️ Categoria excluída.","#f87171");}
-
-// ===================== SIDEBAR =====================
-function renderMonthNav(){const nav=document.getElementById("monthList");if(!nav)return;nav.innerHTML=MONTHS_PT.map((m,i)=>`<a class="mlist-a" onclick="scrollToMonth(${i})">${m}</a>`).join("");}
-function scrollToMonth(i){closeSidebar();const el=document.getElementById("month-"+i);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
-function goToToday(){const m=TODAY.getMonth();if(currentYear!==TODAY.getFullYear()){currentYear=TODAY.getFullYear();renderAll();renderMonthNav();rebuildRecurInstances();}setTimeout(()=>{const el=document.getElementById("month-"+m);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});},100);}
-function renderCatSidebar(){const list=document.getElementById("catList");if(!list)return;list.innerHTML=Object.entries(categories).map(([id,c])=>`<div class="cat-item"><span class="cat-emoji">${c.emoji||"📌"}</span><div class="cat-swatch" style="background:${c.color||"#6c63ff"}"></div><span class="cat-name">${esc(c.name)}</span><button class="cat-edit-btn" onclick="openCatModal('${id}')">✏️</button></div>`).join("");}
-function updateMonthCounts(){for(let m=0;m<12;m++){const el=document.getElementById("mcnt-"+m);if(!el)continue;let count=0;const daysInMonth=new Date(currentYear,m+1,0).getDate();for(let d=1;d<=daysInMonth;d++){const iso=`${currentYear}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;count+=getCardsForDate(iso).length;}el.textContent=`${count} item${count!==1?"s":""}`;}}
-
-// ===================== EXCEL =====================
-function exportMonthExcel(monthIdx){
-  const year=currentYear,monthName=MONTHS_PT[monthIdx],daysInMonth=new Date(year,monthIdx+1,0).getDate();
-  const rows=[["Data","Título","Plataforma","BU","Status","Responsável","Campanha","Tags","PMP","Big Idea"]];
-  for(let d=1;d<=daysInMonth;d++){const iso=`${year}-${String(monthIdx+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;getCardsForDate(iso).forEach(card=>{rows.push([fmtDFull(iso),card.title||"",card.platform||"",card.bu||"",getEffectiveStatus(card)||"",toArr(card.responsavel).join(", "),card.campaign||"",(card.tags||[]).join(", "),card.pmp||"",card.bigIdea||""]);});}
-  let csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(";")).join("\n");
-  const blob=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8;"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`calendario_${monthName}_${year}.csv`;a.click();
-  showToast("📊 Excel exportado!","#22c55e");
-}
-</script>
-
-<script>
-// ===================== MODAL DETALHE =====================
-function switchDetailTab(tabId,btn){document.querySelectorAll("#detailOverlay .tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll("#detailOverlay .modal-tab").forEach(b=>b.classList.remove("active"));const tp=document.getElementById(tabId);if(tp)tp.classList.add("active");if(btn)btn.classList.add("active");}
-
 function openDetail(cardId,recurDate){
   const card=cards[cardId];if(!card)return;
   currentDetailCardId=cardId;
-  const status=getEffectiveStatus(card);const sc=STATUS_COLORS[status]||{bg:"#6b7399",text:"#fff"};
-  const cat=categories[card.category];const color=card.colorOverride||(cat?cat.color:"#6b7399");const catEmoji=cat?cat.emoji:"";
-  const resps=toArr(card.responsavel);const solics=toArr(card.solicitante);
-  const buHtml=card.bu?`<div class="bu-detail-badge">🏢 ${esc(card.bu)}</div>`:"";
-  const respHtml=resps.length?`<div class="dblock"><div class="dblock-lbl">👤 Responsável</div><div class="resp-badges-wrap">${resps.map(n=>{const pc=getPersonColor(n);return`<div class="resp-badge" style="background:${pc}22;border-color:${pc}44;color:${pc}"><div class="resp-avatar" style="background:${pc}">${initials(n)}</div>${esc(n)}</div>`;}).join("")}</div></div>`:"";
-  const solicHtml=solics.length?`<div class="dblock"><div class="dblock-lbl">📨 Solicitante</div><div class="resp-badges-wrap">${solics.map(n=>{const pc=getPersonColor(n);return`<div class="resp-badge" style="background:${pc}22;border-color:${pc}44;color:${pc}"><div class="resp-avatar" style="background:${pc}">${initials(n)}</div>${esc(n)}</div>`;}).join("")}</div></div>`:"";
-  const tagsHtml=card.tags?.length?`<div class="dblock"><div class="dblock-lbl">🏷️ Tags</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:2px">${card.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}</div></div>`:"";
-  const campHtml=card.campaign?`<div class="dblock"><div class="dblock-lbl">📣 Campanha</div><div class="dblock-val">${esc(card.campaign)}</div></div>`:"";
-  const recurHtml=card.recur?`<div class="dblock"><div class="dblock-lbl">🔁 Recorrência</div><div class="dblock-val">${RECUR_ICONS[card.recur]} ${RECUR_LABELS[card.recur]}</div></div>`:"";
-  const bigIdeaHtml=card.bigIdea?`<div class="dblock"><div class="dblock-lbl">💡 Big Idea</div><div class="dblock-val">${esc(card.bigIdea)}</div></div>`:"";
-  const copyHtml=card.copy?`<div class="dblock"><div class="dblock-lbl">✍️ Copy</div><div class="dblock-val">${esc(card.copy)}</div></div>`:"";
-  const descHtml=card.desc?`<div class="dblock"><div class="dblock-lbl">📝 Descrição</div><div class="dblock-val">${esc(card.desc)}</div></div>`:"";
-  const pmpHtml=card.pmp?`<div class="dblock"><div class="dblock-lbl">PMP</div><div class="dblock-val">${esc(card.pmp)}</div></div>`:"";
-  const igSection=(card.igBigIdea||card.igBriefing||card.igDesc||card.igLegenda)?`<div class="content-section-title" style="margin-top:14px">📸 Instagram</div>${card.igBigIdea?`<div class="dblock"><div class="dblock-lbl">💡 Big Ideia IG</div><div class="dblock-val">${esc(card.igBigIdea)}</div></div>`:""}${card.igBriefing?`<div class="dblock"><div class="dblock-lbl">📋 Briefing</div><div class="dblock-val">${esc(card.igBriefing)}</div></div>`:""}${card.igDesc?`<div class="dblock"><div class="dblock-lbl">📝 Descrição</div><div class="dblock-val">${esc(card.igDesc)}</div></div>`:""}${card.igLegenda?`<div class="dblock"><div class="dblock-lbl">✍️ Legenda</div><div class="dblock-val">${esc(card.igLegenda)}</div></div>`:""}`:""
-  const ytSection=(card.ytBigIdea||card.ytPushTitle||card.ytDesc||card.ytHashtags||(card.ytTitles&&card.ytTitles.length))?`<div class="content-section-title" style="margin-top:14px">▶️ YouTube</div>${card.ytBigIdea?`<div class="dblock"><div class="dblock-lbl">💡 Big Ideia YT</div><div class="dblock-val">${esc(card.ytBigIdea)}</div></div>`:""}${card.ytPushTitle?`<div class="dblock"><div class="dblock-lbl">🔔 Push Título</div><div class="dblock-val">${esc(card.ytPushTitle)}</div></div>`:""}${card.ytPushDesc?`<div class="dblock"><div class="dblock-lbl">🔔 Push Descrição</div><div class="dblock-val">${esc(card.ytPushDesc)}</div></div>`:""}${card.ytCta?`<div class="dblock"><div class="dblock-lbl">📣 CTA</div><div class="dblock-val">${esc(card.ytCta)}</div></div>`:""}${card.ytTitles&&card.ytTitles.length?`<div class="dblock"><div class="dblock-lbl">🎬 Títulos</div>${card.ytTitles.map((t,i)=>`<div class="dblock-val" style="margin-top:3px"><strong>${i+1}.</strong> ${esc(t)}</div>`).join("")}</div>`:""}${card.ytThumbs&&card.ytThumbs.length?`<div class="dblock"><div class="dblock-lbl">🖼️ Thumbnails</div>${card.ytThumbs.map((t,i)=>`<div class="dblock-val" style="margin-top:3px"><strong>${i+1}.</strong> ${esc(t)}</div>`).join("")}</div>`:""}${card.ytDesc?`<div class="dblock"><div class="dblock-lbl">📝 Descrição YT</div><div class="dblock-val">${esc(card.ytDesc)}</div></div>`:""}${card.ytPlaylist?`<div class="dblock"><div class="dblock-lbl">🎵 Playlist</div><div class="dblock-val">${esc(card.ytPlaylist)}</div></div>`:""}${card.ytHashtags?`<div class="dblock"><div class="dblock-lbl">#️⃣ Hashtags</div><div class="dblock-val">${esc(card.ytHashtags)}</div></div>`:""}${card.ytPmp?`<div class="dblock"><div class="dblock-lbl">📋 PMP YT</div><div class="dblock-val">${esc(card.ytPmp)}</div></div>`:""}${card.ytLinkDesc?`<div class="dblock"><div class="dblock-lbl">🔗 Link Descrição</div><div class="dblock-val"><a href="${esc(card.ytLinkDesc)}" target="_blank" style="color:var(--accent2)">${esc(card.ytLinkDesc)}</a></div></div>`:""}`:""
-  document.getElementById("detailBody").innerHTML=`
-    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px">
-      <div class="detail-stripe" style="background:${color}"></div>
-      <div style="flex:1;min-width:0">
-        <div class="detail-title">${catEmoji?`<span style="margin-right:6px">${catEmoji}</span>`:""}${esc(card.title||"Sem título")}</div>
-        <div class="detail-meta">
-          <span>📅 ${fmtDFull(card.date)}</span>
-          ${card.platform?`<span>${getPlatIcon(card.platform)} ${esc(card.platform)}</span>`:""}
-          ${status?`<span class="detail-badge" style="background:${sc.bg};color:${sc.text}">${status}</span>`:""}
-          ${cat?`<span class="detail-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">${catEmoji} ${esc(cat.name)}</span>`:""}
-          ${card.isDraft?`<span class="detail-badge" style="background:rgba(251,146,60,.2);color:var(--orange);border:1px solid rgba(251,146,60,.3)">✏️ Rascunho</span>`:""}
-        </div>
-        ${buHtml}
+  const cat=categories[card.category];
+  const color=card.colorOverride||(cat?cat.color:"#6b7399");
+  const status=recurDate?recurStatuses[cardId+"_"+recurDate]||card.status||"":card.status||"";
+  const sc=STATUS_COLORS[status]||{bg:"#6b7399",text:"#fff"};
+  const resps=toArr(card.responsavel);
+  const solics=toArr(card.solicitante);
+  let html=`<div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:8px">
+    <div class="detail-stripe" style="background:${color}"></div>
+    <div style="flex:1;min-width:0">
+      <div class="detail-title">${esc(card.title)}</div>
+      <div class="detail-meta">
+        <span>📅 ${fmtDFull(recurDate||card.date)}</span>
+        ${card.platform?`<span>${getPlatIcon(card.platform)} ${esc(card.platform)}</span>`:""}
+        ${cat?`<span>${cat.emoji||""} ${esc(cat.name)}</span>`:""}
+        ${card.recur?`<span>${RECUR_ICONS[card.recur]} ${RECUR_LABELS[card.recur]}</span>`:""}
       </div>
     </div>
-    <div class="detail-status-bar">
-      <div class="detail-status-label">Atualizar Status</div>
-      <div class="detail-status-opts">
-        ${["Pendente","Produção","Revisão","Aprovado","Publicado","Programado"].map(s=>{const ssc=STATUS_COLORS[s]||{bg:"#6b7399",text:"#fff"};const isActive=status===s;return`<div class="ds-opt${isActive?" ds-active":""}" data-val="${s}" onclick="updateCardStatus('${cardId}','${s}','${recurDate||""}')"><span class="s-dot" style="background:${ssc.bg}"></span>${s}</div>`;}).join("")}
-      </div>
+  </div>`;
+  html+=`<div class="detail-status-bar">
+    <div class="detail-status-label">Status atual</div>
+    <div class="detail-status-opts">
+      ${Object.entries(STATUS_COLORS).map(([s,sc2])=>`<div class="ds-opt${status===s?" ds-active":""}" data-val="${s}" onclick="setDetailStatus('${cardId}','${recurDate||""}','${s}',this)"><span class="s-dot" style="background:${sc2.bg}"></span>${s}</div>`).join("")}
     </div>
-    <div class="detail-blocks">${respHtml}${solicHtml}${campHtml}${recurHtml}${tagsHtml}${bigIdeaHtml}${copyHtml}${descHtml}${pmpHtml}${igSection}${ytSection}</div>`;
-  const cl=card.checklist||[];const clDone=cl.filter(i=>i.done).length;
-  const clBadge=document.getElementById("clBadge");if(clBadge){if(cl.length){clBadge.style.display="inline";clBadge.textContent=`${clDone}/${cl.length}`;}else clBadge.style.display="none";}
-  renderDetailChecklist(card);
+  </div>`;
+  const blocks=[];
+  if(card.bu)blocks.push(`<div class="dblock"><div class="dblock-lbl">🏢 BU</div><div><span class="bu-detail-badge">🏢 ${esc(card.bu)}</span></div></div>`);
+  if(card.campaign)blocks.push(`<div class="dblock"><div class="dblock-lbl">📣 Campanha</div><div class="dblock-val">${esc(card.campaign)}</div></div>`);
+  if(card.pmp)blocks.push(`<div class="dblock"><div class="dblock-lbl">PMP</div><div class="dblock-val">${esc(card.pmp)}</div></div>`);
+  if(resps.length)blocks.push(`<div class="dblock"><div class="dblock-lbl">👤 Responsável</div><div class="resp-badges-wrap">${resps.map(n=>{const pc=getPersonColor(n);return`<div class="resp-badge" style="background:${pc}22;border-color:${pc}44;color:${pc}"><div class="resp-avatar" style="background:${pc}">${initials(n)}</div>${esc(n)}</div>`;}).join("")}</div></div>`);
+  if(solics.length)blocks.push(`<div class="dblock"><div class="dblock-lbl">📨 Solicitante</div><div class="resp-badges-wrap">${solics.map(n=>{const pc=getPersonColor(n);return`<div class="resp-badge" style="background:${pc}22;border-color:${pc}44;color:${pc}"><div class="resp-avatar" style="background:${pc}">${initials(n)}</div>${esc(n)}</div>`;}).join("")}</div></div>`);
+  if(card.bigIdea)blocks.push(`<div class="dblock"><div class="dblock-lbl">💡 Big Idea</div><div class="dblock-val">${esc(card.bigIdea)}</div></div>`);
+  if(card.copy)blocks.push(`<div class="dblock"><div class="dblock-lbl">✍️ Copy</div><div class="dblock-val">${esc(card.copy)}</div></div>`);
+  if(card.desc)blocks.push(`<div class="dblock"><div class="dblock-lbl">📝 Descrição</div><div class="dblock-val">${esc(card.desc)}</div></div>`);
+  if(card.tags?.length)blocks.push(`<div class="dblock"><div class="dblock-lbl">🏷️ Tags</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:2px">${card.tags.map(t=>`<span class="tag-chip-sm">${esc(t)}</span>`).join("")}</div></div>`);
+  if(card.igBigIdea||card.igBriefing||card.igLegenda){
+    let igH=`<div class="dblock"><div class="dblock-lbl">📸 Instagram</div>`;
+    if(card.igBigIdea)igH+=`<div style="font-size:.63rem;color:var(--muted);font-weight:700;margin-bottom:2px">Big Ideia</div><div class="dblock-val" style="margin-bottom:8px">${esc(card.igBigIdea)}</div>`;
+    if(card.igBriefing)igH+=`<div style="font-size:.63rem;color:var(--muted);font-weight:700;margin-bottom:2px">Briefing</div><div class="dblock-val" style="margin-bottom:8px">${esc(card.igBriefing)}</div>`;
+    if(card.igLegenda)igH+=`<div style="font-size:.63rem;color:var(--muted);font-weight:700;margin-bottom:2px">Legenda</div><div class="dblock-val">${esc(card.igLegenda)}</div>`;
+    igH+=`</div>`;blocks.push(igH);
+  }
+  if(card.ytBigIdea||card.ytPushTitle||(card.ytTitles?.length)){
+    let ytH=`<div class="dblock"><div class="dblock-lbl">▶️ YouTube</div>`;
+    if(card.ytBigIdea)ytH+=`<div style="font-size:.63rem;color:var(--muted);font-weight:700;margin-bottom:2px">Big Ideia</div><div class="dblock-val" style="margin-bottom:8px">${esc(card.ytBigIdea)}</div>`;
+    if(card.ytPushTitle)ytH+=`<div style="font-size:.63rem;color:var(--muted);font-weight:700;margin-bottom:2px">Push</div><div class="dblock-val" style="margin-bottom:4px">${esc(card.ytPushTitle)}</div>`;
+    if(card.ctaText)ytH+=`<div style="font-size:.63rem;color:var(--muted);font-weight:700;margin-bottom:2px">CTA</div><div class="dblock-val" style="margin-bottom:8px">${esc(card.ctaText)}</div>`;
+    if(card.ytTitles?.length)ytH+=`<div style="font-size:.63rem;color:var(--muted);font-weight:700;margin-bottom:4px">Títulos</div>${card.ytTitles.map((t,i)=>`<div class="dblock-val" style="margin-bottom:3px">${i+1}. ${esc(t)}</div>`).join("")}`;
+    ytH+=`</div>`;blocks.push(ytH);
+  }
+  html+=`<div class="detail-blocks">${blocks.join("")}</div>`;
+  document.getElementById("detailBody").innerHTML=html;
+  const cl=card.checklist||[];
+  const clDone=cl.filter(i=>i.done).length;
+  const clBadge=document.getElementById("clBadge");
+  if(cl.length){clBadge.style.display="inline";clBadge.textContent=`${clDone}/${cl.length}`;}
+  else clBadge.style.display="none";
+  let clHtml="";
+  if(cl.length){
+    const p=pct(clDone,cl.length);
+    clHtml+=`<div class="cl-progress-wrap" style="margin-bottom:12px"><div class="cl-progress-bar"><div class="cl-progress-fill" style="width:${p}%;background:${p===100?"#4ade80":"#6c63ff"}"></div></div><span class="cl-progress-label">${clDone}/${cl.length} concluídos</span></div>`;
+    clHtml+=`<div class="detail-cl-list">${cl.map((item,i)=>`<div class="detail-cl-row"><div class="detail-cl-check${item.done?" on":""}" onclick="detailClToggle('${cardId}',${i})">${item.done?"✓":""}</div><span class="detail-cl-text${item.done?" done":""}" onclick="detailClToggle('${cardId}',${i})">${esc(item.text)}</span><button class="detail-cl-del" onclick="detailClDel('${cardId}',${i})">✕</button></div>`).join("")}</div>`;
+  } else clHtml=`<p style="font-size:.82rem;color:var(--muted);font-style:italic;padding:12px 0">Nenhuma tarefa ainda.</p>`;
+  clHtml+=`<button class="cl-add-btn" style="margin-top:10px" onclick="detailClAdd('${cardId}')">＋ Adicionar tarefa</button>`;
+  document.getElementById("detailChecklistBody").innerHTML=clHtml;
   const links=card.links||[];
-  document.getElementById("detailLinksBody").innerHTML=links.length?`<div class="detail-links-list">${links.map(l=>`<div class="detail-link-item">${l.name?`<span class="detail-link-name">${esc(l.name)}</span>`:""}<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.url)}</a></div>`).join("")}</div>``:`<p style="color:var(--muted);font-size:.83rem;padding:10px 0">Nenhum link cadastrado.</p>`;
+  const commentBadge=document.getElementById("commentBadge");
+  const comments=card.comments||[];
+  if(comments.length){commentBadge.style.display="inline";commentBadge.textContent=comments.length;}
+  else commentBadge.style.display="none";
+  document.getElementById("detailLinksBody").innerHTML=links.length?`<div class="detail-links-list">${links.map(l=>`<div class="detail-link-item"><span class="detail-link-name">${esc(l.name||"Link")}</span><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.url)}</a></div>`).join("")}</div>`:`<p style="font-size:.82rem;color:var(--muted);font-style:italic;padding:12px 0">Nenhum link.</p>`;
   renderComments(card);
-  document.getElementById("dEditBtn").onclick=()=>{closeOverlay("detailOverlay");openCardModal(cardId);};
-  document.getElementById("dDelBtn").onclick=()=>{if(confirm("Excluir?"))dbDelCard(cardId).then(()=>{closeOverlay("detailOverlay");showToast("🗑️ Excluído.","#f87171");});};
+  document.getElementById("dDelBtn").onclick=()=>{if(confirm("Excluir?"))deleteCard(cardId);};
   document.getElementById("dDupBtn").onclick=()=>{closeOverlay("detailOverlay");openDupModal(cardId);};
-  document.getElementById("btnBack").style.display=_openedFromDayModal?"flex":"none";
+  document.getElementById("dEditBtn").onclick=()=>{closeOverlay("detailOverlay");openCardModal(cardId);};
+  const btnBack=document.getElementById("btnBack");
+  btnBack.style.display=_openedFromDayModal?"flex":"none";
+  _openedFromDayModal=false;
   switchDetailTab("dtinfo",document.querySelector("#detailOverlay .modal-tab"));
   openOverlay("detailOverlay");
 }
-
-function renderDetailChecklist(card){
-  const cl=card.checklist||[];const el=document.getElementById("detailChecklistBody");if(!el)return;
-  if(!cl.length){el.innerHTML=`<p style="color:var(--muted);font-size:.83rem;padding:10px 0">Nenhuma tarefa cadastrada.</p>`;return;}
-  const done=cl.filter(i=>i.done).length;const p=pct(done,cl.length);
-  el.innerHTML=`<div class="cl-progress-wrap" style="margin-bottom:14px"><div class="cl-progress-bar"><div class="cl-progress-fill" style="width:${p}%;background:${p===100?"var(--green)":p>50?"var(--accent)":"var(--orange)"}"></div></div><span class="cl-progress-label">${done} / ${cl.length} (${p}%)</span></div>
-    <div class="detail-cl-list">${cl.map((item,i)=>`<div class="detail-cl-row"><div class="detail-cl-check${item.done?" on":""}" onclick="toggleDetailCl('${card.id}',${i})">${item.done?"✓":""}</div><div class="detail-cl-text${item.done?" done":""}" onclick="toggleDetailCl('${card.id}',${i})">${esc(item.text||"")}</div><button class="detail-cl-del" onclick="delDetailCl('${card.id}',${i})">✕</button></div>`).join("")}</div>
-    <button class="cl-add-btn" style="margin-top:10px" onclick="addDetailCl('${card.id}')">＋ Adicionar tarefa</button>`;
-}
-async function toggleDetailCl(cardId,idx){const card=cards[cardId];if(!card)return;card.checklist[idx].done=!card.checklist[idx].done;await dbSaveCard(card);renderDetailChecklist(card);const cl=card.checklist;const done=cl.filter(i=>i.done).length;const clBadge=document.getElementById("clBadge");if(clBadge){clBadge.style.display="inline";clBadge.textContent=`${done}/${cl.length}`;}refreshAllDOM();}
-async function delDetailCl(cardId,idx){const card=cards[cardId];if(!card)return;card.checklist.splice(idx,1);await dbSaveCard(card);renderDetailChecklist(card);refreshAllDOM();}
-async function addDetailCl(cardId){const card=cards[cardId];if(!card)return;const text=prompt("Nova tarefa:");if(!text||!text.trim())return;if(!card.checklist)card.checklist=[];card.checklist.push({text:text.trim(),done:false,id:Date.now()+"_cl"});await dbSaveCard(card);renderDetailChecklist(card);refreshAllDOM();}
-async function updateCardStatus(cardId,newStatus,recurDate){
+function setDetailStatus(cardId,recurDate,status,el){
+  document.querySelectorAll(".ds-opt").forEach(o=>o.classList.remove("ds-active"));
+  el.classList.add("ds-active");
   const card=cards[cardId];if(!card)return;
-  if(recurDate){recurStatuses[cardId+"_"+recurDate]=newStatus;localStorage.setItem("cal_recur_statuses",JSON.stringify(recurStatuses));}
-  else{card.status=newStatus;await dbSaveCard(card);}
-  document.querySelectorAll(".ds-opt").forEach(o=>{o.classList.toggle("ds-active",o.dataset.val===newStatus);});
-  refreshAllDOM();if(_dayModalContext)renderDayModalCards(_dayModalContext);showToast(`✅ Status: ${newStatus}`,"#4ade80");
+  if(recurDate){recurStatuses[cardId+"_"+recurDate]=status;localStorage.setItem("cal_recur_statuses",JSON.stringify(recurStatuses));}
+  else{card.status=status;dbSaveCard(card);}
+  refreshAllDOM();
+  if(_dayModalContext)renderDayModalCards(_dayModalContext);
+  showToast(`✅ Status: ${status}`,"#4ade80");
+}
+async function detailClToggle(cardId,idx){
+  const card=cards[cardId];if(!card)return;
+  card.checklist=card.checklist||[];
+  card.checklist[idx].done=!card.checklist[idx].done;
+  await dbSaveCard(card);
+  openDetail(cardId);
+}
+async function detailClDel(cardId,idx){
+  const card=cards[cardId];if(!card)return;
+  card.checklist.splice(idx,1);
+  await dbSaveCard(card);
+  openDetail(cardId);
+}
+async function detailClAdd(cardId){
+  const card=cards[cardId];if(!card)return;
+  const text=prompt("Nova tarefa:");if(!text)return;
+  card.checklist=card.checklist||[];
+  card.checklist.push({text,done:false});
+  await dbSaveCard(card);
+  openDetail(cardId);
+  switchDetailTab("dtchecklist",document.querySelectorAll("#detailOverlay .modal-tab")[1]);
 }
 
 // ===================== COMENTÁRIOS =====================
 function renderComments(card){
-  const area=document.getElementById("commentsArea");if(!area)return;
-  const comments=card.comments||[];const badge=document.getElementById("commentBadge");
-  if(badge){if(comments.length){badge.style.display="inline";badge.textContent=comments.length;}else badge.style.display="none";}
-  if(!comments.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda. Seja o primeiro!</div>`;return;}
-  area.innerHTML=comments.map((c,i)=>`<div class="comment-item" id="cmt-${i}"><div class="comment-header"><span class="comment-author">👤 ${esc(c.author||"Anônimo")}</span><div style="display:flex;align-items:center;gap:6px"><span class="comment-time">${fmtCommentTime(c.ts)}</span>${c.edited?`<span class="comment-edited">(editado)</span>`:""}<button class="comment-edit-btn" onclick="startEditComment('${card.id}',${i})">✏️</button><button class="comment-del" onclick="deleteComment('${card.id}',${i})">🗑</button></div></div><div class="comment-text" id="cmttext-${i}">${esc(c.text||"")}</div><div id="cmtedit-${i}" style="display:none"><div class="comment-edit-wrap"><textarea class="comment-edit-inp" id="cmtinp-${i}">${esc(c.text||"")}</textarea><div class="comment-edit-actions"><button class="comment-edit-cancel" onclick="cancelEditComment(${i})">Cancelar</button><button class="comment-edit-save" onclick="saveEditComment('${card.id}',${i})">Salvar</button></div></div></div></div>`).join("");
+  const area=document.getElementById("commentsArea");
+  const comments=card.comments||[];
+  if(!comments.length){area.innerHTML=`<div class="comment-empty">Nenhum comentário ainda.</div>`;return;}
+  area.innerHTML=comments.map((c,i)=>`
+    <div class="comment-item">
+      <div class="comment-header">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="comment-author">${esc(c.author||"Anônimo")}</span>
+          ${c.edited?`<span class="comment-edited">(editado)</span>`:""}
+        </div>
+        <div style="display:flex;align-items:center;gap:4px">
+          <span class="comment-time">${c.time?new Date(c.time).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):""}</span>
+          <button class="comment-edit-btn" onclick="startEditComment('${card.id}',${i})">✏️</button>
+          <button class="comment-del" onclick="deleteComment('${card.id}',${i})">🗑</button>
+        </div>
+      </div>
+      <div class="comment-text" id="ctext-${i}">${esc(c.text)}</div>
+      <div class="comment-edit-wrap" id="cedit-${i}" style="display:none">
+        <textarea class="comment-edit-inp" id="ceditinp-${i}">${esc(c.text)}</textarea>
+        <div class="comment-edit-actions">
+          <button class="comment-edit-cancel" onclick="cancelEditComment(${i})">Cancelar</button>
+          <button class="comment-edit-save" onclick="saveEditComment('${card.id}',${i})">Salvar</button>
+        </div>
+      </div>
+    </div>`).join("");
 }
-function fmtCommentTime(ts){if(!ts)return"";const d=new Date(ts);return d.toLocaleDateString("pt-BR")+" "+d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});}
-async function addComment(){const card=cards[currentDetailCardId];if(!card)return;const author=document.getElementById("commentAuthor").value.trim()||"Anônimo";const text=document.getElementById("commentText").value.trim();if(!text){showToast("⚠️ Digite um comentário.","#f97316");return;}if(!card.comments)card.comments=[];card.comments.push({author,text,ts:Date.now(),edited:false});await dbSaveCard(card);document.getElementById("commentText").value="";renderComments(card);showToast("💬 Comentário adicionado!","#a78bfa");}
-function startEditComment(cardId,idx){document.getElementById("cmttext-"+idx).style.display="none";document.getElementById("cmtedit-"+idx).style.display="block";document.getElementById("cmtinp-"+idx).focus();}
-function cancelEditComment(idx){document.getElementById("cmttext-"+idx).style.display="block";document.getElementById("cmtedit-"+idx).style.display="none";}
-async function saveEditComment(cardId,idx){const card=cards[cardId];if(!card)return;const newText=document.getElementById("cmtinp-"+idx).value.trim();if(!newText){showToast("⚠️ Comentário vazio.","#f97316");return;}card.comments[idx].text=newText;card.comments[idx].edited=true;card.comments[idx].editedTs=Date.now();await dbSaveCard(card);renderComments(card);showToast("✅ Editado!","#4ade80");}
-async function deleteComment(cardId,idx){if(!confirm("Excluir comentário?"))return;const card=cards[cardId];if(!card)return;card.comments.splice(idx,1);await dbSaveCard(card);renderComments(card);showToast("🗑️ Comentário removido.","#f87171");}
+function startEditComment(cardId,idx){document.getElementById("ctext-"+idx).style.display="none";document.getElementById("cedit-"+idx).style.display="flex";}
+function cancelEditComment(idx){document.getElementById("ctext-"+idx).style.display="";document.getElementById("cedit-"+idx).style.display="none";}
+async function saveEditComment(cardId,idx){
+  const card=cards[cardId];if(!card)return;
+  const val=document.getElementById("ceditinp-"+idx).value.trim();if(!val)return;
+  card.comments[idx].text=val;card.comments[idx].edited=true;
+  await dbSaveCard(card);openDetail(cardId);switchDetailTab("dtcomments",document.querySelectorAll("#detailOverlay .modal-tab")[3]);
+}
+async function deleteComment(cardId,idx){
+  const card=cards[cardId];if(!card)return;
+  card.comments.splice(idx,1);
+  await dbSaveCard(card);openDetail(cardId);switchDetailTab("dtcomments",document.querySelectorAll("#detailOverlay .modal-tab")[3]);
+}
+async function addComment(){
+  const author=document.getElementById("commentAuthor").value.trim()||"Anônimo";
+  const text=document.getElementById("commentText").value.trim();
+  if(!text){showToast("⚠️ Digite um comentário.","#f97316");return;}
+  const card=cards[currentDetailCardId];if(!card)return;
+  card.comments=card.comments||[];
+  card.comments.push({author,text,time:Date.now()});
+  await dbSaveCard(card);
+  document.getElementById("commentText").value="";
+  openDetail(currentDetailCardId);
+  switchDetailTab("dtcomments",document.querySelectorAll("#detailOverlay .modal-tab")[3]);
+  showToast("💬 Comentário adicionado!","#a78bfa");
+}
 
-// ══════════════════════════════════════════════════════════
-//   DASHBOARD
-// ══════════════════════════════════════════════════════════
+// ===================== CATEGORIAS =====================
+function renderCatSidebar(){
+  const el=document.getElementById("catList");if(!el)return;
+  el.innerHTML=Object.entries(categories).map(([id,c])=>`
+    <div class="cat-item">
+      <span class="cat-emoji">${c.emoji||"📌"}</span>
+      <div class="cat-swatch" style="background:${c.color}"></div>
+      <span class="cat-name">${esc(c.name)}</span>
+      <button class="cat-edit-btn" onclick="openCatModal('${id}')">✏️</button>
+    </div>`).join("");
+}
+function openCatModal(catId){
+  editCatId=catId||null;
+  document.getElementById("catModalTitle").textContent=catId?"Editar Categoria":"Nova Categoria";
+  document.getElementById("catDelBtn").style.display=catId?"inline-flex":"none";
+  if(catId){
+    const c=categories[catId];
+    document.getElementById("catName").value=c.name||"";
+    catChosenColor=c.color||"#6c63ff";
+    selectedEmoji=c.emoji||"📌";
+  } else {
+    document.getElementById("catName").value="";
+    catChosenColor="#6c63ff";
+    selectedEmoji="📌";
+  }
+  document.getElementById("catColorPicker").value=catChosenColor;
+  document.getElementById("catColorHex").textContent=catChosenColor;
+  document.getElementById("catColorBar").style.background=catChosenColor;
+  document.getElementById("selectedEmojiPreview").textContent=selectedEmoji;
+  renderCatPresets();
+  buildEmojiPanels();
+  switchCatTab("catinfo",document.querySelector("#catOverlay .modal-tab"));
+  openOverlay("catOverlay");
+}
+function switchCatTab(tabId,btn){
+  document.querySelectorAll("#catOverlay .tab-panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll("#catOverlay .modal-tab").forEach(b=>b.classList.remove("active"));
+  const tp=document.getElementById(tabId);if(tp)tp.classList.add("active");
+  if(btn)btn.classList.add("active");
+}
+async function saveCat(){
+  const name=document.getElementById("catName").value.trim();
+  if(!name){showToast("⚠️ Digite um nome.","#f97316");return;}
+  const id=editCatId||("cat"+Date.now());
+  const cat={id,name,color:catChosenColor,emoji:selectedEmoji};
+  await dbSaveCat(cat);
+  closeOverlay("catOverlay");
+  showToast("✅ Categoria salva!","#4ade80");
+}
+async function deleteCat(){
+  if(!editCatId)return;
+  if(!confirm("Excluir esta categoria?"))return;
+  await dbDelCat(editCatId);
+  closeOverlay("catOverlay");
+  showToast("🗑️ Categoria excluída.","#f87171");
+}
+
+// ===================== CAMPANHAS =====================
+function openCampaignManager(){renderCampList();openOverlay("campaignOverlay");}
+function closeCampaignManager(){closeOverlay("campaignOverlay");renderCampaignSelect(document.getElementById("cCampaign").value);}
+function renderCampList(){
+  document.getElementById("campList").innerHTML=campaigns.map((c,i)=>`<div class="camp-item"><span class="camp-item-name">${esc(c)}</span><button class="camp-del-btn" onclick="removeCampaign(${i})">✕</button></div>`).join("");
+}
+async function addCampaign(){
+  const inp=document.getElementById("newCampName"),v=inp.value.trim();
+  if(!v)return;
+  if(campaigns.map(c=>c.toLowerCase()).includes(v.toLowerCase())){showToast("⚠️ Já existe!","#f97316");return;}
+  campaigns.push(v);inp.value="";
+  await dbSaveCampaigns();
+  renderCampList();
+  showToast("✅ Campanha adicionada!");
+}
+async function removeCampaign(i){
+  campaigns.splice(i,1);
+  await dbSaveCampaigns();
+  renderCampList();
+  showToast("🗑️ Removida.","#f87171");
+}
+
+// ===================== NAVEGAÇÃO =====================
+function renderMonthNav(){
+  document.getElementById("monthList").innerHTML=MONTHS_PT.map((m,i)=>`<a class="mlist-a" onclick="scrollToMonth(${i})">${m}</a>`).join("");
+}
+function scrollToMonth(i){
+  const el=document.getElementById("month-"+i);
+  if(el){el.scrollIntoView({behavior:"smooth",block:"start"});}
+  closeSidebar();
+}
+function goToToday(){
+  const m=TODAY.getMonth();
+  if(currentYear!==TODAY.getFullYear()){currentYear=TODAY.getFullYear();document.getElementById("yearDisplay").textContent=currentYear;const el=document.getElementById("topbarYear");if(el)el.textContent=currentYear;rebuildRecurInstances();renderAll();renderMonthNav();}
+  setTimeout(()=>{
+    const el=document.getElementById("month-"+m);
+    if(el){el.scrollIntoView({behavior:"smooth",block:"start"});}
+    const iso=`${TODAY.getFullYear()}-${String(TODAY.getMonth()+1).padStart(2,"0")}-${String(TODAY.getDate()).padStart(2,"0")}`;
+    const cell=document.querySelector(`.cal-day[data-date="${iso}"]`);
+    if(cell){cell.classList.add("highlight-pulse");setTimeout(()=>cell.classList.remove("highlight-pulse"),1500);}
+  },100);
+}
+function updateMonthCounts(){
+  for(let m=0;m<12;m++){
+    const el=document.getElementById("mcnt-"+m);if(!el)continue;
+    let cnt=0;
+    const allC=Object.values(cards);
+    const recurInsts=window._recurInstances||{};
+    for(let d=1;d<=31;d++){
+      const iso=`${currentYear}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+      cnt+=allC.filter(c=>c.date===iso&&!c.isRecurInstance).length+(recurInsts[iso]||[]).length;
+    }
+    el.textContent=`${cnt} item${cnt!==1?"s":""}`;
+  }
+}
+
+// ===================== EXCEL =====================
+function exportMonthExcel(monthIdx){
+  const year=currentYear;
+  const monthName=MONTHS_PT[monthIdx];
+  const daysInMonth=new Date(year,monthIdx+1,0).getDate();
+  const rows=[["Data","Dia","Título","Plataforma","Categoria","Status","Responsável","BU","Campanha","PMP","Big Idea","Copy","Tags","Recorrência"]];
+  for(let d=1;d<=daysInMonth;d++){
+    const iso=`${year}-${String(monthIdx+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const dayCards=getCardsForDate(iso);
+    dayCards.forEach(card=>{
+      const cat=categories[card.category];
+      rows.push([
+        fmtDFull(iso),
+        DAYS_PT[new Date(iso+"T12:00:00").getDay()],
+        card.title||"",
+        card.platform||"",
+        cat?cat.name:"",
+        getEffectiveStatus(card)||"",
+        toArr(card.responsavel).join(", "),
+        card.bu||"",
+        card.campaign||"",
+        card.pmp||"",
+        card.bigIdea||"",
+        card.copy||"",
+        (card.tags||[]).join(", "),
+        RECUR_LABELS[card.recur||""]||""
+      ]);
+    });
+  }
+  const sep="\t";
+  const csv=rows.map(r=>r.map(c=>String(c).replace(/\t/g," ")).join(sep)).join("\n");
+  const blob=new Blob(["\uFEFF"+csv],{type:"text/tab-separated-values;charset=utf-8"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=`Calendario_${monthName}_${year}.xls`;
+  a.click();
+  showToast(`📊 ${monthName} exportado!`,"#22c55e");
+}
+
+// ===================== DASHBOARD =====================
 function renderDashboard(){
   const el=document.getElementById("dashContent");if(!el)return;
+  if(dashPlatform==="instagram")renderIgDashboard(el);
+  else renderYtDashboard(el);
+}
+
+function renderIgDashboard(el){
+  const yr=dashYear;
+  const mi=dashMonth;
+  const key=dashKey(yr,mi);
+  const metrics=igMetrics[key]||{};
+  const pubs=igPubs[`pubs_${yr}_${mi}`]||{};
+  const sem=mi<6?1:2;
+  const semKey=`ig_${yr}_${sem}`;
+  const goals=igGoals[semKey]||{};
+  const prevKey=mi>0?dashKey(yr,mi-1):dashKey(yr-1,11);
+  const prevMetrics=igMetrics[prevKey]||{};
   el.innerHTML=`
     <div class="dash-topbar">
-      <h2>📊 Dashboard</h2>
+      <h2>📊 Dashboard Instagram</h2>
       <div class="dash-controls">
-        <select class="dash-year-sel" id="dashYearSel" onchange="onDashYearChange(this.value)">
-          ${[2024,2025,2026,2027].map(y=>`<option value="${y}"${y===dashYear?" selected":""}>${y}</option>`).join("")}
+        <select class="dash-year-sel" onchange="dashYear=+this.value;renderDashboard()">
+          ${[2024,2025,2026,2027].map(y=>`<option value="${y}"${y===yr?" selected":""}>${y}</option>`).join("")}
         </select>
         <div class="dash-platform-tabs">
-          <button class="dash-plat-tab${dashPlatform==="instagram"?" active-ig":""}" onclick="switchDashPlat('instagram')">📸 Instagram</button>
-          <button class="dash-plat-tab${dashPlatform==="youtube"?" active-yt":""}" onclick="switchDashPlat('youtube')">▶️ YouTube</button>
+          <button class="dash-plat-tab${dashPlatform==="instagram"?" active-ig":""}" onclick="dashPlatform='instagram';renderDashboard()">📸 Instagram</button>
+          <button class="dash-plat-tab${dashPlatform==="youtube"?" active-yt":""}" onclick="dashPlatform='youtube';renderDashboard()">▶️ YouTube</button>
         </div>
+        <button class="dash-save-btn" onclick="saveIgData()">💾 Salvar dados</button>
       </div>
     </div>
-    <div id="dashInner"></div>`;
-  if(dashPlatform==="instagram")renderIgDash();else renderYtDash();
-}
-function switchDashPlat(p){dashPlatform=p;renderDashboard();}
-function onDashYearChange(y){dashYear=parseInt(y);renderDashboard();}
-
-// ─── Helpers semestrais ───
-function getSemesterMonths(sem){return sem===1?[0,1,2,3,4,5]:[6,7,8,9,10,11];}
-function getSemesterAccumulated(metricObj,year,sem,key){
-  return getSemesterMonths(sem).reduce((acc,mi)=>{
-    const k=dashKey(year,mi);return acc+Number((metricObj[k]||{})[key]||0);
-  },0);
-}
-function buildSemProgressSection(metricKeys,metricLabels,metricIcons,metricColors,metricObj,goalObj,year,sem,prevMonthForTrend){
-  const months=getSemesterMonths(sem);
-  const rows=metricKeys.map(k=>{
-    const goal=Number(goalObj[k]||0);
-    const accumulated=getSemesterAccumulated(metricObj,year,sem,k);
-    const p=goal?Math.min(pct(accumulated,goal),999):null;
-    const color=metricColors[k]||"var(--accent)";
-    // Trend vs mês anterior
-    const curMonth=dashMonth;
-    const curVal=Number((metricObj[dashKey(year,curMonth)]||{})[k]||0);
-    const prevMonthIdx=prevMonthForTrend>=0?prevMonthForTrend:11;
-    const prevVal=Number((metricObj[dashKey(year,prevMonthIdx)]||{})[k]||0);
-    let badgeClass="warning";
-    if(p===null)badgeClass="warning";
-    else if(p>=100)badgeClass="exceeded";
-    else if(p>=60)badgeClass="on-track";
-    else if(p>=30)badgeClass="warning";
-    else badgeClass="danger";
-    return`<div class="sem-progress-item">
-      <div class="spi-header">
-        <div class="spi-label">${metricIcons[k]} ${metricLabels[k]}</div>
-        ${p!==null?`<span class="spi-pct-badge ${badgeClass}">${p>=100?"✅ ":p>=60?"🟡 ":"🔴 "}${Math.min(p,999)}%</span>`:`<span class="spi-pct-badge warning">—</span>`}
-      </div>
-      <div class="spi-bar-wrap">
-        <div class="spi-bar-fill" style="width:${p!==null?Math.min(p,100):0}%;background:${color}"></div>
-      </div>
-      <div class="spi-values">
-        <span>Acumulado: <strong>${fmtNum(accumulated)}</strong></span>
-        <span>Meta: <strong>${goal?fmtNum(goal):"—"}</strong></span>
-      </div>
-      <div class="spi-trend">${trendSmall(curVal,prevVal)}</div>
-    </div>`;
-  }).join("");
-
-  // Tabela de evolução mensal do semestre
-  const tableRows=months.map(mi=>{
-    const key=dashKey(year,mi);const mData=metricObj[key]||{};
-    const prevMi=mi>0?mi-1:(year>2020?11:-1);
-    const prevData=prevMi>=0?metricObj[dashKey(year,prevMi)]||{}:{};
-    const isCurrent=mi===dashMonth;
-    return`<tr${isCurrent?` style="background:rgba(108,99,255,.07)"`:""}><td>${MONTHS_SHORT[mi]}${isCurrent?` <span style="font-size:.55rem;color:var(--accent);font-weight:900">● Atual</span>`:""}</td>${
-      metricKeys.slice(0,3).map(k=>{
-        const cur=Number(mData[k]||0);const prev=Number(prevData[k]||0);
-        const d=cur-prev;const pctChg=prev?Math.round(Math.abs(d/prev)*100):null;
-        const growthHtml=pctChg!==null&&cur>0?(d>0?`<span class="smt-growth-up">▲${pctChg}%</span>`:d<0?`<span class="smt-growth-down">▼${pctChg}%</span>`:`<span class="smt-growth-flat">=</span>`):`<span class="smt-growth-flat">—</span>`;
-        const goalVal=Number(goalObj[k]||0);const pctGoal=goalVal?pct(cur,goalVal):null;
-        return`<td><span class="${isCurrent?"smt-cur":""}">${fmtNum(cur)}</span> ${growthHtml}${pctGoal!==null?`<br><span class="${pctGoal>=100?"smt-pct-ok":"smt-pct-warn"}">${pctGoal}% meta</span>`:""}</td>`;
-      }).join("")
-    }</tr>`;
-  }).join("");
-
-  return`<div class="sem-progress-section">
-    <div class="sem-progress-title">📈 Progresso — ${sem}º Semestre ${year}</div>
-    <div class="sem-progress-grid">${rows}</div>
-    <div class="sem-monthly-evolution" style="margin-top:14px">
-      <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:6px">Evolução mensal (3 principais métricas)</div>
-      <div style="overflow-x:auto">
-        <table class="sem-monthly-table">
-          <thead><tr><th>Mês</th>${metricKeys.slice(0,3).map(k=>`<th>${metricIcons[k]} ${metricLabels[k]}</th>`).join("")}</tr></thead>
-          <tbody>${tableRows}</tbody>
-        </table>
-      </div>
-    </div>
-  </div>`;
-}
-
-// ─── INSTAGRAM DASHBOARD ───
-function renderIgDash(){
-  const el=document.getElementById("dashInner");if(!el)return;
-  const monthTabsHtml=MONTHS_PT.map((m,i)=>`<button class="month-tab-btn${i===dashMonth?" active":""}" onclick="setDashMonth(${i})">${MONTHS_SHORT[i]}</button>`).join("");
-  const key=dashKey(dashYear,dashMonth);const metrics=igMetrics[key]||{};const pubs=igPubs[`pubs_${dashYear}_${dashMonth}`]||{};
-  const prevKey=dashMonth>0?dashKey(dashYear,dashMonth-1):dashKey(dashYear-1,11);const prevMetrics=igMetrics[prevKey]||{};
-  const kpiHtml=IG_METRIC_KEYS.map(k=>{
-    const cur=Number(metrics[k]||0);const prev=Number(prevMetrics[k]||0);const color=IG_METRIC_COLORS[k];
-    const sem=dashMonth<6?1:2;const goal=Number((igGoals[`ig_${dashYear}_${sem}`]||{})[k]||0);const pctVal=goal?pct(cur,goal):null;
-    return`<div class="kpi-card" style="--kpi-color:${color}"><div class="kpi-icon">${IG_METRIC_ICONS[k]}</div><div class="kpi-label">${IG_METRIC_LABELS[k]}</div><div class="kpi-value">${fmtNum(cur)}</div>
-      <div class="kpi-footer">${trendHtml(cur,prev)}${pctVal!==null?`<span style="font-size:.62rem;color:${pctVal>=100?"var(--green)":"var(--orange)"}">${pctVal}% da meta</span>`:""}</div>
-      ${goal?`<div class="kpi-goal-wrap"><div class="kpi-goal-label"><span>Meta semestral</span><span>${fmtNum(goal)}</span></div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${Math.min(pctVal||0,100)}%;background:${color}"></div></div></div>`:""}
-    </div>`;
-  }).join("");
-  const pubsHtml=IG_PUB_KEYS.map(k=>`<div class="ig-pub-card"><div class="ig-pub-icon">${IG_PUB_ICONS[k]}</div><div class="ig-pub-label">${IG_PUB_LABELS[k]}</div><input class="ig-pub-input" type="number" min="0" value="${pubs[k]||""}" placeholder="0" onchange="onIgPubChange('${k}',this.value)"/></div>`).join("");
-  const sem=dashMonth<6?1:2;const goalKey=`ig_${dashYear}_${sem}`;const goals=igGoals[goalKey]||{};
-  const prevMonthForTrend=dashMonth>0?dashMonth-1:(dashYear>2020?11:-1);
-
-  el.innerHTML=`
-    <div class="month-tabs-row">${monthTabsHtml}</div>
     <div class="dash-section">
-      <div class="dash-section-title">📊 Métricas do Mês — ${MONTHS_PT[dashMonth]} ${dashYear}</div>
+      <div class="dash-section-title">📅 Mês de referência</div>
+      <div class="month-tabs-row">${MONTHS_SHORT.map((m,i)=>`<button class="month-tab-btn${i===mi?" active":""}" onclick="dashMonth=${i};renderDashboard()">${m}</button>`).join("")}</div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📊 KPIs — ${MONTHS_PT[mi]} ${yr}</div>
+      <div class="kpi-row">
+        ${IG_METRIC_KEYS.map(k=>{
+          const val=Number(metrics[k]||0);
+          const prev=Number(prevMetrics[k]||0);
+          const goalVal=Number(goals[k]||0);
+          const pctGoal=goalVal?Math.min(100,Math.round((val/goalVal)*100)):0;
+          return`<div class="kpi-card" style="--kpi-color:${IG_METRIC_COLORS[k]}">
+            <div class="kpi-icon">${IG_METRIC_ICONS[k]}</div>
+            <div class="kpi-label">${IG_METRIC_LABELS[k]}</div>
+            <div class="kpi-value">${fmtNum(val)}</div>
+            <div class="kpi-footer"><div class="kpi-trend">${trendHtml(val,prev)}</div></div>
+            ${goalVal?`<div class="kpi-goal-wrap"><div class="kpi-goal-label"><span>Meta: ${fmtNum(goalVal)}</span><span>${pctGoal}%</span></div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${pctGoal}%;background:${IG_METRIC_COLORS[k]}"></div></div></div>`:""}
+          </div>`;
+        }).join("")}
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📸 Publicações — ${MONTHS_PT[mi]}</div>
+      <div class="ig-pubs-grid">
+        ${IG_PUB_KEYS.map(k=>`<div class="ig-pub-card">
+          <div class="ig-pub-icon">${IG_PUB_ICONS[k]}</div>
+          <div class="ig-pub-label">${IG_PUB_LABELS[k]}</div>
+          <input class="ig-pub-input" type="number" min="0" id="igpub_${k}" value="${pubs[k]||0}" placeholder="0"/>
+        </div>`).join("")}
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📥 Inserir métricas — ${MONTHS_PT[mi]}</div>
       <div class="metrics-input-panel">
         <div class="metrics-header-row">
-          <div><div class="metrics-month-title">${MONTHS_PT[dashMonth]} ${dashYear}</div><div class="metrics-month-sub">Preencha os dados reais do mês</div></div>
-          <button class="dash-save-btn" id="igSaveBtn" onclick="saveIgMetrics()">💾 Salvar</button>
+          <div><div class="metrics-month-title">${MONTHS_PT[mi]} ${yr}</div><div class="metrics-month-sub">Preencha os dados do mês</div></div>
         </div>
         <div class="metrics-grid">
-          ${IG_METRIC_KEYS.map(k=>`<div class="metric-field"><label>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</label><input type="number" min="0" id="ig_${k}" value="${metrics[k]||""}" placeholder="0"/></div>`).join("")}
+          ${IG_METRIC_KEYS.map(k=>`<div class="metric-field">
+            <label>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</label>
+            <input type="number" min="0" id="igm_${k}" value="${metrics[k]||""}" placeholder="0"/>
+          </div>`).join("")}
         </div>
       </div>
     </div>
     <div class="dash-section">
-      <div class="dash-section-title">📌 Publicações do Mês</div>
-      <div class="ig-pubs-grid">${pubsHtml}</div>
-    </div>
-    <div class="dash-section">
-      <div class="dash-section-title">🎯 KPIs — ${MONTHS_PT[dashMonth]}</div>
-      <div class="kpi-row">${kpiHtml}</div>
-    </div>
-    <div class="dash-section">
-      <div class="dash-section-title">🎯 Metas Semestrais — ${sem}º Semestre ${dashYear} · Instagram</div>
+      <div class="dash-section-title">🎯 Metas — Semestre ${sem} / ${yr}</div>
       <div class="sem-goals-wrap">
         <div class="sem-block">
-          <div class="sem-block-header">
-            <span class="sem-block-title">📸 Instagram — ${sem}º Semestre</span>
-            <span class="sem-badge">S${sem}/${dashYear}</span>
-            <button class="dash-save-btn" onclick="saveIgGoals(${sem})">💾 Salvar Metas</button>
-          </div>
+          <div class="sem-block-header"><span class="sem-block-title">Instagram — ${sem}º Semestre ${yr}</span><span class="sem-badge">S${sem}/${yr}</span></div>
           <div class="sem-goals-grid">
-            ${IG_METRIC_KEYS.map(k=>`<div class="sem-goal-item"><label>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</label><input type="number" min="0" id="iggoal_${k}" value="${goals[k]||""}" placeholder="Meta semestral…"/></div>`).join("")}
+            ${IG_METRIC_KEYS.map(k=>`<div class="sem-goal-item"><label>${IG_METRIC_LABELS[k]}</label><input type="number" min="0" id="iggoal_${k}" value="${goals[k]||""}" placeholder="Meta…"/></div>`).join("")}
           </div>
-          ${buildSemProgressSection(IG_METRIC_KEYS,IG_METRIC_LABELS,IG_METRIC_ICONS,IG_METRIC_COLORS,igMetrics,goals,dashYear,sem,prevMonthForTrend)}
         </div>
       </div>
     </div>
     <div class="dash-section">
-      <div class="dash-section-title">📈 Evolução Anual — Instagram ${dashYear}</div>
+      <div class="dash-section-title">📈 Evolução anual</div>
       <div class="charts-2col">
-        <div class="chart-card"><div class="chart-card-title">👥 Novos Seguidores por Mês</div><div class="chart-wrap"><canvas id="igChartSeg"></canvas></div></div>
-        <div class="chart-card"><div class="chart-card-title">👁️ Visualizações por Mês</div><div class="chart-wrap"><canvas id="igChartVis"></canvas></div></div>
+        ${["novosSeguidores","visualizacoes","alcance","cliquesLink"].map(k=>`<div class="chart-card"><div class="chart-card-title">${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</div><div class="chart-wrap"><canvas id="igchart_${k}"></canvas></div></div>`).join("")}
       </div>
     </div>
     <div class="dash-section">
-      <div class="dash-section-title">📊 Comparativo Anual</div>
-      ${buildIgCompareTable()}
+      <div class="dash-section-title">📋 Comparativo anual</div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead><tr><th>Métrica</th>${MONTHS_SHORT.map(m=>`<th>${m}</th>`).join("")}</tr></thead>
+          <tbody>
+            ${IG_METRIC_KEYS.map(k=>`<tr><td>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</td>${Array.from({length:12},(_,i)=>{const v=Number((igMetrics[dashKey(yr,i)]||{})[k]||0);return`<td class="${i===mi?"ct-cur":""}">${v?fmtNum(v):"—"}</td>`;}).join("")}</tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
     </div>`;
-  setTimeout(()=>{buildIgCharts();},100);
+  setTimeout(()=>{
+    ["novosSeguidores","visualizacoes","alcance","cliquesLink"].forEach(k=>{
+      const canvas=document.getElementById("igchart_"+k);if(!canvas)return;
+      const id="igchart_"+k;
+      if(_dashCharts[id]){_dashCharts[id].destroy();delete _dashCharts[id];}
+      const data=Array.from({length:12},(_,i)=>Number((igMetrics[dashKey(yr,i)]||{})[k]||0));
+      _dashCharts[id]=new Chart(canvas,{type:"line",data:{labels:MONTHS_SHORT,datasets:[{label:IG_METRIC_LABELS[k],data,borderColor:IG_METRIC_COLORS[k],backgroundColor:IG_METRIC_COLORS[k]+"22",tension:.4,fill:true,pointRadius:4,pointHoverRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:"rgba(255,255,255,.05)"},ticks:{color:"#6b7399",font:{size:10}}},y:{grid:{color:"rgba(255,255,255,.05)"},ticks:{color:"#6b7399",font:{size:10}}}}}});
+    });
+  },50);
 }
 
-function onIgPubChange(key,val){const k=`pubs_${dashYear}_${dashMonth}`;if(!igPubs[k])igPubs[k]={};igPubs[k][key]=Number(val)||0;dbSaveIgPubs(dashYear,dashMonth,igPubs[k]);}
-async function saveIgMetrics(){const btn=document.getElementById("igSaveBtn");btn.disabled=true;btn.textContent="⏳ Salvando…";const data={};IG_METRIC_KEYS.forEach(k=>{const inp=document.getElementById("ig_"+k);data[k]=Number(inp?.value||0);});await dbSaveIgMetrics(dashYear,dashMonth,data);btn.disabled=false;btn.textContent="💾 Salvar";showToast("✅ Métricas Instagram salvas!","#e1306c");}
-async function saveIgGoals(sem){const data={};IG_METRIC_KEYS.forEach(k=>{const inp=document.getElementById("iggoal_"+k);data[k]=Number(inp?.value||0);});await dbSaveGoals("ig",dashYear,sem,data);showToast("✅ Metas IG salvas!","#4ade80");}
-
-function buildIgCharts(){
-  const labels=MONTHS_SHORT;
-  const sem=dashMonth<6?1:2;const goals=igGoals[`ig_${dashYear}_${sem}`]||{};
-  const segData=labels.map((_,i)=>{const k=dashKey(dashYear,i);return Number((igMetrics[k]||{}).novosSeguidores||0);});
-  const visData=labels.map((_,i)=>{const k=dashKey(dashYear,i);return Number((igMetrics[k]||{}).visualizacoes||0);});
-  // Meta semestral distribuída por mês (meta/6)
-  const segGoalPerMonth=Number(goals.novosSeguidores||0)/6;
-  const visGoalPerMonth=Number(goals.visualizacoes||0)/6;
-  destroyChart("igChartSeg");destroyChart("igChartVis");
-  const segCtx=document.getElementById("igChartSeg");
-  if(segCtx)_dashCharts["igChartSeg"]=new Chart(segCtx,{type:"bar",data:{labels,datasets:[
-    {label:"Novos Seguidores",data:segData,backgroundColor:"#e1306c99",borderColor:"#e1306c",borderWidth:2,borderRadius:6},
-    ...(segGoalPerMonth>0?[{label:"Meta/mês",data:Array(12).fill(Math.round(segGoalPerMonth)),type:"line",borderColor:"#f472b6",borderDash:[5,4],borderWidth:2,pointRadius:0,fill:false}]:[])
-  ]},options:chartOpts("#e1306c")});
-  const visCtx=document.getElementById("igChartVis");
-  if(visCtx)_dashCharts["igChartVis"]=new Chart(visCtx,{type:"line",data:{labels,datasets:[
-    {label:"Visualizações",data:visData,borderColor:"#f472b6",backgroundColor:"#f472b622",fill:true,tension:.4,pointRadius:4,pointHoverRadius:7},
-    ...(visGoalPerMonth>0?[{label:"Meta/mês",data:Array(12).fill(Math.round(visGoalPerMonth)),borderColor:"#a78bfa",borderDash:[5,4],borderWidth:2,pointRadius:0,fill:false}]:[])
-  ]},options:chartOpts("#f472b6")});
+async function saveIgData(){
+  const mi=dashMonth,yr=dashYear;
+  const metrics={};
+  IG_METRIC_KEYS.forEach(k=>{const el=document.getElementById("igm_"+k);if(el)metrics[k]=Number(el.value)||0;});
+  const pubs={};
+  IG_PUB_KEYS.forEach(k=>{const el=document.getElementById("igpub_"+k);if(el)pubs[k]=Number(el.value)||0;});
+  const sem=mi<6?1:2;
+  const goals={};
+  IG_METRIC_KEYS.forEach(k=>{const el=document.getElementById("iggoal_"+k);if(el)goals[k]=Number(el.value)||0;});
+  await dbSaveIgMetrics(yr,mi,metrics);
+  await dbSaveIgPubs(yr,mi,pubs);
+  await dbSaveGoals("ig",yr,sem,goals);
+  showToast("✅ Dados Instagram salvos!","#e1306c");
 }
 
-function buildIgCompareTable(){
-  const sem=dashMonth<6?1:2;const goals=igGoals[`ig_${dashYear}_${sem}`]||{};
-  const rows=IG_METRIC_KEYS.map(k=>{
-    const cur=Number((igMetrics[dashKey(dashYear,dashMonth)]||{})[k]||0);
-    const prev=Number((igMetrics[dashKey(dashYear,dashMonth>0?dashMonth-1:11)]||{})[k]||0);
-    const goal=Number(goals[k]||0);const pctVal=goal?pct(cur,goal):null;
-    const d=cur-prev;const pctChg=prev?Math.round(Math.abs(d/prev)*100):null;
-    const growthHtml=pctChg!==null?(d>0?`<span class="kpi-trend-up">▲ +${pctChg}%</span>`:d<0?`<span class="kpi-trend-down">▼ -${pctChg}%</span>`:`<span class="kpi-trend-flat">= 0%</span>`):"—";
-    return`<tr><td>${IG_METRIC_ICONS[k]} ${IG_METRIC_LABELS[k]}</td><td class="ct-cur">${fmtNum(cur)}</td><td>${fmtNum(prev)}</td><td>${growthHtml}</td><td>${goal?fmtNum(goal):"—"}</td><td>${pctVal!==null?`<span class="${pctVal>=100?"ct-goal-ok":"ct-goal-no"}">${pctVal}%</span>`:"—"}</td></tr>`;
-  }).join("");
-  return`<div style="overflow-x:auto"><table class="compare-table"><thead><tr><th>Métrica</th><th>Atual</th><th>Mês Anterior</th><th>Variação</th><th>Meta Sem.</th><th>% Meta</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-}
-
-// ─── YOUTUBE DASHBOARD ───
-function renderYtDash(){
-  const el=document.getElementById("dashInner");if(!el)return;
-  const monthTabsHtml=MONTHS_PT.map((m,i)=>`<button class="month-tab-btn${i===dashMonth?" active":""}" onclick="setDashMonth(${i})">${MONTHS_SHORT[i]}</button>`).join("");
-  const key=dashKey(dashYear,dashMonth);const metrics=ytMetrics[key]||{};const breakdown=ytBreakdown[`bd_${dashYear}_${dashMonth}`]||{};const videos=ytVideos[`vid_${dashYear}_${dashMonth}`]||{list:[]};
-  const prevKey=dashMonth>0?dashKey(dashYear,dashMonth-1):dashKey(dashYear-1,11);const prevMetrics=ytMetrics[prevKey]||{};
-  const sem=dashMonth<6?1:2;const goalKey=`yt_${dashYear}_${sem}`;const goals=ytGoals[goalKey]||{};
-  const prevMonthForTrend=dashMonth>0?dashMonth-1:-1;
-
-  const kpiHtml=YT_METRIC_KEYS.map(k=>{
-    const cur=Number(metrics[k]||0);const prev=Number(prevMetrics[k]||0);const color=YT_METRIC_COLORS[k];
-    const goal=Number(goals[k]||0);const pctVal=goal?pct(cur,goal):null;
-    return`<div class="kpi-card" style="--kpi-color:${color}"><div class="kpi-icon">${YT_METRIC_ICONS[k]}</div><div class="kpi-label">${YT_METRIC_LABELS[k]}</div><div class="kpi-value">${fmtNum(cur)}</div>
-      <div class="kpi-footer">${trendHtml(cur,prev)}${pctVal!==null?`<span style="font-size:.62rem;color:${pctVal>=100?"var(--green)":"var(--orange)"}">${pctVal}% da meta</span>`:""}</div>
-      ${goal?`<div class="kpi-goal-wrap"><div class="kpi-goal-label"><span>Meta semestral</span><span>${fmtNum(goal)}</span></div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${Math.min(pctVal||0,100)}%;background:${color}"></div></div></div>`:""}
-    </div>`;
-  }).join("");
-
-  const bdHtml=YT_BREAKDOWN_KEYS.map(k=>`<div class="breakdown-card"><div class="breakdown-card-title">${YT_BREAKDOWN_LABELS[k]}</div>${YT_METRIC_KEYS.filter(mk=>!["numVideos","numShorts"].includes(mk)).map(mk=>`<div class="breakdown-field"><label>${YT_METRIC_LABELS[mk]}</label><input type="number" min="0" value="${(breakdown[k]||{})[mk]||""}" placeholder="0" onchange="onBdChange('${k}','${mk}',this.value)"/></div>`).join("")}</div>`).join("");
-
-  const vtList=videos.list||[];
-  const vtRows=vtList.map((v,i)=>`<tr><td><span class="pvt-title">${esc(v.title||"")}</span></td><td>${v.bu?`<span class="pvt-bu">${esc(v.bu)}</span>`:"—"}</td><td><input class="pvt-input" type="number" min="0" value="${v.views||""}" placeholder="0" onchange="onVtChange(${i},'views',this.value)"/></td><td><input class="pvt-input" type="number" min="0" value="${v.inscritos||""}" placeholder="0" onchange="onVtChange(${i},'inscritos',this.value)"/></td><td><input class="pvt-input" type="number" min="0" value="${v.tempo||""}" placeholder="0h" onchange="onVtChange(${i},'tempo',this.value)"/></td><td><button class="manage-item-del" onclick="delVideoRow(${i})">✕</button></td></tr>`).join("");
-
-  const funnelHtml=YT_FUNNEL_KEYS.map((k,i)=>{const val=Number(metrics[k]||0);const prev=YT_FUNNEL_KEYS[i-1]?Number(metrics[YT_FUNNEL_KEYS[i-1]]||0):null;const pctFunnel=prev?pct(val,prev):null;return`<div class="funnel-step"><div class="funnel-icon">${YT_FUNNEL_ICONS[k]}</div><div class="funnel-label">${YT_FUNNEL_LABELS[k]}</div><div class="funnel-value">${fmtNum(val)}</div>${pctFunnel!==null?`<div class="funnel-pct">${pctFunnel}% do anterior</div>`:""}</div>`;}).join("");
-
+function renderYtDashboard(el){
+  const yr=dashYear;
+  const mi=dashMonth;
+  const key=dashKey(yr,mi);
+  const metrics=ytMetrics[key]||{};
+  const videos=ytVideos[`vid_${yr}_${mi}`]||{list:[]};
+  const breakdown=ytBreakdown[`bd_${yr}_${mi}`]||{};
+  const sem=mi<6?1:2;
+  const semKey=`yt_${yr}_${sem}`;
+  const goals=ytGoals[semKey]||{};
+  const prevKey=mi>0?dashKey(yr,mi-1):dashKey(yr-1,11);
+  const prevMetrics=ytMetrics[prevKey]||{};
+  const vidList=videos.list||[];
+  _ytVidList=[...vidList];
   el.innerHTML=`
-    <div class="month-tabs-row">${monthTabsHtml}</div>
-    <div class="dash-section">
-      <div class="dash-section-title">📊 Métricas do Mês — ${MONTHS_PT[dashMonth]} ${dashYear}</div>
-      <div class="metrics-input-panel">
-        <div class="metrics-header-row">
-          <div><div class="metrics-month-title">${MONTHS_PT[dashMonth]} ${dashYear}</div><div class="metrics-month-sub">Preencha os dados reais do canal</div></div>
-          <button class="dash-save-btn" id="ytSaveBtn" onclick="saveYtMetrics()">💾 Salvar</button>
+    <div class="dash-topbar">
+      <h2>📊 Dashboard YouTube</h2>
+      <div class="dash-controls">
+        <select class="dash-year-sel" onchange="dashYear=+this.value;renderDashboard()">
+          ${[2024,2025,2026,2027].map(y=>`<option value="${y}"${y===yr?" selected":""}>${y}</option>`).join("")}
+        </select>
+        <div class="dash-platform-tabs">
+          <button class="dash-plat-tab${dashPlatform==="instagram"?" active-ig":""}" onclick="dashPlatform='instagram';renderDashboard()">📸 Instagram</button>
+          <button class="dash-plat-tab${dashPlatform==="youtube"?" active-yt":""}" onclick="dashPlatform='youtube';renderDashboard()">▶️ YouTube</button>
         </div>
+        <button class="dash-save-btn" onclick="saveYtData()">💾 Salvar dados</button>
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📅 Mês de referência</div>
+      <div class="month-tabs-row">${MONTHS_SHORT.map((m,i)=>`<button class="month-tab-btn${i===mi?" active":""}" onclick="dashMonth=${i};renderDashboard()">${m}</button>`).join("")}</div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📊 KPIs — ${MONTHS_PT[mi]} ${yr}</div>
+      <div class="kpi-row">
+        ${YT_METRIC_KEYS.map(k=>{
+          const val=Number(metrics[k]||0);
+          const prev=Number(prevMetrics[k]||0);
+          const goalVal=Number(goals[k]||0);
+          const pctGoal=goalVal?Math.min(100,Math.round((val/goalVal)*100)):0;
+          return`<div class="kpi-card" style="--kpi-color:${YT_METRIC_COLORS[k]}">
+            <div class="kpi-icon">${YT_METRIC_ICONS[k]}</div>
+            <div class="kpi-label">${YT_METRIC_LABELS[k]}</div>
+            <div class="kpi-value">${fmtNum(val)}</div>
+            <div class="kpi-footer"><div class="kpi-trend">${trendHtml(val,prev)}</div></div>
+            ${goalVal?`<div class="kpi-goal-wrap"><div class="kpi-goal-label"><span>Meta: ${fmtNum(goalVal)}</span><span>${pctGoal}%</span></div><div class="kpi-goal-bar"><div class="kpi-goal-fill" style="width:${pctGoal}%;background:${YT_METRIC_COLORS[k]}"></div></div></div>`:""}
+          </div>`;
+        }).join("")}
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">⚡ Breakdown — ${MONTHS_PT[mi]}</div>
+      <div class="breakdown-grid">
+        ${YT_BREAKDOWN_KEYS.map(bk=>`<div class="breakdown-card">
+          <div class="breakdown-card-title">${YT_BREAKDOWN_LABELS[bk]}</div>
+          ${["visualizacoes","tempoExibicao","novosInscritos"].map(mk=>`<div class="breakdown-field"><label>${YT_METRIC_LABELS[mk]}</label><input type="number" min="0" id="ytbd_${bk}_${mk}" value="${(breakdown[bk]||{})[mk]||""}" placeholder="0"/></div>`).join("")}
+        </div>`).join("")}
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">🔗 Funil de conversão — ${MONTHS_PT[mi]}</div>
+      <div class="funnel-row">
+        ${YT_FUNNEL_KEYS.map(k=>`<div class="funnel-step">
+          <div class="funnel-icon">${YT_FUNNEL_ICONS[k]}</div>
+          <div class="funnel-label">${YT_FUNNEL_LABELS[k]}</div>
+          <div class="funnel-value">${fmtNum(Number(metrics[k]||0))}</div>
+        </div>`).join("")}
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📥 Inserir métricas — ${MONTHS_PT[mi]}</div>
+      <div class="metrics-input-panel">
+        <div class="metrics-header-row"><div><div class="metrics-month-title">${MONTHS_PT[mi]} ${yr}</div><div class="metrics-month-sub">Preencha os dados do mês</div></div></div>
         <div class="metrics-grid">
-          ${YT_METRIC_KEYS.map(k=>`<div class="metric-field"><label>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</label><input type="number" min="0" id="yt_${k}" value="${metrics[k]||""}" placeholder="0"/></div>`).join("")}
-          ${YT_FUNNEL_KEYS.map(k=>`<div class="metric-field"><label>🔗 ${YT_FUNNEL_LABELS[k]}</label><input type="number" min="0" id="yt_${k}" value="${metrics[k]||""}" placeholder="0"/></div>`).join("")}
+          ${[...YT_METRIC_KEYS,...YT_FUNNEL_KEYS].map(k=>`<div class="metric-field">
+            <label>${YT_METRIC_ICONS[k]||YT_FUNNEL_ICONS[k]||""} ${YT_METRIC_LABELS[k]||YT_FUNNEL_LABELS[k]}</label>
+            <input type="number" min="0" id="ytm_${k}" value="${metrics[k]||""}" placeholder="0"/>
+          </div>`).join("")}
         </div>
       </div>
     </div>
     <div class="dash-section">
-      <div class="
+      <div class="dash-section-title">🎬 Vídeos publicados — ${MONTHS_PT[mi]}</div>
+      <div style="overflow-x:auto">
+        <table class="pub-videos-table">
+          <thead><tr><th>Título</th><th>BU</th><th>Visualizações</th><th>Inscritos</th><th>T. Exibição (h)</th></tr></thead>
+          <tbody id="ytVidTbody">
+            ${vidList.map((v,i)=>`<tr>
+              <td><div class="pvt-title">${esc(v.title||"")}</div></td>
+              <td>${v.bu?`<span class="pvt-bu">${esc(v.bu)}</span>`:""}</td>
+              <td><input class="pvt-input" type="number" min="0" id="ytv_vis_${i}" value="${v.visualizacoes||""}" placeholder="0"/></td>
+              <td><input class="pvt-input" type="number" min="0" id="ytv_ins_${i}" value="${v.inscritos||""}" placeholder="0"/></td>
+              <td><input class="pvt-input" type="number" min="0" id="ytv_tex_${i}" value="${v.tempoExibicao||""}" placeholder="0"/></td>
+            </tr>`).join("")}
+          </tbody>
+        </table>
+        <button class="pvt-add-btn" onclick="addYtVideoRow()">＋ Adicionar vídeo</button>
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">🎯 Metas — Semestre ${sem} / ${yr}</div>
+      <div class="sem-goals-wrap">
+        <div class="sem-block">
+          <div class="sem-block-header"><span class="sem-block-title">YouTube — ${sem}º Semestre ${yr}</span><span class="sem-badge">S${sem}/${yr}</span></div>
+          <div class="sem-goals-grid">
+            ${YT_METRIC_KEYS.map(k=>`<div class="sem-goal-item"><label>${YT_METRIC_LABELS[k]}</label><input type="number" min="0" id="ytgoal_${k}" value="${goals[k]||""}" placeholder="Meta…"/></div>`).join("")}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📈 Evolução anual</div>
+      <div class="charts-2col">
+        ${["novosInscritos","visualizacoes","tempoExibicao","fechamentoInscritos"].map(k=>`<div class="chart-card"><div class="chart-card-title">${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</div><div class="chart-wrap"><canvas id="ytchart_${k}"></canvas></div></div>`).join("")}
+      </div>
+    </div>
+    <div class="dash-section">
+      <div class="dash-section-title">📋 Comparativo anual</div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead><tr><th>Métrica</th>${MONTHS_SHORT.map(m=>`<th>${m}</th>`).join("")}</tr></thead>
+          <tbody>
+            ${YT_METRIC_KEYS.map(k=>`<tr><td>${YT_METRIC_ICONS[k]} ${YT_METRIC_LABELS[k]}</td>${Array.from({length:12},(_,i)=>{const v=Number((ytMetrics[dashKey(yr,i)]||{})[k]||0);return`<td class="${i===mi?"ct-cur":""}">${v?fmtNum(v):"—"}</td>`;}).join("")}</tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>`;
+  setTimeout(()=>{
+    ["novosInscritos","visualizacoes","tempoExibicao","fechamentoInscritos"].forEach(k=>{
+      const canvas=document.getElementById("ytchart_"+k);if(!canvas)return;
+      const id="ytchart_"+k;
+      if(_dashCharts[id]){_dashCharts[id].destroy();delete _dashCharts[id];}
+      const data=Array.from({length:12},(_,i)=>Number((ytMetrics[dashKey(yr,i)]||{})[k]||0));
+      _dashCharts[id]=new Chart(canvas,{type:"line",data:{labels:MONTHS_SHORT,datasets:[{label:YT_METRIC_LABELS[k],data,borderColor:YT_METRIC_COLORS[k],backgroundColor:YT_METRIC_COLORS[k]+"22",tension:.4,fill:true,pointRadius:4,pointHoverRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:"rgba(255,255,255,.05)"},ticks:{color:"#6b7399",font:{size:10}}},y:{grid:{color:"rgba(255,255,255,.05)"},ticks:{color:"#6b7399",font:{size:10}}}}}});
+    });
+  },50);
+}
+
+let _ytVidList=[];
+function addYtVideoRow(){
+  _ytVidList.push({title:"Novo vídeo",bu:"",visualizacoes:0,inscritos:0,tempoExibicao:0});
+  const tbody=document.getElementById("ytVidTbody");if(!tbody)return;
+  const i=_ytVidList.length-1;
+  const tr=document.createElement("tr");
+  tr.innerHTML=`<td><div class="pvt-title">Novo vídeo</div></td><td></td>
+    <td><input class="pvt-input" type="number" min="0" id="ytv_vis_${i}" value="0" placeholder="0"/></td>
+    <td><input class="pvt-input" type="number" min="0" id="ytv_ins_${i}" value="0" placeholder="0"/></td>
+    <td><input class="pvt-input" type="number" min="0" id="ytv_tex_${i}" value="0" placeholder="0"/></td>`;
+  tbody.appendChild(tr);
+}
+
+async function saveYtData(){
+  const mi=dashMonth,yr=dashYear;
+  const metrics={};
+  [...YT_METRIC_KEYS,...YT_FUNNEL_KEYS].forEach(k=>{const el=document.getElementById("ytm_"+k);if(el)metrics[k]=Number(el.value)||0;});
+  const sem=mi<6?1:2;
+  const goals={};
+  YT_METRIC_KEYS.forEach(k=>{const el=document.getElementById("ytgoal_"+k);if(el)goals[k]=Number(el.value)||0;});
+  const breakdown={};
+  YT_BREAKDOWN_KEYS.forEach(bk=>{breakdown[bk]={};["visualizacoes","tempoExibicao","novosInscritos"].forEach(mk=>{const el=document.getElementById(`ytbd_${bk}_${mk}`);if(el)breakdown[bk][mk]=Number(el.value)||0;});});
+  const vidList=_ytVidList.map((v,i)=>({...v,
+    visualizacoes:Number(document.getElementById(`ytv_vis_${i}`)?.value||0),
+    inscritos:Number(document.getElementById(`ytv_ins_${i}`)?.value||0),
+    tempoExibicao:Number(document.getElementById(`ytv_tex_${i}`)?.value||0)
+  }));
+  await dbSaveYtMetrics(yr,mi,metrics);
+  await dbSaveYtBreakdown(yr,mi,breakdown);
+  await dbSaveYtVideos(yr,mi,{list:vidList});
+  await dbSaveGoals("yt",yr,sem,goals);
+  showToast("✅ Dados YouTube salvos!","#ff0000");
+}
+
+function selectCTA(el){}
+function applyCTASel(val){const inp=document.getElementById("ctaText");if(inp)inp.value=val||"";}
+</script>
+</body>
+</html>
