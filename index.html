@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calendário Editorial</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     /* ===== RESET & BASE ===== */
@@ -290,7 +291,86 @@
     .upcoming-item .title { font-size: 13px; font-weight: 500; }
     .upcoming-item .meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
     .upcoming-item .date { font-size: 11px; color: var(--text-muted); text-align: right; }
-    @media (max-width: 768px) { .dash-grid { grid-template-columns: 1fr; } .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ===== METAS SEMESTRAL ===== */
+    .goals-section { margin-bottom: 24px; }
+    .goals-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .goals-header h3 { font-size: 15px; font-weight: 600; }
+    .goals-header-actions { display: flex; align-items: center; gap: 8px; }
+    .semester-badge {
+      font-size: 11px; font-weight: 600; padding: 4px 10px;
+      background: var(--accent-soft); color: var(--accent);
+      border-radius: 99px; border: 1px solid var(--accent-glow);
+    }
+    .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .goal-card {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 18px; position: relative; overflow: hidden;
+    }
+    .goal-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--goal-color, var(--accent));
+    }
+    .goal-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+    .goal-card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .goal-card-metric { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .goal-trend {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 99px;
+    }
+    .goal-trend.up { background: rgba(74,222,128,0.15); color: var(--success); }
+    .goal-trend.down { background: rgba(248,113,113,0.15); color: var(--danger); }
+    .goal-trend.neutral { background: rgba(96,165,250,0.15); color: var(--info); }
+    .goal-numbers { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+    .goal-current { font-size: 28px; font-weight: 700; }
+    .goal-separator { font-size: 16px; color: var(--text-muted); }
+    .goal-target { font-size: 18px; font-weight: 600; color: var(--text-muted); }
+    .goal-progress-track {
+      height: 8px; background: var(--bg-tertiary); border-radius: 99px;
+      overflow: hidden; margin-bottom: 8px;
+    }
+    .goal-progress-fill {
+      height: 100%; border-radius: 99px;
+      background: var(--goal-color, var(--accent));
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .goal-progress-fill.exceeded { background: var(--success); }
+    .goal-footer { display: flex; align-items: center; justify-content: space-between; }
+    .goal-pct { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+    .goal-remaining { font-size: 11px; color: var(--text-muted); }
+    .goal-card-actions {
+      position: absolute; top: 12px; right: 12px;
+      display: flex; gap: 4px; opacity: 0; transition: opacity var(--transition);
+    }
+    .goal-card:hover .goal-card-actions { opacity: 1; }
+    .goal-action-btn {
+      width: 24px; height: 24px; border-radius: var(--radius-sm);
+      background: var(--bg-tertiary); border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer; font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+    }
+    .goal-action-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+    /* Chart cards */
+    .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .chart-card {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px;
+    }
+    .chart-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text-secondary); }
+    .chart-card .chart-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+    .chart-wrap { position: relative; height: 180px; }
+
+    @media (max-width: 768px) {
+      .dash-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .goals-grid { grid-template-columns: 1fr; }
+      .chart-row { grid-template-columns: 1fr; }
+    }
 
     /* ===== MODAL ===== */
     .modal-overlay {
@@ -411,6 +491,44 @@
     .platform-settings { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
     .platform-toggle { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid var(--border); }
     .platform-toggle .plabel { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+
+    /* ===== DRAFT BANNER ===== */
+    .draft-banner {
+      display: none; align-items: center; gap: 10px;
+      background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3);
+      border-radius: var(--radius-md); padding: 10px 14px; margin-bottom: 4px;
+      font-size: 12px; color: var(--warning);
+    }
+    .draft-banner.show { display: flex; }
+    .draft-banner button {
+      margin-left: auto; background: rgba(251,191,36,0.2); border: 1px solid rgba(251,191,36,0.4);
+      color: var(--warning); border-radius: var(--radius-sm); padding: 3px 10px;
+      font-size: 11px; font-weight: 600; cursor: pointer; transition: all var(--transition);
+    }
+    .draft-banner button:hover { background: rgba(251,191,36,0.3); }
+
+    /* ===== DRAFT CONFIRM MODAL ===== */
+    .draft-confirm-modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2000; padding: 20px; backdrop-filter: blur(4px);
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+    }
+    .draft-confirm-modal.open { opacity: 1; pointer-events: all; }
+    .draft-confirm-box {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 28px; max-width: 380px; width: 100%;
+      box-shadow: var(--shadow-lg); transform: scale(0.95);
+      transition: transform 0.2s ease; text-align: center;
+    }
+    .draft-confirm-modal.open .draft-confirm-box { transform: scale(1); }
+    .draft-confirm-box .dc-icon { font-size: 40px; margin-bottom: 12px; }
+    .draft-confirm-box h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .draft-confirm-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+    .draft-confirm-actions { display: flex; gap: 8px; justify-content: center; }
+
+    /* ===== GOAL MODAL ===== */
+    #goalModal .modal { max-width: 460px; }
 
     /* ===== NOTIFICATIONS ===== */
     .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
@@ -577,6 +695,33 @@
       <!-- DASHBOARD VIEW -->
       <div class="view" id="view-dashboard">
         <div class="dashboard-content">
+
+          <!-- METAS SEMESTRAIS -->
+          <div class="goals-section">
+            <div class="goals-header">
+              <h3>🎯 Metas Semestrais</h3>
+              <div class="goals-header-actions">
+                <span class="semester-badge" id="semesterBadge"></span>
+                <button class="btn btn-secondary btn-sm" onclick="openGoalModal()">+ Nova Meta</button>
+              </div>
+            </div>
+            <div class="goals-grid" id="goalsGrid"></div>
+            <!-- Gráfico: Evolução mensal vs Meta -->
+            <div class="chart-row">
+              <div class="chart-card">
+                <h3>📈 Publicações por Mês</h3>
+                <div class="chart-sub">Comparativo com a meta mensal e crescimento</div>
+                <div class="chart-wrap"><canvas id="monthlyChart"></canvas></div>
+              </div>
+              <div class="chart-card">
+                <h3>📊 Crescimento Mês a Mês</h3>
+                <div class="chart-sub">Variação percentual em relação ao mês anterior</div>
+                <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STATS GERAIS -->
           <div class="stats-grid" id="statsGrid"></div>
           <div class="dash-grid">
             <div class="dash-card">
@@ -655,9 +800,14 @@
   <div class="modal">
     <div class="modal-header">
       <h2 id="postModalTitle">✨ Novo Post</h2>
-      <button class="modal-close" onclick="closePostModal()">×</button>
+      <button class="modal-close" onclick="tryClosePostModal()">×</button>
     </div>
     <div class="modal-body">
+      <!-- DRAFT BANNER -->
+      <div class="draft-banner" id="draftBanner">
+        📝 Você tem um rascunho não salvo
+        <button onclick="restoreDraft()">Restaurar</button>
+      </div>
       <div class="form-group">
         <label>Título *</label>
         <input class="form-input" id="fTitle" placeholder="Título do post..." maxlength="120"/>
@@ -773,8 +923,72 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-danger" id="deletePostBtn" style="display:none;margin-right:auto" onclick="deleteCurrentPost()">🗑️ Excluir</button>
-      <button class="btn btn-secondary" onclick="closePostModal()">Cancelar</button>
+      <button class="btn btn-secondary" onclick="tryClosePostModal()">Cancelar</button>
       <button class="btn btn-primary" onclick="savePost()">💾 Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- DRAFT CONFIRM MODAL -->
+<div class="draft-confirm-modal" id="draftConfirmModal">
+  <div class="draft-confirm-box">
+    <div class="dc-icon">📝</div>
+    <h3>Salvar como rascunho?</h3>
+    <p>Você tem preenchimentos não salvos.<br/>Deseja guardar como rascunho para continuar depois?</p>
+    <div class="draft-confirm-actions">
+      <button class="btn btn-danger btn-sm" onclick="discardAndClose()">🗑️ Descartar</button>
+      <button class="btn btn-secondary btn-sm" onclick="closeDraftConfirm()">Continuar editando</button>
+      <button class="btn btn-primary btn-sm" onclick="saveDraftAndClose()">💾 Salvar rascunho</button>
+    </div>
+  </div>
+</div>
+
+<!-- GOAL MODAL -->
+<div class="modal-overlay" id="goalModal">
+  <div class="modal" style="max-width:460px">
+    <div class="modal-header">
+      <h2 id="goalModalTitle">🎯 Nova Meta</h2>
+      <button class="modal-close" onclick="closeGoalModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Nome da Meta *</label>
+        <input class="form-input" id="gName" placeholder="Ex: Posts publicados, Seguidores..."/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Valor Atual</label>
+          <input class="form-input" type="number" id="gCurrent" placeholder="0" min="0"/>
+        </div>
+        <div class="form-group">
+          <label>Meta (Semestral) *</label>
+          <input class="form-input" type="number" id="gTarget" placeholder="Ex: 60" min="1"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Unidade / Métrica</label>
+        <input class="form-input" id="gUnit" placeholder="Ex: posts, seguidores, leads, %..."/>
+      </div>
+      <div class="form-group">
+        <label>Cor</label>
+        <div class="color-options" id="goalColorOptions"></div>
+      </div>
+      <div class="form-group">
+        <label>Semestre</label>
+        <select class="form-select" id="gSemester">
+          <option value="1">1º Semestre (Jan–Jun)</option>
+          <option value="2">2º Semestre (Jul–Dez)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ano</label>
+        <input class="form-input" type="number" id="gYear" min="2020" max="2099"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" id="deleteGoalBtn" style="display:none;margin-right:auto" onclick="deleteCurrentGoal()">🗑️ Excluir</button>
+      <button class="btn btn-secondary" onclick="closeGoalModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveGoal()">💾 Salvar</button>
     </div>
   </div>
 </div>
@@ -871,21 +1085,27 @@
 
 <!-- TOAST -->
 <div class="toast-container" id="toastContainer"></div>
+
 <script>
 // ============================================================
 // STATE
 // ============================================================
 let state = {
-  posts: [], categories: [], campaigns: [], team: [],
+  posts: [], categories: [], campaigns: [], team: [], goals: [],
   currentMonth: new Date().getMonth(),
   currentYear: new Date().getFullYear(),
   editingPostId: null,
+  editingGoalId: null,
   currentTags: [],
   currentChecklist: [],
   selectedMemberColor: '#7c6af7',
   selectedCatColor: '#7c6af7',
+  selectedGoalColor: '#7c6af7',
   activePlatforms: ['instagram','tiktok','youtube','linkedin','twitter','facebook','pinterest','blog']
 };
+
+// Rascunho automático
+let draftData = null;
 
 const PLATFORM_ICONS = {
   instagram:'📸', tiktok:'🎵', youtube:'▶️', linkedin:'💼',
@@ -907,6 +1127,12 @@ const PRESET_COLORS = [
   '#7c6af7','#f87171','#fbbf24','#4ade80','#60a5fa',
   '#f472b6','#fb923c','#34d399','#a78bfa','#38bdf8'
 ];
+const MONTH_NAMES = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const MONTH_NAMES_FULL = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+// Chart.js instances
+let monthlyChartInst = null;
+let growthChartInst = null;
 
 // ============================================================
 // PERSIST
@@ -923,6 +1149,17 @@ function load() {
     } catch(e) {}
   }
 }
+function saveDraftLocal(data) {
+  localStorage.setItem('editorial_draft', JSON.stringify(data));
+}
+function loadDraftLocal() {
+  const raw = localStorage.getItem('editorial_draft');
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch(e) { return null; }
+}
+function clearDraftLocal() {
+  localStorage.removeItem('editorial_draft');
+}
 
 // ============================================================
 // INIT
@@ -933,9 +1170,9 @@ function init() {
   if (!state.categories) state.categories = [];
   if (!state.campaigns) state.campaigns = [];
   if (!state.team) state.team = [];
+  if (!state.goals) state.goals = [];
   if (!state.activePlatforms) state.activePlatforms = Object.keys(PLATFORM_ICONS);
 
-  // Seed demo data if empty
   if (state.posts.length === 0) seedDemoData();
 
   renderAll();
@@ -944,6 +1181,12 @@ function init() {
   renderColorPickers();
   renderPlatformSettings();
   renderTeamSettings();
+
+  // Checa rascunho salvo
+  draftData = loadDraftLocal();
+  if (draftData) {
+    document.getElementById('draftBanner').classList.add('show');
+  }
 }
 
 function renderAll() {
@@ -982,6 +1225,15 @@ function seedDemoData() {
     { id: uid(), name: 'Carla Dias', role: 'Redatora', color: '#4ade80' }
   ];
 
+  // Metas demo
+  const sem = now.getMonth() < 6 ? 1 : 2;
+  state.goals = [
+    { id: uid(), name: 'Posts Publicados', current: 28, target: 60, unit: 'posts', color: '#7c6af7', semester: sem, year: y },
+    { id: uid(), name: 'Crescimento Instagram', current: 1200, target: 3000, unit: 'seguidores', color: '#f472b6', semester: sem, year: y },
+    { id: uid(), name: 'Vídeos no YouTube', current: 8, target: 12, unit: 'vídeos', color: '#f87171', semester: sem, year: y },
+    { id: uid(), name: 'Leads Gerados', current: 340, target: 500, unit: 'leads', color: '#4ade80', semester: sem, year: y }
+  ];
+
   const statuses = ['idea','draft','review','approved','scheduled','published'];
   const platforms = ['instagram','tiktok','youtube','linkedin','twitter','facebook'];
   const priorities = ['low','medium','medium','high','urgent'];
@@ -1000,6 +1252,7 @@ function seedDemoData() {
     'Conteúdo educativo semanal'
   ];
 
+  // Gera posts dos últimos 6 meses para ter dados reais nos gráficos
   for (let i = 0; i < 14; i++) {
     const day = 1 + Math.floor(Math.random() * 27);
     state.posts.push({
@@ -1027,6 +1280,31 @@ function seedDemoData() {
       bu: '',
       createdAt: Date.now()
     });
+  }
+  // Adiciona posts nos meses anteriores para dados de gráfico
+  for (let mOffset = 1; mOffset <= 5; mOffset++) {
+    const count = 3 + Math.floor(Math.random() * 10);
+    for (let j = 0; j < count; j++) {
+      let tMonth = m - mOffset;
+      let tYear = y;
+      if (tMonth < 0) { tMonth += 12; tYear--; }
+      const day = 1 + Math.floor(Math.random() * 27);
+      state.posts.push({
+        id: uid(),
+        title: titles[j % titles.length] + ' (histórico)',
+        date: `${tYear}-${pad(tMonth+1)}-${pad(day)}`,
+        time: '10:00',
+        platform: platforms[j % platforms.length],
+        format: 'feed',
+        categoryId: state.categories[j % state.categories.length].id,
+        campaignId: '',
+        status: 'published',
+        priority: 'medium',
+        caption: '', cta: '', tags: [], link: '', desc: '',
+        people: [], checklist: [], bu: '',
+        createdAt: Date.now()
+      });
+    }
   }
   save();
 }
@@ -1062,8 +1340,7 @@ function switchView(view) {
 // ============================================================
 function renderCalendar() {
   const { currentMonth: m, currentYear: y } = state;
-  const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-  document.getElementById('calendarTitle').textContent = `${monthNames[m]} ${y}`;
+  document.getElementById('calendarTitle').textContent = `${MONTH_NAMES_FULL[m]} ${y}`;
 
   const startSunday = document.getElementById('weekToggle')?.checked ?? false;
   const dayNames = startSunday
@@ -1237,6 +1514,9 @@ function formatDate(str) {
 // DASHBOARD
 // ============================================================
 function renderDashboard() {
+  renderGoalsSection();
+  renderChartsSection();
+
   const posts = state.posts;
   const total = posts.length;
   const published = posts.filter(p=>p.status==='published').length;
@@ -1336,6 +1616,376 @@ function renderDashboard() {
 }
 
 // ============================================================
+// METAS SEMESTRAIS
+// ============================================================
+function getCurrentSemester() {
+  const now = new Date();
+  return { semester: now.getMonth() < 6 ? 1 : 2, year: now.getFullYear() };
+}
+
+function renderGoalsSection() {
+  const { semester, year } = getCurrentSemester();
+  const semLabel = semester === 1 ? `1º Semestre ${year}` : `2º Semestre ${year}`;
+  const badge = document.getElementById('semesterBadge');
+  if (badge) badge.textContent = semLabel;
+
+  const goals = state.goals.filter(g => g.semester == semester && g.year == year);
+  const grid = document.getElementById('goalsGrid');
+  if (!grid) return;
+
+  if (!goals.length) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:32px;color:var(--text-muted)">
+        <div style="font-size:32px;margin-bottom:8px">🎯</div>
+        <p>Nenhuma meta para este semestre.</p>
+        <button class="btn btn-secondary btn-sm" style="margin-top:12px" onclick="openGoalModal()">+ Criar primeira meta</button>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = goals.map(g => {
+    const pct = Math.min(Math.round((g.current / g.target) * 100), 100);
+    const exceeded = g.current >= g.target;
+    const remaining = Math.max(g.target - g.current, 0);
+    // Calcular tendência: compara publicados deste mês vs mês passado
+    const trend = getGoalTrend(g);
+
+    return `
+      <div class="goal-card" style="--goal-color:${g.color}">
+        <div class="goal-card-actions">
+          <button class="goal-action-btn" onclick="openGoalModal('${g.id}')" title="Editar">✏️</button>
+        </div>
+        <div class="goal-card-header">
+          <div>
+            <div class="goal-card-title">${esc(g.name)}</div>
+            <div class="goal-card-metric">${g.unit || 'unidades'}</div>
+          </div>
+          <span class="goal-trend ${trend.dir}" title="${trend.label}">
+            ${trend.icon} ${trend.label}
+          </span>
+        </div>
+        <div class="goal-numbers">
+          <span class="goal-current" style="color:${g.color}">${g.current.toLocaleString('pt-BR')}</span>
+          <span class="goal-separator">/</span>
+          <span class="goal-target">${g.target.toLocaleString('pt-BR')}</span>
+        </div>
+        <div class="goal-progress-track">
+          <div class="goal-progress-fill ${exceeded?'exceeded':''}" style="width:${pct}%;background:${exceeded?'var(--success)':g.color}"></div>
+        </div>
+        <div class="goal-footer">
+          <span class="goal-pct" style="color:${exceeded?'var(--success)':g.color}">${exceeded?'✅ Meta atingida!':pct+'% concluído'}</span>
+          <span class="goal-remaining">${exceeded ? '' : `Faltam ${remaining.toLocaleString('pt-BR')} ${g.unit||''}`}</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function getGoalTrend(goal) {
+  // Para meta de "Posts publicados": compara mês atual com mês anterior
+  // Para outras metas: usa o valor atual vs 70% da meta proporcional ao semestre (heurística)
+  const now = new Date();
+  const thisM = now.getMonth();
+  const thisY = now.getFullYear();
+  const prevM = thisM === 0 ? 11 : thisM - 1;
+  const prevY = thisM === 0 ? thisY - 1 : thisY;
+
+  const thisMonthPosts = state.posts.filter(p =>
+    (p.date||'').startsWith(`${thisY}-${pad2(thisM+1)}`) && p.status === 'published'
+  ).length;
+  const prevMonthPosts = state.posts.filter(p =>
+    (p.date||'').startsWith(`${prevY}-${pad2(prevM+1)}`) && p.status === 'published'
+  ).length;
+
+  if (prevMonthPosts === 0 && thisMonthPosts === 0) {
+    return { dir: 'neutral', icon: '➡️', label: 'Sem dados' };
+  }
+  if (prevMonthPosts === 0) {
+    return { dir: 'up', icon: '↑', label: 'Novo' };
+  }
+  const delta = Math.round(((thisMonthPosts - prevMonthPosts) / prevMonthPosts) * 100);
+  if (delta > 0) return { dir: 'up', icon: '↑', label: `+${delta}% vs mês ant.` };
+  if (delta < 0) return { dir: 'down', icon: '↓', label: `${delta}% vs mês ant.` };
+  return { dir: 'neutral', icon: '➡️', label: 'Estável' };
+}
+
+// ============================================================
+// GRÁFICOS
+// ============================================================
+function renderChartsSection() {
+  renderMonthlyChart();
+  renderGrowthChart();
+}
+
+function getMonthlyData() {
+  // Retorna dados dos últimos 6 meses
+  const now = new Date();
+  const labels = [];
+  const counts = [];
+  const publishedCounts = [];
+
+  for (let i = 5; i >= 0; i--) {
+    let m = now.getMonth() - i;
+    let y = now.getFullYear();
+    if (m < 0) { m += 12; y--; }
+    labels.push(MONTH_NAMES[m]);
+    const prefix = `${y}-${pad2(m+1)}`;
+    const total = state.posts.filter(p => (p.date||'').startsWith(prefix)).length;
+    const pub = state.posts.filter(p => (p.date||'').startsWith(prefix) && p.status === 'published').length;
+    counts.push(total);
+    publishedCounts.push(pub);
+  }
+  return { labels, counts, publishedCounts };
+}
+
+function getGoalMonthlyTarget() {
+  // Meta mensal = meta semestral / 6
+  const { semester, year } = getCurrentSemester();
+  const goals = state.goals.filter(g => g.semester == semester && g.year == year);
+  if (!goals.length) return null;
+  // Pega a primeira meta de "posts" ou a maior meta em geral
+  const postGoal = goals.find(g => g.name.toLowerCase().includes('post')) || goals[0];
+  return Math.round(postGoal.target / 6);
+}
+
+function renderMonthlyChart() {
+  const ctx = document.getElementById('monthlyChart');
+  if (!ctx) return;
+  const { labels, counts, publishedCounts } = getMonthlyData();
+  const monthlyTarget = getGoalMonthlyTarget();
+
+  if (monthlyChartInst) { monthlyChartInst.destroy(); monthlyChartInst = null; }
+
+  const datasets = [
+    {
+      label: 'Total de posts',
+      data: counts,
+      backgroundColor: 'rgba(124,106,247,0.2)',
+      borderColor: '#7c6af7',
+      borderWidth: 2,
+      borderRadius: 6,
+      type: 'bar'
+    },
+    {
+      label: 'Publicados',
+      data: publishedCounts,
+      backgroundColor: 'rgba(74,222,128,0.2)',
+      borderColor: '#4ade80',
+      borderWidth: 2,
+      borderRadius: 6,
+      type: 'bar'
+    }
+  ];
+
+  if (monthlyTarget) {
+    datasets.push({
+      label: `Meta mensal (${monthlyTarget})`,
+      data: labels.map(() => monthlyTarget),
+      borderColor: '#fbbf24',
+      borderWidth: 2,
+      borderDash: [6, 3],
+      pointRadius: 0,
+      type: 'line',
+      fill: false,
+      tension: 0
+    });
+  }
+
+  monthlyChartInst = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          labels: { color: '#a0a0a0', font: { size: 11 }, boxWidth: 12 }
+        },
+        tooltip: {
+          backgroundColor: '#1e1e1e',
+          borderColor: '#2e2e2e',
+          borderWidth: 1,
+          titleColor: '#f0f0f0',
+          bodyColor: '#a0a0a0'
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#606060', font: { size: 11 } },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        },
+        y: {
+          ticks: { color: '#606060', font: { size: 11 }, stepSize: 1 },
+          grid: { color: 'rgba(255,255,255,0.06)' },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+function renderGrowthChart() {
+  const ctx = document.getElementById('growthChart');
+  if (!ctx) return;
+  const { labels, counts } = getMonthlyData();
+
+  // Calcula variação percentual mês a mês
+  const growthData = counts.map((v, i) => {
+    if (i === 0) return 0;
+    const prev = counts[i-1];
+    if (prev === 0) return v > 0 ? 100 : 0;
+    return Math.round(((v - prev) / prev) * 100);
+  });
+
+  if (growthChartInst) { growthChartInst.destroy(); growthChartInst = null; }
+
+  const bgColors = growthData.map(v => v > 0 ? 'rgba(74,222,128,0.25)' : v < 0 ? 'rgba(248,113,113,0.25)' : 'rgba(96,165,250,0.25)');
+  const borderColors = growthData.map(v => v > 0 ? '#4ade80' : v < 0 ? '#f87171' : '#60a5fa');
+
+  growthChartInst = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels.slice(1), // ignora o primeiro (sem comparativo)
+      datasets: [{
+        label: 'Variação % vs mês anterior',
+        data: growthData.slice(1),
+        backgroundColor: bgColors.slice(1),
+        borderColor: borderColors.slice(1),
+        borderWidth: 2,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1e1e1e',
+          borderColor: '#2e2e2e',
+          borderWidth: 1,
+          titleColor: '#f0f0f0',
+          bodyColor: '#a0a0a0',
+          callbacks: {
+            label: ctx => `${ctx.raw > 0 ? '+' : ''}${ctx.raw}%`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#606060', font: { size: 11 } },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        },
+        y: {
+          ticks: {
+            color: '#606060', font: { size: 11 },
+            callback: v => `${v}%`
+          },
+          grid: { color: 'rgba(255,255,255,0.06)' }
+        }
+      }
+    }
+  });
+}
+
+// ============================================================
+// GOAL MODAL
+// ============================================================
+let selectedGoalColor = '#7c6af7';
+
+function openGoalModal(goalId) {
+  state.editingGoalId = goalId || null;
+  selectedGoalColor = '#7c6af7';
+  const { semester, year } = getCurrentSemester();
+
+  if (goalId) {
+    const g = state.goals.find(g => g.id === goalId);
+    if (!g) return;
+    document.getElementById('goalModalTitle').textContent = '✏️ Editar Meta';
+    document.getElementById('gName').value = g.name || '';
+    document.getElementById('gCurrent').value = g.current ?? '';
+    document.getElementById('gTarget').value = g.target ?? '';
+    document.getElementById('gUnit').value = g.unit || '';
+    document.getElementById('gSemester').value = g.semester || semester;
+    document.getElementById('gYear').value = g.year || year;
+    selectedGoalColor = g.color || '#7c6af7';
+    document.getElementById('deleteGoalBtn').style.display = 'inline-flex';
+  } else {
+    document.getElementById('goalModalTitle').textContent = '🎯 Nova Meta';
+    document.getElementById('gName').value = '';
+    document.getElementById('gCurrent').value = '';
+    document.getElementById('gTarget').value = '';
+    document.getElementById('gUnit').value = '';
+    document.getElementById('gSemester').value = semester;
+    document.getElementById('gYear').value = year;
+    selectedGoalColor = '#7c6af7';
+    document.getElementById('deleteGoalBtn').style.display = 'none';
+  }
+
+  renderGoalColorPickers();
+  document.getElementById('goalModal').classList.add('open');
+}
+
+function closeGoalModal() {
+  document.getElementById('goalModal').classList.remove('open');
+  state.editingGoalId = null;
+}
+
+function saveGoal() {
+  const name = document.getElementById('gName').value.trim();
+  const target = parseFloat(document.getElementById('gTarget').value);
+  if (!name) { showToast('⚠️ Nome da meta é obrigatório', 'error'); return; }
+  if (!target || target <= 0) { showToast('⚠️ Meta deve ser maior que zero', 'error'); return; }
+
+  const goal = {
+    id: state.editingGoalId || uid(),
+    name,
+    current: parseFloat(document.getElementById('gCurrent').value) || 0,
+    target,
+    unit: document.getElementById('gUnit').value.trim(),
+    color: selectedGoalColor,
+    semester: parseInt(document.getElementById('gSemester').value),
+    year: parseInt(document.getElementById('gYear').value)
+  };
+
+  if (state.editingGoalId) {
+    const idx = state.goals.findIndex(g => g.id === state.editingGoalId);
+    if (idx > -1) state.goals[idx] = goal;
+    showToast('✅ Meta atualizada!', 'success');
+  } else {
+    state.goals.push(goal);
+    showToast('✅ Meta criada!', 'success');
+  }
+
+  save();
+  closeGoalModal();
+  renderDashboard();
+}
+
+function deleteCurrentGoal() {
+  if (!state.editingGoalId) return;
+  if (!confirm('Excluir esta meta?')) return;
+  state.goals = state.goals.filter(g => g.id !== state.editingGoalId);
+  save();
+  closeGoalModal();
+  renderDashboard();
+  showToast('🗑️ Meta excluída', 'info');
+}
+
+function renderGoalColorPickers() {
+  const el = document.getElementById('goalColorOptions');
+  if (!el) return;
+  el.innerHTML = PRESET_COLORS.map(c => `
+    <div class="color-option ${c===selectedGoalColor?'selected':''}" style="background:${c}" onclick="selectGoalColor('${c}')"></div>
+  `).join('');
+}
+
+function selectGoalColor(c) {
+  selectedGoalColor = c;
+  renderGoalColorPickers();
+}
+
+// ============================================================
 // SIDEBAR
 // ============================================================
 function renderSidebarCategories() {
@@ -1408,8 +2058,103 @@ function filterByCampaign(id) {
 }
 
 // ============================================================
-// POST MODAL
+// POST MODAL — RASCUNHO AUTOMÁTICO
 // ============================================================
+function getFormSnapshot() {
+  return {
+    title: document.getElementById('fTitle')?.value || '',
+    date: document.getElementById('fDate')?.value || '',
+    time: document.getElementById('fTime')?.value || '',
+    platform: document.getElementById('fPlat')?.value || '',
+    format: document.getElementById('fFormat')?.value || '',
+    categoryId: document.getElementById('fCat')?.value || '',
+    campaignId: document.getElementById('fCamp')?.value || '',
+    status: document.getElementById('fStatus')?.value || 'draft',
+    priority: document.getElementById('fPriority')?.value || 'medium',
+    bu: document.getElementById('fBU')?.value || '',
+    caption: document.getElementById('fCaption')?.value || '',
+    cta: document.getElementById('fCTA')?.value || '',
+    link: document.getElementById('fLink')?.value || '',
+    desc: document.getElementById('fDesc')?.value || '',
+    tags: [...state.currentTags],
+    checklist: [...state.currentChecklist],
+    people: [...(state.selectedPeople||[])],
+    editingPostId: state.editingPostId
+  };
+}
+
+function isFormDirty() {
+  const snap = getFormSnapshot();
+  // Considera sujo se tiver título preenchido ou qualquer campo relevante
+  return !!(snap.title || snap.caption || snap.platform || snap.cta || snap.desc || snap.link || snap.tags.length);
+}
+
+function tryClosePostModal() {
+  if (isFormDirty()) {
+    document.getElementById('draftConfirmModal').classList.add('open');
+  } else {
+    forceClosePostModal();
+  }
+}
+
+function closeDraftConfirm() {
+  document.getElementById('draftConfirmModal').classList.remove('open');
+}
+
+function discardAndClose() {
+  clearDraftLocal();
+  draftData = null;
+  document.getElementById('draftBanner').classList.remove('show');
+  closeDraftConfirm();
+  forceClosePostModal();
+}
+
+function saveDraftAndClose() {
+  const snap = getFormSnapshot();
+  snap.status = 'draft'; // força rascunho
+  saveDraftLocal(snap);
+  draftData = snap;
+  document.getElementById('draftBanner').classList.add('show');
+  closeDraftConfirm();
+  forceClosePostModal();
+  showToast('📝 Rascunho salvo! Clique em "Restaurar" para continuar.', 'info');
+}
+
+function forceClosePostModal() {
+  document.getElementById('postModal').classList.remove('open');
+  state.editingPostId = null;
+}
+
+function restoreDraft() {
+  if (!draftData) return;
+  openPostModal(draftData.editingPostId || null);
+  // Preenche campos com dados do rascunho
+  setTimeout(() => {
+    document.getElementById('fTitle').value = draftData.title || '';
+    document.getElementById('fDate').value = draftData.date || '';
+    document.getElementById('fTime').value = draftData.time || '';
+    document.getElementById('fPlat').value = draftData.platform || '';
+    document.getElementById('fFormat').value = draftData.format || '';
+    document.getElementById('fCat').value = draftData.categoryId || '';
+    document.getElementById('fCamp').value = draftData.campaignId || '';
+    document.getElementById('fStatus').value = draftData.status || 'draft';
+    document.getElementById('fPriority').value = draftData.priority || 'medium';
+    document.getElementById('fBU').value = draftData.bu || '';
+    document.getElementById('fCaption').value = draftData.caption || '';
+    document.getElementById('fCTA').value = draftData.cta || '';
+    document.getElementById('fLink').value = draftData.link || '';
+    document.getElementById('fDesc').value = draftData.desc || '';
+    state.currentTags = [...(draftData.tags || [])];
+    state.currentChecklist = [...(draftData.checklist || [])];
+    state.selectedPeople = [...(draftData.people || [])];
+    updateTitleCount();
+    renderTagChips();
+    renderChecklistEditor();
+    renderPeoplePicker();
+    showToast('📝 Rascunho restaurado!', 'success');
+  }, 50);
+}
+
 function openPostModal(postId) {
   state.editingPostId = postId || null;
   state.currentTags = [];
@@ -1474,8 +2219,7 @@ function openPostModal(postId) {
 }
 
 function closePostModal() {
-  document.getElementById('postModal').classList.remove('open');
-  state.editingPostId = null;
+  tryClosePostModal();
 }
 
 function savePost() {
@@ -1520,8 +2264,13 @@ function savePost() {
     showToast('✅ Post criado!', 'success');
   }
 
+  // Limpa rascunho após salvar
+  clearDraftLocal();
+  draftData = null;
+  document.getElementById('draftBanner').classList.remove('show');
+
   save();
-  closePostModal();
+  forceClosePostModal();
   renderAll();
 }
 
@@ -1530,7 +2279,7 @@ function deleteCurrentPost() {
   if (!confirm('Excluir este post permanentemente?')) return;
   state.posts = state.posts.filter(p=>p.id!==state.editingPostId);
   save();
-  closePostModal();
+  forceClosePostModal();
   closeReview();
   renderAll();
   showToast('🗑️ Post excluído', 'info');
@@ -1557,12 +2306,10 @@ function openReview(postId) {
       <span class="platform-tag">${PLATFORM_ICONS[post.platform]||'📄'} ${PLATFORM_LABELS[post.platform]||post.platform}</span>
       ${post.format ? `<span class="platform-tag">${post.format}</span>` : ''}
     </div>
-
     <div class="review-section">
       <div class="review-section-label">📅 Data e Horário</div>
       <div class="review-section-value">${formatDate(post.date)}${post.time ? ' às ' + post.time : ''}</div>
     </div>
-
     ${cat || camp ? `
     <div class="review-section">
       <div class="review-section-label">🏷️ Categoria / Campanha</div>
@@ -1571,43 +2318,36 @@ function openReview(postId) {
         ${camp ? `<span style="color:var(--text-secondary)">🚀 ${esc(camp.name)}</span>` : ''}
       </div>
     </div>` : ''}
-
     ${post.bu ? `
     <div class="review-section">
       <div class="review-section-label">🏢 BU / Unidade</div>
       <div class="review-section-value">${esc(post.bu)}</div>
     </div>` : ''}
-
     ${post.caption ? `
     <div class="review-section">
       <div class="review-section-label">💬 Legenda</div>
       <div class="review-section-value" style="white-space:pre-wrap;line-height:1.6">${esc(post.caption)}</div>
     </div>` : ''}
-
     ${post.cta ? `
     <div class="review-section">
       <div class="review-section-label">🎯 CTA</div>
       <div class="review-section-value">${esc(post.cta)}</div>
     </div>` : ''}
-
     ${post.tags?.length ? `
     <div class="review-section">
       <div class="review-section-label">🔖 Tags</div>
       <div class="review-tags">${post.tags.map(t=>`<span class="review-tag">#${esc(t)}</span>`).join('')}</div>
     </div>` : ''}
-
     ${post.link ? `
     <div class="review-section">
       <div class="review-section-label">🔗 Link</div>
       <div class="review-section-value"><a href="${esc(post.link)}" target="_blank" style="color:var(--accent)">${esc(post.link)}</a></div>
     </div>` : ''}
-
     ${post.desc ? `
     <div class="review-section">
       <div class="review-section-label">📝 Briefing</div>
       <div class="review-section-value" style="white-space:pre-wrap;line-height:1.6">${esc(post.desc)}</div>
     </div>` : ''}
-
     ${post.people?.length ? `
     <div class="review-section">
       <div class="review-section-label">👥 Equipe</div>
@@ -1618,7 +2358,6 @@ function openReview(postId) {
         }).join('')}
       </div>
     </div>` : ''}
-
     ${post.checklist?.length ? `
     <div class="review-section">
       <div class="review-section-label">✅ Checklist ${checkProgress !== null ? `— ${checkProgress}%` : ''}</div>
@@ -1632,9 +2371,7 @@ function openReview(postId) {
     </div>` : ''}
   `;
 
-  const nextStatus = {
-    idea:'draft', draft:'review', review:'approved', approved:'scheduled', scheduled:'published'
-  };
+  const nextStatus = { idea:'draft', draft:'review', review:'approved', approved:'scheduled', scheduled:'published' };
   const nextLabel = { idea:'Mover p/ Rascunho', draft:'Enviar p/ Revisão', review:'Aprovar', approved:'Agendar', scheduled:'Publicar' };
 
   document.getElementById('reviewFooter').innerHTML = `
@@ -1952,7 +2689,7 @@ function updateTitleCount() {
 }
 
 function exportData() {
-  const data = JSON.stringify({ posts: state.posts, categories: state.categories, campaigns: state.campaigns, team: state.team }, null, 2);
+  const data = JSON.stringify({ posts: state.posts, categories: state.categories, campaigns: state.campaigns, team: state.team, goals: state.goals }, null, 2);
   const blob = new Blob([data], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1984,13 +2721,29 @@ function showToast(message, type = 'info') {
 // Close modals on overlay click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', e => {
-    if (e.target === overlay) overlay.classList.remove('open');
+    if (e.target === overlay) {
+      if (overlay.id === 'postModal') {
+        tryClosePostModal();
+      } else {
+        overlay.classList.remove('open');
+      }
+    }
   });
 });
 
-// Close review on Escape
+// Close on Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
+    const draftConfirm = document.getElementById('draftConfirmModal');
+    if (draftConfirm.classList.contains('open')) {
+      closeDraftConfirm();
+      return;
+    }
+    const postModal = document.getElementById('postModal');
+    if (postModal.classList.contains('open')) {
+      tryClosePostModal();
+      return;
+    }
     document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
     closeReview();
   }
