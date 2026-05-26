@@ -30,256 +30,302 @@ body{margin:0;background:var(--bg);color:var(--text);}
   padding:6px 12px;cursor:pointer;font-size:14px;
 }
 .topbar button:hover{background:var(--primary-hover);}
-.topbar .tabs{display:flex;gap:4px;}
-.topbar .tabs button{background:transparent;color:var(--muted);}
-.topbar .tabs button.active{background:var(--primary);color:#fff;}
-
-.container{padding:20px;max-width:1400px;margin:0 auto;}
-
+.tabs{display:flex;gap:8px;}
+.tab{
+  background:#e5e7eb;color:var(--text);border:none;border-radius:6px;
+  padding:6px 14px;cursor:pointer;font-size:14px;
+}
+.tab.active{background:var(--primary);color:#fff;}
+.container{max-width:1400px;margin:20px auto;padding:0 20px;}
 .months-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;
 }
 .month-card{
-  background:var(--card-bg);border-radius:var(--radius);padding:14px;
-  box-shadow:var(--shadow);cursor:pointer;transition:transform .15s;
+  background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:12px;
 }
-.month-card:hover{transform:translateY(-2px);}
-.month-card h3{margin:0 0 10px;font-size:15px;color:var(--primary);}
+.month-card h3{margin:0 0 8px;font-size:15px;text-align:center;}
 .mini-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:11px;}
-.mini-cal .dow{font-weight:600;color:var(--muted);text-align:center;}
+.mini-cal .dow{text-align:center;color:var(--muted);font-weight:600;padding:2px;}
 .mini-cal .day{
-  text-align:center;padding:4px 0;border-radius:4px;cursor:pointer;position:relative;
+  text-align:center;padding:4px 2px;border-radius:4px;cursor:pointer;
+  transition:background .15s;
 }
 .mini-cal .day:hover{background:#eef2ff;}
-.mini-cal .day.has-events{background:#dbeafe;font-weight:600;}
-.mini-cal .day.today{outline:2px solid var(--primary);}
-
-.day-view{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
-.day-view h2{margin:0 0 16px;}
-.day-card-row{
-  display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border);
-  border-radius:8px;margin-bottom:8px;background:#fff;cursor:grab;
+.mini-cal .day.today{background:#fef3c7;font-weight:700;}
+.mini-cal .day.has-events{background:var(--primary);color:#fff;font-weight:600;}
+.day-view{
+  background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:20px;margin-top:20px;
 }
-.day-card-row:hover{background:#f9fafb;}
+.day-card-row{
+  background:#f9fafb;border:1px solid var(--border);border-radius:8px;
+  padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:all .15s;
+}
+.day-card-row:hover{background:#eef2ff;border-color:var(--primary);}
 .day-card-row.dragging{opacity:.5;}
-.day-card-row .title{flex:1;font-weight:500;}
-.day-card-row .badges{display:flex;gap:4px;align-items:center;}
+.day-card-row .title{font-weight:600;margin-bottom:4px;}
+.day-card-row .badges{display:flex;flex-wrap:wrap;gap:4px;}
 .badge{
-  font-size:11px;padding:2px 6px;border-radius:10px;background:#eef2ff;color:var(--primary);
+  display:inline-block;background:#e0e7ff;color:#3730a3;
+  border-radius:12px;padding:2px 8px;font-size:11px;
 }
 .person-chip{
-  display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;
-  font-size:11px;color:#fff;font-weight:500;
+  display:inline-block;color:#fff;border-radius:12px;
+  padding:2px 8px;font-size:11px;font-weight:600;
 }
-
+.filter-bar{
+  display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  padding:8px 0;margin-bottom:12px;border-bottom:1px solid var(--border);
+}
+.f-chip{
+  background:#e5e7eb;color:var(--text);border-radius:12px;
+  padding:3px 10px;font-size:12px;cursor:pointer;
+}
+.f-chip.active{color:#fff;font-weight:600;}
 .modal-bg{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;
-  justify-content:center;z-index:100;
+  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;
 }
 .modal{
-  background:#fff;border-radius:var(--radius);padding:24px;max-width:560px;width:90%;
-  max-height:90vh;overflow-y:auto;
+  background:#fff;border-radius:var(--radius);padding:24px;
+  max-width:600px;width:100%;max-height:90vh;overflow-y:auto;
 }
 .modal h3{margin:0 0 16px;}
-.modal label{display:block;margin-bottom:4px;font-size:13px;color:var(--muted);font-weight:500;}
-.modal input,.modal select,.modal textarea{
-  width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;
-  font-size:14px;margin-bottom:12px;
+.modal label{
+  display:block;font-size:13px;font-weight:600;
+  margin:12px 0 4px;color:var(--muted);
+}
+.modal input[type=text],
+.modal input[type=date],
+.modal select,
+.modal textarea{
+  width:100%;padding:8px 10px;border:1px solid var(--border);
+  border-radius:6px;font-size:14px;
 }
 .modal textarea{min-height:60px;resize:vertical;}
-.modal .row{display:flex;gap:10px;}
-.modal .row > *{flex:1;}
-.modal .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px;}
-.modal button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:14px;}
-.modal button.primary{background:var(--primary);color:#fff;}
-.modal button.secondary{background:#e5e7eb;color:var(--text);}
-.modal button.danger{background:#ef4444;color:#fff;}
-
-.picker-box{border:1px solid var(--border);border-radius:6px;padding:8px;margin-bottom:12px;}
+.modal .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.recur-hint{font-size:12px;color:var(--muted);margin-top:4px;}
+.picker-box{
+  border:1px solid var(--border);border-radius:6px;padding:8px;background:#f9fafb;
+}
 .picker-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;min-height:24px;}
 .picker-tag{
-  display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;
-  font-size:12px;color:#fff;cursor:pointer;
+  color:#fff;border-radius:12px;padding:3px 10px;font-size:12px;
+  display:inline-flex;align-items:center;gap:4px;
 }
 .picker-tag .x{cursor:pointer;font-weight:bold;}
 .picker-input-row{display:flex;gap:6px;}
-.picker-input-row input{flex:1;margin:0;}
-.picker-input-row button{padding:4px 10px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;}
-.people-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;max-height:80px;overflow-y:auto;}
-.people-list .pl-item{
-  font-size:11px;padding:2px 8px;border-radius:10px;cursor:pointer;color:#fff;opacity:.7;
+.picker-input-row input{flex:1;}
+.picker-input-row button{
+  background:var(--primary);color:#fff;border:none;border-radius:6px;
+  padding:0 12px;cursor:pointer;
 }
-.people-list .pl-item.selected{opacity:1;outline:2px solid #000;}
-
-.dashboard{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.dash-card{background:#fff;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);}
-.dash-card h4{margin:0 0 12px;color:var(--primary);}
-.stat-big{font-size:32px;font-weight:700;color:var(--primary);}
-.filter-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.filter-bar .f-chip{
-  padding:4px 10px;border-radius:14px;font-size:12px;cursor:pointer;
-  background:#e5e7eb;color:var(--text);
+.people-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.modal .actions{
+  display:flex;justify-content:flex-end;gap:8px;margin-top:20px;
+  padding-top:16px;border-top:1px solid var(--border);
 }
-.filter-bar .f-chip.active{background:var(--primary);color:#fff;}
-
-.recur-hint{font-size:12px;color:var(--muted);margin-top:-8px;margin-bottom:12px;}
-
-@media(max-width:768px){
-  .dashboard{grid-template-columns:1fr;}
-  .modal{width:95%;padding:16px;}
+.modal .actions button{
+  padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:14px;
 }
+.modal .actions .primary{background:var(--primary);color:#fff;}
+.modal .actions .secondary{background:#e5e7eb;color:var(--text);}
+.modal .actions .danger{background:#ef4444;color:#fff;margin-right:auto;}
+.dashboard{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px;margin-top:20px;
+}
+.dash-card{
+  background:var(--card-bg);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:20px;
+}
+.dash-card h4{margin:0 0 12px;font-size:14px;color:var(--muted);}
+.stat-big{font-size:36px;font-weight:700;color:var(--primary);}
 </style>
 </head>
 <body>
+
 <div class="topbar">
-  <h1>📅 <span id="topbarTitle">Agenda</span> <span id="topbarYear"></span></h1>
+  <h1>📅 <span>Agenda</span></h1>
   <div class="tabs">
-    <button id="tabAgenda" class="active" onclick="switchView('agenda')">Agenda</button>
-    <button id="tabDash" onclick="switchView('dashboard')">Dashboard</button>
+    <button id="tabAgenda" class="tab active" onclick="switchView('agenda')">Agenda</button>
+    <button id="tabDash" class="tab" onclick="switchView('dashboard')">Dashboard</button>
   </div>
   <div class="year-nav">
     <button onclick="changeYear(-1)">◀</button>
-    <span id="yearLabel"></span>
+    <strong id="topbarYear">2026</strong>
     <button onclick="changeYear(1)">▶</button>
   </div>
 </div>
 
 <div class="container">
   <div id="viewAgenda">
+    <h2 style="margin:0 0 16px;">Ano <span id="yearLabel">2026</span></h2>
     <div id="monthsGrid" class="months-grid"></div>
-    <div id="dayView" class="day-view" style="display:none;margin-top:20px;"></div>
+    <div id="dayView" class="day-view" style="display:none;"></div>
   </div>
   <div id="viewDashboard" style="display:none;"></div>
 </div>
 
 <div id="modalRoot"></div>
 
-<script>
-/* JS vem nas Partes 2 e 3 */
-</script>
-</body>
-</html>
-// ===================== ESTADO GLOBAL =====================
+<script>// ===================== ESTADO GLOBAL =====================
 let currentYear = new Date().getFullYear();
-let currentView = "agenda";          // "agenda" | "dashboard"
-let selectedDate = null;             // string YYYY-MM-DD
-let cards = [];                      // todos os cards salvos
-let recurInstances = [];             // instâncias geradas por recorrência
-let peopleList = [];                 // [{name, color}]
-let pickerSelected = {};             // {pickerId: [names]}
+let view = "agenda";
+let selectedDate = null;
+let cards = [];
+let recurInstances = [];
+let peopleList = [];
 let activeFilters = { people: [], tags: [] };
 
 // ===================== STORAGE =====================
 const LS_CARDS = "agenda_cards_v1";
 const LS_PEOPLE = "agenda_people_v1";
 
-function loadAll(){
-  try{
-    cards = JSON.parse(localStorage.getItem(LS_CARDS) || "[]");
-    peopleList = JSON.parse(localStorage.getItem(LS_PEOPLE) || "[]");
-  }catch(e){
-    console.error("Erro ao carregar:", e);
-    cards = []; peopleList = [];
-  }
+try {
+  cards = JSON.parse(localStorage.getItem(LS_CARDS) || "[]");
+  peopleList = JSON.parse(localStorage.getItem(LS_PEOPLE) || "[]");
+} catch(e) {
+  console.error("Erro ao carregar storage", e);
 }
-function saveCards(){ localStorage.setItem(LS_CARDS, JSON.stringify(cards)); }
-function savePeopleList(){ localStorage.setItem(LS_PEOPLE, JSON.stringify(peopleList)); }
 
-// ===================== UTIL =====================
-function toArr(v){ 
-  if(!v) return [];
-  return Array.isArray(v) ? v : [v];
+function saveCards(){
+  localStorage.setItem(LS_CARDS, JSON.stringify(cards));
 }
+function savePeopleList(){
+  localStorage.setItem(LS_PEOPLE, JSON.stringify(peopleList));
+}
+
+// ===================== UTILS =====================
+function toArr(v){ return Array.isArray(v) ? v : [v]; }
 function fmtDate(d){
-  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), day=String(d.getDate()).padStart(2,"0");
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,"0");
+  const day = String(d.getDate()).padStart(2,"0");
   return `${y}-${m}-${day}`;
 }
 function parseDate(s){
   const [y,m,d] = s.split("-").map(Number);
   return new Date(y, m-1, d);
 }
-function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function uid(){
+  return Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+}
 
-// Gera uma cor distinta para uma pessoa (HSL espaçado)
+// Gera cor distinta para pessoa
 function generatePersonColor(name, existingColors){
-  const palette = ["#ef4444","#f59e0b","#10b981","#3b82f6","#8b5cf6","#ec4899","#14b8a6","#f97316","#6366f1","#84cc16"];
+  const palette = ["#ef4444","#f59e0b","#10b981","#3b82f6","#8b5cf6","#ec4899","#14b8a6","#f97316"];
   for(const c of palette){
     if(!existingColors.includes(c)) return c;
   }
-  // fallback: gera HSL aleatório
+  // fallback HSL aleatório
   const h = Math.floor(Math.random()*360);
   return `hsl(${h},65%,50%)`;
 }
 
-// ===================== PESSOAS / PICKER =====================
-// ✅ CORRIGIDA: removida duplicidade e trecho incompleto
+// ===================== GERENCIAR PESSOAS =====================
 function addPerson(pid){
   const inp = document.getElementById(pid+"-inp");
   const name = inp.value.trim();
   if(!name) return;
-
   let person = peopleList.find(p => p.name.toLowerCase() === name.toLowerCase());
   if(!person){
     const color = generatePersonColor(name, peopleList.map(p=>p.color));
     person = { name, color };
     peopleList.push(person);
     savePeopleList();
-    buildRespFilters();
   }
   if(!pickerSelected[pid]) pickerSelected[pid] = [];
-  if(!pickerSelected[pid].includes(person.name)) pickerSelected[pid].push(person.name);
-
+  if(!pickerSelected[pid].includes(person.name)){
+    pickerSelected[pid].push(person.name);
+  }
   inp.value = "";
   renderPeopleList(pid);
   renderPickerTags(pid);
   onCardFormChange();
 }
 
+function togglePersonFilter(name){
+  const idx = activeFilters.people.indexOf(name);
+  if(idx >= 0) activeFilters.people.splice(idx,1);
+  else activeFilters.people.push(name);
+  renderDayView(selectedDate);
+}
+
 function removePersonFromPicker(pid, name){
-  pickerSelected[pid] = (pickerSelected[pid]||[]).filter(n => n !== name);
-  renderPickerTags(pid);
-  renderPeopleList(pid);
-  onCardFormChange();
-}
-
-function togglePersonInPicker(pid, name){
-  if(!pickerSelected[pid]) pickerSelected[pid] = [];
-  if(pickerSelected[pid].includes(name)){
-    removePersonFromPicker(pid, name);
-  } else {
-    pickerSelected[pid].push(name);
-    renderPickerTags(pid);
-    renderPeopleList(pid);
-    onCardFormChange();
+  if(pickerSelected[pid]){
+    pickerSelected[pid] = pickerSelected[pid].filter(n => n !== name);
   }
-}
-
-function renderPickerTags(pid){
-  const box = document.getElementById(pid+"-tags");
-  if(!box) return;
-  const sel = pickerSelected[pid] || [];
-  box.innerHTML = sel.map(name => {
-    const p = peopleList.find(x=>x.name===name);
-    const color = p ? p.color : "#6b7280";
-    return `<span class="picker-tag" style="background:${color}">
-      ${name} <span class="x" onclick="removePersonFromPicker('${pid}','${name}')">×</span>
-    </span>`;
-  }).join("");
+  renderPickerTags(pid);
+  onCardFormChange();
 }
 
 function renderPeopleList(pid){
   const box = document.getElementById(pid+"-list");
   if(!box) return;
-  const sel = pickerSelected[pid] || [];
   box.innerHTML = peopleList.map(p => `
-    <span class="pl-item ${sel.includes(p.name)?'selected':''}" 
-          style="background:${p.color}"
-          onclick="togglePersonInPicker('${pid}','${p.name}')">${p.name}</span>
+    <span class="person-chip" style="background:${p.color};cursor:pointer;"
+      onclick="addPersonByName('${pid}','${p.name.replace(/'/g,"\\'")}')">${p.name}</span>
+  `).join("");
+}
+
+function addPersonByName(pid, name){
+  if(!pickerSelected[pid]) pickerSelected[pid] = [];
+  if(!pickerSelected[pid].includes(name)){
+    pickerSelected[pid].push(name);
+    renderPickerTags(pid);
+    onCardFormChange();
+  }
+}
+
+let pickerSelected = {};
+function renderPickerTags(pid){
+  const box = document.getElementById(pid+"-tags");
+  if(!box) return;
+  const sel = pickerSelected[pid] || [];
+  box.innerHTML = sel.map(name => {
+    const p = peopleList.find(x => x.name === name);
+    const color = p ? p.color : "#6b7280";
+    return `<span class="picker-tag" style="background:${color}">
+      ${name}<span class="x" onclick="removePersonFromPicker('${pid}','${name.replace(/'/g,"\\'")}')">×</span>
+    </span>`;
+  }).join("");
+}
+
+// Tags genéricas (não pessoas)
+let pickerTags = {};
+function addTag(pid){
+  const inp = document.getElementById(pid+"-inp");
+  const val = inp.value.trim();
+  if(!val) return;
+  if(!pickerTags[pid]) pickerTags[pid] = [];
+  if(!pickerTags[pid].includes(val)){
+    pickerTags[pid].push(val);
+  }
+  inp.value = "";
+  renderTagPickerTags(pid);
+  onCardFormChange();
+}
+function removeTagFromPicker(pid, tag){
+  if(pickerTags[pid]){
+    pickerTags[pid] = pickerTags[pid].filter(t => t !== tag);
+  }
+  renderTagPickerTags(pid);
+  onCardFormChange();
+}
+function renderTagPickerTags(pid){
+  const box = document.getElementById(pid+"-tags");
+  if(!box) return;
+  const sel = pickerTags[pid] || [];
+  box.innerHTML = sel.map(tag => `
+    <span class="picker-tag" style="background:#6366f1">
+      ${tag}<span class="x" onclick="removeTagFromPicker('${pid}','${tag.replace(/'/g,"\\'")}')">×</span>
+    </span>
   `).join("");
 }
 
 // ===================== RECORRÊNCIA =====================
-// ✅ CORRIGIDA: removido o `break` indevido em "monthly"
 function rebuildRecurInstances(){
   recurInstances = [];
   const yearStart = new Date(currentYear, 0, 1);
@@ -296,9 +342,9 @@ function rebuildRecurInstances(){
       else if(c.recurrence === "monthly") cur.setMonth(cur.getMonth()+1);
       else break;
     }
-    // gera instâncias dentro do ano
+    // gera instâncias dentro do ano (evita duplicar o original)
     while(cur <= yearEnd){
-      if(fmtDate(cur) !== c.date){ // evita duplicar o original
+      if(fmtDate(cur) !== c.date){
         recurInstances.push({
           ...c,
           id: c.id + "_rec_" + fmtDate(cur),
@@ -316,45 +362,41 @@ function rebuildRecurInstances(){
   });
 }
 
-// ✅ CORRIGIDA: filtro de duplicação entre cards diretos e recorrentes
+// retorna cards diretos e recorrentes para uma data
 function getCardsForDate(dateStr){
   const direct = cards.filter(c => c.date === dateStr);
-  const recur  = recurInstances.filter(r => r.date === dateStr);
   const directParentIds = new Set(direct.map(c => c.id));
-  const filtered = [...direct, ...recur.filter(r => !directParentIds.has(r.recurParentId))];
-  return applyFilters(filtered);
+  const recur = recurInstances.filter(r => r.date === dateStr && !directParentIds.has(r.recurParentId));
+  const all = [...direct, ...recur];
+  return applyFilters(all);
 }
 
 function applyFilters(list){
   return list.filter(c => {
     if(activeFilters.people.length){
-      const resp = toArr(c.responsavel);
-      if(!resp.some(r => activeFilters.people.includes(r))) return false;
+      const resp = toArr(c.responsavel || []);
+      if(!activeFilters.people.some(p => resp.includes(p))) return false;
     }
     if(activeFilters.tags.length){
-      const tags = toArr(c.tags);
-      if(!tags.some(t => activeFilters.tags.includes(t))) return false;
+      const tags = toArr(c.tags || []);
+      if(!activeFilters.tags.some(t => tags.includes(t))) return false;
     }
     return true;
   });
 }
 
-// ===================== NAVEGAÇÃO DE ANO =====================
-// ✅ CORRIGIDA: usa `if` ao invés de ternário inválido
+// ===================== NAVEGAÇÃO =====================
 function changeYear(delta){
   currentYear += delta;
-  const yl = document.getElementById("yearLabel");
-  if(yl) yl.textContent = currentYear;
-  const ty = document.getElementById("topbarYear");
-  if(ty) ty.textContent = currentYear;
+  document.getElementById("yearLabel").textContent = currentYear;
+  document.getElementById("topbarYear").textContent = currentYear;
   rebuildRecurInstances();
   renderAll();
 }
 
 // ===================== SALVAR CARD =====================
-// ✅ CORRIGIDA: cadastra múltiplas pessoas novas automaticamente
 function saveCard(cardData){
-  // garante que todas as pessoas existam em peopleList
+  // garante que pessoas existam em peopleList
   toArr(cardData.responsavel).forEach(name => {
     if(name && !peopleList.find(p => p.name === name)){
       const color = generatePersonColor(name, peopleList.map(p=>p.color));
@@ -382,55 +424,47 @@ function deleteCard(id){
   renderAll();
 }
 
-// ===================== HINT DE RECORRÊNCIA =====================
-// ✅ CORRIGIDA: usa labelMap para evitar palavras gramaticalmente erradas
 function updateRecurHint(selectEl){
   const val = selectEl.value;
   const hint = document.getElementById("recurHint");
-  if(!hint) return;
   const labelMap = {
-    daily:    "diárias",
-    weekly:   "semanais",
-    biweekly: "quinzenais",
-    monthly:  "mensais"
+    daily:"diárias", weekly:"semanais",
+    biweekly:"quinzenais", monthly:"mensais"
   };
   hint.textContent = val && val !== "none"
-    ? `♻️ Cria cópias ${labelMap[val] || ""} automaticamente no mesmo dia/semana do mês.`
+    ? `♻️ Cria cópias ${labelMap[val] || ""} automaticamente até o fim do ano`
     : "";
 }
 
-// ===================== BADGE DE COMENTÁRIOS =====================
-// ✅ CORRIGIDA: oculta o badge quando não há comentários
-function updateCommentsBadge(badge, c){
-  const count = (c.comments || []).length;
+function updateCommentsBadge(badge, count){
+  if(!badge) return;
   badge.textContent = count ? `💬 ${count}` : "";
   badge.style.display = count ? "inline-block" : "none";
 }
 
-// ===================== onCardFormChange (stub p/ validação ao vivo) =====================
 function onCardFormChange(){
-  // Hook usado pelo picker para refletir mudanças no formulário em tempo real.
-  // Implementação real vem na Parte 3 (validação + preview).
+  // stub p/ validação ao vivo (opcional)
 }
+
 // ===================== RENDER PRINCIPAL =====================
 function renderAll(){
   renderMonthsGrid();
   if(selectedDate) renderDayView(selectedDate);
-  if(currentView === "dashboard") renderDashboard();
+  if(view === "dashboard") renderDashboard();
 }
 
-function switchView(view){
-  currentView = view;
-  document.getElementById("tabAgenda").classList.toggle("active", view === "agenda");
-  document.getElementById("tabDash").classList.toggle("active", view === "dashboard");
-  document.getElementById("viewAgenda").style.display = view === "agenda" ? "" : "none";
-  document.getElementById("viewDashboard").style.display = view === "dashboard" ? "" : "none";
-  if(view === "dashboard") renderDashboard();
+function switchView(v){
+  view = v;
+  document.getElementById("tabAgenda").classList.toggle("active", v === "agenda");
+  document.getElementById("tabDash").classList.toggle("active", v === "dashboard");
+  document.getElementById("viewAgenda").style.display = v === "agenda" ? "" : "none";
+  document.getElementById("viewDashboard").style.display = v === "dashboard" ? "" : "none";
+  if(v === "dashboard") renderDashboard();
 }
 
 // ===================== GRID DE MESES =====================
 const MESES = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-               "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 const DOW = ["D","S","T","Q","Q","S","S"];
 
 function renderMonthsGrid(){
@@ -449,437 +483,361 @@ function renderMiniMonth(year, month){
   const startDow = first.getDay();
   const totalDays = last.getDate();
   const today = new Date();
-  const isToday = (d) => today.getFullYear()===year && today.getMonth()===month && today.getDate()===d;
+  const isToday = (d) => today.getFullYear() === year
+    && today.getMonth() === month
+    && today.getDate() === d;
 
   let cells = "";
-  for(const dow of DOW){ cells += `<div class="dow">${dow}</div>`; }
-  for(let i = 0; i < startDow; i++){ cells += `<div></div>`; }
-  for(let d = 1; d <= totalDays; d++){
-    const ds = fmtDate(new Date(year, month, d));
-    const hasEvents = getCardsForDate(ds).length > 0;
-    const classes = ["day"];
-    if(hasEvents) classes.push("has-events");
-    if(isToday(d)) classes.push("today");
-    cells += `<div class="${classes.join(' ')}" onclick="selectDate('${ds}')">${d}</div>`;
+  for(const dow of DOW){
+    cells += `<div class="dow">${dow}</div>`;
   }
-
-  return `
-    <div class="month-card">
-      <h3>${MESES[month]}</h3>
-      <div class="mini-cal">${cells}</div>
-    </div>
-  `;
+  for(let i = 0; i < startDow; i++){
+    cells += `<div></div>`;
+  }
+  for(let d = 1; d <= totalDays; d++){
+    const dateStr = fmtDate(new Date(year, month, d));
+    const dayCards = getCardsForDate(dateStr);
+    const cls = ["day"];
+    if(isToday(d)) cls.push("today");
+    if(dayCards.length) cls.push("has-events");
+    cells += `<div class="${cls.join(' ')}" onclick="selectDate('${dateStr}')">${d}</div>`;
+  }
+  return `<div class="month-card">
+    <h3>${MESES[month]}</h3>
+    <div class="mini-cal">${cells}</div>
+  </div>`;
 }
 
-function selectDate(ds){
-  selectedDate = ds;
-  renderDayView(ds);
+function selectDate(dateStr){
+  selectedDate = dateStr;
+  renderDayView(dateStr);
   document.getElementById("dayView").scrollIntoView({behavior:"smooth", block:"start"});
-}
+}// ===================== DAY VIEW =====================
+function renderDayView(dateStr){
+  if(!dateStr) return;
+  const box = document.getElementById("dayView");
+  box.style.display = "block";
+  const d = parseDate(dateStr);
+  const dayCards = getCardsForDate(dateStr);
 
-// ===================== DAY VIEW =====================
-function renderDayView(ds){
-  const dv = document.getElementById("dayView");
-  if(!dv) return;
-  dv.style.display = "";
-  const dateObj = parseDate(ds);
-  const dayCards = getCardsForDate(ds);
-  const dateLabel = dateObj.toLocaleDateString("pt-BR", {
-    weekday:"long", day:"2-digit", month:"long", year:"numeric"
-  });
+  // barra de filtros (pessoas + tags)
+  const allPeople = peopleList;
+  const allTags = [...new Set(cards.flatMap(c => toArr(c.tags||[])))].filter(Boolean);
 
-  let html = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <h2 style="margin:0;text-transform:capitalize;">${dateLabel}</h2>
-      <button onclick="openCardModal('${ds}')" 
-              style="background:var(--primary);color:#fff;border:none;border-radius:6px;padding:8px 14px;cursor:pointer;">
-        + Novo Card
+  const peopleFilterHtml = allPeople.map(p => {
+    const active = activeFilters.people.includes(p.name);
+    return `<span class="f-chip ${active?'active':''}"
+      style="${active?`background:${p.color};`:''}"
+      onclick="togglePersonFilter('${p.name.replace(/'/g,"\\'")}')">${p.name}</span>`;
+  }).join("");
+
+  const tagFilterHtml = allTags.map(t => {
+    const active = activeFilters.tags.includes(t);
+    return `<span class="f-chip ${active?'active':''}"
+      style="${active?'background:#6366f1;':''}"
+      onclick="toggleTagFilter('${t.replace(/'/g,"\\'")}')">${t}</span>`;
+  }).join("");
+
+  const cardsHtml = dayCards.length
+    ? dayCards.map(c => renderDayCardRow(c)).join("")
+    : `<p style="color:var(--muted);text-align:center;padding:20px;">
+        Nenhum card neste dia.
+      </p>`;
+
+  box.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <h3 style="margin:0;">📌 ${d.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'})}</h3>
+      <button onclick="openCardModal(null,'${dateStr}')"
+        style="background:var(--primary);color:#fff;border:none;border-radius:6px;padding:8px 14px;cursor:pointer;">
+        ➕ Novo Card
       </button>
     </div>
-    <div id="filterBar"></div>
-    <div id="dayCardsList"></div>
+    ${(allPeople.length || allTags.length) ? `
+      <div class="filter-bar">
+        ${allPeople.length?`<strong style="font-size:12px;color:var(--muted);">Pessoas:</strong> ${peopleFilterHtml}`:''}
+        ${allTags.length?`<strong style="font-size:12px;color:var(--muted);margin-left:12px;">Tags:</strong> ${tagFilterHtml}`:''}
+        ${(activeFilters.people.length||activeFilters.tags.length)?`
+          <button onclick="clearFilters()" style="margin-left:auto;background:#ef4444;color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">Limpar filtros</button>
+        `:''}
+      </div>
+    `:''}
+    <div id="dayCardsList">${cardsHtml}</div>
   `;
-  dv.innerHTML = html;
-  renderFilterBar();
-  renderDayCardsList(ds, dayCards);
 }
 
-function renderDayCardsList(ds, cardList){
-  const list = document.getElementById("dayCardsList");
-  if(!list) return;
-  if(!cardList.length){
-    list.innerHTML = `<p style="color:var(--muted);text-align:center;padding:20px;">Nenhum card para esta data. ✨</p>`;
-    return;
-  }
-  list.innerHTML = cardList.map((c, idx) => renderDayCardRow(c, ds, idx)).join("");
+function toggleTagFilter(tag){
+  const idx = activeFilters.tags.indexOf(tag);
+  if(idx >= 0) activeFilters.tags.splice(idx,1);
+  else activeFilters.tags.push(tag);
+  renderDayView(selectedDate);
+}
+function clearFilters(){
+  activeFilters = { people:[], tags:[] };
+  renderDayView(selectedDate);
 }
 
-function renderDayCardRow(c, ds, idx){
-  const resp = toArr(c.responsavel);
-  const tags = toArr(c.tags);
-  const isRec = c.isRecurInstance;
-  const persons = resp.map(name => {
+function buildRespFilters(){
+  // recalcula automaticamente ao renderizar; stub mantido por compatibilidade
+}
+
+function renderDayCardRow(c){
+  const resp = toArr(c.responsavel||[]).filter(Boolean);
+  const tags = toArr(c.tags||[]).filter(Boolean);
+  const respHtml = resp.map(name => {
     const p = peopleList.find(x => x.name === name);
     const color = p ? p.color : "#6b7280";
     return `<span class="person-chip" style="background:${color}">${name}</span>`;
   }).join("");
-  const tagBadges = tags.map(t => `<span class="badge">#${t}</span>`).join("");
-  const recBadge = isRec ? `<span class="badge" style="background:#fef3c7;color:#92400e;">♻️ recorrente</span>` : "";
-  const commentsCount = (c.comments || []).length;
-  const commentsBadge = commentsCount ? `<span class="badge">💬 ${commentsCount}</span>` : "";
-
-  return `
-    <div class="day-card-row" draggable="true" data-card-id="${c.id}" data-idx="${idx}"
-         ondragstart="dayListDragStart(event, this)"
-         ondragend="dayListDragEnd(event, this)"
-         ondragover="dayListDragOver(event, this)"
-         ondrop="dayListDrop(event, '${ds}')"
-         onclick="openCardModal('${ds}', '${c.id}')">
-      <div class="title">${c.titulo || "(sem título)"}</div>
-      <div class="badges">${persons} ${tagBadges} ${recBadge} ${commentsBadge}</div>
+  const tagsHtml = tags.map(t => `<span class="badge">${t}</span>`).join("");
+  const commentsCount = (c.comments||[]).length;
+  const recurIcon = c.isRecurInstance ? "♻️ " : "";
+  return `<div class="day-card-row" onclick="openCardModal('${c.id}')">
+    <div class="title">${recurIcon}${c.titulo||"(sem título)"}</div>
+    <div class="badges">
+      ${respHtml}${tagsHtml}
+      ${commentsCount?`<span class="badge">💬 ${commentsCount}</span>`:''}
     </div>
-  `;
-}
-
-// ===================== DRAG & DROP NA DAY VIEW =====================
-let _dragRow = null;
-
-function dayListDragStart(e, row){
-  _dragRow = row;
-  row.classList.add("dragging");
-  e.dataTransfer.effectAllowed = "move";
-}
-
-function dayListDragEnd(e, row){
-  row.classList.remove("dragging");
-  _dragRow = null;
-}
-
-function dayListDragOver(e, row){
-  e.preventDefault();
-  e.dataTransfer.dropEffect = "move";
-}
-
-// ✅ CORRIGIDA: usa e.target.closest para encontrar a row correta
-function dayListDrop(e, ds){
-  e.preventDefault();
-  if(!_dragRow) return;
-  const targetRow = e.target.closest(".day-card-row");
-  const targetId = targetRow?.dataset?.cardId;
-  const sourceId = _dragRow.dataset.cardId;
-  if(!targetId || targetId === sourceId) return;
-
-  // Reordena (apenas visualmente - persistência opcional via campo order)
-  const list = document.getElementById("dayCardsList");
-  const rect = targetRow.getBoundingClientRect();
-  const isBelow = (e.clientY - rect.top) > rect.height / 2;
-  list.insertBefore(_dragRow, isBelow ? targetRow.nextSibling : targetRow);
-
-  // Persistir ordem: salva campo `order` em cada card
-  const rows = list.querySelectorAll(".day-card-row");
-  rows.forEach((r, i) => {
-    const id = r.dataset.cardId.replace(/_rec_.+$/, ""); // ignora recorrentes
-    const c = cards.find(x => x.id === id);
-    if(c) c.order = i;
-  });
-  saveCards();
-}
-
-// ===================== FILTROS =====================
-function renderFilterBar(){
-  const fb = document.getElementById("filterBar");
-  if(!fb) return;
-  const allTags = [...new Set(cards.flatMap(c => toArr(c.tags)))].filter(Boolean);
-  fb.innerHTML = `
-    <div class="filter-bar">
-      <strong style="font-size:12px;color:var(--muted);">Pessoas:</strong>
-      ${peopleList.map(p => `
-        <span class="f-chip ${activeFilters.people.includes(p.name)?'active':''}"
-              style="${activeFilters.people.includes(p.name)?`background:${p.color}`:''}"
-              onclick="toggleFilter('people','${p.name}')">${p.name}</span>
-      `).join("")}
-      <strong style="font-size:12px;color:var(--muted);margin-left:12px;">Tags:</strong>
-      ${allTags.map(t => `
-        <span class="f-chip ${activeFilters.tags.includes(t)?'active':''}"
-              onclick="toggleFilter('tags','${t}')">#${t}</span>
-      `).join("")}
-    </div>
-  `;
-}
-
-function toggleFilter(kind, value){
-  const arr = activeFilters[kind];
-  const idx = arr.indexOf(value);
-  if(idx >= 0) arr.splice(idx,1); else arr.push(value);
-  if(selectedDate) renderDayView(selectedDate);
-  renderMonthsGrid();
-}
-
-function buildRespFilters(){
-  // recarrega chips de filtro quando peopleList muda
-  if(selectedDate) renderFilterBar();
+  </div>`;
 }
 
 // ===================== MODAL DE CARD =====================
-function openCardModal(ds, cardId){
-  const isEdit = !!cardId;
-  let card = isEdit
-    ? (cards.find(c => c.id === cardId) || recurInstances.find(r => r.id === cardId))
-    : { id: uid(), date: ds, titulo:"", descricao:"", responsavel:[], tags:[], recurrence:"none", comments:[] };
-
-  // Se for instância recorrente, edita o pai
-  if(card.isRecurInstance){
-    const parent = cards.find(c => c.id === card.recurParentId);
-    if(parent) card = parent;
+function openCardModal(id, defaultDate){
+  let card;
+  const isEdit = !!id;
+  if(isEdit){
+    // se for instância recorrente, edita o pai
+    const realId = id.includes("_rec_") ? id.split("_rec_")[0] : id;
+    card = cards.find(c => c.id === realId);
+    if(!card){ alert("Card não encontrado"); return; }
+  } else {
+    card = {
+      id: uid(),
+      titulo: "",
+      descricao: "",
+      date: defaultDate || fmtDate(new Date()),
+      recurrence: "none",
+      responsavel: [],
+      tags: [],
+      comments: []
+    };
   }
 
-  pickerSelected["resp"] = [...toArr(card.responsavel)];
-  pickerSelected["tags"] = [...toArr(card.tags)];
+  const pid = "picker_" + card.id;
+  const tpid = "tagpicker_" + card.id;
+  pickerSelected[pid] = [...toArr(card.responsavel||[])].filter(Boolean);
+  pickerTags[tpid] = [...toArr(card.tags||[])].filter(Boolean);
 
-  const root = document.getElementById("modalRoot");
-  root.innerHTML = `
-    <div class="modal-bg" onclick="if(event.target===this) closeModal()">
+  const modalRoot = document.getElementById("modalRoot");
+  modalRoot.innerHTML = `
+    <div class="modal-bg" onclick="if(event.target===this)closeModal()">
       <div class="modal">
         <h3>${isEdit ? "✏️ Editar Card" : "➕ Novo Card"}</h3>
 
         <label>Título</label>
-        <input id="card-titulo" type="text" value="${(card.titulo||'').replace(/"/g,'&quot;')}" placeholder="Ex: Reunião com cliente"/>
+        <input type="text" id="f_titulo" value="${(card.titulo||'').replace(/"/g,'&quot;')}" oninput="onCardFormChange()"/>
 
         <label>Descrição</label>
-        <textarea id="card-descricao" placeholder="Detalhes do card...">${card.descricao||''}</textarea>
+        <textarea id="f_descricao" oninput="onCardFormChange()">${card.descricao||''}</textarea>
 
         <div class="row">
           <div>
             <label>Data</label>
-            <input id="card-date" type="date" value="${card.date}"/>
+            <input type="date" id="f_data" value="${card.date}" oninput="onCardFormChange()"/>
           </div>
           <div>
             <label>Recorrência</label>
-            <select id="card-recurrence" onchange="updateRecurHint(this)">
-              <option value="none"     ${card.recurrence==='none'?'selected':''}>Nenhuma</option>
-              <option value="daily"    ${card.recurrence==='daily'?'selected':''}>Diária</option>
-              <option value="weekly"   ${card.recurrence==='weekly'?'selected':''}>Semanal</option>
+            <select id="f_recur" onchange="updateRecurHint(this)">
+              <option value="none" ${card.recurrence==='none'?'selected':''}>Nenhuma</option>
+              <option value="daily" ${card.recurrence==='daily'?'selected':''}>Diária</option>
+              <option value="weekly" ${card.recurrence==='weekly'?'selected':''}>Semanal</option>
               <option value="biweekly" ${card.recurrence==='biweekly'?'selected':''}>Quinzenal</option>
-              <option value="monthly"  ${card.recurrence==='monthly'?'selected':''}>Mensal</option>
+              <option value="monthly" ${card.recurrence==='monthly'?'selected':''}>Mensal</option>
             </select>
+            <div class="recur-hint" id="recurHint"></div>
           </div>
         </div>
-        <div id="recurHint" class="recur-hint"></div>
 
         <label>Responsáveis</label>
         <div class="picker-box">
-          <div id="resp-tags" class="picker-tags"></div>
+          <div class="picker-tags" id="${pid}-tags"></div>
           <div class="picker-input-row">
-            <input id="resp-inp" type="text" placeholder="Digite um nome e Enter" 
-                   onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('resp');}"/>
-            <button onclick="addPerson('resp')">+</button>
+            <input type="text" id="${pid}-inp" placeholder="Digite um nome e Enter"
+              onkeydown="if(event.key==='Enter'){event.preventDefault();addPerson('${pid}')}"/>
+            <button type="button" onclick="addPerson('${pid}')">+</button>
           </div>
-          <div id="resp-list" class="people-list"></div>
+          <div class="people-list" id="${pid}-list"></div>
         </div>
 
         <label>Tags</label>
         <div class="picker-box">
-          <div id="tags-tags" class="picker-tags"></div>
+          <div class="picker-tags" id="${tpid}-tags"></div>
           <div class="picker-input-row">
-            <input id="tags-inp" type="text" placeholder="Digite uma tag e Enter"
-                   onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('tags');}"/>
-            <button onclick="addTag('tags')">+</button>
+            <input type="text" id="${tpid}-inp" placeholder="Digite uma tag e Enter"
+              onkeydown="if(event.key==='Enter'){event.preventDefault();addTag('${tpid}')}"/>
+            <button type="button" onclick="addTag('${tpid}')">+</button>
           </div>
         </div>
 
         <label>Comentários</label>
-        <div id="comments-section">
+        <div id="commentsList">
           ${(card.comments||[]).map((cm,i) => `
-            <div style="background:#f3f4f6;padding:6px 10px;border-radius:6px;margin-bottom:4px;display:flex;justify-content:space-between;">
-              <span style="font-size:13px;">${cm}</span>
-              <span style="cursor:pointer;color:#ef4444;" onclick="removeComment(${i})">×</span>
+            <div style="display:flex;gap:6px;margin-bottom:4px;align-items:center;">
+              <input type="text" value="${cm.replace(/"/g,'&quot;')}" data-comment-idx="${i}" style="flex:1;"/>
+              <button type="button" onclick="removeComment(${i})" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;">×</button>
             </div>
           `).join("")}
         </div>
         <div class="picker-input-row" style="margin-top:6px;">
-          <input id="comment-inp" type="text" placeholder="Novo comentário..."
-                 onkeydown="if(event.key==='Enter'){event.preventDefault();addComment();}"/>
-          <button onclick="addComment()">+</button>
+          <input type="text" id="newCommentInp" placeholder="Novo comentário..."
+            onkeydown="if(event.key==='Enter'){event.preventDefault();addComment()}"/>
+          <button type="button" onclick="addComment()">+</button>
         </div>
 
         <div class="actions">
-          ${isEdit ? `<button class="danger" onclick="confirmDelete('${card.id}')">🗑 Excluir</button>` : ""}
+          ${isEdit?`<button class="danger" onclick="if(confirm('Excluir este card?')){deleteCard('${card.id}');closeModal();}">🗑 Excluir</button>`:''}
           <button class="secondary" onclick="closeModal()">Cancelar</button>
-          <button class="primary" onclick="submitCard('${card.id}')">${isEdit?'Salvar':'Criar'}</button>
+          <button class="primary" onclick="submitCard('${card.id}',${isEdit})">${isEdit?'Salvar':'Criar'}</button>
         </div>
       </div>
     </div>
   `;
 
-  // Armazena dados temporários do card sendo editado (para comentários)
-  window._editingCard = JSON.parse(JSON.stringify(card));
+  renderPickerTags(pid);
+  renderPeopleList(pid);
+  renderTagPickerTags(tpid);
+  updateRecurHint(document.getElementById("f_recur"));
 
-  renderPickerTags("resp");
-  renderPeopleList("resp");
-  renderPickerTags("tags");
-  updateRecurHint(document.getElementById("card-recurrence"));
-}
-
-function addTag(pid){
-  const inp = document.getElementById(pid+"-inp");
-  const val = inp.value.trim();
-  if(!val) return;
-  if(!pickerSelected[pid]) pickerSelected[pid] = [];
-  if(!pickerSelected[pid].includes(val)) pickerSelected[pid].push(val);
-  inp.value = "";
-  // tags não usam cor — renderiza com badge cinza
-  const box = document.getElementById(pid+"-tags");
-  box.innerHTML = pickerSelected[pid].map(t => `
-    <span class="picker-tag" style="background:#6b7280">
-      #${t} <span class="x" onclick="removeTagFromPicker('${pid}','${t}')">×</span>
-    </span>
-  `).join("");
-}
-
-function removeTagFromPicker(pid, val){
-  pickerSelected[pid] = (pickerSelected[pid]||[]).filter(t => t !== val);
-  const box = document.getElementById(pid+"-tags");
-  box.innerHTML = pickerSelected[pid].map(t => `
-    <span class="picker-tag" style="background:#6b7280">
-      #${t} <span class="x" onclick="removeTagFromPicker('${pid}','${t}')">×</span>
-    </span>
-  `).join("");
+  // guarda referência para edição de comentários
+  window._currentCardEditing = card;
+  window._currentPid = pid;
+  window._currentTpid = tpid;
 }
 
 function addComment(){
-  const inp = document.getElementById("comment-inp");
+  const inp = document.getElementById("newCommentInp");
   const val = inp.value.trim();
   if(!val) return;
-  if(!window._editingCard.comments) window._editingCard.comments = [];
-  window._editingCard.comments.push(val);
+  const card = window._currentCardEditing;
+  if(!card.comments) card.comments = [];
+  card.comments.push(val);
   inp.value = "";
-  refreshCommentsSection();
+  refreshCommentsList();
 }
-
 function removeComment(idx){
-  window._editingCard.comments.splice(idx,1);
-  refreshCommentsSection();
+  const card = window._currentCardEditing;
+  card.comments.splice(idx,1);
+  refreshCommentsList();
 }
-
-function refreshCommentsSection(){
-  const sec = document.getElementById("comments-section");
-  if(!sec) return;
-  const list = window._editingCard.comments || [];
-  sec.innerHTML = list.map((cm,i) => `
-    <div style="background:#f3f4f6;padding:6px 10px;border-radius:6px;margin-bottom:4px;display:flex;justify-content:space-between;">
-      <span style="font-size:13px;">${cm}</span>
-      <span style="cursor:pointer;color:#ef4444;" onclick="removeComment(${i})">×</span>
+function refreshCommentsList(){
+  const card = window._currentCardEditing;
+  const box = document.getElementById("commentsList");
+  box.innerHTML = (card.comments||[]).map((cm,i) => `
+    <div style="display:flex;gap:6px;margin-bottom:4px;align-items:center;">
+      <input type="text" value="${cm.replace(/"/g,'&quot;')}" data-comment-idx="${i}" style="flex:1;"/>
+      <button type="button" onclick="removeComment(${i})" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;">×</button>
     </div>
   `).join("");
 }
 
-function submitCard(id){
-  const cardData = {
-    id,
-    titulo:      document.getElementById("card-titulo").value.trim(),
-    descricao:   document.getElementById("card-descricao").value.trim(),
-    date:        document.getElementById("card-date").value,
-    recurrence:  document.getElementById("card-recurrence").value,
-    responsavel: pickerSelected["resp"] || [],
-    tags:        pickerSelected["tags"] || [],
-    comments:    window._editingCard.comments || []
-  };
-  if(!cardData.titulo){
-    alert("Informe um título.");
-    return;
-  }
-  saveCard(cardData);
-  closeModal();
-}
+function submitCard(id, isEdit){
+  const card = window._currentCardEditing;
+  card.titulo = document.getElementById("f_titulo").value.trim();
+  card.descricao = document.getElementById("f_descricao").value.trim();
+  card.date = document.getElementById("f_data").value;
+  card.recurrence = document.getElementById("f_recur").value;
+  card.responsavel = [...(pickerSelected[window._currentPid]||[])];
+  card.tags = [...(pickerTags[window._currentTpid]||[])];
 
-function confirmDelete(id){
-  if(confirm("Excluir este card? Esta ação não pode ser desfeita.")){
-    deleteCard(id);
-    closeModal();
-  }
+  // atualiza comentários a partir dos inputs
+  const commentInputs = document.querySelectorAll("#commentsList input[data-comment-idx]");
+  card.comments = Array.from(commentInputs).map(i => i.value.trim()).filter(Boolean);
+
+  if(!card.titulo){ alert("Informe um título"); return; }
+  if(!card.date){ alert("Informe uma data"); return; }
+
+  saveCard(card);
+  closeModal();
 }
 
 function closeModal(){
   document.getElementById("modalRoot").innerHTML = "";
-  window._editingCard = null;
+  window._currentCardEditing = null;
 }
 
 // ===================== DASHBOARD =====================
 function renderDashboard(){
-  const dv = document.getElementById("viewDashboard");
-  if(!dv) return;
+  const box = document.getElementById("viewDashboard");
+  const total = cards.length;
+  const totalRecur = recurInstances.length;
+  const byPerson = {};
+  const byTag = {};
+  const byMonth = Array(12).fill(0);
 
-  // Métricas
-  const totalCards = cards.length;
-  const recorrentes = cards.filter(c => c.recurrence && c.recurrence !== "none").length;
-  const totalInstancias = recurInstances.length;
-  const cardsPorPessoa = {};
-  cards.forEach(c => toArr(c.responsavel).forEach(r => {
-    cardsPorPessoa[r] = (cardsPorPessoa[r] || 0) + 1;
-  }));
-  const cardsPorMes = Array(12).fill(0);
-  cards.forEach(c => {
-    const d = parseDate(c.date);
-    if(d.getFullYear() === currentYear) cardsPorMes[d.getMonth()]++;
+  [...cards, ...recurInstances].forEach(c => {
+    toArr(c.responsavel||[]).forEach(p => {
+      if(p) byPerson[p] = (byPerson[p]||0) + 1;
+    });
+    toArr(c.tags||[]).forEach(t => {
+      if(t) byTag[t] = (byTag[t]||0) + 1;
+    });
+    if(c.date){
+      const m = parseDate(c.date).getMonth();
+      byMonth[m]++;
+    }
   });
 
-  const topPessoas = Object.entries(cardsPorPessoa)
+  const personRows = Object.entries(byPerson)
     .sort((a,b) => b[1]-a[1])
-    .slice(0,5);
+    .map(([name,count]) => {
+      const p = peopleList.find(x => x.name === name);
+      const color = p ? p.color : "#6b7280";
+      return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">
+        <span class="person-chip" style="background:${color}">${name}</span>
+        <strong>${count}</strong>
+      </div>`;
+    }).join("") || `<p style="color:var(--muted);">Sem dados</p>`;
 
-  const maxMes = Math.max(...cardsPorMes, 1);
+  const tagRows = Object.entries(byTag)
+    .sort((a,b) => b[1]-a[1])
+    .map(([t,count]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">
+      <span class="badge">${t}</span><strong>${count}</strong>
+    </div>`).join("") || `<p style="color:var(--muted);">Sem dados</p>`;
 
-  dv.innerHTML = `
+  const monthRows = byMonth.map((count,i) => `
+    <div style="display:flex;justify-content:space-between;padding:4px 0;">
+      <span>${MESES[i]}</span><strong>${count}</strong>
+    </div>
+  `).join("");
+
+  box.innerHTML = `
+    <h2 style="margin:0 0 16px;">📊 Dashboard ${currentYear}</h2>
     <div class="dashboard">
       <div class="dash-card">
-        <h4>📊 Total de Cards</h4>
-        <div class="stat-big">${totalCards}</div>
-        <p style="color:var(--muted);font-size:13px;margin:8px 0 0;">
-          ${recorrentes} recorrente(s) · ${totalInstancias} instância(s) em ${currentYear}
-        </p>
+        <h4>Total de cards</h4>
+        <div class="stat-big">${total}</div>
+        <p style="color:var(--muted);font-size:12px;margin:4px 0 0;">+ ${totalRecur} recorrências geradas</p>
       </div>
-
       <div class="dash-card">
-        <h4>👥 Top Responsáveis</h4>
-        ${topPessoas.length ? topPessoas.map(([name,count]) => {
-          const p = peopleList.find(x => x.name === name);
-          const color = p ? p.color : "#6b7280";
-          return `
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-              <span class="person-chip" style="background:${color}">${name}</span>
-              <span style="color:var(--muted);font-size:13px;">${count} card(s)</span>
-            </div>
-          `;
-        }).join("") : `<p style="color:var(--muted);">Sem dados ainda.</p>`}
+        <h4>Por pessoa</h4>
+        ${personRows}
       </div>
-
-      <div class="dash-card" style="grid-column:1/-1;">
-        <h4>📅 Distribuição por Mês (${currentYear})</h4>
-        <div style="display:flex;align-items:flex-end;gap:6px;height:140px;padding:10px 0;">
-          ${cardsPorMes.map((count,i) => {
-            const h = (count/maxMes)*100;
-            return `
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
-                <div style="width:100%;background:var(--primary);height:${h}%;min-height:2px;border-radius:4px 4px 0 0;" 
-                     title="${count} cards"></div>
-                <span style="font-size:10px;color:var(--muted);">${MESES[i].slice(0,3)}</span>
-                <span style="font-size:11px;font-weight:600;">${count}</span>
-              </div>
-            `;
-          }).join("")}
-        </div>
+      <div class="dash-card">
+        <h4>Por tag</h4>
+        ${tagRows}
+      </div>
+      <div class="dash-card">
+        <h4>Por mês</h4>
+        ${monthRows}
       </div>
     </div>
   `;
 }
 
-// ===================== INIT =====================
-function init(){
-  loadAll();
-  document.getElementById("yearLabel").textContent = currentYear;
-  document.getElementById("topbarYear").textContent = currentYear;
-  rebuildRecurInstances();
-  renderAll();
-}
-
-document.addEventListener("DOMContentLoaded", init);
+// ===================== INICIALIZAÇÃO =====================
+document.getElementById("yearLabel").textContent = currentYear;
+document.getElementById("topbarYear").textContent = currentYear;
+rebuildRecurInstances();
+renderAll();
+</script>
+</body>
+</html>
